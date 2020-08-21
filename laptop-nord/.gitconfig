@@ -1,0 +1,12 @@
+[alias]
+	aa = add .
+	st = status
+	sh = show
+	d = diff
+	c = commit -v
+	ca = commmit -v --amend
+	co = checkout
+	b = branch
+	l = pull
+	p = push
+	log = log --oneline --decorate --graph

@@ -1,0 +1,156 @@
+set $mod Mod4
+
+# Colors from https://www.nordtheme.com/
+set $nord0 '#2e3440'
+
+set $blue1 '#88c0d0'
+set $blue3 '#5E81AC'
+
+set $frost0 '#d8dee9'
+set $frost2 '#eceff4'
+
+set $green '#A3BE8C'
+set $red '#bf616a'
+
+# Font for Window Titles
+font pango:FiraCode Nerd Font Mono 8
+
+# The combination of xss-lock, nm-applet and pactl is a popular choice, so
+# they are included here as an example. Modify as you see fit.
+# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
+# screen before suspend. Use loginctl lock-session to lock your screen.
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+### Keybinds ###
+#Terminal
+bindsym $mod+Return exec --no-startup-id alacritty
+bindsym $mod+Ctrl+Return exec --no-startup-id xterm
+
+# Locking
+bindsym $mod+Shift+BackSpace exec "~/scripts/lock-laptop.sh"
+
+# Exit Session
+bindsym $mod+Shift+e exec "i3-msg exit"
+
+# Windows
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+bindsym $mod+Ctrl+l resize grow width 10 px
+bindsym $mod+Ctrl+h resize shrink width 10 px
+bindsym $mod+Ctrl+j resize shrink height 10 px
+bindsym $mod+Ctrl+k resize grow height 10 px
+
+bindsym $mod+Shift+q kill
+
+bindsym $mod+f fullscreen toggle
+bindsym $mod+Shift+space floating toggle
+
+# Layout
+bindsym $mod+s layout toggle stacking splith
+
+# Create splits just like in vim
+bindsym $mod+Shift+s split v
+bindsym $mod+Shift+v split h
+
+# Workspace Cycle
+bindsym $mod+n workspace next
+bindsym $mod+p workspace prev
+
+# Rofi and dmenu
+bindsym $mod+space exec "~/.config/rofi/launchers-git/launcher.sh"
+bindsym $mod+d exec "dmenu_run -fn 'FiraCode Nerd Font Mono' -nb $nord0 -sb $green -nf $frost2  -sf $frost2
+
+#bindsym --release $mod+Shift+p exec"import ~/screenshots/Screenshot-$(date '+%Y%m%d-%H%M%S').png"
+bindsym $mod+Shift+p exec "flameshot gui"
+
+# Screen brightness
+bindsym XF86MonBrightnessUp exec light -A 5 # increase
+bindsym XF86MonBrightnessDown exec light -U 5 # decrease
+
+# Volume
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +2%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -2%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+# Sound Control
+bindsym XF86AudioPlay exec playerctl play
+bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
+### Workspaces ###
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# Move to workspace
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
+
+# Move window to workspace
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10
+
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+
+### Design ###
+new_window 1pixel
+for_window [class="^.*"] border pixel 0
+
+# class                 border  backgr. text    indicator child_border
+client.focused          $blue3  $blue3 $frost2 $blue3    $blue3
+client.focused_inactive $nord0  $blue3 $nord0  $nord0    $nord0
+client.unfocused        $nord0  $nord0 $frost0 $blue1    $nord0
+client.urgent           $red    $red   $frost2 $red      $red
+client.background       #ffffff
+
+exec "~/scripts/startup-laptop.sh"
+# i3 doesnt let me put this in the startscript
+exec_always --no-startup-id ~/.config/polybar/launch.sh &amp;
+
+# Monitors
+set $monitor1 "eDP-1"
+set $monitor2 "HDMI-1"
+
+gaps inner 8
+# polybar height + gaps inner
+gaps top 35
+
+bindsym $mod+Ctrl+1 move workspace to output $monitor1
+bindsym $mod+Ctrl+2 move workspace to output $monitor2
