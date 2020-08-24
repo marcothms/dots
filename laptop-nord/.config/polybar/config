@@ -43,7 +43,7 @@ radius = 12
 height = 27px
 
 foreground = ${colors.foreground}
-background = ${colors.nord0}
+background = #d12e3440
 
 module-margin= 0
 
@@ -78,15 +78,17 @@ modules-center = spotify
 ################################################################################
 [bar/status]
 inherit = bar/global
-width = 25%
+width = 31%
 
 override-redirect = true
 fixed-center = true
 
-offset-x = 75%:-8px
+offset-x = 69%:-8px
 offset-y = 8px
 
-modules-center = backlight volume battery date
+#tray-position = left
+
+modules-center = update backlight volume battery network date
 
 ###############################################################################
 [module/i3]
@@ -98,15 +100,29 @@ wrapping-scroll = false
 format = <label-state> <label-mode>
 
 foreground = ${colors.foreground}
-background = ${colors.nord0}
 
-label-focused = ""
+ws-icon-0 = 1;一
+ws-icon-1 = 2;二
+ws-icon-2 = 3;三
+ws-icon-3 = 4;四
+ws-icon-4 = 5;五
+ws-icon-5 = 6;六
+ws-icon-6 = 7;七
+ws-icon-7 = 8;八
+ws-icon-8 = 9;九
+ws-icon-9 = 10;十
+ws-icon-default = 
+
+#label-focused = ""
+label-focused = "%icon%"
 label-focused-padding = 1
 
-label-unfocused = ""
+#label-unfocused = ""
+label-unfocused = "%icon%"
+label-unfocused-foreground = ${colors.nord3}
 label-unfocused-padding = 1
 
-label-urgent = ""
+label-urgent = "%icon%"
 label-urgent-foreground = ${colors.red}
 label-urgent-padding = 1
 
@@ -115,12 +131,12 @@ label-urgent-padding = 1
 type = internal/date
 
 format-padding = 1
-format-background = ${colors.background}
 
 interval = 1.0
 
-time =  %I:%M %p - %A, %d %B %Y
-time-alt =  %I:%M %p
+#time =  %I:%M %p - %A, %d %B %Y
+time =  %I:%M %p - %d.%m.%Y
+time-alt =  %I:%M %p
 
 format = <label>
 
@@ -140,9 +156,6 @@ format-padding = 1
 type = internal/cpu
 
 interval = 5
-
-format-background = ${colors.frost1}
-format-foreground = ${colors.nord0}
 
 format = <label>
 format-prefix = 
@@ -168,18 +181,13 @@ full-at = 99
 battery = BAT0
 apdapter = ADP1
 
-bg = ${colors.background}
-
 format-charging = <animation-charging> <label-charging>
-format-charging-background = ${self.bg}
 format-charging-padding = 1
 
 format-discharging = <ramp-capacity> <label-discharging>
-format-discharging-background = ${self.bg}
 format-discharging-padding = 1
 
 format-full = <ramp-capacity> <label-full>
-format-full-background = ${self.bg}
 format-full-padding = 1
 
 label-charging = %percentage%%
@@ -211,7 +219,6 @@ animation-charging-framerate = 750
 [module/volume]
 type = internal/pulseaudio
 
-format-volume-background = ${colors.background}
 format-volume-padding = 1
 
 format-volume = <ramp-volume> <label-volume>
@@ -240,12 +247,11 @@ interval = 1.0
 accumulate-stats = true
 unknown-as-up = true
 
-format-connected = <ramp-signal> <label-connected>
-format-connected-background = ${colors.nord1}
+#format-connected = <ramp-signal> <label-connected>
+format-connected =  <label-connected>
 format-connected-padding = 1
 
 format-disconnected = <label-disconnected>
-format-disconnected-background = ${colors.nord1}
 format-disconnected-padding = 1
 
 label-connected = %essid%
@@ -263,8 +269,6 @@ ramp-signal-4 = 
 type = internal/backlight
 
 format-padding = 1
-format-background = ${colors.background}
-format-foreground = ${colors.foreground}
 
 # ls -1 /sys/class/backlight
 card = amdgpu_bl0
@@ -298,8 +302,6 @@ interval = 2
 type = custom/script
 
 format-padding = 1
-format-background = ${colors.green}
-format-foreground = ${colors.nord0}
 
 exec = ~/.config/polybar/scripts/hostname.sh
 tail = true
@@ -310,8 +312,6 @@ interval = 60
 type = custom/script
 
 format-padding = 1
-format-background = ${colors.nord0}
-format-foreground = ${colors.foreground}
 format-prefix = "直 "
 
 exec = ~/.config/polybar/scripts/ip.sh
@@ -319,13 +319,9 @@ tail = true
 interval = 20
 
 ###############################################################################
-[module/powerbutton]
-type = custom/text
-
-content-padding = 1
-content-background = ${colors.nord1}
-content-foreground = ${colors.frost2}
-
-content = "襤"
-
-click-left = ~/scripts/powermenu
+[module/update]
+type = custom/script
+exec = echo ' '
+interval = 5
+tail = true
+click-left = alacritty -e bash -c "echo 'Upgrading packages...' && sudo dnf upgrade"

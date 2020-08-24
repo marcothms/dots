@@ -1,17 +1,5 @@
 set $mod Mod4
 
-# Colors from https://www.nordtheme.com/
-set $nord0 '#2e3440'
-
-set $blue1 '#88c0d0'
-set $blue3 '#5E81AC'
-
-set $frost0 '#d8dee9'
-set $frost2 '#eceff4'
-
-set $green '#A3BE8C'
-set $red '#bf616a'
-
 # Font for Window Titles
 font pango:FiraCode Nerd Font Mono 8
 
@@ -33,7 +21,7 @@ bindsym $mod+Ctrl+Return exec --no-startup-id xterm
 bindsym $mod+Shift+BackSpace exec "~/scripts/lock-laptop.sh"
 
 # Exit Session
-bindsym $mod+Shift+e exec "i3-msg exit"
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Logout?' -B 'Yes!' 'i3-msg exit'"
 
 # Windows
 bindsym $mod+h focus left
@@ -69,7 +57,11 @@ bindsym $mod+p workspace prev
 
 # Rofi and dmenu
 bindsym $mod+space exec "~/.config/rofi/launchers-git/launcher.sh"
-bindsym $mod+d exec "dmenu_run -fn 'FiraCode Nerd Font Mono' -nb $nord0 -sb $green -nf $frost2  -sf $frost2
+
+set $nord0d '#2e3440'
+set $frost2d '#eceff4'
+set $greend '#A3BE8C'
+bindsym $mod+d exec "dmenu_run -fn 'FiraCode Nerd Font Mono' -nb #2e3440 -sb #a3be8c -nf #eceff4 -sf #2e3440"
 
 #bindsym --release $mod+Shift+p exec"import ~/screenshots/Screenshot-$(date '+%Y%m%d-%H%M%S').png"
 bindsym $mod+Shift+p exec "flameshot gui"
@@ -133,16 +125,24 @@ bindsym $mod+Shift+r restart
 new_window 1pixel
 for_window [class="^.*"] border pixel 0
 
-# class                 border  backgr. text    indicator child_border
-client.focused          $blue3  $blue3 $frost2 $blue3    $blue3
-client.focused_inactive $nord0  $blue3 $nord0  $nord0    $nord0
-client.unfocused        $nord0  $nord0 $frost0 $blue1    $nord0
-client.urgent           $red    $red   $frost2 $red      $red
-client.background       #ffffff
+# Colors from https://www.nordtheme.com/
+set $nord0 "#2e3440"
 
-exec "~/scripts/startup-laptop.sh"
-# i3 doesnt let me put this in the startscript
-exec_always --no-startup-id ~/.config/polybar/launch.sh &amp;
+set $blue1 "#88c0d0"
+set $blue3 "#5E81AC"
+
+set $frost0 "#d8dee9"
+set $frost2 "#eceff4"
+
+set $green "#A3BE8C"
+
+set $red "#bf616a" 
+# class                 border  backgr.text    indic. child_border
+client.focused          $nord0  $nord0 $frost2 $nord0 $nord0
+client.focused_inactive $nord0  $blue3 $nord0  $nord0 $nord0
+client.unfocused        $nord0  $nord0 $frost0 $blue1 $nord0
+client.urgent           $red    $red   $frost2 $red   $red
+client.background       #ffffff
 
 # Monitors
 set $monitor1 "eDP-1"
@@ -154,3 +154,12 @@ gaps top 35
 
 bindsym $mod+Ctrl+1 move workspace to output $monitor1
 bindsym $mod+Ctrl+2 move workspace to output $monitor2
+
+# Keyboard layout
+exec setxkbmap -layout za
+
+# Start programs
+exec feh --bg-scale $HOME/data/wallpaper/wallpaper.png
+exec dunst &
+exec picom --experimental-backends
+exec --no-startup-id ~/.config/polybar/launch.sh &amp
