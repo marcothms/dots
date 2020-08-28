@@ -1,15 +1,17 @@
 #!/bin/sh
 
+length=20
+
 function scroll () {
 	prefix="$1"
 	scrolling="$2"
-	temp="$(echo "$scrolling"| sed "s/^\(.\{20\}\)\(.*\)$/\1[\2]/"| sed "s/\[ *\]$//"| sed "s/\[.*\]$//")"
+	temp="$(echo "$scrolling"| sed "s/^\(.\{$length\}\)\(.*\)$/\1[\2]/"| sed "s/\[ *\]$//"| sed "s/\[.*\]$//")"
 	suffix="$3"
-	if [ "$(echo -n $scrolling |wc -c)" -gt 20 ]; then
+	if [ "$(echo -n $scrolling |wc -c)" -gt $length ]; then
 		echo "$prefix%{T7}$temp%{T-}$suffix"
 		sleep 0.5
 
-		zscroll -l 20 \
+		zscroll -l $length \
         		--delay 0.2 \
 			--before-text "$prefix%{T7}" \
 			--after-text "%{T-}$suffix" \
@@ -23,7 +25,7 @@ function scroll () {
 } #
 
 function get_artist () {
-	echo "$(playerctl -p spotify metadata --format "{{ artist }}"| sed -e "s/[[(]....*[])]*//g" | sed "s/ *$//"| sed "s/^\(.\{20\}[^ ]*\)\(.*\)$/\1[\2]/"| sed "s/\[ *\]$//"| sed "s/\[.*\]$/.../")"
+	echo "$(playerctl -p spotify metadata --format "{{ artist }}"| sed -e "s/[[(]....*[])]*//g" | sed "s/ *$//"| sed "s/^\(.\{$length\}[^ ]*\)\(.*\)$/\1[\2]/"| sed "s/\[ *\]$//"| sed "s/\[.*\]$/.../")"
 } #
 
 function get_title () {

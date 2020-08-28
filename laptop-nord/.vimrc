@@ -64,13 +64,17 @@ syntax on
 colorscheme nord
 filetype indent plugin on
 
+"set termguicolors
+"let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+"let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+
 " ============================== General
 set number
 set relativenumber
 
 set showmatch " highlights paranthesis
 set mat=5
-set noswapfile " can be problamatic on some systems
+set noswapfile " can be problematic on some systems
 set confirm " can't quit without saving
 set noshowmode " don't show mode in status
 set noshowcmd " don't show command in status

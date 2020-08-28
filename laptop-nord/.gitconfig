@@ -1,6 +1,6 @@
 [user]
 	name = Marco Thomas
-	email = ma_tho@web.de
+	email = mthomas@marcmk.de
 [alias]
 	aa = add .
 	st = status
@@ -12,4 +12,4 @@
 	b = branch
 	l = pull
 	p = push
-	log = log --oneline --decorate --graph
+	lg = log --oneline --decorate --graph

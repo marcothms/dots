@@ -3,9 +3,15 @@ while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
 if type "xrandr"; then
   for mon in $(xrandr --query | grep " connected" | cut -d" " -f1); do
-    MONITOR=$mon polybar --reload workspaces &
-    MONITOR=$mon polybar --reload middle &
-    MONITOR=$mon polybar --reload status &
+    if [ "$1" = "laptop" ]; then
+      MONITOR=$mon polybar --reload workspaces &
+      MONITOR=$mon polybar --reload music &
+      MONITOR=$mon polybar --reload status &
+      MONITOR=$mon polybar --reload tray &
+    fi
+    if [ "$1" = "all" ]; then
+      MONITOR=$mon polybar --reload all &
+    fi
   done
 else
     echo "No Bars loaded."

@@ -164,7 +164,7 @@
     icon_position = left
 
     # Scale larger icons down to this size, set to 0 to disable
-    max_icon_size = 85
+    max_icon_size = 60
 
     # Paths to default icons.
     icon_path = /home/marc/.icons/default

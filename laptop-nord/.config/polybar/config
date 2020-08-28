@@ -1,5 +1,4 @@
-; vim: ft=dosini
-
+; ft=dosini
 [colors]
 transparent = #00000000
 
@@ -43,12 +42,28 @@ radius = 12
 height = 27px
 
 foreground = ${colors.foreground}
-background = #d12e3440
+background = #2e3440
 
 module-margin= 0
 
 wm-name = i3
 wm-restack = i3
+
+################################################################################
+[bar/all]
+inherit = bar/global
+width = 80%
+
+override-redirect = true
+
+padding = 3
+
+offset-x = 10%:-8px
+offset-y = 8px
+
+modules-left = i3
+modules-center = spotify
+modules-right = update brightness volume date
 
 ################################################################################
 [bar/workspaces]
@@ -63,14 +78,13 @@ offset-y = 8px
 modules-center = i3
 
 ################################################################################
-[bar/middle]
+[bar/music]
 inherit = bar/global
-width = 25%
+width = 22%
 
 override-redirect = true
-fixed-center = true
 
-offset-x = 37.25%
+offset-x = 11.5%-8px
 offset-y = 8px
 
 modules-center = spotify
@@ -78,17 +92,30 @@ modules-center = spotify
 ################################################################################
 [bar/status]
 inherit = bar/global
-width = 31%
+width = 22%
 
 override-redirect = true
 fixed-center = true
 
-offset-x = 69%:-8px
+offset-x = 67%:-8px
 offset-y = 8px
 
-#tray-position = left
+modules-center = update backlight volume battery date
 
-modules-center = update backlight volume battery network date
+################################################################################
+[bar/tray]
+inherit = bar/global
+width = 10%
+
+override-redirect = true
+fixed-center = true
+
+offset-x = 90%:-8px
+offset-y = 8px
+
+tray-position = center
+
+modules-center = update
 
 ###############################################################################
 [module/i3]
@@ -116,6 +143,7 @@ ws-icon-default = 
 #label-focused = ""
 label-focused = "%icon%"
 label-focused-padding = 1
+label-focused-underline = ${colors.red}
 
 #label-unfocused = ""
 label-unfocused = "%icon%"
@@ -135,7 +163,7 @@ format-padding = 1
 interval = 1.0
 
 #time =  %I:%M %p - %A, %d %B %Y
-time =  %I:%M %p - %d.%m.%Y
+time =  %I:%M %p  %d.%m.%Y
 time-alt =  %I:%M %p
 
 format = <label>
