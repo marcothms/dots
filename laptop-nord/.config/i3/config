@@ -57,12 +57,12 @@ bindsym $mod+n workspace next
 bindsym $mod+p workspace prev
 
 # Rofi and dmenu
-bindsym $mod+space exec "~/.config/rofi/launchers-git/launcher.sh"
+bindsym $mod+d exec "~/.config/rofi/launchers-git/launcher.sh"
 
 set $nord0d '#2e3440'
 set $frost2d '#eceff4'
 set $greend '#A3BE8C'
-bindsym $mod+d exec "dmenu_run -fn 'FiraCode Nerd Font Mono' -nb '#2e3440' -sb '#a3be8c' -nf '#eceff4' -sf '#2e3440'"
+bindsym $mod+Shift+d exec "dmenu_run -fn 'FiraCode Nerd Font Mono' -nb '#2e3440' -sb '#a3be8c' -nf '#eceff4' -sf '#2e3440'"
 
 # Screenhot
 bindsym $mod+Shift+p exec "flameshot gui"

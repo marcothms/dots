@@ -8,7 +8,7 @@
 + Launcher: rofi
 + Bar: polybar
 + Notifications: dunst
-+ Compositor: [picom](https://github.com/tryone144/compton/tree/feature/dual_kawase)
++ Compositor: [picom](https://github.com/ibhagwan/picom)
 + Set Wallpaper: feh
 + Info: [fet.sh](https://github.com/6gk/fet.sh)
 + Screenshots: Flameshot

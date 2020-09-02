@@ -38,13 +38,6 @@ let g:pear_tree_pairs = {
             \ '<': {'closer': '>'}
             \ }
 
-" Helper for latex
-Plugin 'lervag/vimtex'
-
-let g:vimtex_view_general_viewer = 'zathura'
-nmap <C-c> :VimtexCompile <CR>
-nmap <C-t> :VimtexTocToggle <CR>
-
 " fzf
 if executable("fzf")
     Plugin 'junegunn/fzf'
@@ -55,6 +48,13 @@ endif
 
 " Colors
 Plugin 'arcticicestudio/nord-vim'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+
+let g:airline_theme='nord'
+let g:airline_powerline_fonts = 1
+let g:bufferline_echo = 0
+set guifont="FiraCode Nerd Font Mono"
 
 call vundle#end()
 filetype plugin indent on
@@ -71,6 +71,8 @@ filetype indent plugin on
 " ============================== General
 set number
 set relativenumber
+set cursorline
+set ruler
 
 set showmatch " highlights paranthesis
 set mat=5

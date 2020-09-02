@@ -1,27 +1,28 @@
-## Prompt
+# ▄▄   ▄▄ ▄▄▄▄▄▄ ▄▄▄▄▄▄   ▄▄▄▄▄▄▄ ▄▄  ▄▄▄▄▄▄▄    ▄▄▄▄▄▄▄ ▄▄▄▄▄▄▄ ▄▄   ▄▄ ▄▄▄▄▄▄   ▄▄▄▄▄▄▄
+# █  █▄█  █      █   ▄  █ █       █  ██       █  █       █       █  █ █  █   ▄  █ █       █
+# █       █  ▄   █  █ █ █ █       █▄▄██  ▄▄▄▄▄█  █▄▄▄▄   █  ▄▄▄▄▄█  █▄█  █  █ █ █ █       █
+# █       █ █▄█  █   █▄▄█▄█     ▄▄█   █ █▄▄▄▄▄    ▄▄▄▄█  █ █▄▄▄▄▄█       █   █▄▄█▄█     ▄▄█
+# █       █      █    ▄▄  █    █      █▄▄▄▄▄  █  █ ▄▄▄▄▄▄█▄▄▄▄▄  █   ▄   █    ▄▄  █    █
+# █ ██▄██ █  ▄   █   █  █ █    █▄▄     ▄▄▄▄▄█ █  █ █▄▄▄▄▄ ▄▄▄▄▄█ █  █ █  █   █  █ █    █▄▄
+# █▄█   █▄█▄█ █▄▄█▄▄▄█  █▄█▄▄▄▄▄▄▄█   █▄▄▄▄▄▄▄█  █▄▄▄▄▄▄▄█▄▄▄▄▄▄▄█▄▄█ █▄▄█▄▄▄█  █▄█▄▄▄▄▄▄▄█
+#
+# ============================== Prompt
 autoload -Uz vcs_info
 autoload -U colors && colors
 precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
 setopt prompt_subst
-export PROMPT="%{$fg[yellow]%}%m %{$fg_bold[blue]%}%~ %{$fg_bold[cyan]%}\$vcs_info_msg_0_ %{$reset_color%}"
-zstyle ':vcs_info:git:*' formats '%b '
+export PROMPT="%{$fg[yellow]%}%m %{$fg_bold[blue]%}%~%{$fg_bold[cyan]%}\$vcs_info_msg_0_ %{$reset_color%}"
+zstyle ':vcs_info:git:*' formats '|%b '
 
-export RPROMPT=""
-
-## Exports
+# ============================== Exports
 export EDITOR="vim"
 export LANG="en_US.UTF-8"
 export PATH=$PATH:$HOME/.local/bin:$HOME/scripts
 
-## Aliases
-if [ -f ~/.zshrc_local ]; then
-    source ~/.zshrc_local
-fi
-
-alias fonts="/home/$USER/.local/share/fonts"
-alias listfonts="fc-list :scalable=true:spacing=mono: family"
-alias cachefonts="fc-cache -f -v"
+# ============================== Aliases
+alias fontslist="fc-list :scalable=true:spacing=mono: family"
+alias fontscache="fc-cache -f -v"
 
 alias r="ranger"
 alias s="cd ~/scripts/"
@@ -35,7 +36,11 @@ alias rm='rm -i' # Ask before removal
 alias cp='cp -i' # Ask before removal
 alias mv='mv -i' # Ask before removal
 
-## Completion
+if [ -f ~/.zshrc_local ]; then
+    source ~/.zshrc_local
+fi
+
+# ============================== Completion
 unsetopt menu_complete   # do not autoselect the first completion entry
 unsetopt flowcontrol
 setopt auto_menu         # show completion menu on successive tab press
@@ -53,7 +58,7 @@ zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 
 ## Directory navigation
 setopt autocd autopushd
 
-## History command configuration
+# ============================== History
 setopt extended_history       # record timestamp of command in HISTFILE
 setopt hist_expire_dups_first # delete duplicates first when HISTFILE size exceeds HISTSIZE
 setopt hist_ignore_dups       # ignore duplicated commands history list
@@ -62,7 +67,7 @@ setopt hist_verify            # show command with history expansion to user befo
 setopt share_history          # share command history data inside tmux
 export HISTFILE="$HOME/.zsh_history"
 
-## ssh-agent
+# ============================== SSH-Agent
 if [ -f ~/.ssh/agent.env ] ; then
     . ~/.ssh/agent.env > /dev/null
     if ! kill -0 $SSH_AGENT_PID > /dev/null 2>&1; then
@@ -76,7 +81,7 @@ else
     ssh-add
 fi
 
-## vi-mode
+# ============================== vi-Mode
 bindkey -v
 export KEYTIMEOUT=1
 
@@ -100,7 +105,7 @@ RPS2=$RPS1
 # Enable backspace to delete in vi-mode
 bindkey -v '^?' backward-delete-char
 
-## fzf
+# ============================== fzf
 export FZF_DEFAULT_OPTS='--preview="head {}" --layout=reverse --bind=tab:down --bind=btab:up'
 
 ## fzf Bindings in zsh (C-r and C-t)
@@ -111,7 +116,8 @@ else
     bindkey '^R' history-incremental-search-backward
 fi
 
-## Use C-z for 'fg'
+# ============================== Fancy Hacks
+# Always use C-z for bg and fg
 fancy-ctrl-z () {
   if [[ $#BUFFER -eq 0 ]]; then
     BUFFER="fg"
@@ -124,10 +130,10 @@ fancy-ctrl-z () {
 zle -N fancy-ctrl-z
 bindkey '^Z' fancy-ctrl-z
 
-## Nord dir colors
+# Nord-themed directory colors
 test -r "~/.dir_colors" && eval $(dircolors ~/.dir_colors)
 
-## Syntax Highlighting
+# Syntax Highlighting
 if [ -f ~/.zsh-highlighting/zsh-syntax-highlighting.zsh ]; then
     source $HOME/.zsh-highlighting/zsh-syntax-highlighting.zsh
 fi
