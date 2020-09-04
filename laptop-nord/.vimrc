@@ -115,3 +115,10 @@ cmap Wq wq
 cmap Q q
 cmap W w
 cmap q1 q!
+
+" ============================== Snippets
+iab lbf \textbf{}<LEFT>
+iab lframe \begin{frame}{}<CR><CR>\end{frame}<UP>
+iab litem \begin{itemize}<CR><CR>\end{itemize}<UP>
+iab ltable \begin{tabular}{}<CR>\end{tabular}<UP><RIGHT><RIGHT><RIGHT>
+iab lfig \begin{figure}<CR>\includegraphics[width=1\textwidth]{}<CR>\caption{}<CR>\label{figure:}<CR>\end{figure}
