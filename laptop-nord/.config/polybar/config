@@ -97,7 +97,7 @@ width = 20%
 override-redirect = true
 fixed-center = true
 
-offset-x = 72%:-8px
+offset-x = 80%:-8px
 offset-y = 8px
 
 module-margin = 1
@@ -114,6 +114,8 @@ width = 7%
 override-redirect = true
 fixed-center = true
 
+bottom = true
+
 offset-x = 93%:-8px
 offset-y = 8px
 
@@ -128,6 +130,7 @@ type = internal/i3
 
 pin-workspaces = true
 wrapping-scroll = false
+
 
 format = <label-state> <label-mode>
 

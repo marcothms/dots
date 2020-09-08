@@ -22,39 +22,14 @@ Plugin 'airblade/vim-gitgutter'
 " Automatic intendations
 Plugin 'tpope/vim-sleuth'
 
-" Match parents
-Plugin 'tmsvg/pear-tree'
-
-let g:pear_tree_smart_openers=1
-let g:pear_tree_smart_closers=1
-let g:pear_tree_smart_backspace=1
-
-let g:pear_tree_pairs = {
-            \ '(': {'closer': ')'},
-            \ '[': {'closer': ']'},
-            \ '{': {'closer': '}'},
-            \ "'": {'closer': "'"},
-            \ '"': {'closer': '"'},
-            \ '<': {'closer': '>'}
-            \ }
-
 " fzf
 if executable("fzf")
     Plugin 'junegunn/fzf'
     Plugin 'junegunn/fzf.vim'
-
-    nmap <C-f> :Files<CR>
 endif
 
 " Colors
 Plugin 'arcticicestudio/nord-vim'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-
-let g:airline_theme='nord'
-let g:airline_powerline_fonts = 1
-let g:bufferline_echo = 0
-set guifont="FiraCode Nerd Font Mono"
 
 call vundle#end()
 filetype plugin indent on
@@ -64,10 +39,6 @@ syntax on
 colorscheme nord
 filetype indent plugin on
 
-"set termguicolors
-"let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-"let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-
 " ============================== General
 set number
 set relativenumber
@@ -75,6 +46,7 @@ set cursorline
 set ruler
 
 set showmatch " highlights paranthesis
+set laststatus=0 " remove status bar
 set mat=5
 set noswapfile " can be problematic on some systems
 set confirm " can't quit without saving
@@ -85,6 +57,7 @@ set mouse=c
 set undolevels=1337 " memegods can make mistakes
 set backspace=indent,eol,start
 set wildmenu " autocomplete :e
+set scrolloff=7 " min lines aboive or below the cursor
 
 " ============================== Indents and Whitespaces
 set list
@@ -115,6 +88,9 @@ cmap Wq wq
 cmap Q q
 cmap W w
 cmap q1 q!
+
+" fzf
+nmap <C-f> :Files<CR>
 
 " ============================== Snippets
 iab lbf \textbf{}<LEFT>

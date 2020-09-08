@@ -10,7 +10,7 @@ rm -rf $HOME/scripts
 ln -sf $path/scripts $HOME/scripts
 
 # Home directory
-home_files=".dir_colors .gitconfig .tmux.conf .vimrc .Xresources .zshrc"
+home_files=".dir_colors .gitconfig .tmux.conf .vimrc .Xresources .zshrc .zsh_highlighting"
 for file in $home_files
 do
 	ln -sf $path/$file $HOME/$file

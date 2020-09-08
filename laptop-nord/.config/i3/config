@@ -124,7 +124,7 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 new_window 1pixel
 
 # Set Border
-for_window [class="^.*"] border pixel 0
+for_window [class="^.*"] border pixel 5
 
 set $nord0 "#2e3440"
 
@@ -135,11 +135,11 @@ set $frost0 "#d8dee9"
 set $frost2 "#eceff4"
 
 set $green "#A3BE8C"
-
+set $yellow "#EBCB8B"
 set $red "#bf616a"
 
 # class                 border  backgr.text    indic. child_border
-client.focused          $blue1  $blue1 $nord0  $nord0 $nord0
+client.focused          $green  $green $nord0  $green $green
 client.focused_inactive $blue1  $blue1 $nord0  $nord0 $nord0
 client.unfocused        $nord0  $nord0 $frost0 $blue1 $nord0
 client.urgent           $red    $red   $frost2 $red   $red
