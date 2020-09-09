@@ -30,13 +30,16 @@ endif
 
 " Colors
 Plugin 'arcticicestudio/nord-vim'
+Plugin 'ayu-theme/ayu-vim'
 
 call vundle#end()
 filetype plugin indent on
 
 " ============================== Colors
 syntax on
-colorscheme nord
+set termguicolors
+colorscheme ayu
+hi Normal ctermbg=NONE guibg=NONE
 filetype indent plugin on
 
 " ============================== General

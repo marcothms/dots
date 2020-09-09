@@ -24,6 +24,10 @@ export PATH=$PATH:$HOME/.local/bin:$HOME/scripts
 alias fontslist="fc-list :scalable=true:spacing=mono: family"
 alias fontscache="fc-cache -f -v"
 
+if [[ -x $(which fzf 2> /dev/null) ]]; then
+    alias vim="nvim"
+fi
+
 alias r="ranger"
 alias s="cd ~/scripts/"
 alias c='clear'
@@ -130,9 +134,6 @@ fancy-ctrl-z () {
 }
 zle -N fancy-ctrl-z
 bindkey '^Z' fancy-ctrl-z
-
-# Nord-themed directory colors
-test -r "~/.dir_colors" && eval $(dircolors ~/.dir_colors)
 
 # Syntax Highlighting
 if [ -f ~/.zsh-highlighting/zsh-syntax-highlighting.zsh ]; then

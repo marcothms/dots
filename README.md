@@ -18,4 +18,4 @@
 + IPAGothic.ttf: Japanese Characters
 + [Siji](https://github.com/stark/siji): Icon Font for Polybar
 
-![Home](screenshots/home.png)
+![Home](screenshots/home_new.png)
