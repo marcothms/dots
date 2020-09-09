@@ -43,7 +43,7 @@ window {
     width:                          25%;
     location:                       west;
     anchor:                         west;
-    x-offset:                       0;
+    x-offset:                       15px;
     y-offset:                       15px;
 }
 

@@ -58,6 +58,7 @@ bindsym $mod+p workspace prev
 
 # Rofi and dmenu
 bindsym $mod+d exec "~/.config/rofi/launchers-git/launcher.sh"
+bindsym $mod+space exec "~/.config/rofi/launchers-git/launcher.sh"
 
 set $nord0d '#2e3440'
 set $frost2d '#eceff4'
@@ -82,6 +83,18 @@ bindsym XF86AudioPlay exec playerctl play
 bindsym XF86AudioPause exec playerctl pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
+
+# ======================================== Open Applications
+mode "Launcher" {
+	bindsym f exec firefox
+	bindsym s exec spotify
+	bindsym d exec Discord
+
+	bindsym Escape mode "default"
+	bindsym Return mode "default"
+}
+
+bindsym $mod+o mode "Launcher"
 
 # ======================================== Workspaces
 set $ws1 "1"
@@ -124,30 +137,23 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 new_window 1pixel
 
 # Set Border
-for_window [class="^.*"] border pixel 5
+for_window [class="^.*"] border pixel 0
 
-set $nord0 "#2e3440"
-
-set $blue1 "#88c0d0"
-set $blue3 "#5E81AC"
-
-set $frost0 "#d8dee9"
 set $frost2 "#eceff4"
+set $red "#A3BE8C"
 
-set $green "#A3BE8C"
-set $yellow "#EBCB8B"
-set $red "#bf616a"
+set $c0 "#2E3440"
+set $c8 "#434C5E"
 
 # class                 border  backgr.text    indic. child_border
-client.focused          $green  $green $nord0  $green $green
-client.focused_inactive $blue1  $blue1 $nord0  $nord0 $nord0
-client.unfocused        $nord0  $nord0 $frost0 $blue1 $nord0
+client.focused          $c8     $c8    $frost2 $c8    $c8
+client.focused_inactive $c0     $c0    $frost2 $c0    $c0
+client.unfocused        $c0     $c0    $frost0 $c0    $c0
 client.urgent           $red    $red   $frost2 $red   $red
-client.background       #ffffff
+client.background       $frost2
 
 # i3-gaps
 gaps inner 8
-gaps top 35 # polybar height + gaps inner
 
 # ============================== Autostart
 # Keyboard layout
@@ -155,7 +161,6 @@ exec setxkbmap -layout za
 
 # Programs
 exec feh --bg-scale $HOME/data/wallpaper/wallpaper.png
-exec nm-applet &
 exec dunst &
-exec picom --experimental-backends
+exec picom
 exec --no-startup-id ~/.config/polybar/launch.sh laptop &amp
