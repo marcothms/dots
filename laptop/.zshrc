@@ -16,7 +16,7 @@ export PROMPT="%{$fg[yellow]%}%m %{$fg_bold[blue]%}%~%{$fg_bold[cyan]%}\$vcs_inf
 zstyle ':vcs_info:git:*' formats '|%b '
 
 # ============================== Exports
-export EDITOR="vim"
+export EDITOR="nvim"
 export LANG="en_US.UTF-8"
 export PATH=$PATH:$HOME/.local/bin:$HOME/scripts
 
