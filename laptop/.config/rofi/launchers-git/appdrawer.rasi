@@ -22,11 +22,11 @@ configuration {
 }
 
 * {
-    background:                     #1d1f28;
-    background-alt:                 #282a36;
-    background-ib:                  #282a36;
+    background:                     #01060E;
+    background-alt:                 #01060E;
+    background-ib:                  #0A0E14;
     foreground:                     #fdfdfd;
-    border:               			#282a36;
+    border:               			#0A0E14;
     border-sel:               		#79e6f3;
     selected:               		#282a36;
     urgent:                         #f37f97;
@@ -39,12 +39,12 @@ window {
     border:                  		6px;
     border-radius:                  15px;
     border-color:                  	@border;
-    height:                         1030px;
+    height:                         1037px;
     width:                          25%;
     location:                       west;
     anchor:                         west;
-    x-offset:                       15px;
-    y-offset:                       15px;
+    x-offset:                       14px;
+    y-offset:                       14px;
 }
 
 prompt {

@@ -1,0 +1,6 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =4
+let g:netrw_dirhist_4='/home/marc/dots/laptop/.config/rofi'
+let g:netrw_dirhist_3='/home/marc/.config/rofi'
+let g:netrw_dirhist_2='/home/marc/.config/dunst'
+let g:netrw_dirhist_1='/home/marc/dots/laptop/.config/rofi/launchers-git'
