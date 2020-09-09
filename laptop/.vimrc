@@ -16,11 +16,11 @@ call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
 
-" Show git changes
-Plugin 'airblade/vim-gitgutter'
-
 " Automatic intendations
 Plugin 'tpope/vim-sleuth'
+
+" Pairs
+Plugin 'jiangmiao/auto-pairs'
 
 " fzf
 if executable("fzf")
@@ -29,16 +29,15 @@ if executable("fzf")
 endif
 
 " Colors
-Plugin 'arcticicestudio/nord-vim'
-Plugin 'ayu-theme/ayu-vim'
+Plugin 'altercation/vim-colors-solarized'
 
 call vundle#end()
 filetype plugin indent on
 
 " ============================== Colors
 syntax on
-set termguicolors
-colorscheme ayu
+set background=dark
+colorscheme solarized
 hi Normal ctermbg=NONE guibg=NONE
 filetype indent plugin on
 

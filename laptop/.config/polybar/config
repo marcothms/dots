@@ -2,8 +2,10 @@
 
 [colors]
 background = #000000
-foreground = ${xrdb:color7}
-foreground-alt = ${xrdb:color8}
+#foreground = ${xrdb:color7}
+foreground = #ffffff
+#foreground-alt = ${xrdb:color8}
+foreground-alt = #555555
 urgent = ${xrdb:color1}
 
 [bar/main]
@@ -68,13 +70,13 @@ label-maxlen = 100
 
 [module/date]
 type = internal/date
-date = %H:%M - %d.%m.%Y%
+date = %H:%M - %a %d.%m.%Y%
 
 [module/backlight]
 type = internal/backlight
 #ls -1 /sys/class/backlight
 card = amdgpu_bl0
-label = brgt %percentage%%
+label = lgt %percentage%%
 
 [module/battery]
 type = internal/battery
@@ -97,3 +99,4 @@ interval = 3.0
 accumulate-stats = true
 unknown-as-up = true
 label-connected = %essid%
+label-disconnected = no wifi

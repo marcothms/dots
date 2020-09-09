@@ -57,16 +57,17 @@ bindsym $mod+n workspace next
 bindsym $mod+p workspace prev
 
 # Rofi and dmenu
-bindsym $mod+d exec "~/.config/rofi/launchers-git/launcher.sh"
-bindsym $mod+space exec "~/.config/rofi/launchers-git/launcher.sh"
+bindsym $mod+space exec rofi -show run
 
-set $nord0d '#2e3440'
-set $frost2d '#eceff4'
-set $greend '#A3BE8C'
-bindsym $mod+Shift+d exec "dmenu_run -fn 'FiraCode Nerd Font Mono' -nb '#2e3440' -sb '#a3be8c' -nf '#eceff4' -sf '#2e3440'"
+set $fg '#ffffff'
+set $bg '#000000'
+bindsym $mod+d exec "dmenu_run -fn 'FiraCode Nerd Font Mono' -nb $bg -sb $fg -nf $fg -sf $bg"
 
 # Screenhot
 bindsym $mod+Shift+p exec "flameshot gui"
+
+# Filemanager
+bindsym $mod+e exec nautilus
 
 # Screen brightness with light
 bindsym XF86MonBrightnessUp exec light -A 5 # increase
@@ -162,5 +163,5 @@ exec setxkbmap -layout za
 # Programs
 exec feh --bg-scale $HOME/data/wallpaper/wallpaper.png
 exec dunst &
-exec picom
+exec picom &
 exec --no-startup-id ~/.config/polybar/launch.sh laptop &amp

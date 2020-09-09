@@ -10,6 +10,6 @@
 	ca = commit -v --amend
 	co = checkout
 	b = branch
-	l = pull
-	p = push
+	pl = pull --rebase
+	ps = push
 	lg = log --oneline --decorate --graph
