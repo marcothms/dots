@@ -19,7 +19,7 @@ bindsym $mod+Return exec --no-startup-id alacritty
 bindsym $mod+Ctrl+Return exec --no-startup-id xterm
 
 # Leaving
-bindsym $mod+Shift+BackSpace exec "~/scripts/lock-laptop.sh"
+bindsym $mod+Shift+BackSpace exec "~/scripts/lock.sh"
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Logout?' -B 'Yes!' 'i3-msg exit'"
 
 # Config refresh
@@ -57,7 +57,7 @@ bindsym $mod+n workspace next
 bindsym $mod+p workspace prev
 
 # Rofi and dmenu
-bindsym $mod+space exec rofi -show run
+# bindsym $mod+space exec rofi -show run
 
 set $fg '#ffffff'
 set $bg '#000000'
@@ -138,30 +138,23 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 new_window 1pixel
 
 # Set Border
-for_window [class="^.*"] border pixel 0
+for_window [class="^.*"] border pixel 1
 
-set $frost2 "#eceff4"
-set $red "#A3BE8C"
+set $red "#dc322f"
+set $termbg "#002b36"
 
-set $c0 "#2E3440"
-set $c8 "#434C5E"
+# class                 border  backgr. text    indic.  child_border
+client.focused          #ffffff #ffffff #000000 #ffffff #ffffff
+client.focused_inactive $termbg $termbg #ffffff $termbg $termbg
+client.unfocused        $termbg $termbg #ffffff $termbg $termbg
+client.urgent           $red    $red    #ffffff $red    $red
+client.background       #ffffff
 
-# class                 border  backgr.text    indic. child_border
-client.focused          $c8     $c8    $frost2 $c8    $c8
-client.focused_inactive $c0     $c0    $frost2 $c0    $c0
-client.unfocused        $c0     $c0    $frost0 $c0    $c0
-client.urgent           $red    $red   $frost2 $red   $red
-client.background       $frost2
-
-# i3-gaps
-gaps inner 8
-
-# ============================== Autostart
+# ============================== Start
 # Keyboard layout
 exec setxkbmap -layout za
 
-# Programs
 exec feh --bg-scale $HOME/data/wallpaper/wallpaper.png
-exec dunst &
-exec picom &
-exec --no-startup-id ~/.config/polybar/launch.sh laptop &amp
+exec dunst
+exec picom
+exec --no-startup-id ~/.config/polybar/launch.sh

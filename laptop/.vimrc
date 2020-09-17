@@ -10,29 +10,23 @@
 let mapleader = "\<Space>"
 
 " ============================== Plugins
-set nocompatible
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+call plug#begin()
 
-Plugin 'VundleVim/Vundle.vim'
+Plug 'altercation/vim-colors-solarized' " Colorscheme
 
-" Automatic intendations
-Plugin 'tpope/vim-sleuth'
+Plug 'tpope/vim-sleuth' " Automatic intendations
 
-" Pairs
-Plugin 'jiangmiao/auto-pairs'
+Plug 'jiangmiao/auto-pairs' " Pair Completion
 
-" fzf
 if executable("fzf")
-    Plugin 'junegunn/fzf'
-    Plugin 'junegunn/fzf.vim'
+    Plug 'junegunn/fzf'
+    Plug 'junegunn/fzf.vim'
 endif
 
-" Colors
-Plugin 'altercation/vim-colors-solarized'
+if has ("nvim")
+endif
 
-call vundle#end()
-filetype plugin indent on
+call plug#end()
 
 " ============================== Colors
 syntax on
@@ -55,8 +49,8 @@ set confirm " can't quit without saving
 set noshowmode " don't show mode in status
 set noshowcmd " don't show command in status
 set encoding=utf-8
-set mouse=c
-set undolevels=1337 " memegods can make mistakes
+set mouse=c " a=on, c=off
+set undolevels=1337
 set backspace=indent,eol,start
 set wildmenu " autocomplete :e
 set scrolloff=7 " min lines aboive or below the cursor
@@ -64,6 +58,8 @@ set scrolloff=7 " min lines aboive or below the cursor
 " ============================== Indents and Whitespaces
 set list
 set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·
+
+autocmd FileType perl set tabstop=8 shiftwidth=4 softtabstop=4
 
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+\%#\@<!$/

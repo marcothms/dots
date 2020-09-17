@@ -12,7 +12,7 @@ autoload -U colors && colors
 precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
 setopt prompt_subst
-export PROMPT="%{$fg[yellow]%}%m %{$fg_bold[blue]%}%~%{$fg_bold[cyan]%}\$vcs_info_msg_0_ %{$reset_color%}"
+export PROMPT="%{$fg[yellow]%}%m %{$fg[blue]%}%~%{$fg[cyan]%}\$vcs_info_msg_0_ %{$reset_color%}"
 zstyle ':vcs_info:git:*' formats '|%b '
 
 # ============================== Exports
@@ -99,7 +99,7 @@ function zle-keymap-select() {
 zle -N zle-keymap-select
 
 function vi_mode_prompt_info() {
-  MODE_INDICATOR="%{$fg_bold[green]%}<<<%{$reset_color%}"
+  MODE_INDICATOR="%{$fg[green]%}<<<%{$reset_color%}"
   echo "${${KEYMAP/vicmd/$MODE_INDICATOR}/(main|viins)/}"
 }
 

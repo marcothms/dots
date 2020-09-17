@@ -3,8 +3,10 @@ while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
 if type "xrandr"; then
   for mon in $(xrandr --query | grep " connected" | cut -d" " -f1); do
-    if [ "$1" = "laptop" ]; then
-      MONITOR=$mon polybar --reload main &
+    if [ $mon = "eDP-1"  ]; then
+      MONITOR=$mon polybar --reload laptop &
+    else
+      MONITOR=$mon polybar --reload desktop &
     fi
   done
 else

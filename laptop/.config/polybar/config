@@ -2,17 +2,16 @@
 
 [colors]
 background = #000000
-#foreground = ${xrdb:color7}
 foreground = #ffffff
-#foreground-alt = ${xrdb:color8}
-foreground-alt = #555555
 urgent = ${xrdb:color1}
+#urgent = #ff0000
 
-[bar/main]
+[bar/laptop]
 monitor = ${env:MONITOR}
 
 font-0 = "FiraCode Nerd Font Mono:pixelsize=9;2"
 font-1 = "IPAGothic:fontformat=truetype:antialias=false:pixelsize=9;2"
+font-2 = "Siji:size=7;1"
 
 height = 27px
 width = 100%
@@ -26,7 +25,7 @@ padding-right = 1
 separator = /
 
 modules-left = i3 xwindow
-modules-right = spotify network volume backlight battery date
+modules-right = spotify network networkupdown volume backlight battery date
 
 foreground = ${colors.foreground}
 background = ${colors.background}
@@ -53,14 +52,15 @@ ws-icon-9 = 10;十
 ws-icon-default = 
 
 label-focused = "%icon%"
+label-focused-foreground = ${colors.background}
+label-focused-background = ${colors.foreground}
 label-focused-padding = 1
 
 label-unfocused = "%icon%"
-label-unfocused-foreground = ${colors.foreground-alt}
 label-unfocused-padding = 1
 
 label-urgent = "%icon%"
-label-urgent-foreground = ${colors.urgent}
+label-urgent-background = ${colors.urgent}
 label-urgent-padding = 1
 
 [module/xwindow]
@@ -76,20 +76,54 @@ date = %H:%M - %a %d.%m.%Y%
 type = internal/backlight
 #ls -1 /sys/class/backlight
 card = amdgpu_bl0
-label = lgt %percentage%%
+format-prefix = " "
+label = %percentage%%
 
 [module/battery]
 type = internal/battery
 battery = BAT0
 apdapter = ADP1
 
-label-charging = bat %percentage%%
-label-discharging = bat %percentage%%
-label-full= bat %percentage%%
+format-charging = <animation-charging> <label-charging>
+format-discharging = <ramp-capacity> <label-discharging>
+format-full = <ramp-capacity> <label-full>
+
+label-charging = %percentage%%
+label-discharging = %percentage%%
+label-full = %percentage%%
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+ramp-capacity-5 = 
+ramp-capacity-6 = 
+ramp-capacity-7 = 
+ramp-capacity-8 = 
+ramp-capacity-9 = 
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+
+animation-charging-framerate = 750
 
 [module/volume]
 type = internal/pulseaudio
-label-volume = vol %percentage%%
+format-volume = <ramp-volume> <label-volume>
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+ramp-volume-3 = 
+ramp-volume-4 = 
+ramp-headphones-0 = 
+ramp-headphones-1 = 
+
+label-volume = %percentage%%
+format-muted-prefix = " "
 label-muted = muted
 
 [module/network]
@@ -98,5 +132,13 @@ interface = wlo1
 interval = 3.0
 accumulate-stats = true
 unknown-as-up = true
-label-connected = %essid%
+label-connected =  %essid%: %signal%%
 label-disconnected = no wifi
+
+[module/networkupdown]
+type = internal/network
+interface = wlo1
+interval = 3.0
+accumulate-stats = true
+unknown-as-up = true
+label-connected =  %upspeed%  %downspeed%

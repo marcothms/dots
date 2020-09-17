@@ -1,5 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =5
+let g:netrw_dirhistcnt =6
+let g:netrw_dirhist_6='/home/marc/.config/dunst'
 let g:netrw_dirhist_5='/home/marc/.mutt/user'
 let g:netrw_dirhist_4='/home/marc/dots/laptop/.config/rofi'
 let g:netrw_dirhist_3='/home/marc/.config/rofi'
