@@ -19,6 +19,12 @@
 + vim-plug: `curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim`
 
+### Nvim LSP
+
++ [Python](https://github.com/palantir/python-language-server)
++ [Rust](https://github.com/rust-analyzer/rust-analyzer)
++ [TeX](https://github.com/latex-lsp/texlab)
+
 ## Fonts
 + Fira Code Regular Nerd Font Complete Mono.ttf: General
 + IPAGothic.ttf: Japanese Characters

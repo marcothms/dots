@@ -116,7 +116,7 @@ export FZF_DEFAULT_OPTS='--preview="head {}" --layout=reverse --bind=tab:down --
 ## fzf Bindings in zsh (C-r and C-t)
 if [[ -x $(which fzf 2> /dev/null) ]]
 then
-    source ~/.vim/bundle/fzf/shell/key-bindings.zsh
+    source ~/.vim/plugged/fzf/shell/key-bindings.zsh
 else
     bindkey '^R' history-incremental-search-backward
 fi

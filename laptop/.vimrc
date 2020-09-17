@@ -9,7 +9,7 @@
 
 let mapleader = "\<Space>"
 
-" ============================== Plugins
+" ============================== vim-plug
 call plug#begin()
 
 Plug 'altercation/vim-colors-solarized' " Colorscheme
@@ -24,6 +24,8 @@ if executable("fzf")
 endif
 
 if has ("nvim")
+    Plug 'neovim/nvim-lspconfig' " language client
+    Plug 'nvim-lua/completion-nvim' " fancy autocomplete
 endif
 
 call plug#end()
@@ -96,3 +98,29 @@ iab lframe \begin{frame}{}<CR><CR>\end{frame}<UP>
 iab litem \begin{itemize}<CR><CR>\end{itemize}<UP>
 iab ltable \begin{tabular}{}<CR>\end{tabular}<UP><RIGHT><RIGHT><RIGHT>
 iab lfig \begin{figure}<CR>\includegraphics[width=1\textwidth]{}<CR>\caption{}<CR>\label{figure:}<CR>\end{figure}
+
+" ============================== LSP
+" ++++++++++ completion-nvim Settings
+if has ("nvim")
+    " Use completion-nvim in every buffer
+    autocmd BufEnter * lua require'completion'.on_attach()
+
+    " Use <Tab> and <S-Tab> to navigate through popup menu
+    inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+    inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+    " Set completeopt to have a better completion experience
+    set completeopt=menuone,noinsert,noselect
+
+    " Avoid showing message extra message when using completion
+    set shortmess+=c
+endif
+
+" ++++++++++ Enable Language Servers
+if has ("nvim")
+    lua <<EOF
+    require'nvim_lsp'.pyls.setup{}
+    require'nvim_lsp'.rust_analyzer.setup{}
+    require'nvim_lsp'.texlab.setup{}
+EOF
+endif
