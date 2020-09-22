@@ -3,8 +3,7 @@
 [colors]
 background = #000000
 foreground = #ffffff
-urgent = ${xrdb:color1}
-#urgent = #ff0000
+urgent = #e06c75
 
 [bar/laptop]
 monitor = ${env:MONITOR}
@@ -25,7 +24,7 @@ padding-right = 1
 separator = /
 
 modules-left = i3 xwindow
-modules-right = spotify network networkupdown volume backlight battery date
+modules-right = spotify network volume backlight battery date
 
 foreground = ${colors.foreground}
 background = ${colors.background}
@@ -70,14 +69,13 @@ label-maxlen = 100
 
 [module/date]
 type = internal/date
-date = %H:%M - %a %d.%m.%Y%
+date = %a, %d %H:%M
 
 [module/backlight]
 type = internal/backlight
 #ls -1 /sys/class/backlight
 card = amdgpu_bl0
-format-prefix = " "
-label = %percentage%%
+label =  %percentage%%
 
 [module/battery]
 type = internal/battery
@@ -132,7 +130,7 @@ interface = wlo1
 interval = 3.0
 accumulate-stats = true
 unknown-as-up = true
-label-connected =  %essid%: %signal%%
+label-connected =  %essid%
 label-disconnected = no wifi
 
 [module/networkupdown]

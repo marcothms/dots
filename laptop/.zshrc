@@ -12,7 +12,8 @@ autoload -U colors && colors
 precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
 setopt prompt_subst
-export PROMPT="%{$fg[yellow]%}%m %{$fg[blue]%}%~%{$fg[cyan]%}\$vcs_info_msg_0_ %{$reset_color%}"
+GIT="%{$fg[cyan]%}\$vcs_info_msg_0_"
+export PROMPT="%{$fg[yellow]%}%m %{$fg[blue]%}%~$GIT %{$reset_color%}"
 zstyle ':vcs_info:git:*' formats '|%b '
 
 # ============================== Exports

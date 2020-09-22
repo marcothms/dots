@@ -140,8 +140,8 @@ new_window 1pixel
 # Set Border
 for_window [class="^.*"] border pixel 1
 
-set $red "#dc322f"
-set $termbg "#002b36"
+set $red "#e06c75"
+set $termbg "#1e2127"
 
 # class                 border  backgr. text    indic.  child_border
 client.focused          #ffffff #ffffff #000000 #ffffff #ffffff

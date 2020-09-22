@@ -12,11 +12,13 @@ let mapleader = "\<Space>"
 " ============================== vim-plug
 call plug#begin()
 
-Plug 'altercation/vim-colors-solarized' " Colorscheme
+Plug 'joshdick/onedark.vim' " Colorscheme
 
 Plug 'tpope/vim-sleuth' " Automatic intendations
 
-Plug 'jiangmiao/auto-pairs' " Pair Completion
+Plug 'jiangmiao/auto-pairs' " Pair ompletion
+
+Plug 'airblade/vim-gitgutter' " Show git changes
 
 if executable("fzf")
     Plug 'junegunn/fzf'
@@ -24,8 +26,10 @@ if executable("fzf")
 endif
 
 if has ("nvim")
-    Plug 'neovim/nvim-lspconfig' " language client
-    Plug 'nvim-lua/completion-nvim' " fancy autocomplete
+    Plug 'neovim/nvim-lspconfig' " LSP
+    Plug 'Shougo/neosnippet.vim'
+    Plug 'Shougo/neosnippet-snippets'
+    Plug 'nvim-lua/completion-nvim' " Fancy autocomplete
 endif
 
 call plug#end()
@@ -33,8 +37,9 @@ call plug#end()
 " ============================== Colors
 syntax on
 set background=dark
-colorscheme solarized
+colorscheme onedark
 hi Normal ctermbg=NONE guibg=NONE
+set termguicolors
 filetype indent plugin on
 
 " ============================== General
@@ -114,6 +119,39 @@ if has ("nvim")
 
     " Avoid showing message extra message when using completion
     set shortmess+=c
+
+    let g:completion_trigger_keyword_length = 1
+    let g:completion_matching_ignore_case = 1
+    let g:completion_trigger_on_delete = 1
+
+    let g:completion_enable_snippet = 'Neosnippet'
+
+    let g:completion_chain_complete_list = {
+    \ 'default' : {
+    \   'default': [
+    \       {'complete_items': ['lsp', 'snippet', 'path']},
+    \       {'mode': '<c-p>'},
+    \       {'mode': '<c-n>'}],
+    \   }
+    \}
+
+    set pumheight=10
+endif
+
+" ++++++++++ lsp Settings
+if has ("nvim")
+    " Show definition
+    nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
+    " Go to references
+    nnoremap <silent> gr  <cmd>lua vim.lsp.buf.references()<CR>
+    nnoremap <silent> K   <cmd>lua vim.lsp.buf.hover()<CR>
+endif
+
+" ++++++++++ neosnippet Settings
+if has ("nvim")
+    imap <C-k> <Plug>(neosnippet_expand_or_jump)
+    smap <C-k> <Plug>(neosnippet_expand_or_jump)
+    xmap <C-k> <Plug>(neosnippet_expand_target)
 endif
 
 " ++++++++++ Enable Language Servers

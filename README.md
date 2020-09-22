@@ -10,14 +10,14 @@
 + Bar: polybar
 + Notifications: dunst
 + Compositor: [picom](https://github.com/ibhagwan/picom)
-+ Set Wallpaper: feh
++ Image Viewer: feh
 + Info: [fet.sh](https://github.com/6gk/fet.sh)
 + Screenshots: Flameshot
 
 ## Dependencies
 
-+ vim-plug: `curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim`
++ [vim-plug](https://github.com/junegunn/vim-plug)
++ fzf
 
 ### Nvim LSP
 
