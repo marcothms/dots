@@ -12,9 +12,13 @@ autoload -U colors && colors
 precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
 setopt prompt_subst
+ICON="%{$fg[blue]%}"
+ICON_DYN="%(?.%{$fg[green]%}.%{$fg[red]%})"
+DIR="%{$fg[blue]%}%~"
 GIT="%{$fg[cyan]%}\$vcs_info_msg_0_"
-export PROMPT="%{$fg[yellow]%}%m %{$fg[blue]%}%~$GIT %{$reset_color%}"
-zstyle ':vcs_info:git:*' formats '|%b '
+NAME="%{$fg[yellow]%}%m"
+export PROMPT="$NAME $DIR$GIT $ICON_DYN %{$reset_color%}"
+zstyle ':vcs_info:git:*' formats ' [%b ]'
 
 # ============================== Exports
 export EDITOR="nvim"
