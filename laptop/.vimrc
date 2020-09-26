@@ -97,13 +97,6 @@ cmap q1 q!
 " fzf
 nmap <C-f> :Files<CR>
 
-" ============================== Snippets
-iab lbf \textbf{}<LEFT>
-iab lframe \begin{frame}{}<CR><CR>\end{frame}<UP>
-iab litem \begin{itemize}<CR><CR>\end{itemize}<UP>
-iab ltable \begin{tabular}{}<CR>\end{tabular}<UP><RIGHT><RIGHT><RIGHT>
-iab lfig \begin{figure}<CR>\includegraphics[width=1\textwidth]{}<CR>\caption{}<CR>\label{figure:}<CR>\end{figure}
-
 " ============================== LSP
 " ++++++++++ completion-nvim Settings
 if has ("nvim")

@@ -23,7 +23,8 @@ zstyle ':vcs_info:git:*' formats ' [%b ]'
 # ============================== Exports
 export EDITOR="nvim"
 export LANG="en_US.UTF-8"
-export PATH=$PATH:$HOME/.local/bin:$HOME/scripts
+export PATH=$PATH:$HOME/.local/bin:$HOME/scripts:$HOME/.cargo/bin
+export BROWSER="firefox"
 
 # ============================== Aliases
 alias fontslist="fc-list :scalable=true:spacing=mono: family"

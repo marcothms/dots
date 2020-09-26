@@ -32,6 +32,11 @@ background = ${colors.background}
 wm-name = i3
 wm-restack = i3
 
+[bar/desktop]
+inherit = bar/laptop
+
+modules-right = spotify volume date
+
 [module/i3]
 type = internal/i3
 pin-workspaces = true
@@ -57,6 +62,9 @@ label-focused-padding = 1
 
 label-unfocused = "%icon%"
 label-unfocused-padding = 1
+
+label-visible = "%icon%"
+label-visible-padding = 1
 
 label-urgent = "%icon%"
 label-urgent-background = ${colors.urgent}
