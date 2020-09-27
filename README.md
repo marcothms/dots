@@ -1,23 +1,28 @@
 # Marc's Dotfiles
 
+## System
+
++ Bar: polybar
++ Compositor: [picom](https://github.com/ibhagwan/picom)
++ Notifications: dunst
 + Shell: zsh
 + Term: alacritty
 + WM: i3
 
 ## Programs
 + Editor: nvim
-+ Launcher: dmenu
-+ Bar: polybar
-+ Notifications: dunst
-+ Compositor: [picom](https://github.com/ibhagwan/picom)
-+ Image Viewer: feh
++ Image-Viewer: viewnior
 + Info: [fet.sh](https://github.com/6gk/fet.sh)
++ Launcher: dmenu
++ Pdf-Viewer: epdfview
 + Screenshots: Flameshot
++ Video-Player: vlc or mpv
 
 ## Dependencies
 
 + [vim-plug](https://github.com/junegunn/vim-plug)
 + fzf
++ [Adapta-Nokto-Eta-Maia](https://github.com/adapta-project/adapta-gtk-theme) GTK-Theme
 
 ### Nvim LSP
 

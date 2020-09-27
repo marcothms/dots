@@ -61,13 +61,13 @@ bindsym $mod+p workspace prev
 
 set $fg '#ffffff'
 set $bg '#000000'
-bindsym $mod+d exec "dmenu_run -fn 'FiraCode Nerd Font Mono' -nb $bg -sb $fg -nf $fg -sf $bg"
+bindsym $mod+d exec "dmenu_run -fn 'FiraCode Nerd Font Mono' -p 'run ' -h 27 -nb $bg -sb $fg -nf $fg -sf $bg"
 
 # Screenhot
 bindsym $mod+Shift+p exec "flameshot gui"
 
 # Filemanager
-bindsym $mod+e exec nautilus
+bindsym $mod+e exec thunar
 
 # Screen brightness with light
 bindsym XF86MonBrightnessUp exec light -A 5 # increase
