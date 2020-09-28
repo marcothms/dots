@@ -19,7 +19,7 @@ bindsym $mod+Return exec --no-startup-id alacritty
 bindsym $mod+Ctrl+Return exec --no-startup-id xterm
 
 # Leaving
-bindsym $mod+Shift+BackSpace exec "~/scripts/lock.sh"
+bindsym $mod+Shift+BackSpace exec "xlock -mode pacman -info ''"
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Logout?' -B 'Yes!' 'i3-msg exit'"
 
 # Config refresh
@@ -61,7 +61,7 @@ bindsym $mod+p workspace prev
 
 set $fg '#ffffff'
 set $bg '#000000'
-bindsym $mod+d exec "dmenu_run -fn 'FiraCode Nerd Font Mono' -p 'run ' -h 27 -nb $bg -sb $fg -nf $fg -sf $bg"
+bindsym $mod+d exec "dmenu_run -fn 'FiraCode Nerd Font Mono' -p 'run ' -nb $bg -sb $fg -nf $fg -sf $bg"
 
 # Screenhot
 bindsym $mod+Shift+p exec "flameshot gui"
@@ -151,6 +151,9 @@ set $monitor_2 "DP-1"
 workspace $ws1 output $monitor_1
 workspace $ws10 output $monitor_2
 
+bindsym $mod+Ctrl+1 move workspace to output $monitor_1
+bindsym $mod+Ctrl+2 move workspace to output $monitor_2
+
 # ============================== Design
 # Remove title
 new_window 1pixel
@@ -168,7 +171,7 @@ client.unfocused        $termbg $termbg #ffffff $termbg $termbg
 client.urgent           $red    $red    #ffffff $red    $red
 client.background       #ffffff
 
-gaps inner 8
+gaps inner 0
 
 # ============================== Start
 # Keyboard layout
