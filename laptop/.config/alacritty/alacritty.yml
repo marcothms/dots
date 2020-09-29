@@ -72,7 +72,7 @@ font:
     #family: InconsolataLGC Nerd Font Mono
     #style: Bold Italic
 
-  size: 12.0
+  size: 10.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -93,7 +93,6 @@ colors:
   primary:
     background: '0x1e2127'
     foreground: '0xabb2bf'
-
   # Normal colors
   normal:
     black:   '0x1e2127'
@@ -341,11 +340,11 @@ key_bindings:
   - { key: V,        mods: Control|Shift, action: Paste            }
   #- { key: C,        mods: Control|Shift, action: Copy             }
   #- { key: Insert,   mods: Shift,         action: PasteSelection   }
-  #- { key: Key0,     mods: Control,       action: ResetFontSize    }
-  #- { key: Equals,   mods: Control,       action: IncreaseFontSize }
-  #- { key: Add,      mods: Control,       action: IncreaseFontSize }
-  #- { key: Subtract, mods: Control,       action: DecreaseFontSize }
-  #- { key: Minus,    mods: Control,       action: DecreaseFontSize }
+  - { key: Key0,     mods: Control,       action: ResetFontSize    }
+  - { key: Equals,   mods: Control,       action: IncreaseFontSize }
+  - { key: Add,      mods: Control,       action: IncreaseFontSize }
+  - { key: Subtract, mods: Control,       action: DecreaseFontSize }
+  - { key: Minus,    mods: Control,       action: DecreaseFontSize }
 
   # (Windows only)
   #- { key: Return,   mods: Alt,           action: ToggleFullscreen }

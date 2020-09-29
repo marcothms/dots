@@ -49,7 +49,7 @@ set cursorline
 set ruler
 
 set showmatch " highlights paranthesis
-set laststatus=0 " remove status bar
+set laststatus=2 " remove status bar
 set mat=5
 set noswapfile " can be problematic on some systems
 set confirm " can't quit without saving

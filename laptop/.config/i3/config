@@ -19,7 +19,7 @@ bindsym $mod+Return exec --no-startup-id alacritty
 bindsym $mod+Ctrl+Return exec --no-startup-id xterm
 
 # Leaving
-bindsym $mod+Shift+BackSpace exec "xlock -mode pacman -info ''"
+bindsym $mod+Shift+BackSpace exec "~/scripts/lock.sh"
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Logout?' -B 'Yes!' 'i3-msg exit'"
 
 # Config refresh
@@ -89,7 +89,8 @@ bindsym XF86AudioPrev exec playerctl previous
 mode "Open" {
 	bindsym f exec firefox
 	bindsym s exec spotify
-	bindsym d exec Discord
+	bindsym d exec discord; exec Discord
+	bindsym c exec gsimplecal
 
 	bindsym Escape mode "default"
 	bindsym Return mode "default"
@@ -97,7 +98,7 @@ mode "Open" {
 
 bindsym $mod+o mode "Open"
 
-# ======================================== Open Applications
+# ======================================== Shutdown
 mode "Shutdown" {
 	bindsym s exec shutdown now
 	bindsym l exec "~/scripts/lock.sh"
@@ -151,8 +152,8 @@ set $monitor_2 "DP-1"
 workspace $ws1 output $monitor_1
 workspace $ws10 output $monitor_2
 
-bindsym $mod+Ctrl+1 move workspace to output $monitor_1
-bindsym $mod+Ctrl+2 move workspace to output $monitor_2
+bindsym $mod+Ctrl+1 move workspace to output $monitor_2
+bindsym $mod+Ctrl+2 move workspace to output $monitor_1
 
 # ============================== Design
 # Remove title

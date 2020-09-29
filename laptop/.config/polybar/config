@@ -27,6 +27,9 @@ separator = /
 modules-left = i3 xwindow
 modules-right = network volume backlight battery date
 
+tray-position = right
+tray-padding = 1
+
 foreground = ${colors.foreground}
 background = ${colors.background}
 
@@ -37,6 +40,13 @@ wm-restack = i3
 inherit = bar/laptop
 
 modules-right = networkupdown volume date
+
+[bar/desktop_second]
+inherit = bar/desktop
+
+tray-position = none
+
+modules-right = volume date
 
 [module/i3]
 type = internal/i3

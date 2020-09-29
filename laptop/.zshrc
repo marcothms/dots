@@ -24,7 +24,6 @@ zstyle ':vcs_info:git:*' formats ' [%b ]'
 export EDITOR="nvim"
 export LANG="en_US.UTF-8"
 export PATH=$PATH:$HOME/.local/bin:$HOME/scripts:$HOME/.cargo/bin
-export BROWSER="firefox"
 
 # ============================== Aliases
 alias fontslist="fc-list :scalable=true:spacing=mono: family"
@@ -34,7 +33,8 @@ if [[ -x $(which nvim 2> /dev/null) ]]; then
     alias vim="nvim"
 fi
 
-alias r="ranger"
+alias updoot="yay -Syu"
+
 alias s="cd ~/scripts/"
 alias c='clear'
 
