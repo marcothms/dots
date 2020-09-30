@@ -37,5 +37,4 @@
 To get a siji icon: `clone, ./install.sh, ./view.sh, echo "\ue002"`
 
 ![PC](screenshots/pc.png)
-![Code](screenshots/code.png)
 ![Laptop](screenshots/laptop.png)
