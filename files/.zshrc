@@ -33,7 +33,12 @@ if [[ -x $(which nvim 2> /dev/null) ]]; then
     alias vim="nvim"
 fi
 
-alias updoot="yay -Syu"
+# im either using manjaro or fedora
+if [[ -f "/etc/manjaro-release" ]]; then
+  alias updoot="yay -Syu"
+else
+  alias updoot="sudo dnf upgrade"
+fi
 
 alias s="cd ~/scripts/"
 alias c='clear'

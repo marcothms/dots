@@ -25,6 +25,7 @@ padding-right = 1
 separator = /
 
 modules-left = i3 xwindow
+modules-center = spotify
 modules-right = network volume backlight battery date
 
 tray-position = right
@@ -39,7 +40,7 @@ wm-restack = i3
 [bar/desktop]
 inherit = bar/laptop
 
-modules-right = networkupdown volume date
+modules-right = update_yay networkupdown volume date
 
 [bar/desktop_second]
 inherit = bar/desktop
@@ -163,3 +164,16 @@ interval = 3.0
 accumulate-stats = true
 unknown-as-up = true
 label-connected =  %upspeed%  %downspeed%
+
+[module/update_yay]
+type = custom/script
+exec = ~/.config/polybar/scripts/yay_updates.sh
+format-prefix = " "
+click-left = alacritty -e yay -Syu
+interval = 60
+
+[module/spotify]
+type = custom/script
+interval = 1
+format-prefix = " "
+exec = python ~/.config/polybar/scripts/spotify_status.py -f '{artist}: {song}'

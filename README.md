@@ -12,7 +12,7 @@
 ## Programs
 + Editor: nvim
 + Image-Viewer: viewnior
-+ Info: [fet.sh](https://github.com/6gk/fet.sh)
++ Info: [fet.sh](https://github.com/6gk/fet.sh) and neofetch
 + Launcher: dmenu
 + Pdf-Viewer: epdfview
 + Screenshots: Flameshot
@@ -22,7 +22,6 @@
 
 + [vim-plug](https://github.com/junegunn/vim-plug)
 + fzf
-+ [Adapta-Nokto-Eta-Maia](https://github.com/adapta-project/adapta-gtk-theme) GTK-Theme
 
 ### Nvim LSP
 
@@ -37,5 +36,6 @@
 
 To get a siji icon: `clone, ./install.sh, ./view.sh, echo "\ue002"`
 
-![Laptop](screenshots/laptop.png)
 ![PC](screenshots/pc.png)
+![Code](screenshots/code.png)
+![Laptop](screenshots/laptop.png)
