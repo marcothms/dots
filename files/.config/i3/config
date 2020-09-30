@@ -87,11 +87,12 @@ bindsym XF86AudioPrev exec playerctl previous
 
 # ======================================== Open Applications
 mode "Open" {
-	bindsym f exec firefox
-	bindsym s exec spotify
-	bindsym d exec discord; exec Discord
 	bindsym c exec gsimplecal
+	bindsym d exec discord; exec Discord
+	bindsym f exec firefox
 	bindsym p exec pavucontrol
+	bindsym s exec spotify
+	bindsym t exec telegram-desktop
 
 	bindsym Escape mode "default"
 	bindsym Return mode "default"
