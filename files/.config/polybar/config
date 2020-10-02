@@ -15,7 +15,6 @@ font-3 = "Wuncon Siji:size=7;1"
 
 height = 27px
 width = 100%
-
 module-margin-right = 1
 module-margin-left = 1
 
@@ -40,7 +39,7 @@ wm-restack = i3
 [bar/desktop]
 inherit = bar/laptop
 
-modules-right = update_yay networkupdown volume date
+modules-right = update_yay volume date
 
 [bar/desktop_second]
 inherit = bar/desktop
@@ -93,7 +92,7 @@ label-maxlen = 100
 
 [module/date]
 type = internal/date
-date = %a, %d %H:%M
+date = %a, %d.%m %H:%M
 
 [module/backlight]
 type = internal/backlight
@@ -168,8 +167,8 @@ label-connected =  %upspeed%  %downspeed%
 [module/update_yay]
 type = custom/script
 exec = ~/.config/polybar/scripts/yay_updates.sh
-format-prefix = " "
-click-left = alacritty -e yay -Syu
+tail = true
+format-prefix = " "
 interval = 60
 
 [module/spotify]

@@ -37,11 +37,6 @@ bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
-bindsym $mod+Ctrl+l resize grow width 10 px
-bindsym $mod+Ctrl+h resize shrink width 10 px
-bindsym $mod+Ctrl+j resize shrink height 10 px
-bindsym $mod+Ctrl+k resize grow height 10 px
-
 bindsym $mod+Shift+q kill
 
 bindsym $mod+f fullscreen toggle
@@ -148,14 +143,17 @@ bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
 # ============================== Monitor
-workspace $ws1 output left
-workspace $ws10 output right
+workspace $ws1 output right
+workspace $ws10 output left
 
 bindsym $mod+Ctrl+1 move workspace to output left
 bindsym $mod+Ctrl+2 move workspace to output right
 
 bindsym $mod+Ctrl+Left move workspace to output left
 bindsym $mod+Ctrl+Right move workspace to output right
+
+bindsym $mod+Ctrl+h move workspace to output left
+bindsym $mod+Ctrl+l move workspace to output right
 
 # ============================== Design
 # Remove title

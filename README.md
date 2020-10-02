@@ -14,7 +14,7 @@
 + Image-Viewer: viewnior
 + Info: [fet.sh](https://github.com/6gk/fet.sh) and neofetch
 + Launcher: dmenu
-+ Pdf-Viewer: epdfview
++ Pdf-Viewer: epdfview or zathura
 + Screenshots: Flameshot
 + Video-Player: vlc or mpv
 
