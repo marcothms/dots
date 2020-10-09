@@ -172,7 +172,7 @@ client.unfocused        $termbg $termbg #ffffff $termbg $termbg
 client.urgent           $red    $red    #ffffff $red    $red
 client.background       #ffffff
 
-gaps inner 0
+gaps inner 8
 
 # ============================== Start
 # Keyboard layout

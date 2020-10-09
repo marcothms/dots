@@ -27,8 +27,8 @@ endif
 
 if has ("nvim")
     Plug 'neovim/nvim-lspconfig' " LSP
-    Plug 'Shougo/neosnippet.vim'
-    Plug 'Shougo/neosnippet-snippets'
+    Plug 'Shougo/neosnippet.vim' " Snippet support
+    Plug 'Shougo/neosnippet-snippets' " Actual snippets
     Plug 'nvim-lua/completion-nvim' " Fancy autocomplete
 endif
 
@@ -49,7 +49,6 @@ set cursorline
 set ruler
 
 set showmatch " highlights paranthesis
-set laststatus=2 " remove status bar
 set mat=5
 set noswapfile " can be problematic on some systems
 set confirm " can't quit without saving
@@ -61,6 +60,22 @@ set undolevels=1337
 set backspace=indent,eol,start
 set wildmenu " autocomplete :e
 set scrolloff=7 " min lines aboive or below the cursor
+
+" ============================== Statusline
+set laststatus=2
+set statusline=
+
+hi User1 guibg=NONE
+
+" Left Side
+set statusline +=%1*%F   " full path
+set statusline +=%1*\ %m " modified flag
+
+" Right Side
+set statusline +=%1*%=%y " file type
+set statusline +=%1*\ %c " column
+set statusline +=%1*%5l  " current line
+set statusline +=%1*/%L  " total lines
 
 " ============================== Indents and Whitespaces
 set list
