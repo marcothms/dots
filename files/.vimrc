@@ -16,7 +16,7 @@ Plug 'joshdick/onedark.vim' " Colorscheme
 
 Plug 'tpope/vim-sleuth' " Automatic intendations
 
-Plug 'jiangmiao/auto-pairs' " Pair ompletion
+Plug 'jiangmiao/auto-pairs' " Pair completion
 
 Plug 'airblade/vim-gitgutter' " Show git changes
 

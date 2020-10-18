@@ -9,7 +9,7 @@ urgent = #e06c75
 monitor = ${env:MONITOR}
 
 font-0 = "FiraCode Nerd Font Mono:pixelsize=9;2"
-font-1 = "IPAGothic:fontformat=truetype:antialias=false:pixelsize=9;2"
+font-1 = "Noto Sans CJK JP:antialiase=false:pixelsize=9;1"
 font-2 = "Siji:size=7;1"
 font-3 = "Wuncon Siji:size=7;1"
 

@@ -85,6 +85,7 @@ mode "Open" {
 	bindsym c exec gsimplecal
 	bindsym d exec discord; exec Discord
 	bindsym f exec firefox
+	bindsym m exec thunderbird
 	bindsym p exec pavucontrol
 	bindsym s exec spotify
 	bindsym t exec telegram-desktop

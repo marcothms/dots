@@ -30,8 +30,8 @@
 + [TeX](https://github.com/latex-lsp/texlab)
 
 ## Fonts
-+ Fira Code Regular Nerd Font Complete Mono.ttf: General
-+ IPAGothic.ttf: Japanese Characters
++ Fira Code Regular Nerd Font Complete Mono: General
++ Noto Sans CJK JP: Japanese Characters
 + [Siji](https://github.com/stark/siji): Icon Font for Polybar
 
 To get a siji icon: `clone, ./install.sh, ./view.sh, echo "\ue002"`

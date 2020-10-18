@@ -150,5 +150,3 @@ bindkey '^Z' fancy-ctrl-z
 if [ -f ~/.zsh-highlighting/zsh-syntax-highlighting.zsh ]; then
     source $HOME/.zsh-highlighting/zsh-syntax-highlighting.zsh
 fi
-
-source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
