@@ -168,5 +168,6 @@ if has ("nvim")
     require'nvim_lsp'.pyls.setup{}
     require'nvim_lsp'.rust_analyzer.setup{}
     require'nvim_lsp'.texlab.setup{}
+    require'nvim_lsp'.jdtls.setup{}
 EOF
 endif

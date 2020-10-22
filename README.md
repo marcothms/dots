@@ -28,6 +28,7 @@
 + [Python](https://github.com/palantir/python-language-server)
 + [Rust](https://github.com/rust-analyzer/rust-analyzer)
 + [TeX](https://github.com/latex-lsp/texlab)
++ [Java](https://github.com/neovim/nvim-lspconfig#jdtls)
 
 ## Fonts
 + Fira Code Regular Nerd Font Complete Mono: General
