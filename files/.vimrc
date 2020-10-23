@@ -20,6 +20,13 @@ Plug 'jiangmiao/auto-pairs' " Pair completion
 
 Plug 'airblade/vim-gitgutter' " Show git changes
 
+Plug 'vim-airline/vim-airline' " Fancy Bar
+Plug 'vim-airline/vim-airline-themes' " Themes for fancy Bar
+
+if executable("cargo")
+    Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'} " Fancy Side Minimap
+endif
+
 if executable("fzf")
     Plug 'junegunn/fzf'
     Plug 'junegunn/fzf.vim'
@@ -55,14 +62,17 @@ set confirm " can't quit without saving
 set noshowmode " don't show mode in status
 set noshowcmd " don't show command in status
 set encoding=utf-8
-set mouse=c " a=on, c=off
+set mouse=a " a=on, c=off
 set undolevels=1337
 set backspace=indent,eol,start
 set wildmenu " autocomplete :e
 set scrolloff=7 " min lines aboive or below the cursor
 
 " ============================== Statusline
-set laststatus=2
+let g:airline_theme='onedark'
+let g:airline#extensions#tabline#enabled = 1
+
+set laststatus=0
 set statusline=
 
 hi User1 guibg=NONE
@@ -77,9 +87,15 @@ set statusline +=%1*\ %c " column
 set statusline +=%1*%5l  " current line
 set statusline +=%1*/%L  " total lines
 
+" ============================== Minimap Settings
+let g:minimap_auto_start=1
+let g:minimap_width=6
+
 " ============================== Indents and Whitespaces
 set list
-set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·
+"set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·
+set listchars=tab:\┊\ ,extends:›,precedes:‹,nbsp:·,trail:·
+set fillchars+=vert:\  "draw verticle split
 
 autocmd FileType perl set tabstop=8 shiftwidth=4 softtabstop=4
 
@@ -113,6 +129,7 @@ cmap q1 q!
 nmap <C-f> :Files<CR>
 
 " ============================== LSP
+
 " ++++++++++ completion-nvim Settings
 if has ("nvim")
     " Use completion-nvim in every buffer
