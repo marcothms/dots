@@ -122,6 +122,7 @@ RPS2=$RPS1
 bindkey -v '^?' backward-delete-char
 
 # ============================== fzf
+export FZF_DEFAULT_COMMAND='find .'
 export FZF_DEFAULT_OPTS='--preview="head {}" --layout=reverse --bind=tab:down --bind=btab:up'
 
 ## fzf Bindings in zsh (C-r and C-t)

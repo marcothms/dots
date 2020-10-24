@@ -19,7 +19,7 @@ bindsym $mod+Return exec --no-startup-id alacritty
 bindsym $mod+Ctrl+Return exec --no-startup-id xterm
 
 # Leaving
-bindsym $mod+Shift+BackSpace exec "~/scripts/lock.sh"
+#bindsym $mod+Shift+BackSpace exec "~/scripts/lock.sh"
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Logout?' -B 'Yes!' 'i3-msg exit'"
 
 # Config refresh
@@ -56,7 +56,8 @@ bindsym $mod+p workspace prev
 
 set $fg '#ffffff'
 set $bg '#000000'
-bindsym $mod+d exec "dmenu_run -fn 'FiraCode Nerd Font Mono' -p 'run ' -nb $bg -sb $fg -nf $fg -sf $bg"
+set $acc '#98c379'
+bindsym $mod+d exec "dmenu_run -fn 'Heebo Normal' -p 'run ' -nb $bg -sb $acc -nf $fg -sf $bg"
 
 # Screenhot
 bindsym $mod+Shift+p exec "flameshot gui"
@@ -161,17 +162,18 @@ bindsym $mod+Ctrl+l move workspace to output right
 new_window 1pixel
 
 # Set Border
-for_window [class="^.*"] border pixel 1
+for_window [class="^.*"] border pixel 2
 
 set $red "#e06c75"
 set $termbg "#1e2127"
+set $border "#98c379"
 
 # class                 border  backgr. text    indic.  child_border
-client.focused          #ffffff #ffffff #000000 #ffffff #ffffff
-client.focused_inactive $termbg $termbg #ffffff $termbg $termbg
-client.unfocused        $termbg $termbg #ffffff $termbg $termbg
-client.urgent           $red    $red    #ffffff $red    $red
-client.background       #ffffff
+client.focused          $border $border #000000 $border $border
+client.focused_inactive $termbg $termbg $border $termbg $termbg
+client.unfocused        $termbg $termbg $border $termbg $termbg
+client.urgent           $red    $red    $border $red    $red
+client.background       $border
 
 gaps inner 8
 

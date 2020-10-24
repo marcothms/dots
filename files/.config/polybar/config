@@ -4,19 +4,21 @@
 background = #000000
 foreground = #ffffff
 urgent = #e06c75
+accent = #98c379
 
 [bar/laptop]
 monitor = ${env:MONITOR}
 
-font-0 = "FiraCode Nerd Font Mono:pixelsize=9;2"
+font-0 = "Heebo Medium:pixelsize=10;1"
+#font-0 = "FiraCode Nerd Font Mono:pixelsize=9;2"
 font-1 = "Noto Sans CJK JP:antialiase=false:pixelsize=9;1"
 font-2 = "Siji:size=7;1"
 font-3 = "Wuncon Siji:size=7;1"
 
 height = 27px
 width = 100%
-module-margin-right = 1
-module-margin-left = 1
+module-margin-right = 2
+module-margin-left = 2
 
 padding-left = 1
 padding-right = 1
@@ -54,6 +56,8 @@ pin-workspaces = true
 wrapping-scroll = false
 format = <label-state> <label-mode>
 
+format-NAME-font = 1
+
 ws-icon-0 = 1;一
 ws-icon-1 = 2;二
 ws-icon-2 = 3;三
@@ -68,7 +72,7 @@ ws-icon-default = 
 
 label-focused = "%icon%"
 label-focused-foreground = ${colors.background}
-label-focused-background = ${colors.foreground}
+label-focused-background = ${colors.accent}
 label-focused-padding = 1
 
 label-unfocused = "%icon%"
@@ -81,9 +85,9 @@ label-urgent = "%icon%"
 label-urgent-background = ${colors.urgent}
 label-urgent-padding = 1
 
+label-mode = "%mode%"
 label-mode-padding = 1
-label-mode-background = ${colors.urgent}
-label-mode-foreground = ${colors.background}
+label-mode-foreground = ${colors.urgent}
 
 [module/xwindow]
 type = internal/xwindow
@@ -92,7 +96,7 @@ label-maxlen = 100
 
 [module/date]
 type = internal/date
-date = %a, %d.%m %H:%M
+date = %a, %d.%b %Y  %H:%M
 
 [module/backlight]
 type = internal/backlight

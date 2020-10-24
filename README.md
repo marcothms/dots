@@ -32,6 +32,7 @@
 
 ## Fonts
 + Fira Code Regular Nerd Font Complete Mono: General
++ Heebo Normal: Polybar
 + Noto Sans CJK JP: Japanese Characters
 + [Siji](https://github.com/stark/siji): Icon Font for Polybar
 

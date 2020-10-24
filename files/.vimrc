@@ -71,6 +71,7 @@ set scrolloff=7 " min lines aboive or below the cursor
 " ============================== Statusline
 let g:airline_theme='onedark'
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail'
 
 set laststatus=0
 set statusline=
