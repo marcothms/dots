@@ -182,10 +182,27 @@ endif
 
 " ++++++++++ Enable Language Servers
 if has ("nvim")
-    lua <<EOF
-    require'nvim_lsp'.pyls.setup{}
-    require'nvim_lsp'.rust_analyzer.setup{}
-    require'nvim_lsp'.texlab.setup{}
-    require'nvim_lsp'.jdtls.setup{}
+    if executable("pyls")
+        lua << EOF
+        require'nvim_lsp'.pyls.setup{}
 EOF
+    endif
+
+    if executable("rust-analyzer")
+        lua << EOF
+        require'nvim_lsp'.rust_analyzer.setup{}
+EOF
+    endif
+
+    if executable("texlab")
+        lua << EOF
+        require'nvim_lsp'.texlab.setup{}
+EOF
+    endif
+
+    if isdirectory($HOME. "/.cache/nvim/nvim_lsp/jdtls")
+        lua << EOF
+        require'nvim_lsp'.jdtls.setup{}
+EOF
+    endif
 endif

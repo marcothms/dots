@@ -5,6 +5,7 @@ background = #000000
 foreground = #ffffff
 urgent = #e06c75
 accent = #98c379
+accent-alt = #98c379
 
 [bar/laptop]
 monitor = ${env:MONITOR}
@@ -20,10 +21,10 @@ width = 100%
 module-margin-right = 2
 module-margin-left = 2
 
-padding-left = 1
-padding-right = 1
+padding-left = 2
+padding-right = 2
 
-separator = /
+separator =
 
 modules-left = i3 xwindow
 modules-center = spotify
@@ -34,6 +35,8 @@ tray-padding = 1
 
 foreground = ${colors.foreground}
 background = ${colors.background}
+
+line-size = 2
 
 wm-name = i3
 wm-restack = i3
@@ -73,30 +76,34 @@ ws-icon-default = 
 label-focused = "%icon%"
 label-focused-foreground = ${colors.background}
 label-focused-background = ${colors.accent}
-label-focused-padding = 1
+label-focused-padding = 2
 
 label-unfocused = "%icon%"
-label-unfocused-padding = 1
+label-unfocused-padding = 2
 
 label-visible = "%icon%"
-label-visible-padding = 1
+label-visible-padding = 2
 
 label-urgent = "%icon%"
 label-urgent-background = ${colors.urgent}
-label-urgent-padding = 1
+label-urgent-padding = 2
 
 label-mode = "%mode%"
-label-mode-padding = 1
+label-mode-padding = 2
 label-mode-foreground = ${colors.urgent}
 
 [module/xwindow]
 type = internal/xwindow
 label = %title%
+label-underline = ${colors.accent}
 label-maxlen = 100
 
 [module/date]
 type = internal/date
 date = %a, %d.%b %Y  %H:%M
+format-prefix = "  "
+format-prefix-foreground = ${colors.accent-alt}
+format-underline = ${colors.accent}
 
 [module/backlight]
 type = internal/backlight
@@ -137,7 +144,15 @@ animation-charging-framerate = 750
 
 [module/volume]
 type = internal/pulseaudio
-format-volume = <ramp-volume> <label-volume>
+format-volume = <label-volume> <bar-volume>
+
+click-right = pavucontrol &
+
+bar-volume-width = 5
+bar-volume-indicator = |
+bar-volume-fill = ─
+bar-volume-empty = ─
+bar-volume-fill-foreground = #ffffff
 
 ramp-volume-0 = 
 ramp-volume-1 = 
@@ -146,10 +161,16 @@ ramp-volume-3 = 
 ramp-volume-4 = 
 ramp-headphones-0 = 
 ramp-headphones-1 = 
+format-ramp-foreground = ${colors.accent}
 
-label-volume = %percentage%%
-format-muted-prefix = " "
-label-muted = muted
+#label-volume = %percentage%%
+label-volume = "  "
+format-volume-foreground = ${colors.accent-alt}
+format-volume-underline = ${colors.accent}
+
+format-muted-prefix = "  "
+label-muted = Muted
+format-muted-underline = ${colors.accent}
 
 [module/network]
 type = internal/network
@@ -172,11 +193,14 @@ label-connected =  %upspeed%  %downspeed%
 type = custom/script
 exec = ~/.config/polybar/scripts/yay_updates.sh
 tail = true
-format-prefix = " "
+format-prefix = "  "
+format-prefix-foreground = ${colors.accent-alt}
+format-underline = ${colors.accent}
 interval = 60
 
 [module/spotify]
 type = custom/script
 interval = 1
-format-prefix = " "
+format-prefix = "  "
+format-prefix-foreground = ${colors.accent}
 exec = python ~/.config/polybar/scripts/spotify_status.py -f '{artist}: {song}'
