@@ -202,5 +202,6 @@ interval = 60
 type = custom/script
 interval = 1
 format-prefix = "  "
-format-prefix-foreground = ${colors.accent}
+format-prefix-foreground = ${colors.accent-alt}
+format-underline = ${colors.accent}
 exec = python ~/.config/polybar/scripts/spotify_status.py -f '{artist}: {song}'
