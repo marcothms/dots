@@ -164,7 +164,9 @@ new_window 1pixel
 # Set Border
 for_window [class="^.*"] border pixel 2
 for_window [class="firefox"] border pixel 0
+for_window [class="Firefox"] border pixel 0
 for_window [class="discord"] border pixel 0
+for_window [class="Discord"] border pixel 0
 
 set $red "#e06c75"
 set $termbg "#1e2127"

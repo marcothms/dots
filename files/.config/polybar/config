@@ -4,6 +4,7 @@
 background = #000000
 foreground = #ffffff
 urgent = #e06c75
+yellow = #d19a66
 accent = #98c379
 accent-alt = #98c379
 
@@ -109,7 +110,10 @@ format-underline = ${colors.accent}
 type = internal/backlight
 #ls -1 /sys/class/backlight
 card = amdgpu_bl0
-label =  %percentage%%
+label = %percentage%%
+format-prefix = "  "
+format-prefix-foreground = ${colors.accent-alt}
+format-underline = ${colors.accent}
 
 [module/battery]
 type = internal/battery
@@ -119,6 +123,13 @@ apdapter = ADP1
 format-charging = <animation-charging> <label-charging>
 format-discharging = <ramp-capacity> <label-discharging>
 format-full = <ramp-capacity> <label-full>
+
+format-charging-underline = ${colors.yellow}
+format-discharging-underline = ${colors.accent}
+format-full-underline = ${colors.accent}
+
+ramp-capacity-foreground = ${colors.accent-alt}
+animation-charging-foreground = ${colors.accent-alt}
 
 label-charging = %percentage%%
 label-discharging = %percentage%%
@@ -178,8 +189,12 @@ interface = wlo1
 interval = 3.0
 accumulate-stats = true
 unknown-as-up = true
-label-connected =  %essid%
-label-disconnected = no wifi
+label-connected = %essid%
+format-connected-prefix = "  "
+format-connected-prefix-foreground = ${colors.accent-alt}
+format-connected-underline = ${colors.accent}
+label-disconnected = "No Wifi"
+format-disconnected-underline = ${colors.urgent}
 
 [module/networkupdown]
 type = internal/network
