@@ -155,28 +155,28 @@ animation-charging-framerate = 750
 
 [module/volume]
 type = internal/pulseaudio
-format-volume = <label-volume> <bar-volume>
+format-volume = <ramp-volume> <label-volume>
 
 click-right = pavucontrol &
 
-bar-volume-width = 5
+bar-volume-width = 10
 bar-volume-indicator = |
 bar-volume-fill = ─
 bar-volume-empty = ─
 bar-volume-fill-foreground = #ffffff
 
-ramp-volume-0 = 
-ramp-volume-1 = 
-ramp-volume-2 = 
-ramp-volume-3 = 
-ramp-volume-4 = 
+ramp-volume-0 = "  "
+ramp-volume-1 = "  "
+ramp-volume-2 = "  "
+ramp-volume-3 = "  "
+ramp-volume-4 = "  "
 ramp-headphones-0 = 
 ramp-headphones-1 = 
-format-ramp-foreground = ${colors.accent}
+ramp-volume-foreground = ${colors.accent-alt}
 
-#label-volume = %percentage%%
-label-volume = "  "
-format-volume-foreground = ${colors.accent-alt}
+label-volume = %percentage%%
+#format-volume-prefix = "  "
+#format-volume-prefix-foreground = ${colors.accent-alt}
 format-volume-underline = ${colors.accent}
 
 format-muted-prefix = "  "
