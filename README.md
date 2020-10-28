@@ -22,6 +22,7 @@
 
 + [vim-plug](https://github.com/junegunn/vim-plug)
 + fzf
++ xdotool, yad
 
 ### Nvim LSP
 

@@ -83,7 +83,6 @@ bindsym XF86AudioPrev exec playerctl previous
 
 # ======================================== Open Applications
 mode "Open" {
-	bindsym c exec gsimplecal
 	bindsym d exec discord; exec Discord
 	bindsym f exec firefox
 	bindsym m exec thunderbird
@@ -184,6 +183,10 @@ gaps inner 8
 # ============================== Start
 # Keyboard layout
 exec setxkbmap -layout za
+
+exec export GTK_IM_MODULE=fcitx
+exec export QT_IM_MODULE=fcitx
+exec export XMODIFIERS=@im=fcitx
 
 exec feh --bg-scale $HOME/data/wallpaper/wallpaper.png
 exec dunst

@@ -8,11 +8,11 @@ yellow = #d19a66
 accent = #98c379
 accent-alt = #98c379
 
+############################## BARS
 [bar/laptop]
 monitor = ${env:MONITOR}
 
 font-0 = "Heebo Medium:pixelsize=10;1"
-#font-0 = "FiraCode Nerd Font Mono:pixelsize=9;2"
 font-1 = "Noto Sans CJK JP:antialiase=false:pixelsize=9;1"
 font-2 = "Siji:size=7;1"
 font-3 = "Wuncon Siji:size=7;1"
@@ -45,22 +45,20 @@ wm-restack = i3
 [bar/desktop]
 inherit = bar/laptop
 
-modules-right = update_yay volume date
+modules-right = update_yay volume calendar
 
 [bar/desktop_second]
 inherit = bar/desktop
 
 tray-position = none
+modules-right = volume calendar
 
-modules-right = volume date
-
+############################## MODULES
 [module/i3]
 type = internal/i3
 pin-workspaces = true
 wrapping-scroll = false
 format = <label-state> <label-mode>
-
-format-NAME-font = 1
 
 ws-icon-0 = 1;一
 ws-icon-1 = 2;二
@@ -72,7 +70,6 @@ ws-icon-6 = 7;七
 ws-icon-7 = 8;八
 ws-icon-8 = 9;九
 ws-icon-9 = 10;十
-ws-icon-default = 
 
 label-focused = "%icon%"
 label-focused-foreground = ${colors.background}
@@ -96,12 +93,23 @@ label-mode-foreground = ${colors.urgent}
 [module/xwindow]
 type = internal/xwindow
 label = %title%
-label-underline = ${colors.accent}
 label-maxlen = 100
+label-underline = ${colors.accent}
 
 [module/date]
 type = internal/date
 date = %a, %d.%b %Y  %H:%M
+
+format-prefix = "  "
+format-prefix-foreground = ${colors.accent-alt}
+format-underline = ${colors.accent}
+
+[module/calendar]
+type = custom/script
+exec = ~/.config/polybar/scripts/popup-calendar.sh
+interval = 5
+click-left = ~/.config/polybar/scripts/popup-calendar.sh --popup &
+
 format-prefix = "  "
 format-prefix-foreground = ${colors.accent-alt}
 format-underline = ${colors.accent}
@@ -111,6 +119,7 @@ type = internal/backlight
 #ls -1 /sys/class/backlight
 card = amdgpu_bl0
 label = %percentage%%
+
 format-prefix = "  "
 format-prefix-foreground = ${colors.accent-alt}
 format-underline = ${colors.accent}
@@ -121,20 +130,19 @@ battery = BAT0
 apdapter = ADP1
 
 format-charging = <animation-charging> <label-charging>
-format-discharging = <ramp-capacity> <label-discharging>
-format-full = <ramp-capacity> <label-full>
-
+label-charging = %percentage%%
+animation-charging-foreground = ${colors.accent-alt}
 format-charging-underline = ${colors.yellow}
+
+format-discharging = <ramp-capacity> <label-discharging>
+label-discharging = %percentage%%
 format-discharging-underline = ${colors.accent}
+
+format-full = <ramp-capacity> <label-full>
+label-full = %percentage%%
 format-full-underline = ${colors.accent}
 
 ramp-capacity-foreground = ${colors.accent-alt}
-animation-charging-foreground = ${colors.accent-alt}
-
-label-charging = %percentage%%
-label-discharging = %percentage%%
-label-full = %percentage%%
-
 ramp-capacity-0 = 
 ramp-capacity-1 = 
 ramp-capacity-2 = 
@@ -150,33 +158,28 @@ animation-charging-0 = 
 animation-charging-1 = 
 animation-charging-2 = 
 animation-charging-3 = 
-
 animation-charging-framerate = 750
 
 [module/volume]
 type = internal/pulseaudio
-format-volume = <ramp-volume> <label-volume>
+format-volume = <label-volume>
 
-click-right = pavucontrol &
-
-bar-volume-width = 10
-bar-volume-indicator = |
-bar-volume-fill = ─
-bar-volume-empty = ─
-bar-volume-fill-foreground = #ffffff
-
-ramp-volume-0 = "  "
-ramp-volume-1 = "  "
-ramp-volume-2 = "  "
-ramp-volume-3 = "  "
-ramp-volume-4 = "  "
-ramp-headphones-0 = 
-ramp-headphones-1 = 
-ramp-volume-foreground = ${colors.accent-alt}
+#bar-volume-width = 10
+#bar-volume-indicator = |
+#bar-volume-fill = ─
+#bar-volume-empty = ─
+#bar-volume-fill-foreground = #ffffff
+#
+#ramp-volume-0 = "  "
+#ramp-volume-1 = "  "
+#ramp-volume-2 = "  "
+#ramp-volume-3 = "  "
+#ramp-volume-4 = "  "
+#ramp-volume-foreground = ${colors.accent-alt}
 
 label-volume = %percentage%%
-#format-volume-prefix = "  "
-#format-volume-prefix-foreground = ${colors.accent-alt}
+format-volume-prefix = "  "
+format-volume-prefix-foreground = ${colors.accent-alt}
 format-volume-underline = ${colors.accent}
 
 format-muted-prefix = "  "
@@ -189,34 +192,31 @@ interface = wlo1
 interval = 3.0
 accumulate-stats = true
 unknown-as-up = true
+
 label-connected = %essid%
 format-connected-prefix = "  "
 format-connected-prefix-foreground = ${colors.accent-alt}
 format-connected-underline = ${colors.accent}
+
 label-disconnected = "No Wifi"
 format-disconnected-underline = ${colors.urgent}
-
-[module/networkupdown]
-type = internal/network
-interface = enp24s0
-interval = 3.0
-accumulate-stats = true
-unknown-as-up = true
-label-connected =  %upspeed%  %downspeed%
 
 [module/update_yay]
 type = custom/script
 exec = ~/.config/polybar/scripts/yay_updates.sh
 tail = true
+interval = 60
+click-left = alacritty -e yay &
+
 format-prefix = "  "
 format-prefix-foreground = ${colors.accent-alt}
 format-underline = ${colors.accent}
-interval = 60
 
 [module/spotify]
 type = custom/script
+exec = python ~/.config/polybar/scripts/spotify_status.py -f '{artist}: {song}'
 interval = 1
+
 format-prefix = "  "
 format-prefix-foreground = ${colors.accent-alt}
 format-underline = ${colors.accent}
-exec = python ~/.config/polybar/scripts/spotify_status.py -f '{artist}: {song}'
