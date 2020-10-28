@@ -29,7 +29,7 @@ separator =
 
 modules-left = i3 xwindow
 modules-center = spotify
-modules-right = network volume backlight battery date
+modules-right = network volume backlight battery calendar
 
 tray-position = right
 tray-padding = 1
@@ -182,9 +182,9 @@ format-volume-prefix = "  "
 format-volume-prefix-foreground = ${colors.accent-alt}
 format-volume-underline = ${colors.accent}
 
-format-muted-prefix = "  "
 label-muted = Muted
-format-muted-underline = ${colors.accent}
+format-muted-foreground = ${colors.urgent}
+format-muted-underline = ${colors.urgent}
 
 [module/network]
 type = internal/network
