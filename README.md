@@ -11,7 +11,7 @@
 
 ## Programs
 + Editor: nvim
-+ Image-Viewer: viewnior
++ Image-Viewer: sxiv
 + Info: [fet.sh](https://github.com/6gk/fet.sh) and neofetch
 + Launcher: dmenu
 + Pdf-Viewer: epdfview or zathura
@@ -22,7 +22,8 @@
 
 + [vim-plug](https://github.com/junegunn/vim-plug)
 + fzf
-+ xdotool, yad
++ xdotool + yad: Calendar-Widget
++ fcitx + mozc: Japanese Keyboard
 
 ### Nvim LSP
 
