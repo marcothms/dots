@@ -18,7 +18,7 @@
 + Screenshots: Flameshot
 + Video-Player: vlc or mpv
 
-## Dependencies
+## Other Dependencies
 
 + [vim-plug](https://github.com/junegunn/vim-plug)
 + fcitx + mozc: Japanese Keyboard
