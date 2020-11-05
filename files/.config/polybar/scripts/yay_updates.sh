@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if ! updates=$(yay -Qum 2> /dev/null | wc -l); then
+if ! updates=$(yay -Qu 2> /dev/null | wc -l); then
     updates=0
 fi
 

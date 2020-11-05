@@ -21,9 +21,8 @@
 ## Dependencies
 
 + [vim-plug](https://github.com/junegunn/vim-plug)
-+ fzf
-+ xdotool + yad: Calendar-Widget
 + fcitx + mozc: Japanese Keyboard
++ fzf
 
 ### Nvim LSP
 

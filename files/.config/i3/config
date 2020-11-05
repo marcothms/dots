@@ -11,16 +11,12 @@ set $mod Mod4
 floating_modifier $mod
 
 # Font for Window Titles
-font pango:FiraCode Nerd Font Mono 8
+font pango:Heebo Normal 8
 
 # ============================== Keybinds (except workspaces)
 #Terminal
 bindsym $mod+Return exec --no-startup-id alacritty
 bindsym $mod+Ctrl+Return exec --no-startup-id xterm
-
-# Leaving
-#bindsym $mod+Shift+BackSpace exec "~/scripts/lock.sh"
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Logout?' -B 'Yes!' 'i3-msg exit'"
 
 # Config refresh
 bindsym $mod+Shift+c reload
@@ -57,13 +53,10 @@ bindsym $mod+p workspace prev
 set $fg '#ffffff'
 set $bg '#000000'
 set $acc '#98c379'
-bindsym $mod+d exec "dmenu_run -fn 'Heebo Normal' -p 'run ' -nb $bg -sb $acc -nf $fg -sf $bg"
+bindsym $mod+d exec "dmenu_run -fn 'FiraCode Nerd Font Mono' -nb $bg -sb $acc -nf $fg -sf $bg"
 
 # Screenhot
 bindsym $mod+Shift+p exec "flameshot gui"
-
-# Filemanager
-bindsym $mod+e exec thunar
 
 # Screen brightness with light
 bindsym XF86MonBrightnessUp exec light -A 5 # increase
@@ -83,9 +76,12 @@ bindsym XF86AudioPrev exec playerctl previous
 
 # ======================================== Open Applications
 mode "Open" {
+	bindsym c exec google-calendar-dark
 	bindsym d exec discord; exec Discord
+	bindsym e exec thunar
 	bindsym f exec firefox
 	bindsym m exec thunderbird
+	bindsym n exec notion-app
 	bindsym p exec pavucontrol
 	bindsym s exec spotify
 	bindsym t exec telegram-desktop
@@ -100,6 +96,7 @@ bindsym $mod+o mode "Open"
 mode "Shutdown" {
 	bindsym s exec shutdown now
 	bindsym l exec "~/scripts/lock.sh"
+	bindsym e exec "i3-nagbar -t warning -m 'Logout?' -B 'Yes!' 'i3-msg exit'"
 
 	bindsym Escape mode "default"
 	bindsym Return mode "default"
@@ -171,23 +168,24 @@ set $red "#e06c75"
 set $termbg "#1e2127"
 set $border "#98c379"
 
-# class                 border  backgr. text    indic.  child_border
+# Class                 Border  Backgr. Text    Indic.  Child_border
 client.focused          $border $border #000000 $border $border
 client.focused_inactive $termbg $termbg $border $termbg $termbg
 client.unfocused        $termbg $termbg $border $termbg $termbg
 client.urgent           $red    $red    $border $red    $red
 client.background       $border
 
-gaps inner 8
+# i3-gaps
+gaps inner 4
 
 # ============================== Start
-# Keyboard layout
 exec setxkbmap -layout za
 
 exec export GTK_IM_MODULE=fcitx
 exec export QT_IM_MODULE=fcitx
 exec export XMODIFIERS=@im=fcitx
 
+# Launch Programs at start - I don't like ~/.Xsession
 exec fcitx
 exec nextcloud
 exec feh --bg-scale $HOME/data/wallpaper/wallpaper.png

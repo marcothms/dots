@@ -23,10 +23,6 @@ Plug 'airblade/vim-gitgutter' " Show git changes
 Plug 'vim-airline/vim-airline' " Fancy Bar
 Plug 'vim-airline/vim-airline-themes' " Themes for fancy Bar
 
-if executable("cargo")
-    Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'} " Fancy Side Minimap
-endif
-
 if executable("fzf")
     Plug 'junegunn/fzf'
     Plug 'junegunn/fzf.vim'
@@ -70,7 +66,7 @@ set scrolloff=7 " min lines aboive or below the cursor
 
 " ============================== Statusline
 let g:airline_theme='onedark'
-let g:airline#extensions#tabline#enabled = 1
+"let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 
 set laststatus=0
@@ -89,8 +85,8 @@ set statusline +=%1*%5l  " current line
 set statusline +=%1*/%L  " total lines
 
 " ============================== Minimap Settings
-let g:minimap_auto_start=1
-let g:minimap_width=6
+"let g:minimap_auto_start=1
+"let g:minimap_width=6
 
 " ============================== Indents and Whitespaces
 set list
