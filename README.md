@@ -1,5 +1,7 @@
 # Marc's Dotfiles
 
+![PC](screenshots/pc.png)
+
 ## System
 
 + Bar: polybar
@@ -38,5 +40,3 @@
 + [Siji](https://github.com/stark/siji): Icon Font for Polybar
 
 To get a siji icon: `clone, ./install.sh, ./view.sh, echo "\ue002"`
-
-![PC](screenshots/pc.png)
