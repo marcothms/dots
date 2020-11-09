@@ -16,7 +16,8 @@
 + Image-Viewer: sxiv
 + Info: [fet.sh](https://github.com/6gk/fet.sh) and neofetch
 + Launcher: dmenu
-+ Pdf-Viewer: epdfview or zathura
++ Music: spotify with [Onepunch-Theme](https://github.com/morpheusthewhite/spicetify-themes/tree/master/Onepunch)
++ Pdf-Viewer: zathura with mupdf
 + Screenshots: Flameshot
 + Video-Player: vlc or mpv
 
@@ -25,6 +26,7 @@
 + [vim-plug](https://github.com/junegunn/vim-plug)
 + fcitx + mozc: Japanese Keyboard
 + fzf
++ spicetify-cli
 
 ### Nvim LSP
 

@@ -127,7 +127,7 @@ nmap <C-f> :Files<CR>
 
 " ============================== LSP
 
-" ++++++++++ completion-nvim Settings
+" ---------- completion-nvim Settings
 if has ("nvim")
     " Use completion-nvim in every buffer
     autocmd BufEnter * lua require'completion'.on_attach()
@@ -160,7 +160,7 @@ if has ("nvim")
     set pumheight=10
 endif
 
-" ++++++++++ lsp Settings
+" ---------- lsp Settings
 if has ("nvim")
     " Show definition
     nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
@@ -169,14 +169,14 @@ if has ("nvim")
     nnoremap <silent> K   <cmd>lua vim.lsp.buf.hover()<CR>
 endif
 
-" ++++++++++ neosnippet Settings
+" ---------- neosnippet Settings
 if has ("nvim")
     imap <C-k> <Plug>(neosnippet_expand_or_jump)
     smap <C-k> <Plug>(neosnippet_expand_or_jump)
     xmap <C-k> <Plug>(neosnippet_expand_target)
 endif
 
-" ++++++++++ Enable Language Servers
+" ---------- Enable Language Servers
 if has ("nvim")
     if executable("pyls")
         lua << EOF

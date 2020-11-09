@@ -75,10 +75,11 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 # ======================================== Open Applications
+bindsym $mod+e exec thunar
+
 mode "Open" {
 	bindsym c exec google-calendar-dark
 	bindsym d exec discord; exec Discord
-	bindsym e exec thunar
 	bindsym f exec firefox
 	bindsym m exec thunderbird
 	bindsym n exec notion-app

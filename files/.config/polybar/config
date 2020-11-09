@@ -13,7 +13,7 @@ accent-alt = #98c379
 monitor = ${env:MONITOR}
 
 font-0 = "Heebo Medium:pixelsize=10;1"
-font-1 = "Noto Sans CJK JP:antialiase=false:pixelsize=9;1"
+font-1 = "Noto Sans CJK JP:antialiase=false:pixelsize=10;0"
 font-2 = "Siji:size=7;1"
 font-3 = "Wuncon Siji:size=7;1"
 
