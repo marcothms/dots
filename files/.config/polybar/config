@@ -30,7 +30,7 @@ separator =
 
 modules-left = i3 xwindow
 modules-center = spotify
-modules-right = network volume backlight battery date
+modules-right = cpu temp memory network volume backlight battery date
 
 tray-position = right
 tray-padding = 1
@@ -46,7 +46,7 @@ wm-restack = i3
 [bar/desktop]
 inherit = bar/laptop
 
-modules-right = update_yay volume date
+modules-right = update_yay cpu temp memory volume date
 
 [bar/desktop_second]
 inherit = bar/desktop
@@ -199,7 +199,7 @@ tail = true
 interval = 60
 click-left = alacritty -e yay &
 
-format-prefix = "  "
+format-prefix = "  "
 format-prefix-foreground = ${colors.accent-alt}
 format-underline = ${colors.accent}
 
@@ -209,5 +209,31 @@ exec = python ~/.config/polybar/scripts/spotify_status.py -f '{artist}: {song}'
 interval = 1
 
 format-prefix = "  "
+format-prefix-foreground = ${colors.accent-alt}
+format-underline = ${colors.accent}
+
+[module/cpu]
+type = custom/script
+exec = ~/.config/polybar/scripts/cpu.sh
+click-left = ~/.config/polybar/scripts/cpu.sh --popup
+
+format-prefix = "  "
+format-prefix-foreground = ${colors.accent-alt}
+format-underline = ${colors.accent}
+
+[module/memory]
+type = custom/script
+exec = ~/.config/polybar/scripts/memory.sh
+click-left = ~/.config/polybar/scripts/memory.sh --popup
+
+format-prefix = "  "
+format-prefix-foreground = ${colors.accent-alt}
+format-underline = ${colors.accent}
+
+[module/temp]
+type = custom/script
+exec = ~/.config/polybar/scripts/temp.sh
+
+format-prefix = "  "
 format-prefix-foreground = ${colors.accent-alt}
 format-underline = ${colors.accent}

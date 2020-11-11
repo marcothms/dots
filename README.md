@@ -8,7 +8,7 @@
 + Compositor: [picom](https://github.com/ibhagwan/picom)
 + Notifications: dunst
 + Shell: zsh
-+ Term: alacritty
++ Terminal: alacritty
 + WM: i3
 
 ## Programs
