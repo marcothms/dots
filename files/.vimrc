@@ -12,16 +12,16 @@ let mapleader = "\<Space>"
 " ============================== vim-plug
 call plug#begin()
 
-Plug 'joshdick/onedark.vim' " Colorscheme
+Plug 'joshdick/onedark.vim' " color
 
-Plug 'tpope/vim-sleuth' " Automatic intendations
+Plug 'tpope/vim-sleuth' " intendations
 
-Plug 'jiangmiao/auto-pairs' " Pair completion
+Plug 'jiangmiao/auto-pairs' " pair completion
 
-Plug 'airblade/vim-gitgutter' " Show git changes
+Plug 'airblade/vim-gitgutter' " git
 
-Plug 'vim-airline/vim-airline' " Fancy Bar
-Plug 'vim-airline/vim-airline-themes' " Themes for fancy Bar
+Plug 'itchyny/lightline.vim' " bar
+Plug 'ryanoasis/vim-devicons' " icons in bar
 
 if executable("fzf")
     Plug 'junegunn/fzf'
@@ -29,15 +29,15 @@ if executable("fzf")
 endif
 
 if has ("nvim")
-    Plug 'neovim/nvim-lspconfig' " LSP
-    Plug 'Shougo/neosnippet.vim' " Snippet support
-    Plug 'Shougo/neosnippet-snippets' " Actual snippets
-    Plug 'nvim-lua/completion-nvim' " Fancy autocomplete
+    Plug 'neovim/nvim-lspconfig' " lsp
+    Plug 'Shougo/neosnippet.vim' " snippet support
+    Plug 'Shougo/neosnippet-snippets' " actual snippets
+    Plug 'nvim-lua/completion-nvim' " autocomplete
 endif
 
 call plug#end()
 
-" ============================== Colors
+""" ============================== Colors
 syntax on
 set background=dark
 colorscheme onedark
@@ -65,33 +65,37 @@ set wildmenu " autocomplete :e
 set scrolloff=7 " min lines aboive or below the cursor
 
 " ============================== Statusline
-let g:airline_theme='onedark'
-"let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#formatter = 'unique_tail'
+set laststatus=2
 
-set laststatus=0
-set statusline=
+function! GitStatus()
+  let [a,m,r] = GitGutterGetHunkSummary()
+  return printf('+%d ~%d -%d', a, m, r)
+endfunction
 
-hi User1 guibg=NONE
+function! FileNameWithIcon() abort
+  return winwidth(0) > 70  ?  WebDevIconsGetFileTypeSymbol() . ' ' . expand('%:t') : ''
+endfunction
 
-" Left Side
-set statusline +=%1*%F   " full path
-set statusline +=%1*\ %m " modified flag
+let g:lightline = {
+      \ 'colorscheme': 'onedark',
+      \ }
 
-" Right Side
-set statusline +=%1*%=%y " file type
-set statusline +=%1*\ %c " column
-set statusline +=%1*%5l  " current line
-set statusline +=%1*/%L  " total lines
+let g:lightline.component_function = { 'gitstatus': 'GitStatus' }
+let g:lightline.component = { 'filename_with_icon': '%{FileNameWithIcon()}' }
 
-" ============================== Minimap Settings
-"let g:minimap_auto_start=1
-"let g:minimap_width=6
+let g:lightline.active = {
+      \ 'left': [['mode', 'readonly'], ['filename_with_icon', 'modified'], ['gitstatus']],
+      \ 'right': [['lineinfo'], ['percent'], ['fileformat', 'fileencoding', 'filetype']]
+      \ }
+
+let g:lightline.separator = { 'left': "", 'right': "" }
+let g:lightline.tabline_separator = { 'left': "", 'right': "" }
+let g:lightline.subseparator = { 'left': '|', 'right': '|' }
 
 " ============================== Indents and Whitespaces
 set list
-"set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·
-set listchars=tab:\┊\ ,extends:›,precedes:‹,nbsp:·,trail:·
+set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·
+"set listchars=tab:\┊\ ,extends:›,precedes:‹,nbsp:·,trail:·
 set fillchars+=vert:\  "draw verticle split
 
 autocmd FileType perl set tabstop=8 shiftwidth=4 softtabstop=4

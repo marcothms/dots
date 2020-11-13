@@ -95,7 +95,6 @@ bindsym $mod+o mode "Open"
 
 # ======================================== Shutdown
 mode "Shutdown" {
-	bindsym s exec shutdown now
 	bindsym l exec "~/scripts/lock.sh"
 	bindsym e exec "i3-nagbar -t warning -m 'Logout?' -B 'Yes!' 'i3-msg exit'"
 

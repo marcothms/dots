@@ -196,7 +196,7 @@ format-disconnected-underline = ${colors.urgent}
 type = custom/script
 exec = ~/.config/polybar/scripts/yay_updates.sh
 tail = true
-interval = 60
+interval = 600
 click-left = alacritty -e yay &
 
 format-prefix = "  "
