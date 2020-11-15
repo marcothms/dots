@@ -12,12 +12,12 @@ accent-alt = #98c379
 [bar/laptop]
 monitor = ${env:MONITOR}
 
-font-0 = "Heebo Medium:pixelsize=10;1"
-font-1 = "Noto Sans CJK JP:antialiase=false:pixelsize=10;0"
-font-2 = "Siji:size=7;1"
-font-3 = "Wuncon Siji:size=7;1"
+font-0 = "Product Sans:pixelsize=11:weight=regular;3"
+font-1 = "Product Sans:pixelsize=11:weight=bold;3"
+font-2 = "Noto Sans CJK JP:antialiase=false:pixelsize=11;2"
+font-3 = "Material Design Icons:size=12;3"
 
-height = 27px
+height = 30px
 width = 100%
 
 module-margin-right = 2
@@ -28,17 +28,17 @@ padding-right = 2
 
 separator =
 
-modules-left = i3 xwindow
-modules-center = spotify
-modules-right = cpu temp memory network volume backlight battery date
+modules-left = i3 spotify
+modules-center = date time
+modules-right = cpu memory network volume backlight battery
 
 tray-position = right
 tray-padding = 1
 
 foreground = ${colors.foreground}
-background-0 = ${colors.background}
+background = ${colors.background}
 
-line-size = 2
+line-size = 0
 
 wm-name = i3
 wm-restack = i3
@@ -46,13 +46,12 @@ wm-restack = i3
 [bar/desktop]
 inherit = bar/laptop
 
-modules-right = update_yay cpu temp memory volume date
+modules-right = update_yay cpu memory volume
 
 [bar/desktop_second]
 inherit = bar/desktop
 
 tray-position = none
-modules-right = volume date
 
 ############################## MODULES
 [module/i3]
@@ -99,9 +98,17 @@ label-underline = ${colors.accent}
 
 [module/date]
 type = internal/date
-date = %a, %d.%b %Y  %H:%M
+date = %{T2}%A%{T-}, %B %d
 
-format-prefix = "  "
+format-prefix = "󰃭  "
+format-prefix-foreground = ${colors.accent-alt}
+format-underline = ${colors.accent}
+
+[module/time]
+type = internal/date
+date = %{T2}%H:%M%{T-}
+
+format-prefix = "󰥔  "
 format-prefix-foreground = ${colors.accent-alt}
 format-underline = ${colors.accent}
 
@@ -111,7 +118,7 @@ type = internal/backlight
 card = amdgpu_bl0
 label = %percentage%%
 
-format-prefix = "  "
+format-prefix = "󰃟  "
 format-prefix-foreground = ${colors.accent-alt}
 format-underline = ${colors.accent}
 
@@ -134,48 +141,49 @@ label-full = %percentage%%
 format-full-underline = ${colors.accent}
 
 ramp-capacity-foreground = ${colors.accent-alt}
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-3 = 
-ramp-capacity-4 = 
-ramp-capacity-5 = 
-ramp-capacity-6 = 
-ramp-capacity-7 = 
-ramp-capacity-8 = 
-ramp-capacity-9 = 
+ramp-capacity-0 = 󰁺
+ramp-capacity-1 = 󰁻
+ramp-capacity-2 = 󰁼
+ramp-capacity-3 = 󰁽
+ramp-capacity-4 = 󰁾
+ramp-capacity-5 = 󰁿
+ramp-capacity-6 = 󰂀
+ramp-capacity-7 = 󰂁
+ramp-capacity-8 = 󰂂
+ramp-capacity-9 = 󰁹
 
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
-animation-charging-3 = 
-animation-charging-framerate = 750
+animation-charging-0 = 󰢜
+animation-charging-1 = 󰂇
+animation-charging-2 = 󰂇
+animation-charging-3 = 󰂈
+animation-charging-4 = 󰢝
+animation-charging-5 = 󰂉
+animation-charging-6 = 󰢞
+animation-charging-7 = 󰂊
+animation-charging-8 = 󰂋
+animation-charging-9 = 󰂅
+animation-charging-framerate = 200
 
 [module/volume]
 type = internal/pulseaudio
 format-volume = <label-volume>
 
-#bar-volume-width = 10
-#bar-volume-indicator = |
-#bar-volume-fill = ─
-#bar-volume-empty = ─
-#bar-volume-fill-foreground = #ffffff
-#
-#ramp-volume-0 = "  "
-#ramp-volume-1 = "  "
-#ramp-volume-2 = "  "
-#ramp-volume-3 = "  "
-#ramp-volume-4 = "  "
-#ramp-volume-foreground = ${colors.accent-alt}
-
 label-volume = %percentage%%
-format-volume-prefix = "  "
+format-volume-prefix = "󰕾  "
 format-volume-prefix-foreground = ${colors.accent-alt}
 format-volume-underline = ${colors.accent}
 
 label-muted = Muted
+format-muted-prefix = "󰖁  "
 format-muted-foreground = ${colors.urgent}
 format-muted-underline = ${colors.urgent}
+
+ramp-volume-0 = 󰕿
+ramp-volume-1 = 󰖀
+ramp-volume-2 = 󰕾
+
+ramp-headphones-0 = 󰋋
+ramp-headphones-1 = 󰟎
 
 [module/network]
 type = internal/network
@@ -185,7 +193,7 @@ accumulate-stats = true
 unknown-as-up = true
 
 label-connected = %essid%
-format-connected-prefix = "  "
+format-connected-prefix = "󰤨  "
 format-connected-prefix-foreground = ${colors.accent-alt}
 format-connected-underline = ${colors.accent}
 
@@ -199,7 +207,7 @@ tail = true
 interval = 600
 click-left = alacritty -e yay &
 
-format-prefix = "  "
+format-prefix = "󰏗  "
 format-prefix-foreground = ${colors.accent-alt}
 format-underline = ${colors.accent}
 
@@ -208,7 +216,7 @@ type = custom/script
 exec = python ~/.config/polybar/scripts/spotify_status.py -f '{artist}: {song}'
 interval = 1
 
-format-prefix = "  "
+format-prefix = "󰓇  "
 format-prefix-foreground = ${colors.accent-alt}
 format-underline = ${colors.accent}
 
@@ -217,7 +225,7 @@ type = custom/script
 exec = ~/.config/polybar/scripts/cpu.sh
 click-left = ~/.config/polybar/scripts/cpu.sh --popup
 
-format-prefix = "  "
+format-prefix = "󰻠  "
 format-prefix-foreground = ${colors.accent-alt}
 format-underline = ${colors.accent}
 
@@ -226,7 +234,7 @@ type = custom/script
 exec = ~/.config/polybar/scripts/memory.sh
 click-left = ~/.config/polybar/scripts/memory.sh --popup
 
-format-prefix = "  "
+format-prefix = "󰍛  "
 format-prefix-foreground = ${colors.accent-alt}
 format-underline = ${colors.accent}
 
@@ -234,6 +242,6 @@ format-underline = ${colors.accent}
 type = custom/script
 exec = ~/.config/polybar/scripts/temp.sh
 
-format-prefix = "  "
+format-prefix = "󰔄 "
 format-prefix-foreground = ${colors.accent-alt}
 format-underline = ${colors.accent}

@@ -24,8 +24,11 @@
 ## Other Dependencies
 
 + [vim-plug](https://github.com/junegunn/vim-plug)
-+ fcitx + mozc: Japanese Keyboard
++ fcitx + mozc: Japanese Keyboard - Thanks to [THIS](https://www.youtube.com/watch?v=ptbFWnowvLo) guy!
 + fzf
++ light
++ pactl
++ playerctl
 + spicetify-cli
 
 ### Nvim LSP
@@ -36,9 +39,7 @@
 + [Java](https://github.com/neovim/nvim-lspconfig#jdtls)
 
 ## Fonts
-+ Fira Code Regular Nerd Font Complete Mono: General
-+ Heebo Normal: Polybar
++ Fira Code Regular Nerd Font Complete Mono: Terminal
++ Product Sans: Non-Monospaced Font
 + Noto Sans CJK JP: Japanese Characters
-+ [Siji](https://github.com/stark/siji): Icon Font for Polybar
-
-To get a siji icon: `clone, ./install.sh, ./view.sh, echo "\ue002"`
++ Material Design Icons: Polybar Icons

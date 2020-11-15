@@ -12,7 +12,7 @@ let mapleader = "\<Space>"
 " ============================== vim-plug
 call plug#begin()
 
-Plug 'joshdick/onedark.vim' " color
+Plug 'joshdick/onedark.vim' " color scheme
 
 Plug 'tpope/vim-sleuth' " intendations
 
@@ -62,7 +62,7 @@ set mouse=a " a=on, c=off
 set undolevels=1337
 set backspace=indent,eol,start
 set wildmenu " autocomplete :e
-set scrolloff=7 " min lines aboive or below the cursor
+set scrolloff=10 " min lines above or below the cursor
 
 " ============================== Statusline
 set laststatus=2

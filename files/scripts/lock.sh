@@ -1,5 +1,5 @@
 #!/bin/sh
 
 xlock \
-    -mode maze \
-    -info ''
+    -mode matrix \
+    -info '' \

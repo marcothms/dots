@@ -11,7 +11,7 @@ set $mod Mod4
 floating_modifier $mod
 
 # Font for Window Titles
-font pango:Heebo Normal 8
+font pango:Product Sans 8
 
 # ============================== Keybinds (except workspaces)
 #Terminal
@@ -47,13 +47,12 @@ bindsym $mod+Shift+v split h
 bindsym $mod+n workspace next
 bindsym $mod+p workspace prev
 
-# Rofi and dmenu
-# bindsym $mod+space exec rofi -show run
-
+# dmenu
 set $fg '#ffffff'
 set $bg '#000000'
 set $acc '#98c379'
 bindsym $mod+d exec "dmenu_run -fn 'FiraCode Nerd Font Mono' -nb $bg -sb $acc -nf $fg -sf $bg"
+bindsym $mod+space exec "dmenu_run -fn 'FiraCode Nerd Font Mono' -nb $bg -sb $acc -nf $fg -sf $bg"
 
 # Screenhot
 bindsym $mod+Shift+p exec "flameshot gui"
@@ -62,7 +61,7 @@ bindsym $mod+Shift+p exec "flameshot gui"
 bindsym XF86MonBrightnessUp exec light -A 5 # increase
 bindsym XF86MonBrightnessDown exec light -U 5 # decrease
 
-# Volume witg pactl
+# Volume with pactl
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +2%
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -2%
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
@@ -77,32 +76,18 @@ bindsym XF86AudioPrev exec playerctl previous
 # ======================================== Open Applications
 bindsym $mod+e exec thunar
 
-mode "Open" {
-	bindsym c exec google-calendar-dark
-	bindsym d exec discord; exec Discord
-	bindsym f exec firefox
-	bindsym m exec thunderbird
-	bindsym n exec notion-app
-	bindsym p exec pavucontrol
-	bindsym s exec spotify
-	bindsym t exec telegram-desktop
-
-	bindsym Escape mode "default"
-	bindsym Return mode "default"
-}
-
-bindsym $mod+o mode "Open"
+bindsym $mod+Ctrl+c exec google-calendar-dark
+bindsym $mod+Ctrl+d exec discord; exec Discord
+bindsym $mod+Ctrl+f exec firefox
+bindsym $mod+Ctrl+m exec thunderbird
+bindsym $mod+Ctrl+n exec notion-app
+bindsym $mod+Ctrl+p exec pavucontrol
+bindsym $mod+Ctrl+s exec spotify
+bindsym $mod+Ctrl+t exec telegram-desktop
 
 # ======================================== Shutdown
-mode "Shutdown" {
-	bindsym l exec "~/scripts/lock.sh"
-	bindsym e exec "i3-nagbar -t warning -m 'Logout?' -B 'Yes!' 'i3-msg exit'"
-
-	bindsym Escape mode "default"
-	bindsym Return mode "default"
-}
-
-bindsym $mod+BackSpace mode "Shutdown"
+bindsym $mod+BackSpace exec "~/scripts/lock.sh"
+bindsym $mod+Shift+BackSpace exec "i3-nagbar -t warning -m 'Logout?' -B 'Yes!' 'i3-msg exit'"
 
 # ======================================== Workspaces
 set $ws1 "1"

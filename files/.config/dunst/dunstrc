@@ -64,7 +64,8 @@
     frame_width = 2
 
     # Defines color of the frame around the notification window.
-    frame_color = "#e06c75"
+    #frame_color = "#e06c75"
+    frame_color = "#ffffff"
 
     # Define a color for the separator.
     # possible values are:
@@ -86,7 +87,7 @@
 
     ### Text ###
 
-    font = Heebo Normal 11
+    font = Product Sans 11
 
     # The spacing between lines.  If the height is smaller than the
     # font height, it will get raised to the font height.
