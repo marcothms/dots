@@ -51,8 +51,9 @@ bindsym $mod+p workspace prev
 set $fg '#ffffff'
 set $bg '#000000'
 set $acc '#98c379'
-bindsym $mod+d exec "dmenu_run -fn 'FiraCode Nerd Font Mono' -nb $bg -sb $acc -nf $fg -sf $bg"
-bindsym $mod+space exec "dmenu_run -fn 'FiraCode Nerd Font Mono' -nb $bg -sb $acc -nf $fg -sf $bg"
+set $font 'Product Sans'
+bindsym $mod+d exec "dmenu_run -fn $font -nb $bg -sb $acc -nf $fg -sf $bg"
+bindsym $mod+space exec "dmenu_run -fn $font -nb $bg -sb $acc -nf $fg -sf $bg"
 
 # Screenhot
 bindsym $mod+Shift+p exec "flameshot gui"
@@ -176,4 +177,5 @@ exec nextcloud
 exec feh --bg-scale $HOME/data/wallpaper/wallpaper.png
 exec dunst
 exec picom
-exec --no-startup-id ~/.config/polybar/launch.sh
+exec ~/scripts/fix_screens.sh
+exec ~/.config/polybar/launch.sh
