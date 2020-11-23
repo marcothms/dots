@@ -38,17 +38,11 @@ export PATH=$PATH:$HOME/.local/bin:$HOME/scripts:$HOME/.cargo/bin
 alias fontslist="fc-list :scalable=true:spacing=mono: family"
 alias fontscache="fc-cache -f -v"
 
-#if [[ -x $(which nvim 2> /dev/null) ]]; then
+if [[ -x $(which nvim 2> /dev/null) ]]; then
     alias vim="nvim"
-    alias vim="~/neovim-nightly/bin/nvim"
-#fi
-
-# im either using manjaro or fedora
-if [[ -f "/etc/manjaro-release" ]]; then
-  alias updoot="yay -Syu"
-else
-  alias updoot="sudo dnf upgrade"
 fi
+
+alias updoot="yay -Syu"
 
 alias s="cd ~/scripts/"
 alias c='clear'

@@ -32,7 +32,7 @@ locale =
 
 modules-left = i3 spotify
 modules-center = date time
-modules-right = cpu memory network volume backlight battery
+modules-right = yay_updates cpu memory network volume backlight battery
 
 tray-position = right
 tray-padding = 1

@@ -24,7 +24,7 @@
 ## Other Dependencies
 
 + [vim-plug](https://github.com/junegunn/vim-plug)
-+ fcitx + mozc: Japanese Keyboard - Thanks to [THIS](https://www.youtube.com/watch?v=ptbFWnowvLo) guy!
++ fcitx + mozc: Japanese Keyboard - Thanks to [THIS](https://www.youtube.com/watch?v=ptbFWnowvLo) guy! (fcitx fcitx-mozc fcitx-configtool libfcitx-gtk3 libfcitx-gtk libfcitx)
 + fzf
 + light
 + pactl
