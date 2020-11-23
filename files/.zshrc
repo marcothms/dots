@@ -38,9 +38,10 @@ export PATH=$PATH:$HOME/.local/bin:$HOME/scripts:$HOME/.cargo/bin
 alias fontslist="fc-list :scalable=true:spacing=mono: family"
 alias fontscache="fc-cache -f -v"
 
-if [[ -x $(which nvim 2> /dev/null) ]]; then
+#if [[ -x $(which nvim 2> /dev/null) ]]; then
     alias vim="nvim"
-fi
+    alias vim="~/neovim-nightly/bin/nvim"
+#fi
 
 # im either using manjaro or fedora
 if [[ -f "/etc/manjaro-release" ]]; then

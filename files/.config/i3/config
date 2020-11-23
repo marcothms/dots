@@ -11,7 +11,7 @@ set $mod Mod4
 floating_modifier $mod
 
 # Font for Window Titles
-font pango:Product Sans 8
+font pango:Product Sans 10
 
 # ============================== Keybinds (except workspaces)
 #Terminal
@@ -79,6 +79,7 @@ bindsym $mod+e exec thunar
 
 bindsym $mod+Ctrl+c exec google-calendar-dark
 bindsym $mod+Ctrl+d exec discord; exec Discord
+bindsym $mod+Ctrl+Shift+d exec pkill discord; exec pkill Discord
 bindsym $mod+Ctrl+f exec firefox
 bindsym $mod+Ctrl+m exec thunderbird
 bindsym $mod+Ctrl+n exec notion-app
@@ -156,8 +157,8 @@ set $border "#98c379"
 
 # Class                 Border  Backgr. Text    Indic.  Child_border
 client.focused          $border $border #000000 $border $border
-client.focused_inactive $termbg $termbg $border $termbg $termbg
-client.unfocused        $termbg $termbg $border $termbg $termbg
+client.focused_inactive $border $termbg #ffffff $termbg $termbg
+client.unfocused        $termbg $termbg #ffffff $termbg $termbg
 client.urgent           $red    $red    $border $red    $red
 client.background       $border
 

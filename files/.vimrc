@@ -37,15 +37,15 @@ endif
 
 call plug#end()
 
-""" ============================== Colors
+" ============================== Colors
 syntax on
 set background=dark
 colorscheme onedark
 hi Normal ctermbg=NONE guibg=NONE
 set termguicolors
-filetype indent plugin on
 
 " ============================== General
+filetype indent plugin on
 set number
 set relativenumber
 set cursorline
@@ -127,82 +127,13 @@ cmap W w
 cmap q1 q!
 
 " fzf
-nmap <C-f> :Files<CR>
+nmap <leader>ff :Files<CR>
+nmap <leader>ft :tabe<CR>:Files<CR>
 
-" ============================== LSP
-
-" ---------- completion-nvim Settings
+" ============================== Cool NeoVim Shit
 if has ("nvim")
-    " Use completion-nvim in every buffer
-    autocmd BufEnter * lua require'completion'.on_attach()
+    " setup lsp configs
+    lua require'marc.lsp'
 
-    " Use <Tab> and <S-Tab> to navigate through popup menu
-    inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-    inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-    " Set completeopt to have a better completion experience
-    set completeopt=menuone,noinsert,noselect
-
-    " Avoid showing message extra message when using completion
-    set shortmess+=c
-
-    let g:completion_trigger_keyword_length = 1
-    let g:completion_matching_ignore_case = 1
-    let g:completion_trigger_on_delete = 1
-
-    let g:completion_enable_snippet = 'Neosnippet'
-
-    let g:completion_chain_complete_list = {
-    \ 'default' : {
-    \   'default': [
-    \       {'complete_items': ['lsp', 'snippet', 'path']},
-    \       {'mode': '<c-p>'},
-    \       {'mode': '<c-n>'}],
-    \   }
-    \}
-
-    set pumheight=10
-endif
-
-" ---------- lsp Settings
-if has ("nvim")
-    " Show definition
-    nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
-    " Go to references
-    nnoremap <silent> gr  <cmd>lua vim.lsp.buf.references()<CR>
-    nnoremap <silent> K   <cmd>lua vim.lsp.buf.hover()<CR>
-endif
-
-" ---------- neosnippet Settings
-if has ("nvim")
-    imap <C-k> <Plug>(neosnippet_expand_or_jump)
-    smap <C-k> <Plug>(neosnippet_expand_or_jump)
-    xmap <C-k> <Plug>(neosnippet_expand_target)
-endif
-
-" ---------- Enable Language Servers
-if has ("nvim")
-    if executable("pyls")
-        lua << EOF
-        require'nvim_lsp'.pyls.setup{}
-EOF
-    endif
-
-    if executable("rust-analyzer")
-        lua << EOF
-        require'nvim_lsp'.rust_analyzer.setup{}
-EOF
-    endif
-
-    if executable("texlab")
-        lua << EOF
-        require'nvim_lsp'.texlab.setup{}
-EOF
-    endif
-
-    if isdirectory($HOME. "/.cache/nvim/nvim_lsp/jdtls")
-        lua << EOF
-        require'nvim_lsp'.jdtls.setup{}
-EOF
-    endif
+    lua require'marc.completion'
 endif

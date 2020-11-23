@@ -74,7 +74,7 @@ ws-icon-8 = 9;九
 ws-icon-9 = 10;十
 
 label-focused = "%icon%"
-label-focused-foreground = ${colors.accent}
+label-focused-foreground = ${colors.accent-alt}
 label-focused-padding = 2
 
 label-unfocused = "%icon%"
@@ -85,6 +85,7 @@ label-visible-padding = 2
 
 label-urgent = "%icon%"
 label-urgent-background = ${colors.urgent}
+label-urgent-foreground = ${colors.background}
 label-urgent-padding = 2
 
 label-mode = "%mode%"
