@@ -23,6 +23,7 @@
 
 ## Other Dependencies
 
++ [neovim-remote](https://github.com/mhinz/neovim-remote)
 + [vim-plug](https://github.com/junegunn/vim-plug)
 + fcitx + mozc: Japanese Keyboard - Thanks to [THIS](https://www.youtube.com/watch?v=ptbFWnowvLo) guy! (fcitx fcitx-mozc fcitx-configtool libfcitx-gtk3 libfcitx-gtk libfcitx)
 + fzf

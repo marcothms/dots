@@ -7,7 +7,33 @@ if vim.api.nvim_eval("executable('rust-analyzer')") then
 end
 
 if vim.api.nvim_eval("executable('texlab')") then
-	require'lspconfig'.texlab.setup{}
+	require'lspconfig'.texlab.setup{
+		settings = {
+			latex = {
+				build = {
+					onSave = true;
+				};
+				forwardSearch = {
+					executable = "zathura";
+					args = {"--synctex-forward", "%l:1:%f", "%p"};
+				}
+			};
+		};
+		commands = {
+			ZathuraShow = {
+				function()
+					vim.lsp.buf_request(0, "textDocument/forwardSearch", vim.lsp.util.make_position_params(),
+						function(err, _, _, _)
+							if err then error(tostring(err)) end
+						end
+						)
+				end;
+				description = "Show the current position in zathura";
+			}
+		}
+
+	}
+	vim.api.nvim_set_keymap("n", "gz", "<cmd>ZathuraShow<CR>", { noremap = true, silent = true })
 end
 
 if vim.api.nvim_eval("isdirectory($HOME. '/.cache/nvim/lspconfig/jdtls')") then
