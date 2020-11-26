@@ -200,6 +200,8 @@ format-connected-prefix-foreground = ${colors.accent-alt}
 format-connected-underline = ${colors.accent}
 
 label-disconnected = "No Wifi"
+format-disconnected-prefix = "󰤮  "
+format-disconnected-prefix-foreground = ${colors.accent-alt}
 format-disconnected-underline = ${colors.urgent}
 
 [module/update_yay]
