@@ -13,6 +13,8 @@ floating_modifier $mod
 # Font for Window Titles
 font pango:Product Sans 10
 
+set $accent '#98c379'
+
 # ============================== Keybinds (except workspaces)
 #Terminal
 bindsym $mod+Return exec --no-startup-id alacritty
@@ -50,10 +52,9 @@ bindsym $mod+p workspace prev
 # dmenu
 set $fg '#ffffff'
 set $bg '#000000'
-set $acc '#98c379'
 set $font 'Product Sans'
-bindsym $mod+d exec "dmenu_run -fn $font -nb $bg -sb $acc -nf $fg -sf $bg"
-bindsym $mod+space exec "dmenu_run -fn $font -nb $bg -sb $acc -nf $fg -sf $bg"
+bindsym $mod+d exec "dmenu_run -fn $font -nb $bg -sb $accent -nf $fg -sf $bg"
+bindsym $mod+space exec "dmenu_run -fn $font -nb $bg -sb $accent -nf $fg -sf $bg"
 
 # Screenhot
 bindsym $mod+Shift+p exec "flameshot gui"

@@ -6,7 +6,7 @@ foreground = #ffffff
 urgent = #e06c75
 yellow = #d19a66
 accent = #98c379
-accent-alt = #98c379
+i3 = ${colors.accent}
 
 ############################## BARS
 [bar/laptop]
@@ -22,9 +22,6 @@ width = 100%
 
 module-margin-right = 2
 module-margin-left = 2
-
-padding-left = 2
-padding-right = 2
 
 separator =
 
@@ -74,7 +71,8 @@ ws-icon-8 = 9;九
 ws-icon-9 = 10;十
 
 label-focused = "%icon%"
-label-focused-foreground = ${colors.accent-alt}
+label-focused-foreground = ${colors.background}
+label-focused-background = ${colors.i3}
 label-focused-padding = 2
 
 label-unfocused = "%icon%"
@@ -103,7 +101,7 @@ type = internal/date
 date = %{T2}%A%{T-}, %B %d
 
 format-prefix = "󰃭  "
-format-prefix-foreground = ${colors.accent-alt}
+format-prefix-foreground = ${colors.accent}
 format-underline = ${colors.accent}
 
 [module/time]
@@ -111,7 +109,7 @@ type = internal/date
 date = %{T2}%H:%M%{T-}
 
 format-prefix = "󰥔  "
-format-prefix-foreground = ${colors.accent-alt}
+format-prefix-foreground = ${colors.accent}
 format-underline = ${colors.accent}
 
 [module/backlight]
@@ -121,7 +119,7 @@ card = amdgpu_bl0
 label = %percentage%%
 
 format-prefix = "󰃟  "
-format-prefix-foreground = ${colors.accent-alt}
+format-prefix-foreground = ${colors.accent}
 format-underline = ${colors.accent}
 
 [module/battery]
@@ -131,7 +129,7 @@ apdapter = ADP1
 
 format-charging = <animation-charging> <label-charging>
 label-charging = %percentage%%
-animation-charging-foreground = ${colors.accent-alt}
+animation-charging-foreground = ${colors.accent}
 format-charging-underline = ${colors.yellow}
 
 format-discharging = <ramp-capacity> <label-discharging>
@@ -142,7 +140,7 @@ format-full = <ramp-capacity> <label-full>
 label-full = %percentage%%
 format-full-underline = ${colors.accent}
 
-ramp-capacity-foreground = ${colors.accent-alt}
+ramp-capacity-foreground = ${colors.accent}
 ramp-capacity-0 = 󰁺
 ramp-capacity-1 = 󰁻
 ramp-capacity-2 = 󰁼
@@ -172,7 +170,7 @@ format-volume = <label-volume>
 
 label-volume = %percentage%%
 format-volume-prefix = "󰕾  "
-format-volume-prefix-foreground = ${colors.accent-alt}
+format-volume-prefix-foreground = ${colors.accent}
 format-volume-underline = ${colors.accent}
 
 label-muted = Muted
@@ -196,12 +194,12 @@ unknown-as-up = true
 
 label-connected = %essid%
 format-connected-prefix = "󰤨  "
-format-connected-prefix-foreground = ${colors.accent-alt}
+format-connected-prefix-foreground = ${colors.accent}
 format-connected-underline = ${colors.accent}
 
 label-disconnected = "No Wifi"
 format-disconnected-prefix = "󰤮  "
-format-disconnected-prefix-foreground = ${colors.accent-alt}
+format-disconnected-prefix-foreground = ${colors.accent}
 format-disconnected-underline = ${colors.urgent}
 
 [module/update_yay]
@@ -212,7 +210,7 @@ interval = 600
 click-left = alacritty -e yay &
 
 format-prefix = "󰏗  "
-format-prefix-foreground = ${colors.accent-alt}
+format-prefix-foreground = ${colors.accent}
 format-underline = ${colors.accent}
 
 [module/spotify]
@@ -221,7 +219,7 @@ exec = python ~/.config/polybar/scripts/spotify_status.py -f '{artist}: {song}'
 interval = 1
 
 format-prefix = "󰓇  "
-format-prefix-foreground = ${colors.accent-alt}
+format-prefix-foreground = ${colors.accent}
 format-underline = ${colors.accent}
 
 [module/cpu]
@@ -230,7 +228,7 @@ exec = ~/.config/polybar/scripts/cpu.sh
 click-left = ~/.config/polybar/scripts/cpu.sh --popup
 
 format-prefix = "󰻠  "
-format-prefix-foreground = ${colors.accent-alt}
+format-prefix-foreground = ${colors.accent}
 format-underline = ${colors.accent}
 
 [module/memory]
@@ -239,7 +237,7 @@ exec = ~/.config/polybar/scripts/memory.sh
 click-left = ~/.config/polybar/scripts/memory.sh --popup
 
 format-prefix = "󰍛  "
-format-prefix-foreground = ${colors.accent-alt}
+format-prefix-foreground = ${colors.accent}
 format-underline = ${colors.accent}
 
 [module/temp]
@@ -247,5 +245,5 @@ type = custom/script
 exec = ~/.config/polybar/scripts/temp.sh
 
 format-prefix = "󰔄 "
-format-prefix-foreground = ${colors.accent-alt}
+format-prefix-foreground = ${colors.accent}
 format-underline = ${colors.accent}
