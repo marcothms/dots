@@ -13,8 +13,6 @@ floating_modifier $mod
 # Font for Window Titles
 font pango:Product Sans 10
 
-set $accent '#98c379'
-
 # ============================== Keybinds (except workspaces)
 #Terminal
 bindsym $mod+Return exec --no-startup-id alacritty
@@ -52,7 +50,8 @@ bindsym $mod+p workspace prev
 # dmenu
 set $fg '#ffffff'
 set $bg '#000000'
-set $font 'Product Sans'
+set $accent '#98c379'
+set $font 'Product Sans:pixelsize=22'
 bindsym $mod+d exec "dmenu_run -fn $font -nb $bg -sb $accent -nf $fg -sf $bg"
 bindsym $mod+space exec "dmenu_run -fn $font -nb $bg -sb $accent -nf $fg -sf $bg"
 
@@ -75,8 +74,16 @@ bindsym XF86AudioPause exec playerctl pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
+# ============================== Monitor
+bindsym $mod+Ctrl+Left move workspace to output left
+bindsym $mod+Ctrl+Right move workspace to output right
+
+bindsym $mod+Ctrl+h move workspace to output left
+bindsym $mod+Ctrl+l move workspace to output right
+
 # ======================================== Open Applications
-bindsym $mod+e exec thunar
+#bindsym $mod+e exec thunar
+bindsym $mod+e exec alacritty -e ranger
 
 bindsym $mod+Ctrl+c exec google-calendar-dark
 bindsym $mod+Ctrl+d exec discord
@@ -128,19 +135,6 @@ bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
-# ============================== Monitor
-workspace $ws1 output right
-workspace $ws10 output left
-
-bindsym $mod+Ctrl+1 move workspace to output left
-bindsym $mod+Ctrl+2 move workspace to output right
-
-bindsym $mod+Ctrl+Left move workspace to output left
-bindsym $mod+Ctrl+Right move workspace to output right
-
-bindsym $mod+Ctrl+h move workspace to output left
-bindsym $mod+Ctrl+l move workspace to output right
-
 # ============================== Design
 # Remove title
 new_window 1pixel
@@ -171,12 +165,14 @@ exec export GTK_IM_MODULE=fcitx
 exec export QT_IM_MODULE=fcitx
 exec export XMODIFIERS=@im=fcitx
 
-# Launch Programs at start - I don't like ~/.Xsession
+# Launch Programs at start
 exec fcitx
 exec nextcloud
-exec feh --bg-scale $HOME/data/wallpaper/wallpaper.png
 exec dunst
 exec picom --experimental-backends
 exec nm-applet
+
+exec feh --bg-scale $HOME/data/wallpaper/wallpaper.png
+
 exec ~/scripts/fix_screens.sh
-exec ~/.config/polybar/launch.sh
+exec ~/scripts/polybar.sh

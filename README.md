@@ -13,10 +13,11 @@
 
 ## Programs
 + Editor: nvim
++ File-Browser: ranger
 + Image-Viewer: sxiv
-+ Info: [fet.sh](https://github.com/6gk/fet.sh) and neofetch
++ Info: neofetch
 + Launcher: dmenu
-+ Music: spotify with [Onepunch-Theme](https://github.com/morpheusthewhite/spicetify-themes/tree/master/Onepunch)
++ Music: spotify
 + Pdf-Viewer: zathura with mupdf
 + Screenshots: Flameshot
 + Video-Player: vlc or mpv

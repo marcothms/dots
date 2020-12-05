@@ -31,6 +31,7 @@ zstyle ':vcs_info:git:*' formats '  %b'
 
 # ============================== Exports
 export EDITOR="nvim"
+export VISUAL="nvim"
 export LANG="en_US.UTF-8"
 export PATH=$PATH:$HOME/.local/bin:$HOME/scripts:$HOME/.cargo/bin
 
