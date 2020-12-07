@@ -88,7 +88,7 @@ bindsym $mod+e exec alacritty -e ranger
 bindsym $mod+Ctrl+c exec google-calendar-dark
 bindsym $mod+Ctrl+d exec discord
 bindsym $mod+Ctrl+Shift+d exec pkill Discord
-bindsym $mod+Ctrl+f exec firefox
+bindsym $mod+Ctrl+f exec firefox-nightly
 bindsym $mod+Ctrl+m exec thunderbird
 bindsym $mod+Ctrl+n exec notion-app
 bindsym $mod+Ctrl+p exec pavucontrol
