@@ -33,6 +33,7 @@ if has ("nvim")
     Plug 'Shougo/neosnippet.vim' " snippet support
     Plug 'Shougo/neosnippet-snippets' " actual snippets
     Plug 'nvim-lua/completion-nvim' " autocomplete
+    Plug 'liuchengxu/vista.vim' " tags
 endif
 
 call plug#end()
@@ -88,8 +89,6 @@ let g:lightline.active = {
       \ 'right': [['lineinfo'], ['percent'], ['fileformat', 'fileencoding', 'filetype']]
       \ }
 
-"let g:lightline.separator = { 'left': "", 'right': "" }
-"let g:lightline.tabline_separator = { 'left': "", 'right': "" }
 let g:lightline.subseparator = { 'left': '|', 'right': '|' }
 
 " ============================== Indents and Whitespaces
@@ -129,6 +128,9 @@ cmap q1 q!
 " fzf
 nmap <leader>ff :Files<CR>
 nmap <leader>ft :tabe<CR>:Files<CR>
+
+" vista tags
+nmap <leader>v :Vista finder fzf:vim_lsp<CR>
 
 " ============================== Cool NeoVim Shit
 if has ("nvim")
