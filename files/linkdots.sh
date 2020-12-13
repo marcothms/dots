@@ -20,7 +20,7 @@ do
 done
 
 # .config directory
-conf_files="alacritty dunst i3 neofetch nvim picom.conf polybar ranger rofi"
+conf_files="alacritty dunst i3 neofetch nvim picom.conf polybar ranger rofi zathura"
 for file in $conf_files
 do
 	rm -rf $HOME/.config/$file
