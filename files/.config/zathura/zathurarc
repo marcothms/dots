@@ -1,6 +1,9 @@
 set synctex true
 set synctex-editor-command "nvr --remote +%{line} %{input}"
 
+map d recolor true
+map w recolor false
+
 set recolor true
 
 # Lighthaus Colors:
