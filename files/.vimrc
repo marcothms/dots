@@ -59,7 +59,7 @@ set confirm " can't quit without saving
 set noshowmode " don't show mode in status
 set noshowcmd " don't show command in status
 set encoding=utf-8
-set mouse=c " a=on, c=off
+set mouse=a " a=on, c=off
 set undolevels=1337
 set backspace=indent,eol,start
 set wildmenu " autocomplete :e
