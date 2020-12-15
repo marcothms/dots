@@ -5,7 +5,7 @@
 ## System
 
 + Bar: polybar
-+ Compositor: [picom](https://github.com/ibhagwan/picom)
++ Compositor: picom-git
 + Notifications: dunst
 + Shell: zsh
 + Terminal: alacritty
