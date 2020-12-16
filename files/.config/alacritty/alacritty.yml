@@ -115,7 +115,7 @@ colors:
     cyan:    '0x56b6c2'
     white:   '0xffffff'
 
-background_opacity: 0.90
+background_opacity: 0.9
 
 selection:
   #semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
@@ -135,7 +135,7 @@ cursor:
 
   # If this is `true`, the cursor will be rendered as a hollow box when the
   # window is not focused.
-  unfocused_hollow: false
+  unfocused_hollow: true
 
 # Live config reload (changes require restart)
 live_config_reload: true

@@ -141,7 +141,7 @@ new_window 1pixel
 
 # Set Border
 for_window [class="^.*"] border pixel 0
-for_window [class="Alacritty"] border pixel 2
+for_window [class="Alacritty"] border pixel 1
 for_window [class="xterm"] border pixel 1
 
 set $red "#e06c75"

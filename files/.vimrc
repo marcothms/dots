@@ -63,7 +63,7 @@ set mouse=a " a=on, c=off
 set undolevels=1337
 set backspace=indent,eol,start
 set wildmenu " autocomplete :e
-set scrolloff=10 " min lines above or below the cursor
+set scrolloff=5 " min lines above or below the cursor
 
 " ============================== Statusline
 set laststatus=2
