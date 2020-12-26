@@ -1,11 +1,3 @@
-#  ▄▄   ▄▄ ▄▄▄▄▄▄ ▄▄▄▄▄▄   ▄▄▄▄▄▄▄ ▄▄  ▄▄▄▄▄▄▄    ▄▄▄ ▄▄▄▄▄▄▄    ▄▄▄▄▄▄▄ ▄▄▄▄▄▄▄ ▄▄    ▄ ▄▄▄▄▄▄▄ ▄▄▄ ▄▄▄▄▄▄▄
-# █  █▄█  █      █   ▄  █ █       █  ██       █  █   █       █  █       █       █  █  █ █       █   █       █
-# █       █  ▄   █  █ █ █ █       █▄▄██  ▄▄▄▄▄█  █   █▄▄▄    █  █       █   ▄   █   █▄█ █    ▄▄▄█   █   ▄▄▄▄█
-# █       █ █▄█  █   █▄▄█▄█     ▄▄█   █ █▄▄▄▄▄   █   █▄▄▄█   █  █     ▄▄█  █ █  █       █   █▄▄▄█   █  █  ▄▄
-# █       █      █    ▄▄  █    █      █▄▄▄▄▄  █  █   █▄▄▄    █  █    █  █  █▄█  █  ▄    █    ▄▄▄█   █  █ █  █
-# █ ██▄██ █  ▄   █   █  █ █    █▄▄     ▄▄▄▄▄█ █  █   █▄▄▄█   █  █    █▄▄█       █ █ █   █   █   █   █  █▄▄█ █
-# █▄█   █▄█▄█ █▄▄█▄▄▄█  █▄█▄▄▄▄▄▄▄█   █▄▄▄▄▄▄▄█  █▄▄▄█▄▄▄▄▄▄▄█  █▄▄▄▄▄▄▄█▄▄▄▄▄▄▄█▄█  █▄▄█▄▄▄█   █▄▄▄█▄▄▄▄▄▄▄█
-
 # Set Mod Keys
 set $mod Mod4
 floating_modifier $mod
@@ -51,7 +43,7 @@ bindsym $mod+p workspace prev
 set $fg '#ffffff'
 set $bg '#000000'
 set $accent '#98c379'
-set $font 'Product Sans:pixelsize=22'
+set $font 'Product Sans:pixelsize=15'
 bindsym $mod+d exec "dmenu_run -fn $font -nb $bg -sb $accent -nf $fg -sf $bg"
 bindsym $mod+space exec "dmenu_run -fn $font -nb $bg -sb $accent -nf $fg -sf $bg"
 
@@ -82,7 +74,6 @@ bindsym $mod+Ctrl+h move workspace to output left
 bindsym $mod+Ctrl+l move workspace to output right
 
 # ======================================== Open Applications
-#bindsym $mod+e exec thunar
 bindsym $mod+e exec alacritty -e ranger
 
 bindsym $mod+Ctrl+c exec google-calendar-dark
@@ -141,7 +132,7 @@ new_window 1pixel
 
 # Set Border
 for_window [class="^.*"] border pixel 0
-for_window [class="Alacritty"] border pixel 1
+for_window [class="Alacritty"] border pixel 0
 for_window [class="xterm"] border pixel 1
 
 set $red "#e06c75"

@@ -1,11 +1,3 @@
-# ▄▄   ▄▄ ▄▄▄▄▄▄ ▄▄▄▄▄▄   ▄▄▄▄▄▄▄ ▄▄  ▄▄▄▄▄▄▄    ▄▄▄▄▄▄▄ ▄▄▄▄▄▄▄ ▄▄   ▄▄ ▄▄▄▄▄▄   ▄▄▄▄▄▄▄
-# █  █▄█  █      █   ▄  █ █       █  ██       █  █       █       █  █ █  █   ▄  █ █       █
-# █       █  ▄   █  █ █ █ █       █▄▄██  ▄▄▄▄▄█  █▄▄▄▄   █  ▄▄▄▄▄█  █▄█  █  █ █ █ █       █
-# █       █ █▄█  █   █▄▄█▄█     ▄▄█   █ █▄▄▄▄▄    ▄▄▄▄█  █ █▄▄▄▄▄█       █   █▄▄█▄█     ▄▄█
-# █       █      █    ▄▄  █    █      █▄▄▄▄▄  █  █ ▄▄▄▄▄▄█▄▄▄▄▄  █   ▄   █    ▄▄  █    █
-# █ ██▄██ █  ▄   █   █  █ █    █▄▄     ▄▄▄▄▄█ █  █ █▄▄▄▄▄ ▄▄▄▄▄█ █  █ █  █   █  █ █    █▄▄
-# █▄█   █▄█▄█ █▄▄█▄▄▄█  █▄█▄▄▄▄▄▄▄█   █▄▄▄▄▄▄▄█  █▄▄▄▄▄▄▄█▄▄▄▄▄▄▄█▄▄█ █▄▄█▄▄▄█  █▄█▄▄▄▄▄▄▄█
-#
 # ============================== Prompt
 autoload -Uz vcs_info
 autoload -U colors && colors
@@ -15,18 +7,17 @@ setopt prompt_subst
 
 LN=$'\n'
 
-ICON="%(?.%{$fg[green]%}.%{$fg[red]%})λ"
+#ICON="%(?.%{$fg[green]%}.%{$fg[red]%})λ"
+ICON="%(?.%{$fg[green]%}.%{$fg[red]%})➜"
 DIR="%{$fg[blue]%}%~"
 GIT_ICON=""
 GIT="%{$fg[cyan]%}\$vcs_info_msg_0_"
 
 if [[ -n "$SSH_CONNECTION" ]]; then
-    NAME="%{$fg[yellow]%}%m"
-else
-    NAME="%{$fg[yellow]%}»"
+    NAME="%{$fg[yellow]%}%m "
 fi
 
-export PROMPT="${NAME} ${DIR}${GIT} ${LN}${ICON} %{$reset_color%}"
+export PROMPT="${NAME}${DIR}${GIT} ${ICON} %{$reset_color%}"
 zstyle ':vcs_info:git:*' formats '  %b'
 
 # ============================== Exports
