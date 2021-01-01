@@ -136,8 +136,8 @@ for_window [class="Alacritty"] border pixel 0
 for_window [class="xterm"] border pixel 1
 
 set $red "#e06c75"
-set $termbg "#1e2127"
-set $border "#98c379"
+set $termbg "#1C1B1D"
+set $border "#D8D8D8"
 
 # Class                 Border  Backgr. Text    Indic.  Child_border
 client.focused          $border $border #000000 $border $border
@@ -147,7 +147,7 @@ client.urgent           $red    $red    $border $red    $red
 client.background       $border
 
 # i3-gaps
-gaps inner 4
+gaps inner 0
 
 # ============================== Start
 exec setxkbmap -layout za

@@ -59,7 +59,7 @@ colors:
         cyan:    '#56B6C2'
         white:   '#D8D8D8'
 
-background_opacity: 0.96
+background_opacity: 1
 
 selection:
   save_to_clipboard: true
@@ -85,6 +85,4 @@ key_bindings:
   - { key: C,        mods: Control|Shift, action: Copy             }
   - { key: Key0,     mods: Control,       action: ResetFontSize    }
   - { key: Equals,   mods: Control,       action: IncreaseFontSize }
-  - { key: Add,      mods: Control,       action: IncreaseFontSize }
-  - { key: Subtract, mods: Control,       action: DecreaseFontSize }
   - { key: Minus,    mods: Control,       action: DecreaseFontSize }
