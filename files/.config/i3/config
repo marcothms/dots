@@ -138,16 +138,17 @@ for_window [class="xterm"] border pixel 1
 set $red "#e06c75"
 set $termbg "#1C1B1D"
 set $border "#D8D8D8"
+set $accent "#98C379"
 
 # Class                 Border  Backgr. Text    Indic.  Child_border
-client.focused          $border $border #000000 $border $border
-client.focused_inactive $border $termbg #ffffff $termbg $termbg
+client.focused          $accent $termbg #ffffff $border $border
+client.focused_inactive $accent $termbg #ffffff $termbg $termbg
 client.unfocused        $termbg $termbg #ffffff $termbg $termbg
 client.urgent           $red    $red    $border $red    $red
 client.background       $border
 
 # i3-gaps
-gaps inner 0
+gaps inner 4
 
 # ============================== Start
 exec setxkbmap -layout za
@@ -160,7 +161,7 @@ exec export XMODIFIERS=@im=fcitx
 exec fcitx
 exec nextcloud
 exec dunst
-exec picom --experimental-backends
+exec picom
 exec nm-applet
 
 exec feh --bg-scale $HOME/data/wallpaper/wallpaper.png
