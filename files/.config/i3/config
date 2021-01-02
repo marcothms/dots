@@ -138,11 +138,11 @@ for_window [class="xterm"] border pixel 1
 set $red "#e06c75"
 set $termbg "#1C1B1D"
 set $border "#D8D8D8"
-set $accent "#98C379"
+set $acc "#98C379"
 
 # Class                 Border  Backgr. Text    Indic.  Child_border
-client.focused          $accent $termbg #ffffff $border $border
-client.focused_inactive $accent $termbg #ffffff $termbg $termbg
+client.focused          $acc $termbg #ffffff $border $border
+client.focused_inactive $acc $termbg #ffffff $termbg $termbg
 client.unfocused        $termbg $termbg #ffffff $termbg $termbg
 client.urgent           $red    $red    $border $red    $red
 client.background       $border
