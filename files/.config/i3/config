@@ -149,16 +149,13 @@ client.background       $border
 
 # i3-gaps
 gaps inner 4
+smart_gaps on
 
 # ============================== Start
 exec setxkbmap -layout za
 
-exec export GTK_IM_MODULE=fcitx
-exec export QT_IM_MODULE=fcitx
-exec export XMODIFIERS=@im=fcitx
-
 # Launch Programs at start
-exec fcitx
+exec fcitx -d
 exec nextcloud
 exec dunst
 exec picom

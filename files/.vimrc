@@ -49,7 +49,7 @@ set termguicolors
 filetype indent plugin on
 set number
 set relativenumber
-set nocursorline
+set cursorline
 set ruler
 
 set showmatch " highlights paranthesis

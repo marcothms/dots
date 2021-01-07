@@ -35,6 +35,12 @@ export VISUAL="nvim"
 export LANG="en_US.UTF-8"
 export PATH=$PATH:$HOME/.local/bin:$HOME/scripts:$HOME/.cargo/bin
 
+export GTK_IM_MODULE='fcitx'
+export QT_IM_MODULE='fcitx'
+export SDL_IM_MODULE='fcitx'
+export XMODIFIERS='@im=fcitx'
+export WINIT_UNIX_BACKEND=x11
+
 # ============================== Aliases
 alias fontslist="fc-list :scalable=true:spacing=mono: family"
 alias fontscache="fc-cache -f -v"
@@ -44,6 +50,7 @@ if [[ -x $(which nvim 2> /dev/null) ]]; then
 fi
 
 alias updoot="yay -Syu"
+alias dhl="yay"
 
 alias s="cd ~/scripts/"
 alias c='clear'
