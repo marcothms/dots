@@ -55,7 +55,7 @@ tray-padding = 1
 foreground = ${colors.foreground}
 background = ${colors.background}
 
-line-size = 1
+line-size = 2
 
 wm-name = i3
 wm-restack = i3
