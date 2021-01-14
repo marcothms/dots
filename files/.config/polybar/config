@@ -14,8 +14,6 @@
 [colors]
 background = #1C1B1D
 foreground = #ffffff
-urgent = #e06c75
-accent = #98c379
 
 black = "#24272a"
 red = "#E06C75"
@@ -25,6 +23,9 @@ blue = "#61AFEF"
 magenta = "#C678DD"
 cyan = "#56B6C2"
 white = "#D8D8D8"
+
+urgent = ${colors.red}
+accent = ${colors.green}
 
 [bar/laptop]
 monitor = ${env:MONITOR}
@@ -98,8 +99,8 @@ label-visible = "%icon%"
 label-visible-padding = 2
 
 label-urgent = "%icon%"
-label-urgent-background = ${colors.urgent}
-label-urgent-foreground = ${colors.background}
+label-urgent-overline = ${colors.urgent}
+label-urgent-foreground = ${colors.urgent}
 label-urgent-padding = 2
 
 label-mode = "%mode%"
