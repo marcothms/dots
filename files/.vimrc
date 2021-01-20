@@ -14,13 +14,14 @@ call plug#begin()
 
 Plug 'joshdick/onedark.vim' " color scheme
 
-Plug 'tpope/vim-sleuth' " intendations
+Plug 'tpope/vim-sleuth' " auto file-specific intendations
 
 Plug 'jiangmiao/auto-pairs' " pair completion
 
 Plug 'airblade/vim-gitgutter' " git
 
 Plug 'itchyny/lightline.vim' " bar
+Plug 'mengelbrecht/lightline-bufferline' " bufferline
 Plug 'ryanoasis/vim-devicons' " icons in bar
 
 if executable("fzf")
@@ -54,6 +55,7 @@ set ruler
 
 set showmatch " highlights paranthesis
 set mat=5
+set colorcolumn=1337
 set noswapfile " can be problematic on some systems
 set confirm " can't quit without saving
 set noshowmode " don't show mode in status
@@ -67,6 +69,7 @@ set scrolloff=5 " min lines above or below the cursor
 
 " ============================== Statusline
 set laststatus=2
+set showtabline=2
 
 function! GitStatus()
   let [a,m,r] = GitGutterGetHunkSummary()
@@ -74,22 +77,26 @@ function! GitStatus()
 endfunction
 
 function! FileNameWithIcon() abort
-  return winwidth(0) > 70  ?  WebDevIconsGetFileTypeSymbol() . ' ' . expand('%:t') : ''
+  return winwidth(0) > 70  ?  WebDevIconsGetFileTypeSymbol() . ' ' . expand('%:T') : ''
 endfunction
 
-let g:lightline = {
-      \ 'colorscheme': 'onedark',
-      \ }
+let g:lightline = { 'colorscheme': 'one' }
 
 let g:lightline.component_function = { 'gitstatus': 'GitStatus' }
 let g:lightline.component = { 'filename_with_icon': '%{FileNameWithIcon()}' }
 
 let g:lightline.active = {
-      \ 'left': [['mode', 'readonly'], ['filename_with_icon', 'modified'], ['gitstatus']],
-      \ 'right': [['lineinfo'], ['percent'], ['fileformat', 'fileencoding', 'filetype']]
+      \ 'left': [['mode', 'readonly'], ['filename_with_icon', 'modified']],
+      \ 'right': [['lineinfo'], ['percent'], ['gitstatus', 'fileformat', 'fileencoding', 'filetype']]
       \ }
 
-let g:lightline.subseparator = { 'left': '|', 'right': '|' }
+let g:lightline.subseparator = { 'left': '', 'right': '' }
+let g:lightline.separator = { 'left': '', 'right': '' }
+
+" tab bar
+let g:lightline.tabline          = {'left': [['buffers']]}
+let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
+let g:lightline.component_type   = {'buffers': 'tabsel'}
 
 " ============================== Indents and Whitespaces
 set list

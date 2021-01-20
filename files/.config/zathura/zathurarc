@@ -4,7 +4,7 @@ set synctex-editor-command "nvr --remote +%{line} %{input}"
 map d recolor true
 map w recolor false
 
-set recolor true
+set recolor false
 
 #set notification-error-bg       "#FC2929"
 #set notification-error-fg       "#18191E"
