@@ -40,11 +40,7 @@ bindsym $mod+Shift+q kill
 bindsym $mod+f fullscreen toggle
 bindsym $mod+Shift+space floating toggle
 
-#bindsym $mod+s layout toggle stacking splith
-
-# Create splits just like in vim
-bindsym $mod+Shift+s split v
-bindsym $mod+Shift+v split h
+bindsym $mod+s layout toggle splith splitv
 
 bindsym $mod+comma workspace prev
 bindsym $mod+period workspace next
