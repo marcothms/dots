@@ -40,22 +40,21 @@ bindsym $mod+Shift+q kill
 bindsym $mod+f fullscreen toggle
 bindsym $mod+Shift+space floating toggle
 
-bindsym $mod+s layout toggle stacking splith
+#bindsym $mod+s layout toggle stacking splith
 
 # Create splits just like in vim
 bindsym $mod+Shift+s split v
 bindsym $mod+Shift+v split h
 
-bindsym $mod+n workspace next
-bindsym $mod+p workspace prev
+bindsym $mod+comma workspace prev
+bindsym $mod+period workspace next
 
 # dmenu
 set $fg '#ffffff'
-set $bg '#000000'
+set $bg '#1C1B1D'
 set $accent '#98c379'
 set $font 'Product Sans:pixelsize=15'
-bindsym $mod+d exec "dmenu_run -fn $font -nb $bg -sb $accent -nf $fg -sf $bg"
-bindsym $mod+space exec "dmenu_run -fn $font -nb $bg -sb $accent -nf $fg -sf $bg"
+bindsym $mod+d exec "dmenu_run -b -fn $font -nb $bg -sb $bg -nf $fg -sf $accent"
 
 # Screenhot
 bindsym $mod+Shift+p exec "flameshot gui"
@@ -159,7 +158,7 @@ client.background       $border
 
 # i3-gaps
 gaps inner 4
-smart_gaps on
+#smart_gaps on
 
 # ============================== Start
 exec setxkbmap -layout za
