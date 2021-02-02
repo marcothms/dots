@@ -171,7 +171,7 @@ exec dunst
 exec picom
 exec nm-applet
 
-exec feh --bg-scale $HOME/data/wallpaper/wallpaper.png
+exec feh --bg-scale $HOME/data/nextcloud/Wallpaper/wallpaper.png
 
 exec ~/scripts/fix_screens.sh
 exec ~/scripts/polybar.sh

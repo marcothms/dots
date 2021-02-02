@@ -68,7 +68,7 @@ colors:
         cyan:    '#56B6C2'
         white:   '#D8D8D8'
 
-background_opacity: 0.98
+background_opacity: 1
 
 selection:
   save_to_clipboard: true
