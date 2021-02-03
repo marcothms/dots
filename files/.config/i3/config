@@ -15,7 +15,29 @@ floating_modifier $mod
 # Font for Window Titles
 font pango:Product Sans 10
 
-# ============================== Keybinds (except workspaces)
+# Remove title
+new_window 1pixel
+
+for_window [class="^.*"] border pixel 0
+
+# Colors
+set $text "#ffffff"
+set $red "#e06c75"
+set $termbg "#1C1B1D"
+set $border "#D8D8D8"
+set $acc "#98C379"
+
+# Class                 Border  Backgr. Text  Indic.  Child_border
+client.focused          $acc    $termbg $text $border $border
+client.focused_inactive $acc    $termbg $text $termbg $termbg
+client.unfocused        $termbg $termbg $text $termbg $termbg
+client.urgent           $red    $termbg $text $red    $red
+client.background       $border
+
+# i3-gaps
+gaps inner 4
+
+# ============================== Keybinds
 #Terminal
 bindsym $mod+Return exec --no-startup-id alacritty
 bindsym $mod+Ctrl+Return exec --no-startup-id xterm
@@ -40,7 +62,8 @@ bindsym $mod+Shift+q kill
 bindsym $mod+f fullscreen toggle
 bindsym $mod+Shift+space floating toggle
 
-bindsym $mod+s layout toggle splith splitv
+bindsym $mod+s split v
+bindsym $mod+v split h
 
 bindsym $mod+comma workspace prev
 bindsym $mod+period workspace next
@@ -53,7 +76,7 @@ set $font 'Product Sans:pixelsize=15'
 bindsym $mod+d exec "dmenu_run -b -fn $font -nb $bg -sb $bg -nf $fg -sf $accent"
 
 # Screenhot
-bindsym $mod+Shift+p exec "flameshot gui"
+bindsym $mod+Shift+s exec "flameshot gui"
 
 # Screen brightness with light
 bindsym XF86MonBrightnessUp exec light -A 5 # increase
@@ -71,14 +94,14 @@ bindsym XF86AudioPause exec playerctl pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
-# ============================== Monitor
+# Monitor control
 bindsym $mod+Ctrl+Left move workspace to output left
 bindsym $mod+Ctrl+Right move workspace to output right
 
 bindsym $mod+Ctrl+h move workspace to output left
 bindsym $mod+Ctrl+l move workspace to output right
 
-# ======================================== Open Applications
+# Launch Applications
 bindsym $mod+e exec alacritty -e ranger
 
 bindsym $mod+Ctrl+c exec google-calendar-dark
@@ -91,7 +114,7 @@ bindsym $mod+Ctrl+p exec pavucontrol
 bindsym $mod+Ctrl+s exec spotify
 bindsym $mod+Ctrl+t exec telegram-desktop
 
-# ======================================== Shutdown
+# Shutdown
 bindsym $mod+BackSpace exec "~/scripts/lock.sh"
 bindsym $mod+Shift+BackSpace exec "i3-nagbar -t warning -m 'Logout?' -B 'Yes!' 'i3-msg exit'"
 
@@ -131,42 +154,20 @@ bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
-# ============================== Design
-# Remove title
-new_window 1pixel
+# ============================== Startup
+exec ~/scripts/run_on_startup.sh
 
-# Set Border
-for_window [class="^.*"] border pixel 0
-for_window [class="Alacritty"] border pixel 0
-for_window [class="xterm"] border pixel 1
 
-set $red "#e06c75"
-set $termbg "#1C1B1D"
-set $border "#D8D8D8"
-set $acc "#98C379"
-
-# Class                 Border  Backgr. Text    Indic.  Child_border
-client.focused          $acc    $termbg #ffffff $border $border
-client.focused_inactive $acc    $termbg #ffffff $termbg $termbg
-client.unfocused        $termbg $termbg #ffffff $termbg $termbg
-client.urgent           $red    $termbg #ffffff $red    $red
-client.background       $border
-
-# i3-gaps
-gaps inner 4
-#smart_gaps on
-
-# ============================== Start
-exec setxkbmap -layout za
-
-# Launch Programs at start
-exec fcitx -d
-exec nextcloud
-exec dunst
-exec picom
-exec nm-applet
-
-exec feh --bg-scale $HOME/data/nextcloud/Wallpaper/wallpaper.png
-
-exec ~/scripts/fix_screens.sh
-exec ~/scripts/polybar.sh
+#exec setxkbmap -layout za
+#
+## Launch Programs at start
+#exec fcitx -d
+#exec nextcloud
+#exec dunst
+#exec picom
+#exec nm-applet
+#
+#exec feh --bg-scale $HOME/data/nextcloud/Wallpaper/wallpaper.png
+#
+#exec ~/scripts/fix_screens.sh
+#exec ~/scripts/polybar.sh
