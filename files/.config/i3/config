@@ -156,18 +156,3 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 
 # ============================== Startup
 exec ~/scripts/run_on_startup.sh
-
-
-#exec setxkbmap -layout za
-#
-## Launch Programs at start
-#exec fcitx -d
-#exec nextcloud
-#exec dunst
-#exec picom
-#exec nm-applet
-#
-#exec feh --bg-scale $HOME/data/nextcloud/Wallpaper/wallpaper.png
-#
-#exec ~/scripts/fix_screens.sh
-#exec ~/scripts/polybar.sh
