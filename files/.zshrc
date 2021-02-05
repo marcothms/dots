@@ -27,7 +27,7 @@ if [[ -n "$SSH_CONNECTION" ]]; then
 fi
 
 export PROMPT="${NAME}${DIR}${GIT} ${ICON} %{$reset_color%}"
-zstyle ':vcs_info:git:*' formats ' ( %b)'
+zstyle ':vcs_info:git:*' formats '|%b '
 
 # ============================== Exports
 export EDITOR="nvim"
