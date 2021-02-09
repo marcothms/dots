@@ -36,6 +36,7 @@ client.background       $border
 
 # i3-gaps
 gaps inner 4
+gaps top 34
 
 # ============================== Keybinds
 #Terminal
@@ -73,7 +74,7 @@ set $fg '#ffffff'
 set $bg '#1C1B1D'
 set $accent '#98c379'
 set $font 'Product Sans:pixelsize=15'
-bindsym $mod+d exec "dmenu_run -b -fn $font -nb $bg -sb $bg -nf $fg -sf $accent"
+bindsym $mod+d exec "dmenu_run -fn $font -nb $bg -sb $bg -nf $fg -sf $accent"
 
 # Screenhot
 bindsym $mod+Shift+s exec "flameshot gui"

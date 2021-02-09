@@ -11,6 +11,7 @@
 
 # vim:ft=dosini
 
+# ======================================== COLORS
 [colors]
 background = #1C1B1D
 foreground = #ffffff
@@ -24,53 +25,79 @@ magenta = "#C678DD"
 cyan = "#56B6C2"
 white = "#D8D8D8"
 
+clear = "#00000000"
+
 urgent = ${colors.red}
 accent = ${colors.green}
 
-[bar/laptop]
+# ======================================== BARS
+[bar/main]
 monitor = ${env:MONITOR}
-
-font-0 = "Product Sans:pixelsize=9:weight=regular;2"
-font-1 = "Product Sans:pixelsize=9:weight=bold;2"
-font-2 = "Noto Sans CJK JP:antialiase=false:pixelsize=9;2"
-font-3 = "Material Design Icons:size=9;3"
-
 height = 30px
-width = 100%
-
-module-margin-right = 2
-module-margin-left = 2
-
-separator =
-
-locale =
-
-modules-left = i3 spotify
-modules-center =
-modules-right = cpu memory volume battery date
-
-tray-position = right
-tray-padding = 1
+offset-y = 4px
 
 foreground = ${colors.foreground}
 background = ${colors.background}
 
+fixed-center = true
+
 line-size = 2
 
-wm-name = i3
+module-margin-right = 2
+module-margin-left = 2
+
+font-0 = "Product Sans:pixelsize=9:weight=regular;2"
+font-1 = "Product Sans:pixelsize=9:weight=bold;2"
+font-2 = "Noto Sans CJK JP:antialiase=false:pixelsize=9;2"
+font-3 = "Material Design Icons:size=9;2"
+
 wm-restack = i3
+override-redirect = true
 
-[bar/desktop]
-inherit = bar/laptop
+# ========= workspaces
+[bar/workspaces]
+inherit = bar/main
 
-modules-right = cpu memory volume date
+width = 8%
+offset-x = 4px
 
-[bar/desktop_second]
-inherit = bar/desktop
+modules-center = i3
 
-tray-position = none
+# ========== info
+[bar/info]
+inherit = bar/main
 
-############################## MODULES
+width = 17%
+offset-x = 83%:-133px
+
+# TODO battery?
+modules-center = cpu memory volume date
+
+[bar/info_laptop]
+inherit = bar/info
+
+[bar/tray]
+inherit = bar/main
+
+width = 125px
+offset-x = 100%:-129px
+
+modules-center = blank
+
+tray-position = center
+tray-padding = 1
+
+# ========== music
+[bar/music]
+inherit = bar/main
+
+width = 15%
+offset-x = 8%:+8px
+
+modules-center = spotify
+
+
+# ======================================== MODULES
 [module/i3]
 type = internal/i3
 pin-workspaces = true
@@ -193,38 +220,6 @@ format-volume-underline = ${colors.yellow}
 label-muted = Muted
 format-muted-prefix = "󰖁  "
 format-muted-foreground = ${colors.urgent}
-format-muted-underline = ${colors.urgent}
-
-ramp-volume-0 = 󰕿
-ramp-volume-1 = 󰖀
-ramp-volume-2 = 󰕾
-
-ramp-headphones-0 = 󰋋
-ramp-headphones-1 = 󰟎
-
-[module/network]
-type = internal/network
-interface = wlo1
-interval = 3.0
-accumulate-stats = true
-unknown-as-up = true
-
-label-connected = %essid%
-format-connected-prefix = "󰤨  "
-format-connected-prefix-foreground = ${colors.accent}
-format-connected-underline = ${colors.accent}
-
-label-disconnected = "No Wifi"
-format-disconnected-prefix = "󰤮  "
-format-disconnected-prefix-foreground = ${colors.accent}
-format-disconnected-underline = ${colors.urgent}
-
-[module/update_yay]
-type = custom/script
-exec = ~/.config/polybar/scripts/yay_updates.sh
-tail = true
-interval = 600
-click-left = alacritty -e yay &
 
 format-prefix = "󰏗  "
 format-underline = ${colors.accent}
@@ -258,3 +253,9 @@ exec = ~/.config/polybar/scripts/temp.sh
 
 format-prefix = "󰔄 "
 format-underline = ${colors.accent}
+
+[module/blank]
+type = custom/text
+content = .
+content-foreground = ${colors.clear}
+content-background = ${colors.clear}

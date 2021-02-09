@@ -3,12 +3,13 @@ while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
 if type "xrandr"; then
   for mon in $(xrandr --query | grep " connected" | cut -d" " -f1); do
+      MONITOR=$mon polybar --reload workspaces &
+      #MONITOR=$mon polybar --reload music &
+      MONITOR=$mon polybar --reload tray &
     if [ $mon = "eDP"  ]; then
-      MONITOR=$mon polybar --reload laptop &
+      MONITOR=$mon polybar --reload info_laptop &
     else
-#      MONITOR="DP-3" polybar --reload desktop &
-      MONITOR="HDMI-1" polybar --reload desktop &
-#      MONITOR="DP-1" polybar --reload desktop_second &
+      MONITOR=$mon polybar --reload info &
     fi
   done
 else
