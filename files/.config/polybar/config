@@ -41,10 +41,9 @@ background = ${colors.background}
 
 fixed-center = true
 
-line-size = 2
+line-size = 3
 
-module-margin-right = 2
-module-margin-left = 2
+module-margin= 2
 
 font-0 = "Product Sans:pixelsize=9:weight=regular;2"
 font-1 = "Product Sans:pixelsize=9:weight=bold;2"
@@ -58,23 +57,29 @@ override-redirect = true
 [bar/workspaces]
 inherit = bar/main
 
+background = ${colors.clear}
+
 width = 8%
 offset-x = 4px
 
-modules-center = i3
+modules-left = i3
 
 # ========== info
 [bar/info]
 inherit = bar/main
 
-width = 17%
-offset-x = 83%:-133px
+width = 16%
+offset-x = 84%:-133px
 
-# TODO battery?
 modules-center = cpu memory volume date
 
 [bar/info_laptop]
 inherit = bar/info
+
+width = 18%
+offset-x = 82%:-133px
+
+modules-center = cpu memory battery volume date
 
 [bar/tray]
 inherit = bar/main
@@ -91,11 +96,12 @@ tray-padding = 1
 [bar/music]
 inherit = bar/main
 
-width = 15%
-offset-x = 8%:+8px
+background = ${colors.background}
+
+width = 18%
+offset-x = 41%
 
 modules-center = spotify
-
 
 # ======================================== MODULES
 [module/i3]
@@ -117,9 +123,13 @@ ws-icon-9 = 10;十
 
 label-focused = "%icon%"
 label-focused-underline = ${colors.accent}
+label-focused-foreground = ${colors.foreground}
+label-focused-background = ${colors.background}
 label-focused-padding = 2
 
 label-unfocused = "%icon%"
+label-unfocused-foreground = ${colors.foreground}
+label-unfocused-background = ${colors.background}
 label-unfocused-padding = 2
 
 label-visible = "%icon%"
@@ -128,6 +138,7 @@ label-visible-padding = 2
 label-urgent = "%icon%"
 label-urgent-overline = ${colors.urgent}
 label-urgent-foreground = ${colors.urgent}
+label-urgent-background = ${colors.background}
 label-urgent-padding = 2
 
 label-mode = "%mode%"
