@@ -76,8 +76,8 @@ modules-center = cpu memory volume date
 [bar/info_laptop]
 inherit = bar/info
 
-width = 18%
-offset-x = 82%:-133px
+width = 20%
+offset-x = 80%:-133px
 
 modules-center = cpu memory battery volume date
 
