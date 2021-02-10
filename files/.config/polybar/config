@@ -43,7 +43,7 @@ fixed-center = true
 
 line-size = 3
 
-module-margin= 2
+module-margin = 2
 
 font-0 = "Product Sans:pixelsize=9:weight=regular;2"
 font-1 = "Product Sans:pixelsize=9:weight=bold;2"
@@ -68,8 +68,8 @@ modules-left = i3
 [bar/info]
 inherit = bar/main
 
-width = 16%
-offset-x = 84%:-133px
+width = 17%
+offset-x = 83%:-133px
 
 modules-center = cpu memory volume date
 
@@ -95,8 +95,6 @@ tray-padding = 1
 # ========== music
 [bar/music]
 inherit = bar/main
-
-background = ${colors.background}
 
 width = 18%
 offset-x = 41%
@@ -237,10 +235,12 @@ format-underline = ${colors.accent}
 
 [module/spotify]
 type = custom/script
-exec = python ~/.config/polybar/scripts/spotify_status.py -f '{artist}: {song}'
+#exec = python ~/.config/polybar/scripts/spotify_status.py -f '{artist}: {song} '
+exec = ~/.config/polybar/scripts/song.sh 2>/dev/null || echo "No player found"
 interval = 1
+tail = true
 
-format-prefix = "󰓇  "
+format-prefix = " 󰓇  "
 format-underline = ${colors.accent}
 
 [module/cpu]

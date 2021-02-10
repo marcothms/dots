@@ -31,7 +31,6 @@
 + light
 + pactl
 + playerctl
-+ spicetify-cli
 
 ### Nvim LSP
 
