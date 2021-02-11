@@ -33,5 +33,5 @@ function get_title () {
 [ ! -z "$(playerctl -p spotify status 2>/dev/null)" ] \
 	&& artist=$(get_artist) \
 	&& title=$(get_title) \
-	&& ([ -z "$artist$title" ] && scroll "" "Spotify is not connected on this pc" "" || scroll "%{F#79e6f3}$artist%{F#FFF} [" "$title" "]%{F-}" ) \
+	&& ([ -z "$artist$title" ] && scroll "" "Spotify is not connected on this pc" "" || scroll "$artist - " "$title" "%{F-}" ) \
 	|| exit 1

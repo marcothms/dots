@@ -14,17 +14,17 @@ call plug#begin()
 
 Plug 'joshdick/onedark.vim' " color scheme
 
-Plug 'tpope/vim-sleuth' " auto file-specific intendations
+Plug 'tpope/vim-sleuth' " heuristic file indendation
 
 Plug 'jiangmiao/auto-pairs' " pair completion
 
-Plug 'airblade/vim-gitgutter' " git
+Plug 'airblade/vim-gitgutter' " show git changes
 
 Plug 'itchyny/lightline.vim' " bar
 Plug 'mengelbrecht/lightline-bufferline' " bufferline
 Plug 'ryanoasis/vim-devicons' " icons in bar
 
-if executable("fzf")
+if executable("fzf") " fzf support and bindings
     Plug 'junegunn/fzf'
     Plug 'junegunn/fzf.vim'
 endif
@@ -106,7 +106,6 @@ let g:lightline.component_type   = {'buffers': 'tabsel'}
 " ============================== Indents and Whitespaces
 set list
 set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·
-"set listchars=tab:\┊\ ,extends:›,precedes:‹,nbsp:·,trail:·
 set fillchars+=vert:\  "draw verticle split
 
 autocmd FileType perl set tabstop=8 shiftwidth=4 softtabstop=4
@@ -115,9 +114,9 @@ highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+\%#\@<!$/
 
 " ============================== Search
-set incsearch
-set ignorecase
-set smartcase " case sensitive when capital letters are used
+set incsearch " incremental search
+set ignorecase " ignore case
+set smartcase "  -> unless capitol letters
 set hlsearch " highlight all results
 nnoremap<leader><space> :nohlsearch<CR>
 

@@ -59,7 +59,7 @@ inherit = bar/main
 
 background = ${colors.clear}
 
-width = 8%
+width = 20%
 offset-x = 4px
 
 modules-left = i3
