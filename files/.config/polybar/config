@@ -69,7 +69,7 @@ modules-left = i3
 inherit = bar/main
 
 width = 17%
-offset-x = 83%:-133px
+offset-x = 83%:-183px
 
 modules-center = cpu memory volume date
 
@@ -77,15 +77,15 @@ modules-center = cpu memory volume date
 inherit = bar/info
 
 width = 20%
-offset-x = 80%:-133px
+offset-x = 80%:-183px
 
 modules-center = cpu memory battery volume date
 
 [bar/tray]
 inherit = bar/main
 
-width = 125px
-offset-x = 100%:-129px
+width = 175px
+offset-x = 100%:-179px
 
 modules-center = blank
 

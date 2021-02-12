@@ -29,6 +29,7 @@
 + fcitx + mozc: Japanese Keyboard - [Install](https://www.youtube.com/watch?v=lJoXhS4EUJs) fcitx-im fcitx-configtool fcitx-mozc
 + fzf
 + light
++ [i3-swallow](https://github.com/jamesofarrell/i3-swallow)
 + pactl
 + playerctl
 
