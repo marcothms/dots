@@ -36,7 +36,6 @@ client.background       $border
 
 # i3-gaps
 gaps inner 4
-gaps top 34
 
 # ============================== Keybinds
 #Terminal

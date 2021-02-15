@@ -33,73 +33,43 @@ accent = ${colors.green}
 # ======================================== BARS
 [bar/main]
 monitor = ${env:MONITOR}
+
 height = 30px
-offset-y = 4px
+width = 100%
+radius-bottom = 12
+
+border-left-size = 4px
+border-right-size = 4px
+
+padding-left = 3
+padding-right = 3
+
+module-margin-left = 3
+module-margin-center = 3
 
 foreground = ${colors.foreground}
 background = ${colors.background}
 
 fixed-center = true
 
-line-size = 3
-
-module-margin = 2
+line-size = 2
 
 font-0 = "Product Sans:pixelsize=9:weight=regular;2"
 font-1 = "Product Sans:pixelsize=9:weight=bold;2"
 font-2 = "Noto Sans CJK JP:antialiase=false:pixelsize=9;2"
-font-3 = "Material Design Icons:size=9;2"
+font-3 = "Material Design Icons:size=11;3"
 
 wm-restack = i3
-override-redirect = true
-
-# ========= workspaces
-[bar/workspaces]
-inherit = bar/main
-
-background = ${colors.clear}
-
-width = 20%
-offset-x = 4px
+override-redirect = false
 
 modules-left = i3
+modules-center = date
+modules-right = spotify cpu memory volume
 
-# ========== info
-[bar/info]
+[bar/laptop]
 inherit = bar/main
 
-width = 17%
-offset-x = 83%:-183px
-
-modules-center = cpu memory volume date
-
-[bar/info_laptop]
-inherit = bar/info
-
-width = 20%
-offset-x = 80%:-183px
-
-modules-center = cpu memory battery volume date
-
-[bar/tray]
-inherit = bar/main
-
-width = 175px
-offset-x = 100%:-179px
-
-modules-center = blank
-
-tray-position = center
-tray-padding = 1
-
-# ========== music
-[bar/music]
-inherit = bar/main
-
-width = 18%
-offset-x = 41%
-
-modules-center = spotify
+modules-right = spotify cpu memory wlan volume battery
 
 # ======================================== MODULES
 [module/i3]
@@ -120,7 +90,7 @@ ws-icon-8 = 9;九
 ws-icon-9 = 10;十
 
 label-focused = "%icon%"
-label-focused-underline = ${colors.accent}
+label-focused-overline = ${colors.accent}
 label-focused-foreground = ${colors.foreground}
 label-focused-background = ${colors.background}
 label-focused-padding = 2
@@ -153,19 +123,11 @@ label-underline = ${colors.accent}
 type = internal/date
 label = %date% %time%
 
-#date = %{T2}%a%{T-} %d
 date = %a %d
 time = %H:%M
 
 format-prefix = "󰃭  "
-format-underline = ${colors.red}
-
-[module/time]
-type = internal/date
-date = %{T2}%H:%M%{T-}
-
-format-prefix = "󰥔  "
-format-underline = ${colors.accent}
+#format-underline = ${colors.red}
 
 [module/backlight]
 type = internal/backlight
@@ -174,7 +136,7 @@ card = amdgpu_bl0
 label = %percentage%%
 
 format-prefix = "󰃟  "
-format-underline = ${colors.accent}
+#format-underline = ${colors.accent}
 
 [module/battery]
 type = internal/battery
@@ -184,15 +146,15 @@ apdapter = ADP1
 format-charging = <animation-charging> <label-charging>
 label-charging = %percentage%%
 animation-charging-foreground = ${colors.accent}
-format-charging-underline = ${colors.yellow}
+#format-charging-underline = ${colors.yellow}
 
 format-discharging = <ramp-capacity> <label-discharging>
 label-discharging = %percentage%%
-format-discharging-underline = ${colors.accent}
+#format-discharging-underline = ${colors.accent}
 
 format-full = <ramp-capacity> <label-full>
 label-full = %percentage%%
-format-full-underline = ${colors.accent}
+#format-full-underline = ${colors.accent}
 
 ramp-capacity-foreground = ${colors.accent}
 ramp-capacity-0 = 󰁺
@@ -224,14 +186,11 @@ format-volume = <label-volume>
 
 label-volume = %percentage%%
 format-volume-prefix = "󰕾  "
-format-volume-underline = ${colors.yellow}
+#format-volume-underline = ${colors.yellow}
 
 label-muted = Muted
 format-muted-prefix = "󰖁  "
 format-muted-foreground = ${colors.urgent}
-
-format-prefix = "󰏗  "
-format-underline = ${colors.accent}
 
 [module/spotify]
 type = custom/script
@@ -240,15 +199,15 @@ exec = ~/.config/polybar/scripts/song.sh 2>/dev/null || echo "No player found"
 interval = 1
 tail = true
 
-format-prefix = " 󰓇  "
-format-underline = ${colors.accent}
+format-prefix = "󰓇  "
+#format-underline = ${colors.accent}
 
 [module/cpu]
 type = custom/script
 exec = ~/.config/polybar/scripts/cpu.sh
 click-left = ~/.config/polybar/scripts/cpu.sh --popup
-format-prefix = "󰻠  "
-format-underline = ${colors.accent}
+format-prefix = "󰌣  "
+#format-underline = ${colors.accent}
 
 [module/memory]
 type = custom/script
@@ -256,17 +215,15 @@ exec = ~/.config/polybar/scripts/memory.sh
 click-left = ~/.config/polybar/scripts/memory.sh --popup
 
 format-prefix = "󰍛  "
-format-underline = ${colors.blue}
+#format-underline = ${colors.blue}
 
-[module/temp]
-type = custom/script
-exec = ~/.config/polybar/scripts/temp.sh
+[module/wlan]
+type = internal/network
+interface = 
+interval = 3.0
 
-format-prefix = "󰔄 "
-format-underline = ${colors.accent}
+format-connected = <label-connected>
+format-connected-prefix = "󰤨  "
+label-connected = %essid%
 
-[module/blank]
-type = custom/text
-content = .
-content-foreground = ${colors.clear}
-content-background = ${colors.clear}
+format-disconnected = "󰤮 No Connection"
