@@ -64,7 +64,7 @@ override-redirect = false
 
 modules-left = i3
 modules-center = date
-modules-right = spotify cpu memory volume
+modules-right = volume spotify cpu memory
 
 [bar/laptop]
 inherit = bar/main
@@ -186,28 +186,29 @@ format-volume = <label-volume>
 
 label-volume = %percentage%%
 format-volume-prefix = "󰕾  "
-#format-volume-underline = ${colors.yellow}
+format-volume-overline = ${colors.red}
 
 label-muted = Muted
 format-muted-prefix = "󰖁  "
 format-muted-foreground = ${colors.urgent}
+format-muted-underline = ${colors.urgent}
 
 [module/spotify]
 type = custom/script
 #exec = python ~/.config/polybar/scripts/spotify_status.py -f '{artist}: {song} '
-exec = ~/.config/polybar/scripts/song.sh 2>/dev/null || echo "No player found"
+exec = ~/.config/polybar/scripts/song.sh 2>/dev/null || echo "Spotify is not running"
 interval = 1
 tail = true
 
 format-prefix = "󰓇  "
-#format-underline = ${colors.accent}
+format-overline = ${colors.green}
 
 [module/cpu]
 type = custom/script
 exec = ~/.config/polybar/scripts/cpu.sh
 click-left = ~/.config/polybar/scripts/cpu.sh --popup
 format-prefix = "󰌣  "
-#format-underline = ${colors.accent}
+format-overline = ${colors.yellow}
 
 [module/memory]
 type = custom/script
@@ -215,7 +216,7 @@ exec = ~/.config/polybar/scripts/memory.sh
 click-left = ~/.config/polybar/scripts/memory.sh --popup
 
 format-prefix = "󰍛  "
-#format-underline = ${colors.blue}
+format-overline = ${colors.blue}
 
 [module/wlan]
 type = internal/network

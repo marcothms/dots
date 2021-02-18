@@ -24,12 +24,13 @@
 
 ## Other Dependencies
 
++ [asetroot](https://github.com/Wilnath/asetroot)
++ [i3-swallow](https://github.com/jamesofarrell/i3-swallow)
 + [neovim-remote](https://github.com/mhinz/neovim-remote)
 + [vim-plug](https://github.com/junegunn/vim-plug)
-+ fcitx + mozc: Japanese Keyboard - [Install](https://www.youtube.com/watch?v=lJoXhS4EUJs) fcitx-im fcitx-configtool fcitx-mozc
++ fcitx + mozc: Japanese Keyboard - [Install](https://www.youtube.com/watch?v=lJoXhS4EUJs) - fcitx-im fcitx-configtool fcitx-mozc
 + fzf
 + light
-+ [i3-swallow](https://github.com/jamesofarrell/i3-swallow)
 + pactl
 + playerctl
 

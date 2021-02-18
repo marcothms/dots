@@ -97,7 +97,7 @@ setopt hist_ignore_space      # ignore commands that start with space
 setopt hist_verify            # show command with history expansion to user before running it
 setopt share_history          # share command history data inside tmux
 export HISTFILE="$HOME/.zsh_history"
-export SAVEHIST=1000
+export SAVEHIST=5000
 
 # ============================== SSH-Agent
 if [ -f ~/.ssh/agent.env ] ; then
