@@ -69,7 +69,7 @@ modules-right = volume spotify cpu memory
 [bar/laptop]
 inherit = bar/main
 
-modules-right = spotify cpu memory wlan volume battery
+modules-right = volume spotify cpu memory wlan battery
 
 # ======================================== MODULES
 [module/i3]
@@ -146,15 +146,15 @@ apdapter = ADP1
 format-charging = <animation-charging> <label-charging>
 label-charging = %percentage%%
 animation-charging-foreground = ${colors.accent}
-#format-charging-underline = ${colors.yellow}
+format-charging-underline = ${colors.yellow}
 
 format-discharging = <ramp-capacity> <label-discharging>
 label-discharging = %percentage%%
-#format-discharging-underline = ${colors.accent}
+format-discharging-overline = ${colors.cyan}
 
 format-full = <ramp-capacity> <label-full>
 label-full = %percentage%%
-#format-full-underline = ${colors.accent}
+format-full-underline = ${colors.green}
 
 ramp-capacity-foreground = ${colors.accent}
 ramp-capacity-0 = 󰁺
@@ -220,11 +220,12 @@ format-overline = ${colors.blue}
 
 [module/wlan]
 type = internal/network
-interface = 
+interface = wlo1
 interval = 3.0
 
 format-connected = <label-connected>
 format-connected-prefix = "󰤨  "
 label-connected = %essid%
+format-connected-overline = ${colors.magenta}
 
 format-disconnected = "󰤮 No Connection"
