@@ -54,6 +54,7 @@ set cursorline
 set ruler
 
 set showmatch " highlights paranthesis
+set hidden " allow moving to a new buffer without saving
 set mat=5
 set colorcolumn=1337
 set noswapfile " can be problematic on some systems
@@ -95,7 +96,7 @@ let g:lightline.separator = { 'left': '', 'right': '' }
 
 " bufferline
 let g:lightline.tabline = {'left': [['buffers']]}
-let g:lightline#bufferline#show_number  = 1
+let g:lightline#bufferline#show_number  = 0
 let g:lightline#bufferline#shorten_path = 0
 let g:lightline#bufferline#unnamed = '[No Name]'
 let g:lightline#bufferline#auto_hide = 0
@@ -118,7 +119,6 @@ set incsearch " incremental search
 set ignorecase " ignore case
 set smartcase "  -> unless capitol letters
 set hlsearch " highlight all results
-nnoremap<leader><space> :nohlsearch<CR>
 
 " ============================== Cursor Thiccness
 let &t_SI = "\<Esc>[6 q"
@@ -138,7 +138,12 @@ cmap q1 q!
 
 " fzf
 nmap <leader>ff :Files<CR>
-nmap <leader>ft :tabe<CR>:Files<CR>
+nmap <leader>ft :enew<CR>:Files<CR>
+
+" buffer > tabs
+nmap <leader>h :bprev<CR>
+nmap <leader>l :bnext<CR>
+nmap <leader>q :bp <BAR> bd #<CR>
 
 " vista tags
 nmap <leader>v :Vista finder fzf:vim_lsp<CR>
