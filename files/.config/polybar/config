@@ -123,7 +123,7 @@ label-underline = ${colors.accent}
 type = internal/date
 label = %date% %time%
 
-date = %a %d
+date = %a %d %b
 time = %H:%M
 
 format-prefix = "󰃭  "
