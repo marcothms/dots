@@ -141,8 +141,8 @@ nmap <leader>ff :Files<CR>
 nmap <leader>ft :enew<CR>:Files<CR>
 
 " buffer > tabs
-nmap <leader>h :bprev<CR>
-nmap <leader>l :bnext<CR>
+nmap <leader>j :bprev<CR>
+nmap <leader>k :bnext<CR>
 nmap <leader>q :bp <BAR> bd #<CR>
 
 " vista tags
