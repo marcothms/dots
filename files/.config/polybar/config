@@ -121,13 +121,13 @@ label-underline = ${colors.accent}
 
 [module/date]
 type = internal/date
-label = %date% %time%
+label = %date% - %time%
 
-date = %a %d %b
+date = %a %d %B
 time = %H:%M
 
 format-prefix = "󰃭  "
-#format-underline = ${colors.red}
+format-overline = ${colors.green}
 
 [module/backlight]
 type = internal/backlight

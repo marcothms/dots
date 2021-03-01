@@ -99,15 +99,14 @@ let g:lightline.tabline = {'left': [['buffers']]}
 let g:lightline#bufferline#show_number  = 0
 let g:lightline#bufferline#shorten_path = 0
 let g:lightline#bufferline#unnamed = '[No Name]'
-let g:lightline#bufferline#auto_hide = 0
-let g:lightline#bufferline#enable_devicons = 0
+let g:lightline#bufferline#enable_devicons = 1
 let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
 let g:lightline.component_type   = {'buffers': 'tabsel'}
 
 " ============================== Indents and Whitespaces
 set list
-set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·
-set fillchars+=vert:\  "draw verticle split
+set listchars=tab:──\ ,extends:›,precedes:‹,nbsp:·,trail:·
+set fillchars+=vert:\  "don't draw verticle split
 
 autocmd FileType perl set tabstop=8 shiftwidth=4 softtabstop=4
 
@@ -137,8 +136,12 @@ cmap W w
 cmap q1 q!
 
 " fzf
-nmap <leader>ff :Files<CR>
-nmap <leader>ft :enew<CR>:Files<CR>
+if has ("nvim")
+  nmap <leader>ff :Files<CR>
+  nmap <leader>ft :enew<CR>:Files<CR>
+else
+  nmap <leader>ft :enew<CR>
+end
 
 " buffer > tabs
 nmap <leader>j :bprev<CR>
@@ -150,8 +153,12 @@ nmap <leader>v :Vista finder fzf:vim_lsp<CR>
 
 " ============================== Cool NeoVim Shit
 if has ("nvim")
-    " setup lsp configs
-    lua require'marc.lsp'
+  " - Startup LSP Servers
+  " - Set bindings: gr, gd, K, sd
+  lua require'marc.lsp'
 
-    lua require'marc.completion'
+
+  " - Configure completion engine
+  " - Set bindings: <C-k>, <C-n>, <C-p>
+  lua require'marc.completion'
 endif

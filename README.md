@@ -39,7 +39,7 @@
 + [Python](https://github.com/palantir/python-language-server)
 + [Rust](https://github.com/rust-analyzer/rust-analyzer)
 + [TeX](https://github.com/latex-lsp/texlab)
-+ [Java](https://github.com/neovim/nvim-lspconfig#jdtls)
++ [Java](https://github.com/mfussenegger/nvim-jdtls)
 
 ## Fonts
 + Fira Code Regular Nerd Font Complete Mono: Terminal

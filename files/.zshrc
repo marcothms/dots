@@ -60,6 +60,9 @@ fi
 alias updoot="yay -Syu"
 alias dhl="yay"
 
+alias sa="ssh-add"
+alias sag="ssh-add ~/.ssh/github"
+
 alias s="cd ~/scripts/"
 alias c='clear'
 
