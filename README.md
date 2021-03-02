@@ -12,7 +12,7 @@
 + WM: i3
 
 ## Programs
-+ Editor: nvim
++ Editor: emacs / nvim
 + File-Browser: ranger
 + Image-Viewer: sxiv
 + Info: neofetch

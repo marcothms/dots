@@ -9,6 +9,10 @@ path=$(pwd)
 rm -rf $HOME/scripts
 ln -sf $path/scripts $HOME/scripts
 
+# emacs
+mkdir -p $HOME/.emacs.d
+ln -sf $path/init.el $HOME/.emacs.d/init.el
+
 # Home directory
 home_files=".bashrc .dir_colors .gitconfig .tmux.conf .vimrc .Xresources .zshrc .zsh-highlighting"
 for file in $home_files

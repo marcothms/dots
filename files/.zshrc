@@ -38,6 +38,7 @@ export EDITOR="nvim"
 export VISUAL="nvim"
 export LANG="en_US.UTF-8"
 export PATH=$PATH:$HOME/.local/bin:$HOME/scripts:$HOME/.cargo/bin
+[ -f "/home/marc/.ghcup/env" ] && source "/home/marc/.ghcup/env" # Haskell
 
 export GTK_IM_MODULE='fcitx'
 export QT_IM_MODULE='fcitx'
@@ -52,6 +53,8 @@ alias fontscache="fc-cache -f -v"
 if [[ -x $(which nvim 2> /dev/null) ]]; then
     alias vim="nvim"
 fi
+
+alias emacs="emacs -nw"
 
 if [[ -x $(which swallow 2> /dev/null) ]]; then
     alias zathura="swallow zathura"
@@ -151,7 +154,7 @@ export FZF_DEFAULT_OPTS='--preview="head {}" --layout=reverse --bind=tab:down --
 ## fzf Bindings in zsh (C-r and C-t)
 if [[ -x $(which fzf 2> /dev/null) ]]
 then
-    source ~/.vim/plugged/fzf/shell/key-bindings.zsh
+    source ~/scripts/key-bindings.zsh
 else
     bindkey '^R' history-incremental-search-backward
 fi
