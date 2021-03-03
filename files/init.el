@@ -159,6 +159,8 @@
   :general
   (vim-leader-def 'normal 'global
     "gj" 'magit-blame
+    "gc" 'magit-commit
+    "gp" 'magit-push
     "gs" 'magit-status
     "gd" 'magit-diff
     "gl" 'magit-log
