@@ -16,7 +16,6 @@ setopt prompt_subst
 
 LN=$'\n'
 ICON="%(?.%{$fg[green]%}.%{$fg[red]%})λ"
-#➜
 DIR="%{$fg[blue]%}%~"
 GIT="%{$fg[red]%}\$vcs_info_msg_0_"
 
@@ -166,8 +165,3 @@ fancy-ctrl-z () {
 }
 zle -N fancy-ctrl-z
 bindkey '^Z' fancy-ctrl-z
-
-# Syntax Highlighting
-if [ -f ~/.zsh-highlighting/zsh-syntax-highlighting.zsh ]; then
-    source $HOME/.zsh-highlighting/zsh-syntax-highlighting.zsh
-fi
