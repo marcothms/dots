@@ -15,22 +15,16 @@ precmd_functions+=( precmd_vcs_info )
 setopt prompt_subst
 
 LN=$'\n'
-#ICON="%(?.%{$fg[green]%}.%{$fg[red]%})λ"
-ICON="%(?.%{$fg[green]%}.%{$fg[red]%})➜"
+ICON="%(?.%{$fg[green]%}.%{$fg[red]%})λ"
+#➜
 DIR="%{$fg[blue]%}%~"
-GIT_ICON=""
 GIT="%{$fg[red]%}\$vcs_info_msg_0_"
-LINE1="╭"
-LINE2="╰─"
 
 if [[ -n "$SSH_CONNECTION" ]]; then
-    NAME=" %{$fg[yellow]%}%m"
+    NAME="%{$fg[yellow]%}%m "
 fi
 
-FIRST_ROW="${LINE1}${NAME} ${DIR}${GIT}%{$reset_color%}"
-SECOND_ROW="${LINE2}%{$reset_color%}"
-
-export PROMPT="${FIRST_ROW}${LN}${SECOND_ROW} "
+export PROMPT="${NAME}${DIR}${GIT} ${ICON}%{$reset_color%} "
 zstyle ':vcs_info:git:*' formats '|%b '
 
 # ============================== Exports

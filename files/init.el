@@ -60,21 +60,7 @@
 (use-package all-the-icons
   :ensure t)
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(lsp-haskell haskell-mode lsp-java auctex rust-mode flycheck yasnippet counsel-projectile projectile company-box company lsp-ivy lsp-ui lsp-mode magit counsel evil-collection evil which-key general all-the-icons doom-themes use-package)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-
-;; auto indent change like vim sleuth
+;; heuristic indentation
 (use-package dtrt-indent
   :ensure t
   :hook
@@ -107,6 +93,18 @@
   :config
   (setq which-key-idle-delay 1))
 
+;; 80 charcater limit line in prog mode
+(use-package fill-column-indicator
+  :ensure t
+  :diminish fci-mode
+  :config
+  (setq fci-rule-width 1)
+  (setq fci-rule-width 80)
+  (setq fci-rule-color "green")
+  :hook
+  (prog-mode . fci-mode)
+  (markdown-mode . fci-mode))
+
 ;; vim mode
 (use-package evil
   :ensure t
@@ -125,7 +123,7 @@
   :config
   (evil-collection-init))
 
-;; completion
+;; completion for swiper
 (use-package ivy
   :ensure t
   :diminish
@@ -162,6 +160,7 @@
   (vim-leader-def 'normal 'global
     "gj" 'magit-blame
     "gs" 'magit-status
+    "gd" 'magit-diff
     "gl" 'magit-log
     "gc" 'magit-checkout
     "gb" 'magit-branch))
@@ -297,3 +296,17 @@
   :hook
   (haskell-mode . lsp)
   (haskell-literate-mode . lsp))
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   '(fill-column-indicator lsp-haskell haskell-mode lsp-java auctex rust-mode flycheck yasnippet counsel-projectile projectile company-box company lsp-ivy lsp-ui lsp-mode magit counsel evil-collection evil which-key general all-the-icons doom-themes use-package)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
