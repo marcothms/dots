@@ -33,40 +33,59 @@ font:
     style: Regular
   size: 9
 
+# Colors (Doom One)
 colors:
+  # Default colors
     primary:
-        background: '#1C1B1D'
-        foreground: '#D8D8D8'
-    cursor:
-        text: '#1C1B1D'
-        cursor: '#D8D8D8'
+      background: '0x282c34'
+      foreground: '0xbbc2cf'
+
+  # Normal colors
     normal:
-        black: '#24272a'
-        red: '#E06C75'
-        green: '#98C379'
-        yellow: '#E5C07B'
-        blue: '#61AFEF'
-        magenta: '#C678DD'
-        cyan: '#56B6C2'
-        white: '#D8D8D8'
-    bright:
-        black: '#D8D8D8'
-        red: '#E06C75'
-        green: '#98C379'
-        yellow: '#E5C07B'
-        blue: '#61AFEF'
-        magenta: '#C678DD'
-        cyan: '#56B6C2'
-        white: '#D8D8D8'
-    dim:
-        black:   '#24272a'
-        red:     '#E06C75'
-        green:   '#98C379'
-        yellow:  '#E5C07B'
-        blue:    '#61AFEF'
-        magenta: '#C678DD'
-        cyan:    '#56B6C2'
-        white:   '#D8D8D8'
+      black:   '0x282c34'
+      red:     '0xff6c6b'
+      green:   '0x98be65'
+      yellow:  '0xecbe7b'
+      blue:    '0x51afef'
+      magenta: '0xc678dd'
+      cyan:    '0x46d9ff'
+      white:   '0xbbc2cf'
+
+# Darker variant
+#colors:
+#    primary:
+#        background: '#1C1B1D'
+#        foreground: '#D8D8D8'
+#    cursor:
+#        text: '#1C1B1D'
+#        cursor: '#D8D8D8'
+#    normal:
+#        black: '#24272a'
+#        red: '#E06C75'
+#        green: '#98C379'
+#        yellow: '#E5C07B'
+#        blue: '#61AFEF'
+#        magenta: '#C678DD'
+#        cyan: '#56B6C2'
+#        white: '#D8D8D8'
+#    bright:
+#        black: '#D8D8D8'
+#        red: '#E06C75'
+#        green: '#98C379'
+#        yellow: '#E5C07B'
+#        blue: '#61AFEF'
+#        magenta: '#C678DD'
+#        cyan: '#56B6C2'
+#        white: '#D8D8D8'
+#    dim:
+#        black:   '#24272a'
+#        red:     '#E06C75'
+#        green:   '#98C379'
+#        yellow:  '#E5C07B'
+#        blue:    '#61AFEF'
+#        magenta: '#C678DD'
+#        cyan:    '#56B6C2'
+#        white:   '#D8D8D8'
 
 background_opacity: 1
 

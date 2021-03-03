@@ -5,7 +5,7 @@
 (toggle-scroll-bar -1) ;; Or this
 (setq inhibit-startup-screen t) ;; Leave me alone with your tutorials
 (setq tramp-default-method "ssh") ;; speed up tramp mode
-(set-face-attribute 'default nil :font "FiraCode Nerd Font Mono" :height 100) ;; Set font size
+(set-face-attribute 'default nil :font "FiraCode Nerd Font Mono" :height 110) ;; Set font size
 
 ;; Make ESC quit prompts
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
