@@ -30,8 +30,7 @@ zstyle ':vcs_info:git:*' formats '|%b '
 export EDITOR="nvim"
 export VISUAL="nvim"
 export LANG="en_US.UTF-8"
-export PATH=$PATH:$HOME/.local/bin:$HOME/scripts:$HOME/.cargo/bin
-[ -f "/home/marc/.ghcup/env" ] && source "/home/marc/.ghcup/env" # Haskell
+export PATH=$PATH:$HOME/.local/bin:$HOME/scripts:$HOME/.cargo/bin:$HOME/.cabal/bin:$HOME/.ghcup/bin
 
 export GTK_IM_MODULE='fcitx'
 export QT_IM_MODULE='fcitx'

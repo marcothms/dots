@@ -183,7 +183,8 @@
   :hook
   (rust-mode . lsp)
   (java-mode . lsp)
-  (python-mode . lsp))
+  (python-mode . lsp)
+  (haskell-mode . lsp))
 
 (use-package lsp-ui
   :ensure t
