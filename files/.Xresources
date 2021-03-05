@@ -1,45 +1,30 @@
-#define base00 #1C1B1D
-#define base01 #98C379
-#define base02 #E5C07B
-#define base03 #D8D8D8
-#define base04 #61AFEF
-#define base05 #D8D8D8
-#define base06 #C678DD
-#define base07 #D8D8D8
-#define base08 #E06C75
-#define base09 #E06C75
-#define base0A #E5C07B
-#define base0B #98C379
-#define base0C #56B6C2
-#define base0D #61AFEF
-#define base0E #C678DD
-#define base0F #56B6C2
+*.foreground:   #bbc2cf
 
-*.foreground:   base05
 #ifdef background_opacity
-*.background:   [background_opacity]base00
+*.background:   [background_opacity]#282c34
 #else
-*.background:   base00
+*.background:   #282c34
 #endif
-*.cursorColor:  base05
 
-*.color0:       base00
-*.color1:       base08
-*.color2:       base0B
-*.color3:       base0A
-*.color4:       base0D
-*.color5:       base0E
-*.color6:       base0C
-*.color7:       base05
+*.cursorColor:  #bbc2cf
 
-*.color8:       base03
-*.color9:       base09
-*.color10:      base01
-*.color11:      base02
-*.color12:      base04
-*.color13:      base06
-*.color14:      base0F
-*.color15:      base07
+*.color0:       #282c34
+*.color1:       #ff6c6b
+*.color2:       #98be65
+*.color3:       #ecbe7b
+*.color4:       #51afef
+*.color5:       #c678dd
+*.color6:       #46d9ff
+*.color7:       #bbc2cf
+
+*.color8:       #bbc3cf
+*.color9:       #ff6c6b
+*.color10:      #98be65
+*.color11:      #ecbe7b
+*.color12:      #51afef
+*.color13:      #c678dd
+*.color14:      #46d9ff
+*.color15:      #bbc2cf
 
 !! Some extra xterm settings
 ! Font

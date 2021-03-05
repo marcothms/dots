@@ -30,7 +30,7 @@ zstyle ':vcs_info:git:*' formats '|%b '
 export EDITOR="nvim"
 export VISUAL="nvim"
 export LANG="en_US.UTF-8"
-export PATH=$PATH:$HOME/.local/bin:$HOME/scripts:$HOME/.cargo/bin:$HOME/.cabal/bin:$HOME/.ghcup/bin
+export PATH=$PATH:$HOME/.local/bin:$HOME/scripts:$HOME/.cargo/bin
 
 export GTK_IM_MODULE='fcitx'
 export QT_IM_MODULE='fcitx'
@@ -46,10 +46,9 @@ if [[ -x $(which nvim 2> /dev/null) ]]; then
     alias vim="nvim"
 fi
 
-alias emacs="emacs -nw"
-
 if [[ -x $(which swallow 2> /dev/null) ]]; then
     alias zathura="swallow zathura"
+    alias emacs="swallow emacs"
 fi
 
 alias updoot="yay -Syu"
