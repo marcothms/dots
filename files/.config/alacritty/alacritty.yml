@@ -7,6 +7,9 @@
 #
 # ~ M. Thomas
 
+import:
+  - ~/.alacritty_local.yml
+
 env:
   TERM: alacritty
 
@@ -31,7 +34,6 @@ font:
   normal:
     family: FiraCode Nerd Font Mono
     style: Regular
-  size: 9
 
 # Colors (Doom One)
 colors:
