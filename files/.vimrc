@@ -91,8 +91,8 @@ let g:lightline.active = {
       \ 'right': [['lineinfo'], ['percent'], ['gitstatus', 'fileformat', 'fileencoding', 'filetype']]
       \ }
 
-let g:lightline.subseparator = { 'left': '', 'right': '' }
-let g:lightline.separator = { 'left': '', 'right': '' }
+"let g:lightline.subseparator = { 'left': '', 'right': '' }
+"let g:lightline.separator = { 'left': '', 'right': '' }
 
 " bufferline
 let g:lightline.tabline = {'left': [['buffers']]}
