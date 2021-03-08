@@ -46,9 +46,10 @@ if [[ -x $(which nvim 2> /dev/null) ]]; then
     alias vim="nvim"
 fi
 
+alias emacs="emacs -nw"
+
 if [[ -x $(which swallow 2> /dev/null) ]]; then
     alias zathura="swallow zathura"
-    alias emacs="swallow emacs"
 fi
 
 alias updoot="yay -Syu"
