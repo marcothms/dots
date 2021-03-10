@@ -21,7 +21,6 @@ Plug 'jiangmiao/auto-pairs' " pair completion
 Plug 'airblade/vim-gitgutter' " show git changes
 
 Plug 'itchyny/lightline.vim' " bar
-Plug 'mengelbrecht/lightline-bufferline' " bufferline
 Plug 'ryanoasis/vim-devicons' " icons in bar
 
 if executable("fzf") " fzf support and bindings
@@ -34,7 +33,6 @@ if has ("nvim")
     Plug 'Shougo/neosnippet.vim' " snippet support
     Plug 'Shougo/neosnippet-snippets' " actual snippets
     Plug 'nvim-lua/completion-nvim' " autocomplete
-    Plug 'liuchengxu/vista.vim' " tags
 endif
 
 call plug#end()
@@ -70,7 +68,7 @@ set scrolloff=5 " min lines above or below the cursor
 
 " ============================== Statusline
 set laststatus=2
-set showtabline=2
+set showtabline=0
 
 function! GitStatus()
   let [a,m,r] = GitGutterGetHunkSummary()
@@ -90,18 +88,6 @@ let g:lightline.active = {
       \ 'left': [['mode', 'readonly'], ['filename_with_icon', 'modified']],
       \ 'right': [['lineinfo'], ['percent'], ['gitstatus', 'fileformat', 'fileencoding', 'filetype']]
       \ }
-
-"let g:lightline.subseparator = { 'left': '', 'right': '' }
-"let g:lightline.separator = { 'left': '', 'right': '' }
-
-" bufferline
-let g:lightline.tabline = {'left': [['buffers']]}
-let g:lightline#bufferline#show_number  = 0
-let g:lightline#bufferline#shorten_path = 0
-let g:lightline#bufferline#unnamed = '[No Name]'
-let g:lightline#bufferline#enable_devicons = 1
-let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
-let g:lightline.component_type   = {'buffers': 'tabsel'}
 
 " ============================== Indents and Whitespaces
 set list
@@ -147,9 +133,6 @@ end
 nmap <leader>j :bprev<CR>
 nmap <leader>k :bnext<CR>
 nmap <leader>q :bp <BAR> bd #<CR>
-
-" vista tags
-nmap <leader>v :Vista finder fzf:vim_lsp<CR>
 
 " ============================== Cool NeoVim Shit
 if has ("nvim")
