@@ -36,10 +36,6 @@ if vim.api.nvim_eval("executable('texlab')") then
 	vim.api.nvim_set_keymap("n", "gz", "<cmd>ZathuraShow<CR>", { noremap = true, silent = true })
 end
 
-if vim.api.nvim_eval("isdirectory($HOME. '/.cache/nvim/lspconfig/jdtls')") then
-	require'lspconfig'.jdtls.setup{}
-end
-
 -- g(o) d(efinition)
 vim.api.nvim_set_keymap("n", "gd" , "<cmd>lua vim.lsp.buf.definition()<CR>", { noremap = true, silent = true })
 -- g(o) r(eference)
