@@ -18,4 +18,4 @@ nm-applet &
 
 # wallpaper
 # feh --bg-scale $HOME/data/nextcloud/Wallpaper/wallpaper.png
-asetroot $HOME/data/nextcloud/Wallpaper/Animated/ -t 50 &
+asetroot $HOME/data/nextcloud/Wallpaper/Animated/Current/ -t 50 &
