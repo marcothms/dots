@@ -14,7 +14,7 @@ mkdir -p $HOME/.emacs.d
 ln -sf $path/init.el $HOME/.emacs.d/init.el
 
 # Home directory
-home_files=".bashrc .dir_colors .gitconfig .tmux.conf .vimrc .Xresources .zshrc"
+home_files=".bashrc .zshrc .gitconfig .tmux.conf .vimrc .Xresources"
 for file in $home_files
 do
 	ln -sf $path/$file $HOME/$file
