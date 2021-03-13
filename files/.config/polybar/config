@@ -78,27 +78,27 @@ pin-workspaces = true
 wrapping-scroll = false
 format = <label-state> <label-mode>
 
-ws-icon-0 = 1;󰅬
-ws-icon-1 = 2;󰒋
-ws-icon-2 = 3;󰈹
-ws-icon-3 = 4;󰙯
-ws-icon-4 = 5;󰓇
-ws-icon-5 = 6;󰇮
-ws-icon-6 = 7;七
-ws-icon-7 = 8;八
-ws-icon-8 = 9;九
-ws-icon-9 = 10;十
-
-#ws-icon-0 = 1;一
-#ws-icon-1 = 2;二
-#ws-icon-2 = 3;三
-#ws-icon-3 = 4;四
-#ws-icon-4 = 5;五
-#ws-icon-5 = 6;六
+#ws-icon-0 = 1;󰅬
+#ws-icon-1 = 2;󰒋
+#ws-icon-2 = 3;󰈹
+#ws-icon-3 = 4;󰙯
+#ws-icon-4 = 5;󰓇
+#ws-icon-5 = 6;󰇮
 #ws-icon-6 = 7;七
 #ws-icon-7 = 8;八
 #ws-icon-8 = 9;九
 #ws-icon-9 = 10;十
+
+ws-icon-0 = 1;一
+ws-icon-1 = 2;二
+ws-icon-2 = 3;三
+ws-icon-3 = 4;四
+ws-icon-4 = 5;五
+ws-icon-5 = 6;六
+ws-icon-6 = 7;七
+ws-icon-7 = 8;八
+ws-icon-8 = 9;九
+ws-icon-9 = 10;十
 
 label-focused = "%icon%"
 label-focused-overline = ${colors.accent}

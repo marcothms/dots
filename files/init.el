@@ -55,6 +55,7 @@
 (use-package doom-modeline
   :ensure t
   :init (doom-modeline-mode 1)
+
   :custom ((doom-modeline-height 10)))
 
 (use-package all-the-icons
@@ -150,6 +151,36 @@
          ("C-x C-f" . counsel-find-file)
          :map minibuffer-local-map
          ("C-r" . 'counsel-minibuffer-history)))
+
+(use-package org
+  :ensure t
+  ;; M-LEFT M-RIGHT deindent indent node
+  ;; M-UP M-DOWN move node up down
+  ;; Tab fold/unfold
+  ;; M-S-RET Insert new TODO
+  :general
+  (vim-leader-def 'normal 'global
+    "ohj" 'org-forward-heading-same-level ;; org header j"
+    "ohk" 'org-backward-heading-same-level ;; org header k
+    "or" 'org-meta-return ;; org return, insert new  entry
+    "otr" 'org-todo ;; org todo rotate
+    "opk" 'org-priority-up ;; org prio k
+    "opj" 'org-priority-down ;; org prip j
+    "oci" 'org-clock-in
+    "oco" 'org-clock-out
+    "oy"  'org-cycle) ;; Org-cYcle
+  :config
+  (setq org-format-latex-options (plist-put org-format-latex-options :scale 1.5))
+  :init
+  (setq org-todo-keywords '((sequence "TODO" "PROGRESS" "FEEDBACK" "|" "DONE" "DELEGATED")))
+  (setq org-log-done 'time))
+
+(use-package org-bullets
+  :ensure t
+  :after org
+  :hook (org-mode . org-bullets-mode)
+  :custom
+  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
 
 ;; Development
 
@@ -300,13 +331,19 @@
   (haskell-mode . lsp)
   (haskell-literate-mode . lsp))
 
+;; ipython notebook
+(use-package ein
+  :ensure t
+  :config
+  (setq ein:output-area-inlined-images t))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(fill-column-indicator lsp-haskell haskell-mode lsp-java auctex rust-mode flycheck yasnippet counsel-projectile projectile company-box company lsp-ivy lsp-ui lsp-mode magit counsel evil-collection evil which-key general all-the-icons doom-themes use-package)))
+   '(org-bullets ein fill-column-indicator lsp-haskell haskell-mode lsp-java auctex rust-mode flycheck yasnippet counsel-projectile projectile company-box company lsp-ivy lsp-ui lsp-mode magit counsel evil-collection evil which-key general all-the-icons doom-themes use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
