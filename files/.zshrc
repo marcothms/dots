@@ -42,11 +42,11 @@ export WINIT_UNIX_BACKEND=x11
 alias fontslist="fc-list :scalable=true:spacing=mono: family"
 alias fontscache="fc-cache -f -v"
 
+alias hm="cd ~/dev/hm-aufgaben"
+
 if [[ -x $(which nvim 2> /dev/null) ]]; then
     alias vim="nvim"
 fi
-
-alias emacs="emacs -nw"
 
 if [[ -x $(which swallow 2> /dev/null) ]]; then
     alias zathura="swallow zathura"
