@@ -1,3 +1,11 @@
+#                                
+#   ___ _ __ ___   __ _  ___ ___ 
+#  / _ \ '_ ` _ \ / _` |/ __/ __|
+# |  __/ | | | | | (_| | (__\__ \
+#  \___|_| |_| |_|\__,_|\___|___/
+#
+# ~ M. Thomas
+
 (setq make-backup-files nil) ;; We dont need these
 (setq auto-save-default nil) ;; Not this one either
 (menu-bar-mode -1) ;; The menu bar looks ugly in terminal
@@ -330,12 +338,6 @@
   :hook
   (haskell-mode . lsp)
   (haskell-literate-mode . lsp))
-
-;; ipython notebook
-(use-package ein
-  :ensure t
-  :config
-  (setq ein:output-area-inlined-images t))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.

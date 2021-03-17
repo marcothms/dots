@@ -49,4 +49,5 @@ Following the help should be enough guidance.
 + Fira Code Regular Nerd Font Complete Mono: Terminal
 + Product Sans: Non-Monospaced Font
 + Noto Sans CJK JP: Japanese Characters
++ Stick-Regular: Japanese Characters
 + Material Design Icons: Polybar Icons

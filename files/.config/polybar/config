@@ -13,8 +13,10 @@
 
 # ======================================== COLORS
 [colors]
-background = #1C1B1D
+#background = #1C1B1D
+background = #282c34
 foreground = #ffffff
+foreground-alt = #999999
 
 black = "#24272a"
 red = "#E06C75"
@@ -34,42 +36,45 @@ accent = ${colors.green}
 [bar/main]
 monitor = ${env:MONITOR}
 
-height = 30px
+height = 35px
 width = 100%
-radius-bottom = 12
+#radius-bottom = 12
 
-border-left-size = 4px
-border-right-size = 4px
+#border-left-size = 4px
+#border-right-size = 4px
 
 padding-left = 3
 padding-right = 3
 
-module-margin-left = 3
-module-margin-center = 3
+module-margin-left = 5
+module-margin-center = 5
 
 foreground = ${colors.foreground}
 background = ${colors.background}
 
 fixed-center = true
 
-line-size = 2
+line-size = 0
 
-font-0 = "Product Sans:pixelsize=9:weight=regular;2"
-font-1 = "Product Sans:pixelsize=9:weight=bold;2"
-font-2 = "Noto Sans CJK JP:antialiase=false:pixelsize=9;2"
-font-3 = "Material Design Icons:size=11;3"
+tray-position = right
+
+
+font-0 = "Product Sans:pixelsize=10:weight=regular;2"
+#font-1 = "Noto Sans CJK JP:antialiase=false:pixelsize=11;3"
+font-1 = "Stick:pixelsize=13;3"
+font-2 = "Material Design Icons:size=10;3"
 
 wm-restack = i3
 override-redirect = false
 
 modules-left = i3
-modules-center = date
-modules-right = volume spotify cpu memory
+modules-center = spotify
+modules-right = volume date sep clock sep
 
 [bar/laptop]
 inherit = bar/main
 
-modules-right = volume spotify cpu memory wlan battery
+modules-right = volume battery date sep clock sep
 
 # ======================================== MODULES
 [module/i3]
@@ -77,17 +82,6 @@ type = internal/i3
 pin-workspaces = true
 wrapping-scroll = false
 format = <label-state> <label-mode>
-
-#ws-icon-0 = 1;󰅬
-#ws-icon-1 = 2;󰒋
-#ws-icon-2 = 3;󰈹
-#ws-icon-3 = 4;󰙯
-#ws-icon-4 = 5;󰓇
-#ws-icon-5 = 6;󰇮
-#ws-icon-6 = 7;七
-#ws-icon-7 = 8;八
-#ws-icon-8 = 9;九
-#ws-icon-9 = 10;十
 
 ws-icon-0 = 1;一
 ws-icon-1 = 2;二
@@ -107,7 +101,7 @@ label-focused-background = ${colors.background}
 label-focused-padding = 2
 
 label-unfocused = "%icon%"
-label-unfocused-foreground = ${colors.foreground}
+label-unfocused-foreground = ${colors.foreground-alt}
 label-unfocused-background = ${colors.background}
 label-unfocused-padding = 2
 
@@ -130,12 +124,19 @@ label = %title%
 label-maxlen = 100
 label-underline = ${colors.accent}
 
+[module/clock]
+type = internal/date
+label = %time%
+
+time = %H:%M %p
+
+#format-prefix = "󰥔  "
+
 [module/date]
 type = internal/date
-label = %date% - %time%
+label = %date%
 
-date = %a %d %B
-time = %H:%M
+date = %d %B
 
 format-prefix = "󰃭  "
 format-overline = ${colors.green}
@@ -167,7 +168,7 @@ format-full = <ramp-capacity> <label-full>
 label-full = %percentage%%
 format-full-underline = ${colors.green}
 
-ramp-capacity-foreground = ${colors.accent}
+#ramp-capacity-foreground = ${colors.accent}
 ramp-capacity-0 = 󰁺
 ramp-capacity-1 = 󰁻
 ramp-capacity-2 = 󰁼
@@ -207,7 +208,7 @@ format-muted-underline = ${colors.urgent}
 [module/spotify]
 type = custom/script
 #exec = python ~/.config/polybar/scripts/spotify_status.py -f '{artist}: {song} '
-exec = ~/.config/polybar/scripts/song.sh 2>/dev/null || echo "Spotify is not running"
+exec = ~/.config/polybar/scripts/song.sh 2>/dev/null || echo "Not running"
 interval = 1
 tail = true
 
@@ -240,3 +241,7 @@ label-connected = %essid%
 format-connected-overline = ${colors.magenta}
 
 format-disconnected = "󰤮 No Connection"
+
+[module/sep]
+type = custom/text
+content = |
