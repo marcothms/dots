@@ -17,5 +17,5 @@ nm-applet &
 ~/scripts/polybar.sh &
 
 # wallpaper
-# feh --bg-scale $HOME/data/nextcloud/Wallpaper/wallpaper.png
-asetroot $HOME/data/nextcloud/wallpaper/animated/current/ -t 50 &
+feh --bg-scale $HOME/data/nextcloud/wallpaper/wallpaper.png
+#asetroot $HOME/data/nextcloud/wallpaper/animated/current/ -t 50 &

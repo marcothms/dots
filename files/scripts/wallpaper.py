@@ -35,7 +35,7 @@ def list_wallpapers(wallpaper_list, *args):
 if __name__ == "__main__":
 
     ### DEFAULT WALLPAPER DIRECTORY HERE
-    path = "data/wallpaper"
+    path = "data/nextcloud/wallpaper"
 
     parser = argparse.ArgumentParser()
     parser.add_argument("-q", "--query", help="Refine selection")
