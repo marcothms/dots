@@ -12,7 +12,9 @@
 (toggle-scroll-bar -1) ;; Or this
 (setq inhibit-startup-screen t) ;; Leave me alone with your tutorials
 (setq tramp-default-method "ssh") ;; speed up tramp mode
-(set-face-attribute 'default nil :font "FiraCode Nerd Font Mono" :height 100) ;; Set font size
+
+;; Font
+(set-face-attribute 'default nil :font "FiraCode Nerd Font Mono" :height 100)
 
 ;; Make ESC quit prompts
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
@@ -62,11 +64,18 @@
 (use-package doom-modeline
   :ensure t
   :init (doom-modeline-mode 1)
-
   :custom ((doom-modeline-height 10)))
 
 (use-package all-the-icons
   :ensure t)
+
+;; NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA
+;; music requires 'player'
+(use-package nyan-mode
+  :ensure t
+  :config
+  (nyan-mode)
+  (nyan-start-animation))
 
 ;; heuristic indentation
 (use-package dtrt-indent
