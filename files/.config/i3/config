@@ -23,8 +23,8 @@ for_window [class="^.*"] border pixel 0
 # Colors
 set $text "#ffffff"
 set $red "#e06c75"
-set $termbg "#1C1B1D"
-set $border "#D8D8D8"
+set $termbg "#282c34"
+set $border "#666666"
 set $acc "#98C379"
 
 # Class                 Border  Backgr. Text  Indic.  Child_border
@@ -35,7 +35,8 @@ client.urgent           $red    $termbg $text $red    $red
 client.background       $border
 
 # i3-gaps
-gaps inner 4
+gaps inner 6
+smart_gaps on
 
 # ============================== Keybinds
 #Terminal

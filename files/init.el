@@ -66,8 +66,27 @@
   :init (doom-modeline-mode 1)
   :custom ((doom-modeline-height 10)))
 
+;; icons
 (use-package all-the-icons
   :ensure t)
+
+;; fancy startup screen
+(use-package page-break-lines
+  :ensure t)
+
+(use-package dashboard
+  :ensure t
+  :config
+  (dashboard-setup-startup-hook))
+
+(setq dashboard-banner-logo-title "Welcome back, Marc")
+;(setq dashboard-startup-banner "/home/marc/data/nextcloud/bilder/anime/5de1695.png")
+(setq dashboard-startup-banner 'logo)
+(setq dashboard-center-content t)
+(setq dashboard-items '((recents  . 5)
+                        (projects . 5)))
+(setq dashboard-set-heading-icons t)
+(setq dashboard-set-file-icons t)
 
 ;; NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA
 ;; music requires 'player'
@@ -353,7 +372,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(org-bullets ein fill-column-indicator lsp-haskell haskell-mode lsp-java auctex rust-mode flycheck yasnippet counsel-projectile projectile company-box company lsp-ivy lsp-ui lsp-mode magit counsel evil-collection evil which-key general all-the-icons doom-themes use-package)))
+   '(dashboard org-bullets ein fill-column-indicator lsp-haskell haskell-mode lsp-java auctex rust-mode flycheck yasnippet counsel-projectile projectile company-box company lsp-ivy lsp-ui lsp-mode magit counsel evil-collection evil which-key general all-the-icons doom-themes use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
