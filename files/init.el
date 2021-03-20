@@ -12,6 +12,8 @@
 (toggle-scroll-bar -1) ;; Or this
 (setq inhibit-startup-screen t) ;; Leave me alone with your tutorials
 (setq tramp-default-method "ssh") ;; speed up tramp mode
+(setq initial-major-mode 'fundamental-mode ;; better startup speed
+      initial-scratch-message nil)
 
 ;; Font
 (set-face-attribute 'default nil :font "FiraCode Nerd Font Mono" :height 100)
