@@ -54,7 +54,7 @@ line-size = 0
 font-0 = "Product Sans:pixelsize=10:weight=regular;2"
 #font-1 = "Noto Sans CJK JP:antialiase=false:pixelsize=11;3"
 font-1 = "Stick:pixelsize=13;3"
-font-2 = "Material Design Icons:size=10;2"
+font-2 = "Material Design Icons:size=10;3"
 
 wm-restack = i3
 
@@ -67,7 +67,7 @@ inherit = bar/main
 
 bottom = true
 
-modules-left = xwindow
+modules-left = memory cpu
 modules-center =
 modules-right =
 
@@ -153,46 +153,30 @@ type = internal/battery
 battery = BAT0
 apdapter = ADP1
 
-format-charging = <animation-charging> <label-charging>
-label-charging = %percentage%%
-animation-charging-foreground = ${colors.accent}
-format-charging-underline = ${colors.yellow}
+bar-capacity-width = 10
+bar-capacity-indicator =
+bar-capacity-fill = ━
+bar-capacity-empty = ━
 
-format-discharging = <ramp-capacity> <label-discharging>
+bar-capacity-fill-foreground = ${colors.green}
+
+format-discharging = 󰋑  <bar-capacity>
 label-discharging = %percentage%%
-format-discharging-overline = ${colors.cyan}
 
-format-full = <ramp-capacity> <label-full>
-label-full = %percentage%%
-format-full-underline = ${colors.green}
+format-charging = <animation-charging> <bar-capacity>
+label-charging = %percentage%%
 
-#ramp-capacity-foreground = ${colors.accent}
-ramp-capacity-0 = 󰁺
-ramp-capacity-1 = 󰁻
-ramp-capacity-2 = 󰁼
-ramp-capacity-3 = 󰁽
-ramp-capacity-4 = 󰁾
-ramp-capacity-5 = 󰁿
-ramp-capacity-6 = 󰂀
-ramp-capacity-7 = 󰂁
-ramp-capacity-8 = 󰂂
-ramp-capacity-9 = 󰁹
+format-full = 󰋑  <bar-capacity>
 
-animation-charging-0 = 󰢜
-animation-charging-1 = 󰂇
-animation-charging-2 = 󰂇
-animation-charging-3 = 󰂈
-animation-charging-4 = 󰢝
-animation-charging-5 = 󰂉
-animation-charging-6 = 󰢞
-animation-charging-7 = 󰂊
-animation-charging-8 = 󰂋
-animation-charging-9 = 󰂅
-animation-charging-framerate = 200
+animation-charging-0 = 󰋑
+animation-charging-1 = 󰋕
+animation-charging-framerate = 1000
 
 [module/volume]
 type = internal/pulseaudio
 format-volume = <bar-volume>
+
+interval = 2
 
 label-volume = %percentage%%
 format-volume-prefix = "󰕾  "
@@ -232,8 +216,9 @@ bar-load-indicator =
 bar-load-fill = ━
 bar-load-empty = ━
 
+bar-load-fill-foreground = ${colors.magenta}
+
 bar-load-width = 10
-bar-load-foreground = ${colors.green}
 
 format-prefix = "󰌣  "
 
@@ -247,8 +232,9 @@ bar-used-indicator =
 bar-used-fill = ━
 bar-used-empty = ━
 
+bar-used-fill-foreground = ${colors.yellow}
+
 bar-used-width = 10
-bar-used-foreground = ${colors.yellow}
 
 format-prefix = "󰍛  "
 
