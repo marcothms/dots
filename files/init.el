@@ -55,6 +55,12 @@
 
 ;; General things
 
+(use-package exec-path-from-shell
+  :ensure t)
+
+(exec-path-from-shell-copy-env "SSH_AGENT_PID")
+(exec-path-from-shell-copy-env "SSH_AUTH_SOCK")
+
 ;; Themes and icons
 (use-package doom-themes
   :ensure t
