@@ -13,8 +13,7 @@
 
 # ======================================== COLORS
 [colors]
-#background = #1C1B1D
-background = #282c34
+background = #1C1B1D
 foreground = #ffffff
 foreground-alt = #999999
 
@@ -36,12 +35,8 @@ accent = ${colors.green}
 [bar/main]
 monitor = ${env:MONITOR}
 
-height = 35px
+height = 30
 width = 100%
-#radius-bottom = 12
-
-#border-left-size = 4px
-#border-right-size = 4px
 
 padding-left = 3
 padding-right = 3
@@ -56,25 +51,32 @@ fixed-center = true
 
 line-size = 0
 
-tray-position = right
-
-
 font-0 = "Product Sans:pixelsize=10:weight=regular;2"
 #font-1 = "Noto Sans CJK JP:antialiase=false:pixelsize=11;3"
 font-1 = "Stick:pixelsize=13;3"
-font-2 = "Material Design Icons:size=10;3"
+font-2 = "Material Design Icons:size=10;2"
 
 wm-restack = i3
-override-redirect = false
 
-modules-left = i3
-modules-center = spotify
-modules-right = volume date sep clock sep
+modules-left = i3 spotify
+modules-center = date
+modules-right = volume
+
+[bar/bottom]
+inherit = bar/main
+
+bottom = true
+
+modules-left = xwindow
+modules-center =
+modules-right =
+
+tray-position = right
 
 [bar/laptop]
 inherit = bar/main
 
-modules-right = volume battery date sep clock sep
+modules-right = volume battery
 
 # ======================================== MODULES
 [module/i3]
@@ -95,7 +97,6 @@ ws-icon-8 = 9;九
 ws-icon-9 = 10;十
 
 label-focused = "%icon%"
-label-focused-overline = ${colors.accent}
 label-focused-foreground = ${colors.foreground}
 label-focused-background = ${colors.background}
 label-focused-padding = 2
@@ -109,7 +110,6 @@ label-visible = "%icon%"
 label-visible-padding = 2
 
 label-urgent = "%icon%"
-label-urgent-overline = ${colors.urgent}
 label-urgent-foreground = ${colors.urgent}
 label-urgent-background = ${colors.background}
 label-urgent-padding = 2
@@ -128,27 +128,25 @@ label-underline = ${colors.accent}
 type = internal/date
 label = %time%
 
-time = %I:%M %p
+time = %H:%M
 
-#format-prefix = "󰥔  "
+format-prefix = "󰥔  "
 
 [module/date]
 type = internal/date
 label = %date%
 
-date = %d %B
+date = %A, %d %b %Y, %H:%M
 
-format-prefix = "󰃭  "
-format-overline = ${colors.green}
+#format-prefix = "󰃭  "
 
 [module/backlight]
 type = internal/backlight
-#ls -1 /sys/class/backlight
+# ls -1 /sys/class/backlight
 card = amdgpu_bl0
 label = %percentage%%
 
 format-prefix = "󰃟  "
-#format-underline = ${colors.accent}
 
 [module/battery]
 type = internal/battery
@@ -194,41 +192,65 @@ animation-charging-framerate = 200
 
 [module/volume]
 type = internal/pulseaudio
-format-volume = <label-volume>
+format-volume = <bar-volume>
 
 label-volume = %percentage%%
 format-volume-prefix = "󰕾  "
-format-volume-overline = ${colors.red}
+
+bar-volume-width = 5
+bar-volume-gradient = false
+
+bar-volume-indicator =
+
+bar-volume-fill = ━
+bar-volume-fill-foreground = ${colors.blue}
+
+bar-volume-empty = ━
+
+click-right = pavucontrol
 
 label-muted = Muted
 format-muted-prefix = "󰖁  "
 format-muted-foreground = ${colors.urgent}
-format-muted-underline = ${colors.urgent}
 
 [module/spotify]
 type = custom/script
-#exec = python ~/.config/polybar/scripts/spotify_status.py -f '{artist}: {song} '
 exec = ~/.config/polybar/scripts/song.sh 2>/dev/null || echo "Not running"
 interval = 1
 tail = true
 
 format-prefix = "󰓇  "
-format-overline = ${colors.green}
+format-prefix-foreground = ${colors.green}
 
 [module/cpu]
-type = custom/script
-exec = ~/.config/polybar/scripts/cpu.sh
-click-left = ~/.config/polybar/scripts/cpu.sh --popup
+type = internal/cpu
+
+interval = 3
+format = <bar-load>
+
+bar-load-indicator =
+bar-load-fill = ━
+bar-load-empty = ━
+
+bar-load-width = 10
+bar-load-foreground = ${colors.green}
+
 format-prefix = "󰌣  "
-format-overline = ${colors.yellow}
 
 [module/memory]
-type = custom/script
-exec = ~/.config/polybar/scripts/memory.sh
-click-left = ~/.config/polybar/scripts/memory.sh --popup
+type = internal/memory
+
+interval = 3
+format = <bar-used>
+
+bar-used-indicator =
+bar-used-fill = ━
+bar-used-empty = ━
+
+bar-used-width = 10
+bar-used-foreground = ${colors.yellow}
 
 format-prefix = "󰍛  "
-format-overline = ${colors.blue}
 
 [module/wlan]
 type = internal/network
@@ -238,10 +260,5 @@ interval = 3.0
 format-connected = <label-connected>
 format-connected-prefix = "󰤨  "
 label-connected = %essid%
-format-connected-overline = ${colors.magenta}
 
 format-disconnected = "󰤮 No Connection"
-
-[module/sep]
-type = custom/text
-content = |
