@@ -66,6 +66,7 @@ modules-right = volume
 inherit = bar/main
 
 bottom = true
+override-redirect = true
 
 modules-left = memory cpu
 modules-center =
@@ -216,9 +217,9 @@ bar-load-indicator =
 bar-load-fill = ━
 bar-load-empty = ━
 
-bar-load-fill-foreground = ${colors.magenta}
+bar-load-fill-foreground = ${colors.cyan}
 
-bar-load-width = 10
+bar-load-width = 7
 
 format-prefix = "󰌣  "
 
@@ -232,9 +233,9 @@ bar-used-indicator =
 bar-used-fill = ━
 bar-used-empty = ━
 
-bar-used-fill-foreground = ${colors.yellow}
+bar-used-fill-foreground = ${colors.magenta}
 
-bar-used-width = 10
+bar-used-width = 7
 
 format-prefix = "󰍛  "
 
