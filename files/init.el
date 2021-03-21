@@ -55,7 +55,7 @@
 (eval-when-compile
   (require 'use-package))
 
-;; General things
+;; Packages
 
 (use-package exec-path-from-shell
   :ensure t)
@@ -195,6 +195,7 @@
          :map minibuffer-local-map
          ("C-r" . 'counsel-minibuffer-history)))
 
+;; org mode
 (use-package org
   :ensure t
   ;; M-LEFT M-RIGHT deindent indent node
@@ -225,7 +226,7 @@
   :custom
   (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
 
-;; Development
+;; Development Packages
 
 ;; giiiiiiiiit
 (use-package magit
@@ -260,6 +261,7 @@
   (python-mode . lsp)
   (haskell-mode . lsp))
 
+;; ui integration for lsp
 (use-package lsp-ui
   :ensure t
   :config
@@ -295,13 +297,14 @@
   :ensure t
   :hook (company-mode . company-box-mode))
 
-;; for lsp workspaces
+;; project support
 (use-package projectile
   :ensure t
   :config
   (setq projectile-completion-system 'ivy)
   (projectile-mode +1))
 
+;; ui for projectline
 (use-package counsel-projectile
   :ensure t
   :init
