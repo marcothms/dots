@@ -51,33 +51,22 @@ fixed-center = true
 
 line-size = 0
 
+tray-position = right
+
 font-0 = "Product Sans:pixelsize=10:weight=regular;2"
-#font-1 = "Noto Sans CJK JP:antialiase=false:pixelsize=11;3"
-font-1 = "Stick:pixelsize=13;3"
+font-1 = "Stick:pixelsize=13;2"
 font-2 = "Material Design Icons:size=10;3"
 
 wm-restack = i3
 
 modules-left = i3 spotify
 modules-center = date
-modules-right = volume
-
-[bar/bottom]
-inherit = bar/main
-
-bottom = true
-override-redirect = true
-
-modules-left = memory cpu
-modules-center =
-modules-right =
-
-tray-position = right
+modules-right = memory cpu volume sep
 
 [bar/laptop]
 inherit = bar/main
 
-modules-right = volume battery
+modules-right = memory cpu volume battery sep
 
 # ======================================== MODULES
 [module/i3]
@@ -175,7 +164,8 @@ animation-charging-framerate = 1000
 
 [module/volume]
 type = internal/pulseaudio
-format-volume = <bar-volume>
+format-volume = <label-volume>
+#<bar-volume>
 
 interval = 2
 
@@ -249,3 +239,7 @@ format-connected-prefix = "󰤨  "
 label-connected = %essid%
 
 format-disconnected = "󰤮 No Connection"
+
+[module/sep]
+type = custom/text
+content = |

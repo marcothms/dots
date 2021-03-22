@@ -146,7 +146,7 @@ export FZF_DEFAULT_OPTS='--preview="head {}" --layout=reverse --bind=tab:down --
 ## fzf Bindings in zsh (C-r and C-t)
 if [[ -x $(which fzf 2> /dev/null) ]]
 then
-    source ~/scripts/key-bindings.zsh
+    source ~/scripts/key_bindings.zsh
 else
     bindkey '^R' history-incremental-search-backward
 fi
