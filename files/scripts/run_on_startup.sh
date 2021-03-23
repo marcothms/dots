@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # set keyboard layout
 setxkbmap -layout za
@@ -11,10 +11,10 @@ picom &
 nm-applet &
 
 # adjust screens on nazarick
-~/scripts/fix_screens.sh
+$HOME/scripts/fix_screens.sh
 
 # launch polybar
-~/scripts/polybar.sh &
+$HOME/scripts/polybar.sh &
 
 # wallpaper
 feh --bg-scale $HOME/data/nextcloud/wallpaper/wallpaper.png

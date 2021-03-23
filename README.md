@@ -16,7 +16,7 @@
 + Editor: emacs (nvim as fallback)
 + File-Browser: ranger
 + Image-Viewer: sxiv
-+ Launcher: dmenu
++ Launcher: [dmenu](https://github.com/crammk/dmenu)
 + Music: spotify
 + Pdf-Viewer: zathura with mupdf
 + Screenshots: Flameshot

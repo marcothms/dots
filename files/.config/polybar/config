@@ -41,6 +41,7 @@ width = 100%
 padding-left = 3
 padding-right = 3
 
+
 module-margin-left = 5
 module-margin-center = 5
 
@@ -61,12 +62,12 @@ wm-restack = i3
 
 modules-left = i3 spotify
 modules-center = date
-modules-right = memory cpu volume sep
+modules-right = volume sep
 
 [bar/laptop]
 inherit = bar/main
 
-modules-right = memory cpu volume battery sep
+modules-right = volume battery sep
 
 # ======================================== MODULES
 [module/i3]

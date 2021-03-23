@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 VERBOSE=$1
 
@@ -14,7 +14,7 @@ mkdir -p $HOME/.emacs.d
 ln -sf $path/init.el $HOME/.emacs.d/init.el
 
 # Home directory
-home_files=".bashrc .zshrc .gitconfig .tmux.conf .vimrc .Xresources"
+home_files=".bashrc .zshrc .gitconfig .tmux.conf .vimrc .Xresources .xinitrc"
 for file in $home_files
 do
 	ln -sf $path/$file $HOME/$file
@@ -22,6 +22,10 @@ do
 		echo "Linked from $path/$file to $HOME/$file"
 	fi
 done
+
+# properly add startx files
+chmod +x $HOME/.xinitrc
+ln -s $HOME/.xinitrc $HOME/.xsession
 
 # .config directory
 conf_files="alacritty dunst i3 nvim picom.conf polybar ranger zathura"

@@ -72,11 +72,7 @@ bindsym $mod+comma workspace prev
 bindsym $mod+period workspace next
 
 # dmenu
-set $fg '#ffffff'
-set $bg '#1C1B1D'
-set $accent '#98c379'
-set $font 'Product Sans:pixelsize=15'
-bindsym $mod+d exec "dmenu_run -fn $font -nb $bg -sb $bg -nf $fg -sf $accent"
+bindsym $mod+d exec "dmenu_run"
 
 # Screenhot
 bindsym $mod+Shift+s exec "flameshot gui"
@@ -158,4 +154,4 @@ bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
 # ============================== Startup
-exec ~/scripts/run_on_startup.sh
+#exec ~/scripts/run_on_startup.sh
