@@ -36,9 +36,6 @@ dunst &
 picom &
 nm-applet &
 
-# launch bar
-$HOME/scripts/polybar.sh
-
 # wallpaper
 feh --bg-scale $HOME/data/nextcloud/wallpaper/wallpaper.png
 #asetroot $HOME/data/nextcloud/wallpaper/animated/current/ -t 50 &

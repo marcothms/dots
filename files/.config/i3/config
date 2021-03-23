@@ -154,4 +154,4 @@ bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
 # ============================== Startup
-#exec ~/scripts/run_on_startup.sh
+exec ~/scripts/polybar.sh
