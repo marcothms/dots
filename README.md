@@ -4,16 +4,15 @@
 
 ## System
 
-+ Bar: polybar (and dwmblocks)
 + Compositor: picom-git
 + Notifications: dunst
 + Shell: zsh
 + Terminal: alacritty
-+ WM: i3-gaps (and dwm)
++ WM: dwm
 
 ## Programs
 
-+ Editor: emacs (nvim as fallback)
++ Editor: emacs
 + File-Browser: ranger
 + Image-Viewer: sxiv
 + Launcher: [dmenu](https://github.com/crammk/dmenu)
@@ -25,7 +24,7 @@
 ## Other Dependencies
 
 + [asetroot](https://github.com/Wilnath/asetroot): animated wallpaper
-+ [i3-swallow](https://github.com/jamesofarrell/i3-swallow): swallow terminal
++ [i3-swallow](https://github.com/jamesofarrell/i3-swallow): swallow terminal (not used anymore)
 + [neovim-remote](https://github.com/mhinz/neovim-remote): zathura integration
 + [vim-plug](https://github.com/junegunn/vim-plug): vim plugin manager
 + fcitx + mozc: Japanese Keyboard - [Install](https://www.youtube.com/watch?v=lJoXhS4EUJs) - fcitx-im fcitx-configtool fcitx-mozc

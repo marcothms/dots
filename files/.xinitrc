@@ -39,11 +39,5 @@ nm-applet &
 feh --bg-scale $HOME/data/nextcloud/wallpaper/wallpaper.png
 #asetroot $HOME/data/nextcloud/wallpaper/animated/current/ -t 50 &
 
-if [ `hostname` = "aincrad" ];then
-    dwmblocks &
-    exec dwm
-fi
-
-if [ `hostname` = "nazarick" ];then
-    exec i3
-fi
+dwmblocks &
+exec dwm
