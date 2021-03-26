@@ -60,13 +60,13 @@ bindsym $mod+Shift+l move right
 
 bindsym $mod+Shift+q kill
 
-bindsym $mod+f fullscreen toggle
+#bindsym $mod+f fullscreen toggle
 bindsym $mod+Shift+space floating toggle
 
 bindsym $mod+s split v
 bindsym $mod+v split h
 
-bindsym $mod+a layout toggle stacking splith
+bindsym $mod+f layout toggle stacking splith
 
 bindsym $mod+comma workspace prev
 bindsym $mod+period workspace next

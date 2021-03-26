@@ -4,12 +4,12 @@
 
 ## System
 
-+ Bar: polybar
++ Bar: polybar (and dwmblocks)
 + Compositor: picom-git
 + Notifications: dunst
 + Shell: zsh
 + Terminal: alacritty
-+ WM: i3-gaps
++ WM: i3-gaps (and dwm)
 
 ## Programs
 
