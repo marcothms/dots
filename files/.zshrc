@@ -23,6 +23,23 @@ if [[ -n "$SSH_CONNECTION" ]]; then
     NAME="%{$fg[yellow]%}%m "
 fi
 
+case $TERM in
+  (*xterm* | rxvt | alacritty)
+
+    # Write some info to terminal title.
+    # This is seen when the shell prompts for input.
+    function precmd {
+      print -Pn "\e]0;Alacritty@%(1j,%j job%(2j|s|); ,)%~\a"
+    }
+    # Write command and args to terminal title.
+    # This is seen while the shell waits for a command to complete.
+    function preexec {
+      printf "\033]0;%s\a" "$1"
+    }
+
+  ;;
+esac
+
 export PROMPT="${NAME}${DIR}${GIT} ${ICON}%{$reset_color%} "
 zstyle ':vcs_info:git:*' formats '|%b '
 

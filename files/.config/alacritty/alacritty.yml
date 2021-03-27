@@ -11,10 +11,11 @@ import:
   - ~/.alacritty_local.yml
 
 env:
-  TERM: alacritty
+  TERM: xterm-256color
 
 window:
   title: Alacritty
+  dynamic_title: true
 
   dimensions:
     columns: 0
@@ -93,8 +94,6 @@ background_opacity: 1
 
 selection:
   save_to_clipboard: true
-
-window.dynamic_title: true
 
 cursor:
   # Values for `style`:

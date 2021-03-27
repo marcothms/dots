@@ -8,7 +8,7 @@
 + Notifications: dunst
 + Shell: zsh
 + Terminal: alacritty
-+ WM: dwm
++ WM: [dwm](https://github.com/crammk/dwm) + [dwmblocks](https://github.com/crammk/dwmblocks)
 
 ## Programs
 
@@ -19,7 +19,7 @@
 + Music: spotify
 + Pdf-Viewer: zathura with mupdf
 + Screenshots: Flameshot
-+ Video-Player: vlc or mpv
++ Video-Player: mpv
 
 ## Other Dependencies
 
