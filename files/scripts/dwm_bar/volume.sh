@@ -8,7 +8,7 @@ NOW=$( pactl list sinks | grep '^[[:space:]]Volume:' | head -n $SINK | tail -n 1
 MUTE=$(pactl list sinks | grep '^[[:space:]]Mute:'| head -n $SINK | tail -n 1 | awk -F ":" '{print $2}'| xargs)
 
 if [ "$MUTE" = "yes" ]; then
-  echo "$NOW%"
+  echo "Muted"
 else
   echo "$NOW%"
 fi
