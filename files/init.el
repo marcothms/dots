@@ -1,4 +1,3 @@
-;   ___ _ __ ___   __ _  ___ ___
 ;  / _ \ '_ ` _ \ / _` |/ __/ __|
 ; |  __/ | | | | | (_| | (__\__ \
 ;  \___|_| |_| |_|\__,_|\___|___/
@@ -236,13 +235,39 @@
     "gj" 'magit-blame
     "gc" 'magit-commit
     "gp" 'magit-push
+    "gu" 'magit-pull
     "gs" 'magit-status
     "gd" 'magit-diff
     "gl" 'magit-log
     "gc" 'magit-checkout
     "gb" 'magit-branch))
 
-;; lsp
+;; Treemacs
+(use-package treemacs
+  :ensure t
+  :defer t
+  :config
+  (progn
+    (setq
+     treemacs-follow-after-init t
+     treemacs-persist-file (expand-file-name ".cache/treemacs-persist" user-emacs-directory))
+    (treemacs-follow-mode t))
+  :bind
+  (:map global-map
+    ("C-x t t" . treemacs)))
+
+;; C-c C-p -> projectile
+;; C-c C-w -> workspace
+
+(use-package treemacs-evil
+  :after (treemacs evil)
+  :ensure t)
+
+(use-package treemacs-projectile
+  :after (treemacs projectile)
+  :ensure t)
+
+;; Lsp
 (use-package lsp-mode
   :ensure t
   :commands (lsp lsp-deferred)
