@@ -13,6 +13,7 @@ let mapleader = "\<Space>"
 call plug#begin()
 
 Plug 'joshdick/onedark.vim' " color scheme
+Plug 'arcticicestudio/nord-vim'
 
 Plug 'tpope/vim-sleuth' " heuristic file indendation
 
@@ -40,7 +41,7 @@ call plug#end()
 " ============================== Colors
 syntax on
 set background=dark
-colorscheme onedark
+colorscheme nord
 hi Normal ctermbg=NONE guibg=NONE
 set termguicolors
 
