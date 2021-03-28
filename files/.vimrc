@@ -12,8 +12,7 @@ let mapleader = "\<Space>"
 " ============================== vim-plug
 call plug#begin()
 
-Plug 'joshdick/onedark.vim' " color scheme
-Plug 'arcticicestudio/nord-vim'
+Plug 'arcticicestudio/nord-vim' " color scheme
 
 Plug 'tpope/vim-sleuth' " heuristic file indendation
 
@@ -80,7 +79,7 @@ function! FileNameWithIcon() abort
   return winwidth(0) > 70  ?  WebDevIconsGetFileTypeSymbol() . ' ' . expand('%:T') : ''
 endfunction
 
-let g:lightline = { 'colorscheme': 'one' }
+let g:lightline = { 'colorscheme': 'nord' }
 
 let g:lightline.component_function = { 'gitstatus': 'GitStatus' }
 let g:lightline.component = { 'filename_with_icon': '%{FileNameWithIcon()}' }
