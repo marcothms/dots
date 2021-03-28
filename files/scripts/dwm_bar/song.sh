@@ -5,11 +5,11 @@ function scroll () {
 	scrolling="$2"
 	temp="$(echo "$scrolling"| sed "s/^\(.\{20\}\)\(.*\)$/\1[\2]/"| sed "s/\[ *\]$//"| sed "s/\[.*\]$//")"
 	suffix="$3"
-	if [ "$(echo -n $scrolling |wc -c)" -gt 20 ]; then
-		echo "$prefix%{T7}$temp%{T-}$suffix"
+	if [ "$(echo -n $scrolling |wc -c)" -gt 30 ]; then
+		echo "${prefix}${temp}${suffix}"
 		sleep 0.5
 
-		zscroll -l 20 \
+		zscroll -l 30 \
         		--delay 0.2 \
 			--before-text "$prefix" \
 			--after-text "$suffix" \

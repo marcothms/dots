@@ -40,4 +40,4 @@ feh --bg-scale $HOME/data/nextcloud/wallpaper/wallpaper.png
 #asetroot $HOME/data/nextcloud/wallpaper/animated/current/ -t 50 &
 
 dwmblocks &
-exec dwm
+exec dwm 2> ~/.dwm.log
