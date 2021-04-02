@@ -26,6 +26,7 @@
 + [asetroot](https://github.com/Wilnath/asetroot): animated wallpaper
 + [i3-swallow](https://github.com/jamesofarrell/i3-swallow): swallow terminal (not used anymore)
 + [neovim-remote](https://github.com/mhinz/neovim-remote): zathura integration
++ [nord-tmux](https://github.com/arcticicestudio/nord-tmux) - tmux color theme
 + [vim-plug](https://github.com/junegunn/vim-plug): vim plugin manager
 + fcitx + mozc: Japanese Keyboard - [Install](https://www.youtube.com/watch?v=lJoXhS4EUJs) - fcitx-im fcitx-configtool fcitx-mozc
 + fzf: fuzzy file finder
