@@ -14,6 +14,10 @@
 (setq initial-major-mode 'fundamental-mode ;; better startup speed
       initial-scratch-message nil)
 
+;; Show matching paranthesis
+(show-paren-mode t)
+(setq show-paren-style 'paranthesis)
+
 ;; Font
 (set-face-attribute 'default nil :font "FiraCode Nerd Font Mono" :height 100)
 

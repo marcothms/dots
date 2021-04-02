@@ -66,10 +66,6 @@ if [[ -x $(which nvim 2> /dev/null) ]]; then
     alias vim="nvim"
 fi
 
-#if [[ -x $(which swallow 2> /dev/null) ]]; then
-#    alias zathura="swallow zathura"
-#fi
-
 alias updoot="yay -Syu"
 alias dhl="yay"
 
@@ -159,7 +155,15 @@ bindkey -v '^?' backward-delete-char
 
 # ============================== fzf
 export FZF_DEFAULT_COMMAND='find .'
-export FZF_DEFAULT_OPTS='--preview="head {}" --layout=reverse --bind=tab:down --bind=btab:up'
+export FZF_DEFAULT_OPTS='
+       --layout=reverse
+       --bind=tab:down
+       --bind=btab:up
+       --color=fg:#e5e9f0,bg:#2e3440,hl:#81a1c1
+       --color=fg+:#e5e9f0,bg+:#2e3440,hl+:#81a1c1
+       --color=info:#eacb8a,prompt:#A3BE8C,pointer:#A3BE8C
+       --color=marker:#A3BE8C,spinner:#A3BE8C,header:#A3BE8C'
+
 
 ## fzf Bindings in zsh (C-r and C-t)
 if [[ -x $(which fzf 2> /dev/null) ]]
