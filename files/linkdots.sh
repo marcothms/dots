@@ -4,16 +4,12 @@
 path=$(pwd)
 
 # --- home --- #
-home_files=".bashrc .zshrc .gitconfig .tmux .tmux.conf .vimrc .Xresources .xinitrc"
+home_files="scripts .bashrc .zshrc .gitconfig .tmux .tmux.conf .vimrc .Xresources .xinitrc"
 for file in $home_files
 do
 	rm -rf $HOME/$file
 	ln -sf $path/$file $HOME/$file
 done
-
-# scripts
-rm -rf $HOME/scripts
-ln -sf $path/scripts $HOME/scripts
 
 # emacs
 mkdir -p $HOME/.emacs.d
