@@ -1,11 +1,17 @@
 #!/usr/bin/env bash
 
-VERBOSE=$1
-
 # Make sure the paths are correct
 path=$(pwd)
 
-# Scripts
+# --- home --- #
+home_files=".bashrc .zshrc .gitconfig .tmux .tmux.conf .vimrc .Xresources .xinitrc"
+for file in $home_files
+do
+	rm -rf $HOME/$file
+	ln -sf $path/$file $HOME/$file
+done
+
+# scripts
 rm -rf $HOME/scripts
 ln -sf $path/scripts $HOME/scripts
 
@@ -13,27 +19,14 @@ ln -sf $path/scripts $HOME/scripts
 mkdir -p $HOME/.emacs.d
 ln -sf $path/init.el $HOME/.emacs.d/init.el
 
-# Home directory
-home_files=".bashrc .zshrc .gitconfig .tmux.conf .vimrc .Xresources .xinitrc"
-for file in $home_files
-do
-	ln -sf $path/$file $HOME/$file
-	if [ "$VERBOSE" = "-v" ]; then
-		echo "Linked from $path/$file to $HOME/$file"
-	fi
-done
-
-# properly add startx files
+# startx
 chmod +x $HOME/.xinitrc
-ln -s $HOME/.xinitrc $HOME/.xsession
+ln -sf $HOME/.xinitrc $HOME/.xsession
 
-# .config directory
-conf_files="alacritty dunst i3 nvim picom.conf polybar ranger zathura"
+# --- .config --- #
+conf_files="alacritty dunst nvim picom.conf ranger zathura"
 for file in $conf_files
 do
 	rm -rf $HOME/.config/$file
 	ln -sf $path/.config/$file $HOME/.config/$file
-	if [ "$VERBOSE" = "-v" ]; then
-		echo "Linked from $path/.config/$file to $HOME/.config/$file"
-	fi
 done
