@@ -49,4 +49,4 @@ Following the help should be enough guidance.
 + Product Sans: Non-Monospaced Font
 + Noto Sans CJK JP: Japanese Characters
 + Stick-Regular: Japanese Characters
-+ Material Design Icons: Polybar Icons
++ Material Design Icons: Icons in Bar
