@@ -13,13 +13,14 @@
 ## Programs
 
 + Editor: emacs
-+ File-Browser: ranger
++ File-Browser: ranger, thunar + tumbler
 + Image-Viewer: sxiv
 + Launcher: [dmenu](https://github.com/crammk/dmenu)
++ Lock: [slock](https://github.com/crammk/slock)
 + Music: spotify
 + Pdf-Viewer: zathura with mupdf
 + Screenshots: Flameshot
-+ Video-Player: mpv
++ Video-Player: mpv, vlc
 
 ## Other Dependencies
 
