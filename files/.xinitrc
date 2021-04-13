@@ -33,6 +33,12 @@ export SDL_IM_MODULE='fcitx'
 export XMODIFIERS='@im=fcitx'
 export WINIT_UNIX_BACKEND=x11
 
+# path
+export PATH=$PATH:$HOME/.cargo/bin:$HOME:/.local:$HOME/.cabal/bin:$HOME/.ghcup/bin
+
+# university wants me to use intellij, but dwm rightfully hates it
+export _JAVA_AWT_WM_NONREPARENTING=1
+
 # wallpaper
 feh --bg-scale $HOME/data/nextcloud/wallpaper/wallpaper.png
 #asetroot $HOME/data/nextcloud/wallpaper/animated/current/ -t 50 &
