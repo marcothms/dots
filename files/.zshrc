@@ -54,6 +54,7 @@ export PATH=$PATH:$HOME/.local/bin:$HOME/scripts
 alias fontslist="fc-list :scalable=true:spacing=mono: family"
 alias fontscache="fc-cache -f -v"
 alias accent="echo #98c379"
+alias ofen="gcc"
 
 if [[ -x $(which nvim 2> /dev/null) ]]; then
     alias vim="nvim"
@@ -179,3 +180,4 @@ fancy-ctrl-z () {
 }
 zle -N fancy-ctrl-z
 bindkey '^Z' fancy-ctrl-z
+alias mon2cam="deno run --unstable -A -r -q https://raw.githubusercontent.com/ShayBox/Mon2Cam/master/src/mod.ts"
