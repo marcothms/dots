@@ -1,3 +1,5 @@
+;
+;   ___ _ __ ___   __ _  ___ ___
 ;  / _ \ '_ ` _ \ / _` |/ __/ __|
 ; |  __/ | | | | | (_| | (__\__ \
 ;  \___|_| |_| |_|\__,_|\___|___/
@@ -11,8 +13,8 @@
 (toggle-scroll-bar -1) ;; Or this
 (setq inhibit-startup-screen t) ;; Leave me alone with your tutorials
 (setq tramp-default-method "ssh") ;; speed up tramp mode
-(setq initial-major-mode 'fundamental-mode ;; better startup speed
-      initial-scratch-message nil)
+(setq initial-major-mode 'fundamental-mode) ;; better startup speed
+(setq initial-scratch-message nil) ;; don't show me help at startup
 
 ;; Show matching paranthesis
 (show-paren-mode t)
@@ -44,15 +46,15 @@
 
 (require 'package)
 (setq package-enable-at-startup nil)
-(setq package-archives '(("org"       . "http://orgmode.org/elpa/")
-                         ("melpa"     . "https://melpa.org/packages/")
-                         ("elpa"       . "http://elpa.gnu.org/packages/")
+(setq package-archives '(("org"   . "http://orgmode.org/elpa/")
+                         ("melpa" . "https://melpa.org/packages/")
+                         ("elpa"  . "http://elpa.gnu.org/packages/")
                          ))
 (package-initialize)
 
 ;; Bootstrap `use-package'
 (unless (package-installed-p 'use-package) ; unless it is already installed
-  (package-refresh-contents) ; updage packages archive
+  (package-refresh-contents) ; update packages archive
   (package-install 'use-package)) ; and install the most recent version of use-package
 
 (eval-when-compile
@@ -63,6 +65,7 @@
 (use-package exec-path-from-shell
   :ensure t)
 
+;; Use ssh agent from env
 (exec-path-from-shell-copy-env "SSH_AGENT_PID")
 (exec-path-from-shell-copy-env "SSH_AUTH_SOCK")
 

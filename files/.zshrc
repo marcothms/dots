@@ -29,7 +29,7 @@ case $TERM in
     # Write some info to terminal title.
     # This is seen when the shell prompts for input.
     function precmd {
-      print -Pn "\e]0;%(1j,%j job%(2j|s|); ,)%~ - $TERM\a"
+      print -Pn "\e]0;%(1j,%j job%(2j|s|) - ,)%~ - $TERM\a"
     }
     # Write command and args to terminal title.
     # This is seen while the shell waits for a command to complete.

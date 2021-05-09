@@ -17,6 +17,7 @@
 + Image-Viewer: sxiv
 + Launcher: [dmenu](https://github.com/crammk/dmenu)
 + Lock: [slock](https://github.com/crammk/slock)
++ Mouse-Settings: piper
 + Music: spotify
 + Pdf-Viewer: zathura with mupdf
 + Screenshots: Flameshot
