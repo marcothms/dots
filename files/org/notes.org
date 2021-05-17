@@ -1,0 +1,28 @@
+#+LaTeX_CLASS: article
+#+LaTeX_CLASS_OPTIONS: [letterpaper]
+#+LANGUAGE: de
+#+OPTIONS: toc:t
+
+#+LATEX_HEADER: \usepackage{mathtools}
+#+LATEX_HEADER: \usepackage{amsthm}
+#+LATEX_HEADER: \usepackage{amssymb}
+#+LATEX_HEADER: \usepackage{amsmath}
+#+LATEX_HEADER: \usepackage[utf8]{inputenc}
+#+LATEX_HEADER: \usepackage[T1]{fontenc}
+#+LATEX_HEADER: \usepackage[ngerman]{babel}
+#+LATEX_HEADER: \usepackage{hyphenat}
+#+LATEX_HEADER: \usepackage{tikz}
+#+LATEX_HEADER: \usepackage{graphicx}
+#+LATEX_HEADER: \usepackage{listings}
+#+LATEX_HEADER: \usepackage{color}
+#+LATEX_HEADER: \usepackage{proof}
+
+#+LATEX_HEADER: \theoremstyle{definition}
+#+LATEX_HEADER: \newtheorem{def}{Definition}[section]
+#+LATEX_HEADER: \newtheorem{theorem}{Satz}[section]
+
+#+LATEX_HEADER: \theoremstyle{algo}
+#+LATEX_HEADER: \newtheorem{algo}{Algorithmus}[section]
+#+LATEX_HEADER: \newtheorem*{remark}{Bemerkung}
+
+#+LATEX_HEADER: \date{\today}

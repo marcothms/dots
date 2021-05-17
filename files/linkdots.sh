@@ -5,8 +5,10 @@ path=$(pwd)
 
 # --- home --- #
 home_files="scripts .bashrc .zshrc .gitconfig .tmux .tmux.conf .vimrc .Xresources .xinitrc"
+
 for file in $home_files
 do
+	# rm, so folders also get updated
 	rm -rf $HOME/$file
 	ln -sf $path/$file $HOME/$file
 done
@@ -21,8 +23,10 @@ ln -sf $HOME/.xinitrc $HOME/.xsession
 
 # --- .config --- #
 conf_files="alacritty dunst nvim picom.conf ranger zathura"
+
 for file in $conf_files
 do
+	# rm, so folders also get updated
 	rm -rf $HOME/.config/$file
 	ln -sf $path/.config/$file $HOME/.config/$file
 done
