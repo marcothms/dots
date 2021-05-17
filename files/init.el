@@ -18,7 +18,10 @@
 
 ;; Show matching paranthesis
 (show-paren-mode t)
-(setq show-paren-style 'paranthesis)
+;; paranthesis
+;; expression
+;; mixed - paren if visible, expr when not
+(setq show-paren-style 'mixed)
 
 ;; Font
 (set-face-attribute 'default nil :font "FiraCode Nerd Font Mono" :height 100)
@@ -257,7 +260,8 @@
   (progn
     (setq
      treemacs-follow-after-init t
-     treemacs-persist-file (expand-file-name ".cache/treemacs-persist" user-emacs-directory))
+     treemacs-persist-file (expand-file-name ".cache/treemacs-persist" user-emacs-directory)
+     treemacs-width 40)
     (treemacs-follow-mode t))
   :bind
   (:map global-map
@@ -384,32 +388,7 @@
   (setq TeX-parse-self t)
   (setq preview-scale-function 1.5))
 
-;; Java
-(use-package lsp-java
-  :ensure t
-  :config
-  (setq lsp-java-format-on-type-enabled nil))
-
-(add-hook 'java-mode-hook 'prettify-symbols-mode)
-(add-hook 'java-mode-hook (lambda ()
-		 (push '("!=" . ?≠) prettify-symbols-alist)
-		 (push '("<=" . ?≤) prettify-symbols-alist)
-                 (push '(">=" . ?≥) prettify-symbols-alist)))
-
-
-;; Haskell
-(use-package haskell-mode
-  :ensure t
-  :hook
-  (haskell-mode . interactive-haskell-mode))
-
-(use-package lsp-haskell
-  :ensure t
-  :hook
-  (haskell-mode . lsp)
-  (haskell-literate-mode . lsp))
-
-;; custom
+;; Math Symbols
 (use-package math-symbol-lists
   :ensure t
   :config
@@ -437,12 +416,55 @@
    ("\\reals"   ?ℝ)
    ("\\complex" ?ℂ)
    ("\\primes"  ?ℙ)
+   ; number powers
+   ("^0" ?⁰) ("^1" ?¹) ("^2" ?²) ("^3" ?³) ("^4" ?⁴) ("^5" ?⁵)
+   ("^6" ?⁶) ("^7" ?⁷) ("^8" ?⁸) ("^9" ?⁹)
+   ; plus and minus
+   ("^-" ?⁻)
+   ("^+" ?⁺)
+   ; letter powers
+   ("^a" ?ᵃ) ("^b" ?ᵇ) ("^c" ?ᶜ) ("^d" ?ᵈ) ("^e" ?ᵉ) ("^f" ?ᶠ)
+   ("^g" ?ᵍ) ("^h" ?ʰ) ("^i" ?ⁱ) ("^j" ?ʲ) ("^k" ?ᵏ) ("^l" ?ˡ)
+   ("^m" ?ᵐ) ("^n" ?ⁿ) ("^o" ?ᵒ) ("^p" ?ᵖ) ("^r" ?ʳ) ("^s" ?ˢ)
+   ("^t" ?ᵗ) ("^u" ?ᵘ) ("^v" ?ᵛ) ("^w" ?ʷ) ("^x" ?ˣ) ("^y" ?ʸ)
+   ("^z" ?ᶻ)
+   ; number subscript
+   ("_0" ?₀) ("_1" ?₁) ("_2" ?₂) ("_3" ?₃) ("_4" ?₄) ("_5" ?₅)
+   ("_6" ?₆) ("_7" ?₇) ("_8" ?₈) ("_9" ?₉)
+   ; letter subscript
+   ("_a" ?ₐ) ("_e" ?ₑ) ("_h" ?ₕ) ("_i" ?ⱼ) ("_k" ?ₖ) ("_l" ?ₗ) ("_m" ?ₘ)
+   ("_n" ?ₙ) ("_o" ?ₒ) ("_p" ?ₚ) ("_s" ?ₛ) ("_t" ?ₜ) ("_x" ?ₓ)
    ) 
   (mapc (lambda (x)
           (if (cddr x)
               (quail-defrule (cadr x) (car (cddr x)))))
         (append math-symbol-list-basic math-symbol-list-extended))
   )
+
+;; Java
+(use-package lsp-java
+  :ensure t
+  :config
+  (setq lsp-java-format-on-type-enabled nil))
+
+(add-hook 'java-mode-hook 'prettify-symbols-mode)
+(add-hook 'java-mode-hook (lambda ()
+		 (push '("!=" . ?≠) prettify-symbols-alist)
+		 (push '("<=" . ?≤) prettify-symbols-alist)
+                 (push '(">=" . ?≥) prettify-symbols-alist)))
+
+
+;; Haskell
+(use-package haskell-mode
+  :ensure t
+  :hook
+  (haskell-mode . interactive-haskell-mode))
+
+(use-package lsp-haskell
+  :ensure t
+  :hook
+  (haskell-mode . lsp)
+  (haskell-literate-mode . lsp))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
