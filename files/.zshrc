@@ -53,7 +53,6 @@ export PATH=$PATH:$HOME/.local/bin:$HOME/scripts
 # ============================== Aliases
 alias fontslist="fc-list :scalable=true:spacing=mono: family"
 alias fontscache="fc-cache -f -v"
-alias accent="echo #98c379"
 alias ofen="cc"
 alias mon2cam="deno run --unstable -A -r -q https://raw.githubusercontent.com/ShayBox/Mon2Cam/master/src/mod.ts"
 
