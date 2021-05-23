@@ -210,26 +210,24 @@
 ;; org mode
 (use-package org
   :ensure t
-  ;; M-LEFT M-RIGHT deindent indent node
-  ;; M-UP M-DOWN move node up down
-  ;; Tab fold/unfold
-  ;; M-S-RET Insert new TODO
+  ;; C-c C-t org rotate
   :general
   (vim-leader-def 'normal 'global
-    "ohj" 'org-forward-heading-same-level ;; org header j"
-    "ohk" 'org-backward-heading-same-level ;; org header k
-    "or" 'org-meta-return ;; org return, insert new  entry
-    "otr" 'org-todo ;; org todo rotate
-    "opk" 'org-priority-up ;; org prio k
-    "opj" 'org-priority-down ;; org prip j
     "oci" 'org-clock-in
     "oco" 'org-clock-out
-    "oy"  'org-cycle) ;; Org-cYcle
+    "oa"  'org-agenda
+    "oca" 'org-capture)
   :config
   (setq org-format-latex-options (plist-put org-format-latex-options :scale 1.5))
+  (setq org-agenda-files (quote ("~/data/nextcloud/org")))
+  (setq org-directory "~/data/nextcloud/org")
   :init
-  (setq org-todo-keywords '((sequence "TODO" "PROGRESS" "FEEDBACK" "|" "DONE" "DELEGATED")))
-  (setq org-log-done 'time))
+  (setq org-todo-keywords '((sequence "TODO" "PROGRESS" "|" "DONE")))
+  (setq org-log-done 'time)
+  (setq org-capture-templates
+	(quote (("j" "Japanese" entry (file "~/data/nextcloud/org/japanese.org") "* TODO %?\n")
+		("u" "University" entry (file "~/data/nextcloud/org/uni.org") "* TODO %?\n")
+		("p" "Personal" entry (file "~/data/nextcloud/org/personal.org") "* TODO %?\n")))))
 
 (use-package org-bullets
   :ensure t
@@ -455,7 +453,6 @@
 		 (push '("!=" . ?≠) prettify-symbols-alist)
 		 (push '("<=" . ?≤) prettify-symbols-alist)
                  (push '(">=" . ?≥) prettify-symbols-alist)))
-
 
 ;; Haskell
 (use-package haskell-mode

@@ -47,8 +47,6 @@ zstyle ':vcs_info:git:*' formats '|%b '
 export EDITOR="nvim"
 export VISUAL="nvim"
 export LANG="en_US.UTF-8"
-# ~/.xinitrc holds rest of $PATH
-export PATH=$PATH:$HOME/.local/bin:$HOME/scripts
 
 # ============================== Aliases
 alias fontslist="fc-list :scalable=true:spacing=mono: family"

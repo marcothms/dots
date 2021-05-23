@@ -27,6 +27,15 @@ alias rm='rm -i' # ask before removal
 alias cp='cp -i' # ask before removal
 alias mv='mv -i' # ask before removal
 
+# ============================== SSH-Agent
+if [ -f ~/.ssh/agent.env ]; then
+    . ~/.ssh/agent.env > /dev/null
+else
+    echo "Starting ssh-agent"
+    eval `ssh-agent | tee ~/.ssh/agent.env`
+    ssh-add
+fi
+
 if [ -f ~/.bashrc_local ]; then
     source ~/.bashrc_local
 fi

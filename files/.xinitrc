@@ -34,7 +34,7 @@ export XMODIFIERS='@im=fcitx'
 export WINIT_UNIX_BACKEND=x11
 
 # path
-export PATH=$PATH:$HOME/.cargo/bin:$HOME:/.local:$HOME/.cabal/bin:$HOME/.ghcup/bin
+export PATH=$PATH:$HOME/scripts:$HOME/.cargo/bin:$HOME/.cabal/bin:$HOME/.ghcup/bin
 
 # university wants me to use intellij, but dwm rightfully hates it
 export _JAVA_AWT_WM_NONREPARENTING=1
