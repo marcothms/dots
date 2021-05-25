@@ -13,7 +13,7 @@
 ## Programs
 
 + Editor: emacs
-+ File-Browser: ranger, thunar + tumbler
++ File-Browser: thunar + tumbler
 + Image-Viewer: sxiv
 + Launcher: [dmenu](https://github.com/crammk/dmenu)
 + Lock: [slock](https://github.com/crammk/slock)
