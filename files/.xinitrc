@@ -40,8 +40,8 @@ export PATH=$PATH:$HOME/scripts:$HOME/.cargo/bin:$HOME/.cabal/bin:$HOME/.ghcup/b
 export _JAVA_AWT_WM_NONREPARENTING=1
 
 # wallpaper
-#feh --bg-scale $HOME/data/nextcloud/wallpaper/wallpaper.png
-asetroot $HOME/data/nextcloud/wallpaper/animated/current/ -t 100 &
+feh --bg-scale $HOME/data/nextcloud/wallpaper/wallpaper.png
+#asetroot $HOME/data/nextcloud/wallpaper/animated/current/ -t 100 &
 
 dwmblocks &
 exec dwm 2> ~/.dwm.log

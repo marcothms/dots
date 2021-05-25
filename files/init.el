@@ -222,15 +222,15 @@
     "oca" 'org-capture)
   :config
   (setq org-format-latex-options (plist-put org-format-latex-options :scale 1.5))
-  (setq org-agenda-files (quote ("~/data/nextcloud/org")))
-  (setq org-directory "~/data/nextcloud/org")
+  (setq org-agenda-files (quote ("~/org")))
+  (setq org-directory "~/org")
   :init
   (setq org-todo-keywords '((sequence "TODO" "PROGRESS" "|" "DONE")))
   (setq org-log-done 'time)
   (setq org-capture-templates
-	(quote (("j" "Japanese" entry (file "~/data/nextcloud/org/japanese.org") "* TODO %?\n")
-		("u" "University" entry (file "~/data/nextcloud/org/uni.org") "* TODO %?\n")
-		("p" "Personal" entry (file "~/data/nextcloud/org/personal.org") "* TODO %?\n")))))
+	(quote (("j" "Japanese" entry (file "~/org/japanese.org") "* TODO %?\n")
+		("u" "University" entry (file "~/org/uni.org") "* TODO %?\n")
+		("p" "Personal" entry (file "~/org/personal.org") "* TODO %?\n")))))
 
 (use-package org-bullets
   :ensure t
