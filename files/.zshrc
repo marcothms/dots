@@ -147,11 +147,10 @@ export FZF_DEFAULT_OPTS='
        --layout=reverse
        --bind=tab:down
        --bind=btab:up
-       --color=fg:#e5e9f0,bg:#2e3440,hl:#81a1c1
-       --color=fg+:#e5e9f0,bg+:#2e3440,hl+:#81a1c1
-       --color=info:#eacb8a,prompt:#A3BE8C,pointer:#A3BE8C
-       --color=marker:#A3BE8C,spinner:#A3BE8C,header:#A3BE8C'
-
+       --color=fg:#282828,bg:#f2e5bc,hl:#458588
+       --color=fg+:#282828,bg+:#f2e5bc,hl+:#458588
+       --color=info:#282828,prompt:#282828,pointer:#282828
+       --color=marker:#282828,spinner:#282828,header:#282828'
 
 ## fzf Bindings in zsh (C-r and C-t)
 if [[ -x $(which fzf 2> /dev/null) ]]
