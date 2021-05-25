@@ -16,6 +16,11 @@ if [ -f "$usermodmap" ]; then
     xmodmap "$usermodmap"
 fi
 
+# gtk and qt theme - requires https://github.com/hargonix/Pop-gruvbox/ in ~/.themes
+export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
+export GTK_THEME=Pop-gruvbox:light
+export QT_QPA_PLATFORMTHEME="gtk2"
+
 # keyboard layout
 setxkbmap -layout za
 
