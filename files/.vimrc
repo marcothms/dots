@@ -12,7 +12,7 @@ let mapleader = "\<Space>"
 " ============================== vim-plug
 call plug#begin()
 
-Plug 'arcticicestudio/nord-vim' " color scheme
+Plug 'morhetz/gruvbox' " color scheme
 
 Plug 'tpope/vim-sleuth' " heuristic file indendation
 
@@ -39,8 +39,8 @@ call plug#end()
 
 " ============================== Colors
 syntax on
-set background=dark
-colorscheme nord
+set background=light
+colorscheme gruvbox
 hi Normal ctermbg=NONE guibg=NONE
 set termguicolors
 
@@ -79,7 +79,7 @@ function! FileNameWithIcon() abort
   return winwidth(0) > 70  ?  WebDevIconsGetFileTypeSymbol() . ' ' . expand('%:T') : ''
 endfunction
 
-let g:lightline = { 'colorscheme': 'nord' }
+let g:lightline = { 'colorscheme': 'gruvbox' }
 
 let g:lightline.component_function = { 'gitstatus': 'GitStatus' }
 let g:lightline.component = { 'filename_with_icon': '%{FileNameWithIcon()}' }
