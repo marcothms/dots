@@ -28,7 +28,7 @@ setxkbmap -layout za
 fcitx -d &
 nextcloud &
 dunst &
-picom &
+#picom &
 nm-applet &
 
 # fcitx exports
