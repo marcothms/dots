@@ -72,6 +72,7 @@
 ;; Use ssh agent from env
 (exec-path-from-shell-copy-env "SSH_AGENT_PID")
 (exec-path-from-shell-copy-env "SSH_AUTH_SOCK")
+(exec-path-from-shell-copy-env "PATH")
 
 ;; Themes and icons
 (use-package doom-themes
