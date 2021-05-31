@@ -10,6 +10,7 @@
 (setq auto-save-default nil) ;; Not this one either
 (menu-bar-mode -1) ;; The menu bar looks ugly in terminal
 (tool-bar-mode -1) ;; Nobody needs this
+(scroll-bar-mode -1)
 (toggle-scroll-bar -1) ;; Or this
 (setq inhibit-startup-screen t) ;; Leave me alone with your tutorials
 (setq tramp-default-method "ssh") ;; speed up tramp mode
@@ -100,7 +101,6 @@
   (dashboard-setup-startup-hook))
 
 (setq dashboard-banner-logo-title "Welcome back, Marc")
-;(setq dashboard-startup-banner "/home/marc/data/nextcloud/bilder/anime/5de1695.png")
 (setq dashboard-startup-banner 'logo)
 (setq dashboard-center-content t)
 (setq dashboard-items '((recents  . 5)
@@ -155,11 +155,11 @@
 ;; 80 charcater limit line in prog mode
 (use-package fill-column-indicator
   :ensure t
+  :defer 1
   :diminish fci-mode
   :config
   (setq fci-rule-width 1)
-  (setq fci-rule-width 80)
-  (setq fci-rule-color "green")
+  (setq fci-rule-color "#cc241d")
   :hook
   (prog-mode . fci-mode)
   (markdown-mode . fci-mode))
