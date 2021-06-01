@@ -60,6 +60,10 @@ pre > code {
     --interactive-active: #7c6f64;
 }
 
+[class*="root"][class*="modalSize"] {
+    background: var(--background-secondary);
+}
+
 ::-webkit-scrollbar,
 ::-webkit-scrollbar-track,
 ::-webkit-scrollbar-track-piece {
@@ -155,6 +159,14 @@ div[class^="size14"] {
     color: var(--text-normal);
 }
 
+div[class^="size14"][class*="description"] {
+    color: white;
+}
+
+div[class^="size16"][class*="header"] {
+    background-color: transparent;
+}
+
 div[class^="topic"] {
     color: var(--text-muted);
 }
@@ -197,7 +209,7 @@ a[class^="wrapper"] {
 }
 
 div[role="dialog"] {
-    color: var(--background-primary)
+    color: var(--background-secondary)
 }
 
 div[class*="activityPanel"] {
@@ -216,19 +228,31 @@ div[class^="side"] > div[class^="item"] {
     background-color: var(--background-secondary);
 }
 
+/* Video Button */
 [class*="lookFilled"][class*="colorBrand"] {
-    background-color: var(--text-link);
+    background-color: var(--background-primary);
+}
+[class*="lookFilled"][class*="colorBrand"]:hover {
+    background-color: var(--background-primary);
+}
+
+/* Screen recording */
+[class*="color"][class*="buttonColor"][class*="buttonActive"] {
+    background-color: var(--background-primary);
+}
+[class*="color"][class*="buttonColor"][class*="buttonActive"]:hover {
+    background-color: var(--background-primary);
 }
 
 div[class*="tooltip"] {
     background-color: var(--background-secondary);
 }
 div[class*="contextMenu"] {
-    background-color: var(--background-secondary);
+    background-color: transparent;
 }
 
 div[class*="header"] {
-    background-color: var(--background-secondary)
+    background-color: var(--background-secondary);
 }
 
 div[class*="details"] {
@@ -248,7 +272,7 @@ span[class*="headerName"] {
 }
 
 div[class*="userPopout"] > div[class*="footer"] {
-    background-color: var(--background-primary)
+    background-color: var(--background-secondary)
 }
 
 div[class*="scrollerWrap"][class*="body"] > div[class*="scroller"] {
@@ -344,7 +368,7 @@ div[class*="infoBar"] {
 }
 
 div[class*="body"][class*="scrollerBase"][class*="thin"] {
-    background-color: var(--background-primary);
+    background-color: var(--background-secondary);
 }
 
 /* Fix text colour when Spotify is playing */
@@ -436,7 +460,15 @@ div[class*="focusLock"] > div[class*="root"] > div[class*="flex"] {
 
 /** Bot Tags */
 span[class*="botTag"] {
-    background-color: var(--text-link)
+    background-color: var(--text-link);
+}
+
+span[class*="botText"] {
+    color: var(--background-primary);
+}
+
+svg[class*="botTagVerified"] {
+    color: var(--background-primary);
 }
 
 /** Discover Guilds */
@@ -794,3 +826,14 @@ div[class*="contentContainer"] > div[class*="scroller"] > div[class*="contentWid
     font-weight: bold;
 }
 
+div[class*="headerIdleContainer"] {
+    background-color: transparent;
+}
+
+div[class*="headerTitle"] {
+    background-color: transparent;
+}
+
+div[class*="viewers"] > span {
+    color: #b9bbbe;
+}
