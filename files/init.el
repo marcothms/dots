@@ -46,8 +46,8 @@
 (add-hook 'evil-insert-state-entry-hook #'noct:absolute)
 (add-hook 'evil-insert-state-exit-hook #'noct:relative)
 
-;; whitespaces
-(whitespace-mode)
+;; whitespace
+(global-whitespace-mode t)
 (setq whitespace-style '(face trailing tabs tab-mark))
 
 
@@ -66,6 +66,11 @@
 
 (eval-when-compile
   (require 'use-package))
+
+(use-package quelpa
+  :ensure t)
+(use-package quelpa-use-package
+  :ensure t)
 
 ;; Packages
 
@@ -262,72 +267,13 @@
     "gb" 'magit-branch))
 
 ;; Treemacs
-(use-package treemacs
-  :ensure t
-  :defer t
-  :config
-  (progn
-    (setq
-     treemacs-follow-after-init t
-     treemacs-persist-file (expand-file-name ".cache/treemacs-persist" user-emacs-directory)
-     treemacs-width 40)
-    (treemacs-follow-mode t))
-  :bind
-  (:map global-map
-    ("C-x t t" . treemacs)))
-
-;; C-c C-p -> projectile
-;; C-c C-w -> workspace
-
-(use-package treemacs-evil
-  :after (treemacs evil)
-  :ensure t)
-
-(use-package treemacs-projectile
-  :after (treemacs projectile)
-  :ensure t)
-
-;; Lsp
-(use-package lsp-mode
-  :ensure t
-  :commands (lsp lsp-deferred)
-  :init
-  (setq lsp-keymap-prefix "C-l")
-  (setq gc-cons-threshold 100000000) ;; 100 mb
-  (setq read-process-output-max (* 1024 1024)) ;; 1mb
-  :config
-  (lsp-enable-which-key-integration t)
-  (setq lsp-rust-server 'rust-analyzer)
-  (setq lsp-auto-guess-root t)
-  (setq lsp-idle-delay 1.)
-  :hook
-  (rust-mode . lsp)
-  (java-mode . lsp)
-  (python-mode . lsp)
-  (haskell-mode . lsp))
-
-;; ui integration for lsp
-(use-package lsp-ui
-  :ensure t
-  :config
-  (setq lsp-ui-peek-enable nil)
-  (setq lsp-ui-sideline-show-code-actions nil)
-  (setq lsp-modeline-code-actions-enable nil)
-  (setq lsp-ui-doc-enable nil))
-
-;; tags
-(use-package lsp-ivy
-  :ensure t
-  :after lsp-mode
-  :bind(:map lsp-mode-map ("C-l g a" . lsp-ivy-workspace-symbol)))
-
-;; completion for lsp
-(use-package company
+(use-package treey
   :ensure t
   :hook
   (lsp-mode . company-mode)
   (prog-mode . company-mode)
   (LaTeX-mode . company-mode)
+  (org-mode . company-mode)
   :custom
   (company-minimum-prefix-length 2)
   (company-idle-delay 0.4)
@@ -371,6 +317,9 @@
   :hook
   (company-mode . yas-minor-mode)
   (company-mode . company-mode/add-yasnippet))
+
+(use-package yasnippet-snippets
+  :quelpa ((yasnippet-snippets :fetcher github :repo "hargoniX/yasnippet-snippets")))
 
 ;; compiling for lsp
 (use-package flycheck

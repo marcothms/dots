@@ -18,7 +18,7 @@
 #+LATEX_HEADER: \usepackage{proof}
 
 #+LATEX_HEADER: \theoremstyle{definition}
-#+LATEX_HEADER: \newtheorem{def}{Definition}[section]
+#+LATEX_HEADER: \newtheorem{definition}{Definition}[section]
 #+LATEX_HEADER: \newtheorem{theorem}{Satz}[section]
 
 #+LATEX_HEADER: \theoremstyle{algo}
