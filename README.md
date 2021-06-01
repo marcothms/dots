@@ -24,7 +24,6 @@
 + Video-Player: mpv, vlc
 
 ## Other Dependencies
-
 + [Gruvbox](https://github.com/hargonix/Pop-gruvbox/): GTK Theme (clone into ~/.themes)
 + [asetroot](https://github.com/Wilnath/asetroot): animated wallpaper
 + [i3-swallow](https://github.com/jamesofarrell/i3-swallow): swallow terminal (not used anymore)
@@ -48,8 +47,10 @@ Following the help should be enough guidance.
 + [TeX](https://github.com/latex-lsp/texlab)
 
 ## Fonts
-+ Fira Code Regular Nerd Font Complete Mono: Terminal
-+ Product Sans: Non-Monospaced Font
-+ Noto Sans CJK JP: Japanese Characters
-+ Stick-Regular: Japanese Characters
-+ Material Design Icons: Icons in Bar
+| Usage    | Font                  |
+| -------- | --------------------- |
+| Terminal | SFMono Nerd Font Mono | 
+| Non-Mono | Product Sans          |
+| JP       | Noto Sans CJK JP      |
+| JP       | Stick Regular         |
+| Icons    | Material Design Icons |

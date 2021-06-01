@@ -1,5 +1,5 @@
 ! Font
-XTerm.vt100.faceName: xft:FiraCode Nerd Font Mono:antialias=true
+XTerm.vt100.faceName: xft:SFMono Nerd Font Mono:antialias=true
 XTerm.vt100.faceSize: 9
 
 ! Remove Scrollbar
