@@ -25,7 +25,8 @@
 (setq show-paren-style 'paranthesis)
 
 ;; Font
-(set-face-attribute 'default nil :font "FiraCode Nerd Font Mono" :height 100)
+(set-face-attribute 'default nil :font "SFMono Nerd Font Mono" :height 100)
+(add-to-list 'default-frame-alist '(font . "SFMono Nerd Font Mono"))
 
 ;; Make ESC quit prompts
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
@@ -45,8 +46,10 @@
 (add-hook 'evil-insert-state-entry-hook #'noct:absolute)
 (add-hook 'evil-insert-state-exit-hook #'noct:relative)
 
-;; Show trailing whitespaces
-(setq-default show-trailing-whitespace t)
+;; whitespaces
+(whitespace-mode)
+(setq whitespace-style '(face trailing tabs tab-mark))
+
 
 (require 'package)
 (setq package-enable-at-startup nil)
@@ -81,7 +84,8 @@
   :config
   (setq doom-gruvbox-light-variant "soft")
   (load-theme 'doom-gruvbox-light t)
-  (doom-themes-org-config))
+  (doom-themes-org-config)
+  (doom-themes-treemacs-config))
 
 (use-package doom-modeline
   :ensure t

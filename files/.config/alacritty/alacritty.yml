@@ -34,7 +34,7 @@ window:
 
 font:
   normal:
-    family: FiraCode Nerd Font Mono
+    family: SFMono Nerd Font Mono
     style: Regular
 
 background_opacity: 1
