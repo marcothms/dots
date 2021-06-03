@@ -40,7 +40,7 @@
 Emacs should throw a warning, when it can't start the language server.
 Following the help should be enough guidance.
 
-### Nvim LSP (currently unused)
+### Nvim LSP (unused)
 
 + [Python](https://github.com/palantir/python-language-server)
 + [Rust](https://github.com/rust-analyzer/rust-analyzer)
