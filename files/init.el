@@ -406,6 +406,12 @@
   (setq TeX-parse-self t)
   (setq preview-scale-function 1.5))
 
+;; Fix math input
+(use-package unicode-fonts
+  :ensure t
+  :config
+  (unicode-fonts-setup))
+
 ;; Math Symbols
 (use-package math-symbol-lists
   :ensure t
@@ -422,11 +428,6 @@
    ("=>"        ?⇒)
    ("<->"       ?↔)
    ("<=>"       ?⇔)
-   ("/\\"       ?∧)
-   ("\\/"       ?∨)
-   ; Predicate Logic
-   ("ALL"       ?∀)
-   ("EX"        ?∃)
    ; sets of numbers
    ("\\nats"    ?ℕ)
    ("\\ints"    ?ℤ)
@@ -434,29 +435,11 @@
    ("\\reals"   ?ℝ)
    ("\\complex" ?ℂ)
    ("\\primes"  ?ℙ)
-   ; number powers
-   ("^0" ?⁰) ("^1" ?¹) ("^2" ?²) ("^3" ?³) ("^4" ?⁴) ("^5" ?⁵)
-   ("^6" ?⁶) ("^7" ?⁷) ("^8" ?⁸) ("^9" ?⁹)
-   ; plus and minus
-   ("^-" ?⁻)
-   ("^+" ?⁺)
-   ; letter powers
-   ("^a" ?ᵃ) ("^b" ?ᵇ) ("^c" ?ᶜ) ("^d" ?ᵈ) ("^e" ?ᵉ) ("^f" ?ᶠ)
-   ("^g" ?ᵍ) ("^h" ?ʰ) ("^i" ?ⁱ) ("^j" ?ʲ) ("^k" ?ᵏ) ("^l" ?ˡ)
-   ("^m" ?ᵐ) ("^n" ?ⁿ) ("^o" ?ᵒ) ("^p" ?ᵖ) ("^r" ?ʳ) ("^s" ?ˢ)
-   ("^t" ?ᵗ) ("^u" ?ᵘ) ("^v" ?ᵛ) ("^w" ?ʷ) ("^x" ?ˣ) ("^y" ?ʸ)
-   ("^z" ?ᶻ)
-   ; number subscript
-   ("_0" ?₀) ("_1" ?₁) ("_2" ?₂) ("_3" ?₃) ("_4" ?₄) ("_5" ?₅)
-   ("_6" ?₆) ("_7" ?₇) ("_8" ?₈) ("_9" ?₉)
-   ; letter subscript
-   ("_a" ?ₐ) ("_e" ?ₑ) ("_h" ?ₕ) ("_i" ?ⱼ) ("_k" ?ₖ) ("_l" ?ₗ) ("_m" ?ₘ)
-   ("_n" ?ₙ) ("_o" ?ₒ) ("_p" ?ₚ) ("_s" ?ₛ) ("_t" ?ₜ) ("_x" ?ₓ)
-   ) 
+  )
   (mapc (lambda (x)
           (if (cddr x)
               (quail-defrule (cadr x) (car (cddr x)))))
-        (append math-symbol-list-basic math-symbol-list-extended))
+        (append math-symbol-list-basic math-symbol-list-extended math-symbol-list-superscripts math-symbol-list-subscripts))
   )
 
 ;; Java
@@ -469,7 +452,7 @@
 (add-hook 'java-mode-hook (lambda ()
 		 (push '("!=" . ?≠) prettify-symbols-alist)
 		 (push '("<=" . ?≤) prettify-symbols-alist)
-                 (push '(">=" . ?≥) prettify-symbols-alist)))
+		 (push '(">=" . ?≥) prettify-symbols-alist)))
 
 ;; Haskell
 (use-package haskell-mode
