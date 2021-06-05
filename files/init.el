@@ -409,7 +409,7 @@
 ;; Fix math input
 (use-package unicode-fonts
   :ensure t
-  :config
+  :hook
   (unicode-fonts-setup))
 
 ;; Math Symbols
