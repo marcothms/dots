@@ -28,7 +28,6 @@ setxkbmap -layout za
 fcitx -d &
 nextcloud &
 dunst &
-#picom &
 nm-applet &
 
 # fcitx exports
@@ -43,6 +42,11 @@ export PATH=$PATH:$HOME/scripts:$HOME/.cargo/bin:$HOME/.cabal/bin:$HOME/.ghcup/b
 
 # university wants me to use intellij, but dwm rightfully hates it
 export _JAVA_AWT_WM_NONREPARENTING=1
+
+# 100hz :)
+if [ `hostname` == "nazarick" ];then
+    xrandr --output DP-3 --mode 3440x1440 --rate 99.98
+fi
 
 # wallpaper
 feh --bg-scale $HOME/data/nextcloud/wallpaper/wallpaper.png

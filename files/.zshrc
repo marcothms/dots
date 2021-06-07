@@ -45,7 +45,7 @@ zstyle ':vcs_info:git:*' formats '|%b '
 
 # ============================== Exports
 export EDITOR="nvim"
-export VISUAL="nvim"
+export VISUAL="emacsclient -c -a emacs"
 export LANG="en_US.UTF-8"
 
 # ============================== Aliases

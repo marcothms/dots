@@ -25,7 +25,7 @@
 (setq show-paren-style 'paranthesis)
 
 ;; Font
-(set-face-attribute 'default nil :font "SFMono Nerd Font Mono" :height 100)
+(set-face-attribute 'default nil :font "SFMono Nerd Font Mono" :height 140)
 (add-to-list 'default-frame-alist '(font . "SFMono Nerd Font Mono"))
 
 ;; Make ESC quit prompts
@@ -275,7 +275,8 @@
     (setq
      treemacs-follow-after-init t
      treemacs-persist-file (expand-file-name ".cache/treemacs-persist" user-emacs-directory)
-     treemacs-width 40)
+     treemacs-width 40
+     treemacs-project-follow-cleanup t)
     (treemacs-follow-mode t))
   :bind
   (:map global-map
@@ -379,7 +380,7 @@
   (company-mode . company-mode/add-yasnippet))
 
 (use-package yasnippet-snippets
-  :quelpa ((yasnippet-snippets :fetcher github :repo "hargoniX/yasnippet-snippets")))
+  :quelpa ((yasnippet-snippets :fetcher github :repo "CramMK/yasnippet-snippets")))
 
 ;; compiling for lsp
 (use-package flycheck
@@ -408,9 +409,9 @@
 
 ;; Fix math input
 (use-package unicode-fonts
-  :ensure t
-  :hook
-  (unicode-fonts-setup))
+  :ensure t)
+
+(unicode-fonts-setup)
 
 ;; Math Symbols
 (use-package math-symbol-lists
@@ -474,7 +475,7 @@
  '(custom-safe-themes
    '("4a8d4375d90a7051115db94ed40e9abb2c0766e80e228ecad60e06b3b397acab" "a3bdcbd7c991abd07e48ad32f71e6219d55694056c0c15b4144f370175273d16" "e074be1c799b509f52870ee596a5977b519f6d269455b84ed998666cf6fc802a" "8f5a7a9a3c510ef9cbb88e600c0b4c53cdcdb502cfe3eb50040b7e13c6f4e78e" "fce3524887a0994f8b9b047aef9cc4cc017c5a93a5fb1f84d300391fba313743" default))
  '(package-selected-packages
-   '(dashboard org-bullets ein fill-column-indicator lsp-haskell haskell-mode lsp-java auctex rust-mode flycheck yasnippet counsel-projectile projectile company-box company lsp-ivy lsp-ui lsp-mode magit counsel evil-collection evil which-key general all-the-icons doom-themes use-package)))
+   '(quelpa dashboard org-bullets ein fill-column-indicator lsp-haskell haskell-mode lsp-java auctex rust-mode flycheck yasnippet counsel-projectile projectile company-box company lsp-ivy lsp-ui lsp-mode magit counsel evil-collection evil which-key general all-the-icons doom-themes use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
