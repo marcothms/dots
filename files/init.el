@@ -101,30 +101,14 @@
 (use-package all-the-icons
   :ensure t)
 
-;; fancy startup screen
-(use-package page-break-lines
-  :ensure t)
-
-(use-package dashboard
-  :ensure t
-  :config
-  (dashboard-setup-startup-hook))
-
-(setq dashboard-banner-logo-title "Welcome back, Marc")
-(setq dashboard-startup-banner 'logo)
-(setq dashboard-center-content t)
-(setq dashboard-items '((recents  . 5)
-                        (projects . 5)))
-(setq dashboard-set-heading-icons t)
-(setq dashboard-set-file-icons t)
-
 ;; NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA
 ;; music requires 'player'
 (use-package nyan-mode
   :ensure t
   :config
   (nyan-mode)
-  (nyan-start-animation))
+  (nyan-start-animation)
+  (nyan-toggle-wavy-trail))
 
 ;; indentation for c
 (setq-default c-basic-offset 8)
@@ -429,6 +413,9 @@
    ("=>"        ?⇒)
    ("<->"       ?↔)
    ("<=>"       ?⇔)
+   ; quantors
+   ("\\ex"      ?∃)
+   ("\\all"     ?∀)
    ; sets of numbers
    ("\\nats"    ?ℕ)
    ("\\ints"    ?ℤ)
@@ -475,7 +462,7 @@
  '(custom-safe-themes
    '("4a8d4375d90a7051115db94ed40e9abb2c0766e80e228ecad60e06b3b397acab" "a3bdcbd7c991abd07e48ad32f71e6219d55694056c0c15b4144f370175273d16" "e074be1c799b509f52870ee596a5977b519f6d269455b84ed998666cf6fc802a" "8f5a7a9a3c510ef9cbb88e600c0b4c53cdcdb502cfe3eb50040b7e13c6f4e78e" "fce3524887a0994f8b9b047aef9cc4cc017c5a93a5fb1f84d300391fba313743" default))
  '(package-selected-packages
-   '(quelpa dashboard org-bullets ein fill-column-indicator lsp-haskell haskell-mode lsp-java auctex rust-mode flycheck yasnippet counsel-projectile projectile company-box company lsp-ivy lsp-ui lsp-mode magit counsel evil-collection evil which-key general all-the-icons doom-themes use-package)))
+   '(quelpa org-bullets ein fill-column-indicator lsp-haskell haskell-mode lsp-java auctex rust-mode flycheck yasnippet counsel-projectile projectile company-box company lsp-ivy lsp-ui lsp-mode magit counsel evil-collection evil which-key general all-the-icons doom-themes use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
