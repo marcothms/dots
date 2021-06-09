@@ -44,8 +44,8 @@ export PROMPT="${NAME}${DIR}${GIT} ${ICON}%{$reset_color%} "
 zstyle ':vcs_info:git:*' formats '|%b '
 
 # ============================== Exports
-export EDITOR="emacsclient -c -nw -a 'emacs -nw'"
-export VISUAL="emacsclient -c -a emacs"
+export EDITOR="emacsclient -nw -a 'emacs -nw'"
+export VISUAL="emacsclient -a emacs"
 export LANG="en_US.UTF-8"
 
 # ============================== Aliases
