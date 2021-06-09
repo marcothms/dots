@@ -49,7 +49,7 @@ export VISUAL="emacsclient -c -a emacs"
 export LANG="en_US.UTF-8"
 
 # ============================== Aliases
-alias emacsnw="TERM=alacritty-direct emacsclient -c -nw -a 'emacs -nw'"
+alias emacsnw="TERM=alacritty-direct emacsclient -nw -a 'emacs -nw'"
 alias fontscache="fc-cache -f -v"
 alias ofen="cc"
 alias mon2cam="deno run --unstable -A -r -q https://raw.githubusercontent.com/ShayBox/Mon2Cam/master/src/mod.ts"

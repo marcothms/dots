@@ -250,6 +250,12 @@
     "gc" 'magit-checkout
     "gb" 'magit-branch))
 
+;; Surround
+(use-package evil-surround
+  :ensure t
+  :config
+  (global-evil-surround-mode 1))
+
 ;; Treemacs
 (use-package treemacs
   :ensure t
@@ -275,6 +281,10 @@
 
 (use-package treemacs-projectile
   :after (treemacs projectile)
+  :ensure t)
+
+(use-package treemacs-magit
+  :after(treemacs magit)
   :ensure t)
 
 ;; Lsp
@@ -417,12 +427,12 @@
    ("\\ex"      ?∃)
    ("\\all"     ?∀)
    ; sets of numbers
-   ("\\nats"    ?ℕ)
-   ("\\ints"    ?ℤ)
-   ("\\rats"    ?ℚ)
-   ("\\reals"   ?ℝ)
-   ("\\complex" ?ℂ)
-   ("\\primes"  ?ℙ)
+   ("NN"        ?ℕ)
+   ("ZZ"        ?ℤ)
+   ("QQ"        ?ℚ)
+   ("RR"        ?ℝ)
+   ("CC"        ?ℂ)
+   ("PP"        ?ℙ)
   )
   (mapc (lambda (x)
           (if (cddr x)
