@@ -37,14 +37,14 @@ export WINIT_UNIX_BACKEND=x11
 # university wants me to use intellij, but dwm rightfully hates it
 export _JAVA_AWT_WM_NONREPARENTING=1
 
-# 100hz :)
+# desktop or laptop?
 if [ `hostname` == "nazarick" ];then
     xrandr --output DP-3 --mode 3440x1440 --rate 99.98
+    feh --bg-scale $HOME/data/nextcloud/wallpaper/wallpaper219.png
+else
+    feh --bg-scale $HOME/data/nextcloud/wallpaper/wallpaper169.png
+    #asetroot $HOME/data/nextcloud/wallpaper/animated/current/ -t 100 &
 fi
-
-# wallpaper
-feh --bg-scale $HOME/data/nextcloud/wallpaper/wallpaper.png
-#asetroot $HOME/data/nextcloud/wallpaper/animated/current/ -t 100 &
 
 dwmblocks &
 exec dwm 2> ~/.dwm.log
