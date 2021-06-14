@@ -463,6 +463,12 @@
   (haskell-mode . lsp)
   (haskell-literate-mode . lsp))
 
+;; Graphs
+(use-package graphviz-dot-mode
+  :ensure t
+  :config
+  (setq graphviz-dot-indent-width 4))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
