@@ -81,6 +81,19 @@
 (exec-path-from-shell-copy-env "SSH_AUTH_SOCK")
 (exec-path-from-shell-copy-env "PATH")
 
+;; Spellchecker
+(if (executable-find "hunspell")
+    (use-package ispell
+      :config
+      (setq ispell-dictionary "de_DE,en_GB,en_US")
+      (ispell-set-spellchecker-params)
+      (ispell-hunspell-add-multi-dic "de_DE,en_GB,en_US")
+      :hook
+      (org-mode . flyspell-mode)
+      (markdown-mode . flyspell-mode)
+      (text-mode . flyspell-mode)
+      (prog-mode . flyspell-prog-mode)))
+
 ;; Themes and icons
 (use-package doom-themes
   :ensure t
@@ -117,18 +130,19 @@
   :ensure t
   :hook
   (prog-mode . dtrt-indent-mode)
+  (text-mode . dtrt-indent-mode)
+  (org-mode . dtrt-indent-mode)
   (markdown-mode . dtrt-indent-mode))
 
 ;; auto parens
-(use-package smartparens
-  :ensure t
-  :diminish smartparens-mode
+(use-package electric-pair
   :config
-  (require 'smartparens-config)
-  (setq sp-highlight-pair-overlay nil) ;; to hide this fucking highlighting
+  (setq electric-pair-open-newline-between-pairs nil)
   :hook
-  (prog-mode . smartparens-mode)
-  (markdown-mode . smartparens-mode))
+  (prog-mode . electric-pair-mode)
+  (text-mode . electric-pair-mode)
+  (org-mode . electric-pair-mode)
+  (markdown-mode . electric-pair-mode))
 
 ;; general
 (use-package general
@@ -217,6 +231,12 @@
   (setq org-format-latex-options (plist-put org-format-latex-options :scale 1.5))
   (setq org-agenda-files (quote ("~/org")))
   (setq org-directory "~/org")
+  (setq org-latex-listings 'minted
+        org-latex-packages-alist '(("" "minted"))
+        org-latex-pdf-process
+        '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+          "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+          "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
   :init
   (setq org-todo-keywords '((sequence "TODO" "PROGRESS" "|" "DONE")))
   (setq org-log-done 'time)

@@ -34,6 +34,7 @@
 + light: background light control
 + pactl: volume control
 + playerctl: music player control
++ hunspell{-de, en}: spellchecking for emacs
 
 ### emacs LSP
 

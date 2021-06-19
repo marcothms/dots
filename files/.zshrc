@@ -43,19 +43,23 @@ esac
 export PROMPT="${NAME}${DIR}${GIT} ${ICON}%{$reset_color%} "
 zstyle ':vcs_info:git:*' formats '|%b '
 
-# ============================== Exports
-export EDITOR="TERM=alacritty-direct emacsclient -c -nw -a 'emacs -nw'"
-export VISUAL="emacsclient -c -a emacs"
-export LANG="en_US.UTF-8"
-
 # ============================== Aliases
 alias emacsnw="TERM=alacritty-direct emacsclient -nw -a 'emacs -nw'"
 alias fontscache="fc-cache -f -v"
 alias ofen="cc"
 alias mon2cam="deno run --unstable -A -r -q https://raw.githubusercontent.com/ShayBox/Mon2Cam/master/src/mod.ts"
 
-if [[ -x $(which nvim 2> /dev/null) ]]; then
+if command -v nvim &> /dev/null; then
     alias vim="nvim"
+fi
+
+if command -v rg &> /dev/null; then
+    alias grep="rg"
+fi
+
+if command -v btm &> /dev/null; then
+    alias top="btm"
+    alias htop="btm"
 fi
 
 alias sag="ssh-add ~/.ssh/github"
@@ -74,6 +78,11 @@ alias mv='mv -i' # Ask before removal
 if [ -f ~/.zshrc_local ]; then
     source ~/.zshrc_local
 fi
+
+# ============================== Exports
+export EDITOR="vim"
+export VISUAL="vim"
+export LANG="en_US.UTF-8"
 
 # ============================== Completion
 unsetopt menu_complete   # do not autoselect the first completion entry
