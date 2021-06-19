@@ -85,9 +85,11 @@
 (if (executable-find "hunspell")
     (use-package ispell
       :config
+      (setq ispell-program-name "hunspell")
       (setq ispell-dictionary "de_DE,en_GB,en_US")
       (ispell-set-spellchecker-params)
       (ispell-hunspell-add-multi-dic "de_DE,en_GB,en_US")
+      (setq )
       :hook
       (org-mode . flyspell-mode)
       (markdown-mode . flyspell-mode)
@@ -108,6 +110,12 @@
   :ensure t
   :init (doom-modeline-mode 1)
   :custom ((doom-modeline-height 10)))
+
+;; show #RGB color codes
+(use-package rainbow-mode
+  :ensure t
+  :hook
+  (prog-mode . rainbow-mode))
 
 ;; icons
 (use-package all-the-icons
@@ -227,6 +235,8 @@
     "oco" 'org-clock-out
     "oa"  'org-agenda
     "oca" 'org-capture)
+  :hook
+  (org-mode . (lambda () (electric-indent-local-mode -1)))
   :config
   (setq org-format-latex-options (plist-put org-format-latex-options :scale 1.5))
   (setq org-agenda-files (quote ("~/org")))

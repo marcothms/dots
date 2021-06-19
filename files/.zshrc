@@ -31,7 +31,7 @@ case $TERM in
     function precmd {
       print -Pn "\e]0;%(1j,%j job%(2j|s|) - ,)%~ - $TERM\a"
     }
-    # Write command and args to terminal title.
+    # Write command and arguments to terminal title.
     # This is seen while the shell waits for a command to complete.
     function preexec {
       printf "\033]0;%s\a" "$1 - $TERM"
@@ -44,7 +44,7 @@ export PROMPT="${NAME}${DIR}${GIT} ${ICON}%{$reset_color%} "
 zstyle ':vcs_info:git:*' formats '|%b '
 
 # ============================== Aliases
-alias emacsnw="TERM=alacritty-direct emacsclient -nw -a 'emacs -nw'"
+alias emacsnw="TERM=alacritty-direct emacsclient -nw -a 'vim'"
 alias fontscache="fc-cache -f -v"
 alias ofen="cc"
 alias mon2cam="deno run --unstable -A -r -q https://raw.githubusercontent.com/ShayBox/Mon2Cam/master/src/mod.ts"
@@ -80,9 +80,8 @@ if [ -f ~/.zshrc_local ]; then
 fi
 
 # ============================== Exports
-export EDITOR="vim"
-export VISUAL="vim"
-export LANG="en_US.UTF-8"
+export EDITOR="emacsnw"
+export VISUAL="emacsnw"
 
 # ============================== Completion
 unsetopt menu_complete   # do not autoselect the first completion entry
