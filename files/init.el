@@ -17,11 +17,8 @@
 (setq initial-major-mode 'fundamental-mode) ;; better startup speed
 (setq initial-scratch-message nil) ;; don't show me help at startup
 
-;; Show matching paranthesis
+;; Show matching parenthesis
 (show-paren-mode t)
-;; paranthesis
-;; expression
-;; mixed - paren if visible, expr when not
 (setq show-paren-style 'paranthesis)
 
 ;; Font
@@ -46,10 +43,9 @@
 (add-hook 'evil-insert-state-entry-hook #'noct:absolute)
 (add-hook 'evil-insert-state-exit-hook #'noct:relative)
 
-;; whitespace
+;; Whitespace
 (global-whitespace-mode t)
 (setq whitespace-style '(face trailing tabs tab-mark))
-
 
 (require 'package)
 (setq package-enable-at-startup nil)
@@ -59,7 +55,7 @@
                          ))
 (package-initialize)
 
-;; Bootstrap `use-package'
+;; Bootstrap use-package
 (unless (package-installed-p 'use-package) ; unless it is already installed
   (package-refresh-contents) ; update packages archive
   (package-install 'use-package)) ; and install the most recent version of use-package
@@ -74,6 +70,7 @@
 
 ;; Packages
 
+;; Copy environment
 (use-package exec-path-from-shell
   :ensure t)
 
@@ -106,12 +103,13 @@
   (doom-themes-org-config)
   (doom-themes-treemacs-config))
 
+;; Cool mode line
 (use-package doom-modeline
   :ensure t
   :init (doom-modeline-mode 1)
   :custom ((doom-modeline-height 10)))
 
-;; show #RGB color codes
+;; show color codes
 (use-package rainbow-mode
   :ensure t
   :hook
@@ -121,8 +119,7 @@
 (use-package all-the-icons
   :ensure t)
 
-;; NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA
-;; music requires 'player'
+;; NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA
 (use-package nyan-mode
   :ensure t
   :config
@@ -130,10 +127,10 @@
   (nyan-start-animation)
   (nyan-toggle-wavy-trail))
 
-;; indentation for c
+;; Indentation for c
 (setq-default c-basic-offset 8)
 
-;; heuristic indentation
+;; Heuristic indentation
 (use-package dtrt-indent
   :ensure t
   :hook
@@ -142,7 +139,7 @@
   (org-mode . dtrt-indent-mode)
   (markdown-mode . dtrt-indent-mode))
 
-;; auto parens
+;; Auto parens
 (use-package electric-pair
   :config
   (setq electric-pair-open-newline-between-pairs nil)
@@ -159,7 +156,7 @@
   ;; Space as leader key
   (general-create-definer vim-leader-def :prefix "SPC"))
 
-;; help to find keybindings
+;; Help to find keybindings
 (use-package which-key
   :ensure t
   :init (which-key-mode)
@@ -167,7 +164,7 @@
   :config
   (setq which-key-idle-delay 1))
 
-;; 80 charcater limit line in prog mode
+;; 80 character limit line in prog mode
 (use-package fill-column-indicator
   :ensure t
   :defer 1
@@ -179,7 +176,7 @@
   (prog-mode . fci-mode)
   (markdown-mode . fci-mode))
 
-;; vim mode
+;; Vim bindings
 (use-package evil
   :ensure t
   :init
@@ -197,7 +194,7 @@
   :config
   (evil-collection-init))
 
-;; completion for swiper
+;; Completion for swiper
 (use-package ivy
   :ensure t
   :diminish
@@ -225,7 +222,7 @@
          :map minibuffer-local-map
          ("C-r" . 'counsel-minibuffer-history)))
 
-;; org mode
+;; Org
 (use-package org
   :ensure t
   ;; C-c C-t org rotate
@@ -264,7 +261,7 @@
 
 ;; Development Packages
 
-;; giiiiiiiiit
+;; git
 (use-package magit
   :ensure t
   :general
@@ -279,13 +276,7 @@
     "gc" 'magit-checkout
     "gb" 'magit-branch))
 
-;; Surround
-(use-package evil-surround
-  :ensure t
-  :config
-  (global-evil-surround-mode 1))
-
-;; Treemacs
+;; File bar
 (use-package treemacs
   :ensure t
   :defer t
@@ -335,7 +326,7 @@
   (python-mode . lsp)
   (haskell-mode . lsp))
 
-;; ui integration for lsp
+;; Ui integration for Lsp
 (use-package lsp-ui
   :ensure t
   :config
@@ -344,13 +335,13 @@
   (setq lsp-modeline-code-actions-enable nil)
   (setq lsp-ui-doc-enable nil))
 
-;; tags
+;; Tags
 (use-package lsp-ivy
   :ensure t
   :after lsp-mode
   :bind(:map lsp-mode-map ("C-l g a" . lsp-ivy-workspace-symbol)))
 
-;; completion for lsp
+;; Completion for Lsp
 (use-package company
   :ensure t
   :hook
@@ -367,7 +358,7 @@
 	      ("C-l" . company-complete-selection) ;; right, as in complete towards the right
 	      ))
 
-;; frontend for company
+;; Frontend for company
 (use-package company-box
   :ensure t
   :hook (company-mode . company-box-mode))
