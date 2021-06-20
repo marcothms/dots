@@ -35,6 +35,7 @@
 + pactl: volume control
 + playerctl: music player control
 + hunspell{-de, en}: spellchecking for emacs
++ acpid: power management - /etc/acpi/handler.sh - [ArchWiki Thread](https://bbs.archlinux.org/viewtopic.php?id=240023)
 
 ### emacs LSP
 
