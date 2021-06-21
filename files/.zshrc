@@ -80,8 +80,8 @@ if [ -f ~/.zshrc_local ]; then
 fi
 
 # ============================== Exports
-export EDITOR="emacsnw"
-export VISUAL="emacsnw"
+export EDITOR="vim"
+export VISUAL="vim"
 
 # ============================== Completion
 unsetopt menu_complete   # do not autoselect the first completion entry
