@@ -232,8 +232,8 @@
     "oco" 'org-clock-out
     "oa"  'org-agenda
     "oca" 'org-capture)
-  :hook
-  (org-mode . (lambda () (electric-indent-local-mode -1)))
+;;:hook
+;;(org-mode . (lambda () (electric-indent-local-mode -1)))
   :config
   (setq org-format-latex-options (plist-put org-format-latex-options :scale 1.5))
   (setq org-agenda-files (quote ("~/org")))
