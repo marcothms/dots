@@ -6,8 +6,7 @@
 ;
 ; ~ M. Thomas
 
-(setq make-backup-files nil) ;; We dont need these
-(setq auto-save-default nil) ;; Not this one either
+(setq make-backup-files nil) ;; We dont need these (setq auto-save-default nil) ;; Not this one either
 (menu-bar-mode -1) ;; The menu bar looks ugly in terminal
 (tool-bar-mode -1) ;; Nobody needs this
 (scroll-bar-mode -1)
@@ -447,12 +446,12 @@
    ("\\ex"      ?∃)
    ("\\all"     ?∀)
    ; sets of numbers
-   ("NN"        ?ℕ)
-   ("ZZ"        ?ℤ)
-   ("QQ"        ?ℚ)
-   ("RR"        ?ℝ)
-   ("CC"        ?ℂ)
-   ("PP"        ?ℙ)
+   ("\\NN"        ?ℕ)
+   ("\\ZZ"        ?ℤ)
+   ("\\QQ"        ?ℚ)
+   ("\\RR"        ?ℝ)
+   ("\\CC"        ?ℂ)
+   ("\\PP"        ?ℙ)
   )
   (mapc (lambda (x)
           (if (cddr x)
@@ -505,3 +504,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+;; load local file
+(when (file-exists-p "~/.emacs.d/local.el")
+  (message "Loading ~/.emacs.d/local.el")
+  (load-file "~/.emacs.d/local.el"))
