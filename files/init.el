@@ -6,7 +6,8 @@
 ;
 ; ~ M. Thomas
 
-(setq make-backup-files nil) ;; We dont need these (setq auto-save-default nil) ;; Not this one either
+(setq make-backup-files nil) ;; We dont need these
+(setq auto-save-default nil) ;; Not this one either
 (menu-bar-mode -1) ;; The menu bar looks ugly in terminal
 (tool-bar-mode -1) ;; Nobody needs this
 (scroll-bar-mode -1)
@@ -178,6 +179,11 @@
 ;; Vim bindings
 (use-package evil
   :ensure t
+  :bind
+  (:map evil-motion-state-map
+        ("C-y" . nil))
+  (:map evil-insert-state-map
+        ("C-y" . nil))
   :init
   (setq evil-toggle-key "C-~") ;; so C-z works for background
   (setq evil-want-C-d-scroll t)
@@ -388,6 +394,8 @@
 (use-package yasnippet
   :ensure t
   :init
+  :bind (:map yas-minor-mode-map
+              ("C-y" . yas-expand))
   :hook
   (company-mode . yas-minor-mode)
   (company-mode . company-mode/add-yasnippet))
