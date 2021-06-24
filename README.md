@@ -12,6 +12,7 @@
 
 ## Programs
 
++ Bluetooth-Manager: blueman
 + Editor: emacs
 + File-Browser: thunar + tumbler
 + Image-Viewer: sxiv
