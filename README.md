@@ -38,17 +38,6 @@
 + hunspell{-de, en}: spellchecking for emacs
 + acpid: power management - /etc/acpi/handler.sh - [ArchWiki Thread](https://bbs.archlinux.org/viewtopic.php?id=240023)
 
-### emacs LSP
-
-Emacs should throw a warning, when it can't start the language server.
-Following the help should be enough guidance.
-
-### Nvim LSP (unused)
-
-+ [Python](https://github.com/palantir/python-language-server)
-+ [Rust](https://github.com/rust-analyzer/rust-analyzer)
-+ [TeX](https://github.com/latex-lsp/texlab)
-
 ## Fonts
 | Usage    | Font                  |
 | -------- | --------------------- |

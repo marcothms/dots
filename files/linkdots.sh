@@ -22,7 +22,7 @@ chmod +x $HOME/.xinitrc
 ln -sf $HOME/.xinitrc $HOME/.xsession
 
 # --- .config --- #
-conf_files="alacritty dunst nvim zathura"
+conf_files="alacritty dunst zathura"
 
 for file in $conf_files
 do
