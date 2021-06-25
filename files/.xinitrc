@@ -39,7 +39,8 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 
 # desktop or laptop?
 if [ `hostname` == "nazarick" ];then
-    xrandr --output DP-3 --mode 3440x1440 --rate 99.98
+    xrandr --output DP-3 --mode 3440x1440 --rate 99.98 --primary
+    xrandr --output DP-1 --off
     feh --bg-scale $HOME/data/nextcloud/wallpaper/wallpaper219.png
 else
     feh --bg-scale $HOME/data/nextcloud/wallpaper/wallpaper169.png
