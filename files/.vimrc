@@ -28,13 +28,6 @@ if executable("fzf") " fzf support and bindings
     Plug 'junegunn/fzf.vim'
 endif
 
-if has ("nvim")
-    Plug 'neovim/nvim-lspconfig' " lsp
-    Plug 'Shougo/neosnippet.vim' " snippet support
-    Plug 'Shougo/neosnippet-snippets' " actual snippets
-    Plug 'nvim-lua/completion-nvim' " autocomplete
-endif
-
 call plug#end()
 
 " ============================== Colors
@@ -128,20 +121,3 @@ if has ("nvim")
 else
   nmap <leader>ft :enew<CR>
 end
-
-" buffer > tabs
-nmap <leader>j :bprev<CR>
-nmap <leader>k :bnext<CR>
-nmap <leader>q :bp <BAR> bd #<CR>
-
-" ============================== Cool NeoVim Shit
-if has ("nvim")
-  " - Startup LSP Servers
-  " - Set bindings: gr, gd, K, sd
-  lua require'marc.lsp'
-
-
-  " - Configure completion engine
-  " - Set bindings: <C-k>, <C-n>, <C-p>
-  lua require'marc.completion'
-endif
