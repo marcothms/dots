@@ -20,14 +20,6 @@ Plug 'jiangmiao/auto-pairs' " pair completion
 
 Plug 'airblade/vim-gitgutter' " show git changes
 
-Plug 'itchyny/lightline.vim' " bar
-Plug 'ryanoasis/vim-devicons' " icons in bar
-
-if executable("fzf") " fzf support and bindings
-    Plug 'junegunn/fzf'
-    Plug 'junegunn/fzf.vim'
-endif
-
 call plug#end()
 
 " ============================== Colors
@@ -63,25 +55,6 @@ set scrolloff=5 " min lines above or below the cursor
 set laststatus=2
 set showtabline=0
 
-function! GitStatus()
-  let [a,m,r] = GitGutterGetHunkSummary()
-  return printf('+%d ~%d -%d', a, m, r)
-endfunction
-
-function! FileNameWithIcon() abort
-  return winwidth(0) > 70  ?  WebDevIconsGetFileTypeSymbol() . ' ' . expand('%:T') : ''
-endfunction
-
-let g:lightline = { 'colorscheme': 'gruvbox' }
-
-let g:lightline.component_function = { 'gitstatus': 'GitStatus' }
-let g:lightline.component = { 'filename_with_icon': '%{FileNameWithIcon()}' }
-
-let g:lightline.active = {
-      \ 'left': [['mode', 'readonly'], ['filename_with_icon', 'modified']],
-      \ 'right': [['lineinfo'], ['percent'], ['gitstatus', 'fileformat', 'fileencoding', 'filetype']]
-      \ }
-
 " ============================== Indents and Whitespaces
 set list
 set listchars=tab:──\ ,extends:›,precedes:‹,nbsp:·,trail:·
@@ -113,11 +86,3 @@ cmap Wq wq
 cmap Q q
 cmap W w
 cmap q1 q!
-
-" fzf
-if has ("nvim")
-  nmap <leader>ff :Files<CR>
-  nmap <leader>ft :enew<CR>:Files<CR>
-else
-  nmap <leader>ft :enew<CR>
-end
