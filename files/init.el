@@ -34,6 +34,7 @@
               ;; this is the default
               display-line-numbers-current-absolute t)
 
+
 (defun noct:relative ()
   (setq-local display-line-numbers 'visual))
 
@@ -86,7 +87,6 @@
       (setq ispell-dictionary "de_DE,en_GB,en_US")
       (ispell-set-spellchecker-params)
       (ispell-hunspell-add-multi-dic "de_DE,en_GB,en_US")
-      (setq )
       :hook
       (org-mode . flyspell-mode)
       (markdown-mode . flyspell-mode)
@@ -237,8 +237,8 @@
     "oco" 'org-clock-out
     "oa"  'org-agenda
     "oca" 'org-capture)
-;;:hook
-;;(org-mode . (lambda () (electric-indent-local-mode -1)))
+  :hook
+  (org-mode . (lambda () (electric-indent-local-mode -1)))
   :config
   (setq org-format-latex-options (plist-put org-format-latex-options :scale 1.5))
   (setq org-agenda-files (quote ("~/org")))
@@ -256,6 +256,13 @@
 	(quote (("j" "Japanese" entry (file "~/org/japanese.org") "* TODO %?\n")
 		("u" "University" entry (file "~/org/uni.org") "* TODO %?\n")
 		("p" "Personal" entry (file "~/org/personal.org") "* TODO %?\n")))))
+
+(org-babel-do-load-languages
+ 'org-babel-load-languages '((python . t)
+			     (haskell . t)
+			     (shell . t)
+			     (perl . t)
+			     (C . t)))
 
 (use-package org-bullets
   :ensure t

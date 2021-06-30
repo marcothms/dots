@@ -13,12 +13,8 @@ let mapleader = "\<Space>"
 call plug#begin()
 
 Plug 'morhetz/gruvbox' " color scheme
-
 Plug 'tpope/vim-sleuth' " heuristic file indendation
-
 Plug 'jiangmiao/auto-pairs' " pair completion
-
-Plug 'airblade/vim-gitgutter' " show git changes
 
 call plug#end()
 
@@ -27,7 +23,6 @@ syntax on
 set background=light
 colorscheme gruvbox
 hi Normal ctermbg=NONE guibg=NONE
-set termguicolors
 
 " ============================== General
 filetype indent plugin on
@@ -52,7 +47,7 @@ set wildmenu " autocomplete :e
 set scrolloff=5 " min lines above or below the cursor
 
 " ============================== Statusline
-set laststatus=2
+set laststatus=0
 set showtabline=0
 
 " ============================== Indents and Whitespaces
