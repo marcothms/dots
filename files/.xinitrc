@@ -22,16 +22,14 @@ export GTK_THEME=Pop-gruvbox:light
 export QT_QPA_PLATFORMTHEME="gtk2"
 
 # start programs
-fcitx -d &
 nextcloud &
 dunst &
-nm-applet &
 
 # fcitx exports
-export GTK_IM_MODULE='fcitx'
-export QT_IM_MODULE='fcitx'
-export SDL_IM_MODULE='fcitx'
-export XMODIFIERS='@im=fcitx'
+export GTK_IM_MODULE='fcitx5'
+export QT_IM_MODULE='fcitx5'
+export SDL_IM_MODULE='fcitx5'
+export XMODIFIERS='@im=fcitx5'
 export WINIT_UNIX_BACKEND=x11
 
 # university wants me to use intellij, but dwm rightfully hates it
