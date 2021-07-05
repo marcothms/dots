@@ -442,12 +442,6 @@
   (setq TeX-parse-self t)
   (setq preview-scale-function 1.5))
 
-;; Fix math input
-(use-package unicode-fonts
-  :ensure t)
-
-(unicode-fonts-setup)
-
 ;; Math Symbols
 (use-package math-symbol-lists
   :ensure t
