@@ -21,7 +21,7 @@
 + Mouse-Settings: piper
 + Music: spotify
 + Pdf-Viewer: zathura with mupdf
-+ Screenshots: Flameshot
++ Screenshots: gnome-screenshot
 + Video-Player: mpv, vlc
 
 ## Other Dependencies
