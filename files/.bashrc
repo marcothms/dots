@@ -10,7 +10,7 @@ DIR="\[\033[1;94m\]\w\[\033[m\]"
 export PS1="${HOST} ${DIR}${GIT} ${ICON} "
 
 # ============================== Exports
-export VISUAL="emacsclient -c -nw -a 'emacs -nw'"
+export VISUAL="vim"
 export EDITOR="$VISUAL"
 export LANG="en_US.UTF-8"
 export TERM="xterm-256color"
