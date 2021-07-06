@@ -18,6 +18,9 @@ window:
   title: Alacritty
   dynamic_title: true
 
+  startup_mode: Maximized
+  decorations: none
+
   dimensions:
     columns: 0
     lines: 0

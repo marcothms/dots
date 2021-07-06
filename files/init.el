@@ -16,6 +16,9 @@
 (setq initial-major-mode 'fundamental-mode) ;; better startup speed
 (setq initial-scratch-message nil) ;; don't show me help at startup
 
+;; make it look fancy in gnome
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
+
 ;; smooth scrolling
 (setq redisplay-dont-pause t
   scroll-margin 1
