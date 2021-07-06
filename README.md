@@ -21,7 +21,7 @@
 + Mouse-Settings: piper
 + Music: spotify
 + Pdf-Viewer: zathura with mupdf
-+ Screenshots: gnome-screenshot
++ Screenshots: flameshot
 + Video-Player: mpv, vlc
 
 ## Other Dependencies
@@ -34,7 +34,7 @@
 ## Fonts
 | Usage    | Font                  |
 | -------- | --------------------- |
-| Terminal | SFMono Nerd Font Mono | 
+| Terminal | SFMono Nerd Font Mono |
 | Non-Mono | Product Sans          |
 | JP       | Noto Sans CJK JP      |
 | JP       | Stick Regular         |

@@ -1,7 +1,7 @@
 # executed on login
 
 # manjaro magic
-export BROWSER=/usr/bin/firefox-nightly
+export BROWSER=/usr/bin/firefox
 export LC_ALL=en_US.UTF-8
 
 # path
