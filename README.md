@@ -26,15 +26,10 @@
 
 ## Other Dependencies
 + [Gruvbox](https://github.com/hargonix/Pop-gruvbox/): GTK Theme (clone into ~/.themes)
-+ [asetroot](https://github.com/Wilnath/asetroot): animated wallpaper
 + [vim-plug](https://github.com/junegunn/vim-plug): vim plugin manager
 + fcitx + mozc: Japanese Keyboard - [Install](https://www.youtube.com/watch?v=lJoXhS4EUJs) - fcitx fcitx-qt5 fcitx-configtool fcitx-mozc
 + fzf: fuzzy file finder
-+ light: background light control
-+ pactl: volume control
-+ playerctl: music player control
 + hunspell{-de, en}: spellchecking for emacs
-+ acpid: power management - /etc/acpi/handler.sh - [ArchWiki Thread](https://bbs.archlinux.org/viewtopic.php?id=240023)
 
 ## Fonts
 | Usage    | Font                  |
