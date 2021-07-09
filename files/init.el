@@ -11,7 +11,6 @@
 (menu-bar-mode -1) ;; The menu bar looks ugly in terminal
 (tool-bar-mode -1) ;; Nobody needs this
 (scroll-bar-mode -1)
-(toggle-scroll-bar -1) ;; Or this
 (setq inhibit-startup-screen t) ;; Leave me alone with your tutorials
 (setq tramp-default-method "ssh") ;; speed up tramp mode
 (setq initial-major-mode 'fundamental-mode) ;; better startup speed
@@ -112,7 +111,9 @@
 ;; Cool mode line
 (use-package doom-modeline
   :ensure t
-  :init (doom-modeline-mode 1)
+  :init
+  (doom-modeline-mode 1)
+  (setq doom-modeline-icon t)
   :custom ((doom-modeline-height 10)))
 
 ;; show color codes
