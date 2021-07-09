@@ -242,7 +242,11 @@
     "oci" 'org-clock-in
     "oco" 'org-clock-out
     "oa"  'org-agenda
-    "oca" 'org-capture)
+    "oca" 'org-capture
+    "oes" 'org-edit-src-code
+    "oti" 'org-toggle-inline-images
+    "odi" 'org-display-inline-images
+    "olp" 'org-latex-preview)
   :hook
   (org-mode . (lambda () (electric-indent-local-mode -1)))
   :config
