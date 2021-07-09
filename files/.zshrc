@@ -43,9 +43,6 @@ esac
 export PROMPT="${NAME}${DIR}${GIT} ${ICON}%{$reset_color%} "
 zstyle ':vcs_info:git:*' formats '|%b '
 
-export EDITOR="vim"
-export VISIAL=${EDITOR}
-
 # ============================== Aliases
 alias emacsnw="TERM=alacritty-direct emacsclient -nw -a 'vim'"
 alias fontscache="fc-cache -f -v"
