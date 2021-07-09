@@ -265,10 +265,11 @@
 
 (org-babel-do-load-languages
  'org-babel-load-languages '((python . t)
-			     (haskell . t)
 			     (shell . t)
 			     (perl . t)
-			     (C . t)))
+			     (C . t)
+			     (dot . t)))
+(setq org-edit-src-content-indentation 0)
 
 (use-package org-bullets
   :ensure t
