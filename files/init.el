@@ -283,6 +283,11 @@
   :custom
   (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
 
+(use-package org-fragtog
+	:ensure t
+	:hook
+	(org-mode . org-fragtog-mode))
+
 ;; Development Packages
 
 ;; git
