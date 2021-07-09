@@ -261,7 +261,8 @@
   (setq org-capture-templates
 	(quote (("j" "Japanese" entry (file "~/org/japanese.org") "* TODO %?\n")
 		("u" "University" entry (file "~/org/uni.org") "* TODO %?\n")
-		("p" "Personal" entry (file "~/org/personal.org") "* TODO %?\n")))))
+		("p" "Personal" entry (file "~/org/personal.org") "* TODO %?\n"))))
+  (setq org-edit-src-content-indentation 0))
 
 (org-babel-do-load-languages
  'org-babel-load-languages '((python . t)
@@ -269,7 +270,6 @@
 			     (perl . t)
 			     (C . t)
 			     (dot . t)))
-(setq org-edit-src-content-indentation 0)
 
 (use-package org-bullets
   :ensure t
