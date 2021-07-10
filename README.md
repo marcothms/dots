@@ -4,7 +4,6 @@
 
 ## System
 
-+ Compositor: picom-git
 + Notifications: dunst
 + Shell: zsh
 + Terminal: alacritty
@@ -27,7 +26,7 @@
 ## Other Dependencies
 + [Gruvbox](https://github.com/hargonix/Pop-gruvbox/): GTK Theme (clone into ~/.themes)
 + [vim-plug](https://github.com/junegunn/vim-plug): vim plugin manager
-+ fcitx + mozc: Japanese Keyboard - [Install](https://www.youtube.com/watch?v=lJoXhS4EUJs) - fcitx fcitx-qt5 fcitx-configtool fcitx-mozc
++ fcitx5 + mozc: Japanese Keyboard
 + fzf: fuzzy file finder
 + hunspell{-de, en}: spellchecking for emacs
 
