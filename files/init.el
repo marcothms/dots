@@ -114,7 +114,7 @@
   :init
   (doom-modeline-mode 1)
   (setq doom-modeline-icon t)
-  :custom ((doom-modeline-height 10)))
+  (setq doom-modeline-height 25))
 
 ;; show color codes
 (use-package rainbow-mode
@@ -526,7 +526,7 @@
  '(custom-safe-themes
    '("5784d048e5a985627520beb8a101561b502a191b52fa401139f4dd20acb07607" "1704976a1797342a1b4ea7a75bdbb3be1569f4619134341bd5a4c1cfb16abad4" "4a8d4375d90a7051115db94ed40e9abb2c0766e80e228ecad60e06b3b397acab" "a3bdcbd7c991abd07e48ad32f71e6219d55694056c0c15b4144f370175273d16" "e074be1c799b509f52870ee596a5977b519f6d269455b84ed998666cf6fc802a" "8f5a7a9a3c510ef9cbb88e600c0b4c53cdcdb502cfe3eb50040b7e13c6f4e78e" "fce3524887a0994f8b9b047aef9cc4cc017c5a93a5fb1f84d300391fba313743" default))
  '(package-selected-packages
-   '(yasnippet-snippets quelpa org-bullets ein fill-column-indicator lsp-haskell haskell-mode lsp-java auctex rust-mode flycheck yasnippet counsel-projectile projectile company-box company lsp-ivy lsp-ui lsp-mode magit counsel evil-collection evil which-key general all-the-icons doom-themes use-package)))
+   '(unicode-fonts yasnippet-snippets quelpa org-bullets ein fill-column-indicator lsp-haskell haskell-mode lsp-java auctex rust-mode flycheck yasnippet counsel-projectile projectile company-box company lsp-ivy lsp-ui lsp-mode magit counsel evil-collection evil which-key general all-the-icons doom-themes use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
