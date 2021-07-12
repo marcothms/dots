@@ -269,13 +269,18 @@
 		("p" "Personal" entry (file "~/org/personal.org") "* TODO %?\n"))))
   (setq org-edit-src-content-indentation 0))
 
+;; enable languages for inline evaluation
 (org-babel-do-load-languages
  'org-babel-load-languages '((python . t)
 			     (shell . t)
-			     (perl . t)
 			     (C . t)
 			     (dot . t)))
+; don't ask me every time!
+(defun my-org-confirm-babel-evaluate (lang body)
+  (not (member lang '("python" "shell" "C" "dot"))))
+(setq org-confirm-babel-evaluate 'my-org-confirm-babel-evaluate)
 
+;; fancy bullets for org
 (use-package org-bullets
   :ensure t
   :after org
