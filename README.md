@@ -7,7 +7,7 @@
 + Notifications: dunst
 + Shell: zsh
 + Terminal: alacritty
-+ WM: [dwm](https://github.com/crammk/dwm) + [dwmblocks](https://github.com/crammk/dwmblocks)
++ WM: i3
 
 ## Programs
 

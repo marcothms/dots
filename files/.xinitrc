@@ -24,6 +24,7 @@ export QT_QPA_PLATFORMTHEME="gtk2"
 # start programs
 fcitx5 -d &
 nextcloud &
+nm-applet &
 dunst &
 
 # fcitx exports
@@ -45,6 +46,3 @@ else
     feh --bg-scale $HOME/data/nextcloud/wallpaper/wallpaper169.png
     #asetroot $HOME/data/nextcloud/wallpaper/animated/current/ -t 100 &
 fi
-
-dwmblocks &
-exec dwm 2> ~/.dwm.log

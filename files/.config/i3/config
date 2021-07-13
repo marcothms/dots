@@ -1,0 +1,119 @@
+set $mod Mod4
+font pango:SFMono Nerd Font Mono 10
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+workspace_layout stacking
+
+### keybinds for starting
+bindsym $mod+Return exec alacritty
+bindsym $mod+d exec --no-startup-id dmenu_run
+bindsym $mod+Ctrl+e exec "emacsclient -c"
+bindsym $mod+Shift+s exec "flameshot gui"
+
+### keybinds for moving windows
+bindsym $mod+Shift+q kill
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+Tab layout toggle stacked split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# switch to workspace
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+# audio and display control
+bindsym XF86AudioMute exec amixer -q set Master toggle
+bindsym XF86AudioLowerVolume exec --no-startup-id "pactl set-sink-volume @DEFAULT_SINK@ -2%"
+bindsym XF86AudioRaiseVolume exec --no-startup-id "pactl set-sink-volume @DEFAULT_SINK@ +2%"
+bindsym XF86MonBrightnessUp exec light -A 5 # increase screen brightness
+bindsym XF86MonBrightnessDown exec light -U 5 # decrease screen brightness
+
+# styling
+new_window none
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+bar {
+    status_command i3status
+    position top
+    colors {
+        background #f2e5bc
+        statusline #282828
+
+        # equivalent to focused
+        focused_workspace       #f2e5bc #98971a #282828
+        # equivalent to focused_inactive
+        active_workspace        #f2e5bc #d79921 #282828
+        # equivalent to unfocused
+        inactive_workspace      #f2e5bc #f2e5bc #282828
+        # equivalent to urgent
+        urgent_workspace        #cc241d #fb4934 #282828
+        # equivalent to urgent
+        binding_mode            #cc241d #fb4934 #282828
+    }
+}
+
+# gruvbox style window titles
+# # class                 border  backgr. text    indicator child_border
+client.focused          #f2e5bc #98971A #282828 #f2e5bc #f2e5bc
+client.focused_inactive #f2e5bc #d79921 #282828 #f2e5bc #f2e5bc
+client.unfocused        #f2e5bc #f2e5bc #282828 #fbf1c7 #f2e5bc
+client.urgent           #cc241d #fb4934 #282828 #cc241d #fb4934
+
+# startup
+exec $HOME/.xinitrc
