@@ -85,6 +85,10 @@ bindsym XF86MonBrightnessDown exec light -U 5 # decrease screen brightness
 
 # styling
 new_window none
+default_border pixel 2
+
+for_window [class="Firefox"] border pixel 0
+for_window [class="discord"] border pixel 0
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -109,8 +113,8 @@ bar {
 }
 
 # gruvbox style window titles
-# # class                 border  backgr. text    indicator child_border
-client.focused          #f2e5bc #98971A #282828 #f2e5bc #f2e5bc
+# class                 border  backgr. text    indicator child_border
+client.focused          #98971A #98971A #282828 #98971A #98971A
 client.focused_inactive #f2e5bc #d79921 #282828 #f2e5bc #f2e5bc
 client.unfocused        #f2e5bc #f2e5bc #282828 #fbf1c7 #f2e5bc
 client.urgent           #cc241d #fb4934 #282828 #cc241d #fb4934
