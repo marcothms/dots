@@ -1,7 +1,5 @@
 # Marco's Dotfiles
 
-![PC](screenshots/pc.png)
-
 ## System
 
 + Notifications: dunst

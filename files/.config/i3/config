@@ -36,16 +36,16 @@ bindsym $mod+Tab layout toggle stacked split
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
 
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
-set $ws10 "10"
+set $ws1 "1 一"
+set $ws2 "2 二"
+set $ws3 "3 三"
+set $ws4 "4 四"
+set $ws5 "5 五"
+set $ws6 "6 六"
+set $ws7 "7 七"
+set $ws8 "8 八"
+set $ws9 "9 九"
+set $ws10 "10 十"
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
