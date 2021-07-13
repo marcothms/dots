@@ -1,5 +1,4 @@
 general {
-    separator = " "
     output_format = "i3bar"
     colors = false
     markup = pango
@@ -20,8 +19,8 @@ wireless _first_ {
 }
 
 volume master {
-    format = "%volume"
-    format_muted = "Muted"
+    format = "%volume | "
+    format_muted = "Muted | "
     device = "default"
     mixer = "Master"
     mixer_idx = 0
