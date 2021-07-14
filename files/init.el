@@ -28,7 +28,12 @@
 (setq show-paren-style 'paranthesis)
 
 ;; Font
+; default font
 (set-face-attribute 'default nil :font "SFMono Nerd Font Mono" :height 140)
+; more fonts
+(set-fontset-font t 'unicode "Source Code Pro" nil 'prepend)
+(set-fontset-font t 'unicode "Noto Color Emoji" nil 'append)
+; fonts for daemon
 (add-to-list 'default-frame-alist '(font . "SFMono Nerd Font Mono"))
 
 ;; Make ESC quit prompts
@@ -113,7 +118,6 @@
   :ensure t
   :init
   (doom-modeline-mode 1)
-  (setq doom-modeline-icon t)
   (setq doom-modeline-height 25))
 
 ;; show color codes
@@ -132,7 +136,9 @@
   :init
   (nyan-mode)
   (nyan-start-animation)
-  (nyan-toggle-wavy-trail))
+  (nyan-toggle-wavy-trail)
+  :config
+  (setq nyan-cat-face-number 4))
 
 ;; Indentation for c
 (setq-default c-basic-offset 8)
@@ -536,16 +542,3 @@
 (when (file-exists-p "~/.emacs.d/local.el")
   (message "Loading ~/.emacs.d/local.el")
   (load-file "~/.emacs.d/local.el"))
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(emacs-everywhere yasnippet-snippets which-key treemacs-projectile treemacs-magit treemacs-evil rust-mode rainbow-mode quelpa-use-package org-fragtog org-bullets nyan-mode math-symbol-lists lsp-ui lsp-java lsp-ivy lsp-haskell graphviz-dot-mode general flycheck fill-column-indicator exec-path-from-shell evil-collection dtrt-indent doom-themes doom-modeline counsel-projectile company-box auctex)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
