@@ -523,7 +523,29 @@
   :config
   (setq graphviz-dot-indent-width 4))
 
+;; use my beauty everywhere
+(use-package emacs-everywhere
+  :ensure t
+  :hook
+  (emacs-everywhere-mode . (lambda () (set-input-method "math")))
+  :config
+  (setq emacs-everywhere-markdown-apps nil)
+  (setq emacs-everywhere-markdown-windows nil))
+
 ;; load local file
 (when (file-exists-p "~/.emacs.d/local.el")
   (message "Loading ~/.emacs.d/local.el")
   (load-file "~/.emacs.d/local.el"))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   '(emacs-everywhere yasnippet-snippets which-key treemacs-projectile treemacs-magit treemacs-evil rust-mode rainbow-mode quelpa-use-package org-fragtog org-bullets nyan-mode math-symbol-lists lsp-ui lsp-java lsp-ivy lsp-haskell graphviz-dot-mode general flycheck fill-column-indicator exec-path-from-shell evil-collection dtrt-indent doom-themes doom-modeline counsel-projectile company-box auctex)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
