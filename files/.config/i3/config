@@ -87,9 +87,7 @@ bindsym XF86MonBrightnessDown exec light -U 5 # decrease screen brightness
 # styling
 new_window none
 default_border pixel 2
-
-for_window [class="Firefox"] border pixel 0
-for_window [class="discord"] border pixel 0
+hide_edge_borders smart
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -98,6 +96,8 @@ bar {
     position top
     separator_symbol " | "
     strip_workspace_numbers yes
+    tray_output primary
+
     colors {
         background #f2e5bc
         statusline #282828
