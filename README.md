@@ -11,15 +11,12 @@
 
 + Bluetooth-Manager: blueman
 + Editor: emacs
-+ File-Browser: thunar + tumbler
 + Image-Viewer: sxiv
 + Launcher: [dmenu](https://github.com/crammk/dmenu)
 + Lock: [slock](https://github.com/crammk/slock)
 + Mouse-Settings: piper
-+ Music: spotify
 + Pdf-Viewer: zathura with mupdf
 + Screenshots: flameshot
-+ Video-Player: mpv, vlc
 
 ## Other Dependencies
 + [Gruvbox](https://github.com/hargonix/Pop-gruvbox/): GTK Theme (clone into ~/.themes)
