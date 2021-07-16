@@ -392,7 +392,7 @@
   (org-mode . company-mode)
   :custom
   (company-minimum-prefix-length 2)
-  (company-idle-delay 0.1)
+  (company-idle-delay 0.5)
   :bind (:map company-active-map
 	      ("C-j" . company-select-next-or-abort) ;; down
 	      ("C-k" . company-select-previous-or-abort) ;; up

@@ -47,8 +47,6 @@ zstyle ':vcs_info:git:*' formats '|%b '
 alias emacsnw="TERM=alacritty-direct emacsclient -nw -a 'vim'"
 alias fontscache="fc-cache -f -v"
 alias ofen="cc"
-alias uni="cd ~/data/nextcloud/uni"
-alias duni="cd ~/dev/uni/"
 
 if command -v rg &> /dev/null; then
     alias grep="rg"
