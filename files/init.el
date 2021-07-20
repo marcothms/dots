@@ -331,7 +331,8 @@
                treemacs-persist-file (expand-file-name ".cache/treemacs-persist" user-emacs-directory)
                treemacs-width 40
                treemacs-project-follow-cleanup t)
-         (treemacs-follow-mode t))
+         (treemacs-follow-mode t)
+         (treemacs-load-theme "doom-atom"))
   :bind
   (:map global-map
     ("C-x t t" . treemacs)))
@@ -366,6 +367,15 @@
   (java-mode . lsp)
   (python-mode . lsp)
   (haskell-mode . lsp))
+
+;; fancy shit for lsp in treemacs
+(use-package lsp-treemacs
+  :ensure t
+  :init
+  (lsp-treemacs-sync-mode 1)
+  :bind
+  (:map global-map
+    ("C-x t s" . lsp-treemacs-symbols)))
 
 ;; Ui integration for Lsp
 (use-package lsp-ui
