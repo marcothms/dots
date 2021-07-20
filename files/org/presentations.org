@@ -1,6 +1,6 @@
 #+startup: beamer
 #+LaTeX_CLASS: beamer
-#+LaTeX_CLASS_OPTIONS: [presentation, smaller,aspectratio=169]
+#+LaTeX_CLASS_OPTIONS: [presentation, smaller, aspectratio=169]
 #+LANGUAGE: de
 #+OPTIONS: toc:t H:2
 #+BEAMER_THEME: Singapore

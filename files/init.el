@@ -228,7 +228,7 @@
          ("C-d" . ivy-switch-buffer-kill)
          :map ivy-reverse-i-search-map
          ("C-k" . ivy-previous-line)
-         ("C-d" . Ivy-reverse-i-search-kill))
+         ("C-d" . ivy-reverse-i-search-kill))
   :config
   (ivy-mode 1))
 
@@ -294,10 +294,11 @@
   :custom
   (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
 
+;; auto latex rendering in org-mode
 (use-package org-fragtog
-	:ensure t
-	:hook
-	(org-mode . org-fragtog-mode))
+  :ensure t
+  :hook
+  (org-mode . org-fragtog-mode))
 
 ;; Development Packages
 
@@ -340,10 +341,6 @@
   :after (treemacs evil)
   :ensure t)
 
-(use-package treemacs-projectile
-  :after (treemacs projectile)
-  :ensure t)
-
 (use-package treemacs-magit
   :after (treemacs magit)
   :ensure t)
@@ -354,13 +351,14 @@
   :commands (lsp lsp-deferred)
   :init
   (setq lsp-keymap-prefix "C-l")
-  (setq gc-cons-threshold 100000000) ;; 100 mb
-  (setq read-process-output-max (* 1024 1024)) ;; 1mb
+  (setq gc-cons-threshold (* 100 1024 1024))
+  (setq read-process-output-max (* 3 1024 1024))
   :config
   (lsp-enable-which-key-integration t)
   (setq lsp-rust-server 'rust-analyzer)
   (setq lsp-auto-guess-root t)
   (setq lsp-idle-delay 1.)
+  (setq lsp-enable-file-watchers nil)
   :hook
   (rust-mode . lsp)
   (java-mode . lsp)
@@ -495,7 +493,7 @@
           (if (cddr x)
               (quail-defrule (cadr x) (car (cddr x)))))
         (append math-symbol-list-basic math-symbol-list-extended math-symbol-list-superscripts math-symbol-list-subscripts))
-  )
+)
 
 ;; Java
 (use-package lsp-java
