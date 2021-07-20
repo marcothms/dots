@@ -330,7 +330,9 @@
   (progn (setq treemacs-follow-after-init t
                treemacs-persist-file (expand-file-name ".cache/treemacs-persist" user-emacs-directory)
                treemacs-width 40
-               treemacs-project-follow-cleanup t)
+               treemacs-project-follow-cleanup t
+               treemacs-expand-after-init nil
+               treemacs-recenter-after-file-follow t)
          (treemacs-follow-mode t)
          (treemacs-load-theme "doom-atom"))
   :bind
