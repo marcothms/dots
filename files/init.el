@@ -93,15 +93,14 @@
 (if (executable-find "hunspell")
     (use-package ispell
       :config
-      (setq ispell-program-name "hunspell")
-      (setq ispell-dictionary "de_DE,en_GB,en_US")
+      (setq ispell-program-name "hunspell"
+            ispell-dictionary "de_DE,en_GB,en_US")
       (ispell-set-spellchecker-params)
       (ispell-hunspell-add-multi-dic "de_DE,en_GB,en_US")
       :hook
       (org-mode . flyspell-mode)
       (markdown-mode . flyspell-mode)
-      (text-mode . flyspell-mode)
-      (prog-mode . flyspell-prog-mode)))
+      (text-mode . flyspell-mode)))
 
 ;; Themes and icons
 (use-package doom-themes
@@ -117,8 +116,8 @@
 (use-package doom-modeline
   :ensure t
   :init
-  (doom-modeline-mode 1)
-  (setq doom-modeline-height 25))
+  (setq doom-modeline-height 25)
+  (doom-modeline-mode 1))
 
 ;; show color codes
 (use-package rainbow-mode
@@ -172,8 +171,10 @@
 ;; Help to find keybindings
 (use-package which-key
   :ensure t
-  :init (which-key-mode)
-  :diminish which-key-mode
+  :init
+  (which-key-mode)
+  :diminish
+  (which-key-mode)
   :config
   (setq which-key-idle-delay 1))
 
@@ -181,10 +182,11 @@
 (use-package fill-column-indicator
   :ensure t
   :defer 1
-  :diminish fci-mode
+  :diminish
+  (fci-mode)
   :config
-  (setq fci-rule-width 1)
-  (setq fci-rule-color "#cc241d")
+  (setq fci-rule-width 1
+        fci-rule-color "#cc241d")
   :hook
   (prog-mode . fci-mode)
   (markdown-mode . fci-mode))
@@ -198,11 +200,12 @@
   (:map evil-insert-state-map
         ("C-y" . nil))
   :init
-  (setq evil-toggle-key "C-~") ;; so C-z works for background
-  (setq evil-want-C-d-scroll t)
-  (setq evil-want-C-u-scroll t)
-  (setq evil-want-integration t)
-  (setq evil-want-keybinding nil)
+  ;; so C-z works for background
+  (setq evil-toggle-key "C-~"
+        evil-want-C-d-scroll t
+        evil-want-C-u-scroll t
+        evil-want-integration t
+        evil-want-keybinding nil)
   :config
   (evil-mode))
 
@@ -257,30 +260,30 @@
   :hook
   (org-mode . (lambda () (electric-indent-local-mode -1)))
   :config
-  (setq org-format-latex-options (plist-put org-format-latex-options :scale 1.5))
-  (setq org-agenda-files (quote ("~/org")))
-  (setq org-directory "~/org")
-  (setq org-latex-listings 'minted
+  (setq org-format-latex-options (plist-put org-format-latex-options :scale 1.5)
+        org-agenda-files (quote ("~/org"))
+        org-directory "~/org"
+        org-latex-listings 'minted
         org-latex-packages-alist '(("" "minted"))
         org-latex-pdf-process
         '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
           "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
           "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
   :init
-  (setq org-todo-keywords '((sequence "TODO" "PROGRESS" "|" "DONE")))
-  (setq org-log-done 'time)
-  (setq org-capture-templates
-	(quote (("j" "Japanese" entry (file "~/org/japanese.org") "* TODO %?\n")
-		("u" "University" entry (file "~/org/uni.org") "* TODO %?\n")
-		("p" "Personal" entry (file "~/org/personal.org") "* TODO %?\n"))))
-  (setq org-edit-src-content-indentation 0))
+  (setq org-todo-keywords '((sequence "TODO" "PROGRESS" "|" "DONE"))
+        org-log-done 'time
+        org-capture-templates
+        (quote (("j" "Japanese" entry (file "~/org/japanese.org") "* TODO %?\n")
+                ("u" "University" entry (file "~/org/uni.org") "* TODO %?\n")
+                ("p" "Personal" entry (file "~/org/personal.org") "* TODO %?\n")))
+        org-edit-src-content-indentation 0))
 
 ;; enable languages for inline evaluation
 (org-babel-do-load-languages
  'org-babel-load-languages '((python . t)
-			     (shell . t)
-			     (C . t)
-			     (dot . t)))
+                             (shell . t)
+                             (C . t)
+                             (dot . t)))
 ; don't ask me every time!
 (defun my-org-confirm-babel-evaluate (lang body)
   (not (member lang '("python" "shell" "C" "dot"))))
@@ -290,7 +293,8 @@
 (use-package org-bullets
   :ensure t
   :after org
-  :hook (org-mode . org-bullets-mode)
+  :hook
+  (org-mode . org-bullets-mode)
   :custom
   (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
 
@@ -323,13 +327,11 @@
   :ensure t
   :defer t
   :config
-  (progn
-    (setq
-     treemacs-follow-after-init t
-     treemacs-persist-file (expand-file-name ".cache/treemacs-persist" user-emacs-directory)
-     treemacs-width 40
-     treemacs-project-follow-cleanup t)
-    (treemacs-follow-mode t))
+  (progn (setq treemacs-follow-after-init t
+               treemacs-persist-file (expand-file-name ".cache/treemacs-persist" user-emacs-directory)
+               treemacs-width 40
+               treemacs-project-follow-cleanup t)
+         (treemacs-follow-mode t))
   :bind
   (:map global-map
     ("C-x t t" . treemacs)))
@@ -350,15 +352,15 @@
   :ensure t
   :commands (lsp lsp-deferred)
   :init
-  (setq lsp-keymap-prefix "C-l")
-  (setq gc-cons-threshold (* 100 1024 1024))
-  (setq read-process-output-max (* 3 1024 1024))
+  (setq lsp-keymap-prefix "C-l"
+        gc-cons-threshold (* 200 1024 1024)
+        read-process-output-max (* 3 1024 1024))
   :config
   (lsp-enable-which-key-integration t)
-  (setq lsp-rust-server 'rust-analyzer)
-  (setq lsp-auto-guess-root t)
-  (setq lsp-idle-delay 1.)
-  (setq lsp-enable-file-watchers nil)
+  (setq lsp-rust-server 'rust-analyzer
+        lsp-auto-guess-root t
+        lsp-idle-delay 1
+        lsp-enable-file-watchers nil)
   :hook
   (rust-mode . lsp)
   (java-mode . lsp)
@@ -369,10 +371,10 @@
 (use-package lsp-ui
   :ensure t
   :config
-  (setq lsp-ui-peek-enable nil)
-  (setq lsp-ui-sideline-show-code-actions nil)
-  (setq lsp-modeline-code-actions-enable nil)
-  (setq lsp-ui-doc-enable nil))
+  (setq lsp-ui-peek-enable nil
+        lsp-ui-sideline-show-code-actions nil
+        lsp-modeline-code-actions-enable nil
+        lsp-ui-doc-enable nil))
 
 ;; Tags
 (use-package lsp-ivy
@@ -392,15 +394,15 @@
   (company-minimum-prefix-length 2)
   (company-idle-delay 0.5)
   :bind (:map company-active-map
-	      ("C-j" . company-select-next-or-abort) ;; down
-	      ("C-k" . company-select-previous-or-abort) ;; up
-	      ("C-l" . company-complete-selection) ;; right, as in complete towards the right
-	      ))
+              ("C-j" . company-select-next-or-abort) ;; down
+              ("C-k" . company-select-previous-or-abort) ;; up
+              ("C-l" . company-complete-selection))) ;; right, as in complete towards the right
 
 ;; Frontend for company
 (use-package company-box
   :ensure t
-  :hook (company-mode . company-box-mode))
+  :hook
+  (company-mode . company-box-mode))
 
 ;; project support
 (use-package projectile
@@ -447,10 +449,10 @@
   :hook
   (rust-mode . prettify-symbols-mode)
   (rust-mode . (lambda ()
-		 (push '("->" . ?→) prettify-symbols-alist)
-		 (push '("=>" . ?⇒) prettify-symbols-alist)
-		 (push '("!=" . ?≠) prettify-symbols-alist)
-		 (push '("<=" . ?≤) prettify-symbols-alist)
+                 (push '("->" . ?→) prettify-symbols-alist)
+                 (push '("=>" . ?⇒) prettify-symbols-alist)
+                 (push '("!=" . ?≠) prettify-symbols-alist)
+                 (push '("<=" . ?≤) prettify-symbols-alist)
                  (push '(">=" . ?≥) prettify-symbols-alist))))
 
 ;; LaTeX
@@ -458,9 +460,9 @@
   :ensure t
   :defer t
   :init
-  (setq TeX-auto-save t)
-  (setq TeX-parse-self t)
-  (setq preview-scale-function 1.5))
+  (setq TeX-auto-save t
+        TeX-parse-self t
+        preview-scale-function 1.5))
 
 ;; Math Symbols
 (use-package math-symbol-lists
@@ -478,7 +480,7 @@
    ("=>"        ?⇒)
    ("<->"       ?↔)
    ("<=>"       ?⇔)
-   ; quantors
+   ; Quantoren
    ("\\ex"      ?∃)
    ("\\all"     ?∀)
    ; sets of numbers
@@ -492,8 +494,10 @@
   (mapc (lambda (x)
           (if (cddr x)
               (quail-defrule (cadr x) (car (cddr x)))))
-        (append math-symbol-list-basic math-symbol-list-extended math-symbol-list-superscripts math-symbol-list-subscripts))
-)
+        (append math-symbol-list-basic
+                math-symbol-list-extended
+                math-symbol-list-superscripts
+                math-symbol-list-subscripts)))
 
 ;; Java
 (use-package lsp-java
@@ -503,9 +507,9 @@
 
 (add-hook 'java-mode-hook 'prettify-symbols-mode)
 (add-hook 'java-mode-hook (lambda ()
-		 (push '("!=" . ?≠) prettify-symbols-alist)
-		 (push '("<=" . ?≤) prettify-symbols-alist)
-		 (push '(">=" . ?≥) prettify-symbols-alist)))
+                            (push '("!=" . ?≠) prettify-symbols-alist)
+                            (push '("<=" . ?≤) prettify-symbols-alist)
+                            (push '(">=" . ?≥) prettify-symbols-alist)))
 
 ;; Haskell
 (use-package haskell-mode
@@ -533,8 +537,8 @@
   :hook
   (emacs-everywhere-mode . (lambda () (set-input-method "math")))
   :config
-  (setq emacs-everywhere-markdown-apps nil)
-  (setq emacs-everywhere-markdown-windows nil))
+  (setq emacs-everywhere-markdown-apps nil
+        emacs-everywhere-markdown-windows nil))
 
 ;; load local file
 (when (file-exists-p "~/.emacs.d/local.el")
