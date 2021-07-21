@@ -6,6 +6,9 @@
 ;
 ; ~ M. Thomas
 
+;; Initial optimization blob, mostly taken from doom emacs
+(let ((file-name-handler-alist nil))
+
 ;; Set the gc threshold high initially so the init.el can just be
 ;; loaded in one move
 (setq gc-cons-threshold most-positive-fixnum ; 2^61 bytes
@@ -101,32 +104,30 @@
 (global-whitespace-mode t)
 (setq whitespace-style '(face trailing tabs tab-mark))
 
-(require 'package)
+;; straight.el bootstrap
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 5))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
+
+;; inhibit package.el load
 (setq package-enable-at-startup nil)
-(setq package-archives '(("org"   . "http://orgmode.org/elpa/")
-                         ("melpa" . "https://melpa.org/packages/")
-                         ("elpa"  . "http://elpa.gnu.org/packages/")))
-(package-initialize)
 
-;; Bootstrap use-package
-(unless (package-installed-p 'use-package) ; unless it is already installed
-  (package-refresh-contents) ; update packages archive
-  (package-install 'use-package)) ; and install the most recent version of use-package
-
-(eval-when-compile
-  (require 'use-package))
-
-(use-package quelpa
-  :ensure t)
-
-(use-package quelpa-use-package
-  :ensure t)
+(straight-use-package 'use-package)
 
 ;; Packages
 
 ;; Copy environment
 (use-package exec-path-from-shell
-  :ensure t)
+  :straight t)
 
 (exec-path-from-shell-copy-env "SSH_AGENT_PID")
 (exec-path-from-shell-copy-env "SSH_AUTH_SOCK")
@@ -147,7 +148,7 @@
 
 ;; Themes and icons
 (use-package doom-themes
-  :ensure t
+  :straight t
   :init
   :config
   (setq doom-gruvbox-light-variant "soft")
@@ -157,24 +158,24 @@
 
 ;; Cool mode line
 (use-package doom-modeline
-  :ensure t
+  :straight t
   :init
   (setq doom-modeline-height 25)
   (doom-modeline-mode 1))
 
 ;; show color codes
 (use-package rainbow-mode
-  :ensure t
+  :straight t
   :hook
   (prog-mode . rainbow-mode))
 
 ;; icons
 (use-package all-the-icons
-  :ensure t)
+  :straight t)
 
 ;; NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA
 (use-package nyan-mode
-  :ensure t
+  :straight t
   :init
   (nyan-mode)
   (nyan-start-animation)
@@ -187,7 +188,7 @@
 
 ;; Heuristic indentation
 (use-package dtrt-indent
-  :ensure t
+  :straight t
   :hook
   (prog-mode . dtrt-indent-mode)
   (text-mode . dtrt-indent-mode)
@@ -206,14 +207,14 @@
 
 ;; general
 (use-package general
-  :ensure t
+  :straight t
   :init
   ;; Space as leader key
   (general-create-definer vim-leader-def :prefix "SPC"))
 
 ;; Help to find keybindings
 (use-package which-key
-  :ensure t
+  :straight t
   :init
   (which-key-mode)
   :diminish
@@ -223,7 +224,7 @@
 
 ;; 80 character limit line in prog mode
 (use-package fill-column-indicator
-  :ensure t
+  :straight t
   :defer 1
   :diminish
   (fci-mode)
@@ -236,7 +237,7 @@
 
 ;; Vim bindings
 (use-package evil
-  :ensure t
+  :straight t
   :bind
   (:map evil-motion-state-map
         ("C-y" . nil))
@@ -254,13 +255,13 @@
 
 (use-package evil-collection
   :after evil
-  :ensure t
+  :straight t
   :config
   (evil-collection-init))
 
 ;; Completion for swiper
 (use-package ivy
-  :ensure t
+  :straight t
   :diminish
   :bind (("C-s" . swiper) ; TODO: possibly map this to / at some point?
          :map ivy-minibuffer-map
@@ -279,7 +280,7 @@
   (ivy-mode 1))
 
 (use-package counsel
-  :ensure t
+  :straight t
   :bind (("M-x" . counsel-M-x)
          ("C-x b" . counsel-ibuffer)
          ("C-x C-f" . counsel-find-file)
@@ -288,7 +289,7 @@
 
 ;; Org
 (use-package org
-  :ensure t
+  :straight t
   ;; C-c C-t org rotate
   :general
   (vim-leader-def 'normal 'global
@@ -334,7 +335,7 @@
 
 ;; fancy bullets for org
 (use-package org-bullets
-  :ensure t
+  :straight t
   :after org
   :hook
   (org-mode . org-bullets-mode)
@@ -343,7 +344,7 @@
 
 ;; auto latex rendering in org-mode
 (use-package org-fragtog
-  :ensure t
+  :straight t
   :hook
   (org-mode . org-fragtog-mode))
 
@@ -351,7 +352,7 @@
 
 ;; git
 (use-package magit
-  :ensure t
+  :straight t
   :general
   (vim-leader-def 'normal 'global
     "gj" 'magit-blame
@@ -367,7 +368,7 @@
 
 ;; File bar
 (use-package treemacs
-  :ensure t
+  :straight t
   :defer t
   :config
   (setq treemacs-follow-after-init t
@@ -390,15 +391,15 @@
 
 (use-package treemacs-evil
   :after (treemacs evil)
-  :ensure t)
+  :straight t)
 
 (use-package treemacs-magit
   :after (treemacs magit)
-  :ensure t)
+  :straight t)
 
 ;; Lsp
 (use-package lsp-mode
-  :ensure t
+  :straight t
   :commands (lsp lsp-deferred)
   :init
   (setq lsp-keymap-prefix "C-l")
@@ -414,24 +415,15 @@
   (python-mode . lsp)
   (haskell-mode . lsp))
 
-;; Ui integration for Lsp
-(use-package lsp-ui
-  :ensure t
-  :config
-  (setq lsp-ui-peek-enable nil
-        lsp-ui-sideline-show-code-actions nil
-        lsp-modeline-code-actions-enable nil
-        lsp-ui-doc-enable nil))
-
 ;; Tags
 (use-package lsp-ivy
-  :ensure t
+  :straight t
   :after lsp-mode
   :bind(:map lsp-mode-map ("C-l g a" . lsp-ivy-workspace-symbol)))
 
 ;; Completion for Lsp
 (use-package company
-  :ensure t
+  :straight t
   :hook
   (lsp-mode . company-mode)
   (prog-mode . company-mode)
@@ -447,20 +439,20 @@
 
 ;; Frontend for company
 (use-package company-box
-  :ensure t
+  :straight t
   :hook
   (company-mode . company-box-mode))
 
 ;; project support
 (use-package projectile
-  :ensure t
+  :straight t
   :config
   (setq projectile-completion-system 'ivy)
   (projectile-mode +1))
 
 ;; ui for projectline
 (use-package counsel-projectile
-  :ensure t
+  :straight t
   :init
   (define-key projectile-mode-map (kbd "M-p") 'projectile-command-map))
 
@@ -475,7 +467,7 @@
   (setq company-backends (mapcar #'company-mode/backend-with-yas company-backends)))
 
 (use-package yasnippet
-  :ensure t
+  :straight t
   :init
   :bind (:map yas-minor-mode-map
               ("C-y" . yas-expand))
@@ -484,15 +476,17 @@
   (company-mode . company-mode/add-yasnippet))
 
 (use-package yasnippet-snippets
-  :quelpa ((yasnippet-snippets :fetcher github :repo "CramMK/yasnippet-snippets")))
+  :straight (yasnippet-snippets :type git :host github :repo "AndreaCrotti/yasnippet-snippets"
+                                :fork (:host github
+                                       :repo "crammk/yasnippet-snippets")))
 
 ;; compiling for lsp
 (use-package flycheck
-  :ensure t)
+  :straight t)
 
 ;; rust
 (use-package rust-mode
-  :ensure t
+  :straight t
   :hook
   (rust-mode . prettify-symbols-mode)
   (rust-mode . (lambda ()
@@ -504,7 +498,7 @@
 
 ;; LaTeX
 (use-package auctex
-  :ensure t
+  :straight t
   :defer t
   :init
   (setq TeX-auto-save t
@@ -513,7 +507,7 @@
 
 ;; Math Symbols
 (use-package math-symbol-lists
-  :ensure t
+  :straight t
   :config
   (quail-define-package "math" "UTF-8" "Ω" t)
   (quail-define-rules ; add whatever extra rules you want to define here...
@@ -548,7 +542,7 @@
 
 ;; Java
 (use-package lsp-java
-  :ensure t
+  :straight t
   :config
   (setq lsp-java-format-on-type-enabled nil))
 
@@ -560,19 +554,19 @@
 
 ;; Haskell
 (use-package haskell-mode
-  :ensure t
+  :straight t
   :hook
   (haskell-mode . interactive-haskell-mode))
 
 (use-package lsp-haskell
-  :ensure t
+  :straight t
   :hook
   (haskell-mode . lsp)
   (haskell-literate-mode . lsp))
 
 ;; Graphs
 (use-package graphviz-dot-mode
-  :ensure t
+  :straight t
   :hook
   (graphviz-dot-mode . (lambda () (set-input-method "math")))
   :config
@@ -580,7 +574,7 @@
 
 ;; use my beauty everywhere
 (use-package emacs-everywhere
-  :ensure t
+  :straight t
   :hook
   (emacs-everywhere-mode . (lambda () (set-input-method "math")))
   :config
@@ -591,3 +585,5 @@
 (when (file-exists-p "~/.emacs.d/local.el")
   (message "Loading ~/.emacs.d/local.el")
   (load-file "~/.emacs.d/local.el"))
+
+) ;; close performance let
