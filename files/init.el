@@ -6,12 +6,51 @@
 ;
 ; ~ M. Thomas
 
+;; Set the gc threshold high initially so the init.el can just be
+;; loaded in one move
+(setq gc-cons-threshold most-positive-fixnum ; 2^61 bytes
+      gc-cons-percentage 0.6)
+
+;; Lower the gc threshold again afterwards
+(add-hook 'emacs-startup-hook
+  (lambda ()
+    (setq gc-cons-threshold (* 256 1024 1024) ; 256 MB
+          gc-cons-percentage 0.1)))
+
+;; This is important for e.g. lsp mode
+(setq read-process-output-max (* 3 1024 1024)) ;; 3mb
+
 (setq make-backup-files nil
+      auto-mode-case-fold nil
       auto-save-default nil
       inhibit-startup-screen t
       tramp-default-method "ssh"
       initial-major-mode 'fundamental-mode
       initial-scratch-message nil)
+
+
+;; Disable bidirectional text scanning for a modest performance boost. I've set
+;; this to `nil' in the past, but the `bidi-display-reordering's docs say that
+;; is an undefined state and suggest this to be just as good:
+(setq-default bidi-display-reordering 'left-to-right
+              bidi-paragraph-direction 'left-to-right)
+
+;; Disabling the BPA makes redisplay faster, but might produce incorrect display
+;; reordering of bidirectional text with embedded parentheses and other bracket
+;; characters whose 'paired-bracket' Unicode property is non-nil.
+(setq bidi-inhibit-bpa t)  ; Emacs 27 only
+
+;; Reduce rendering/line scan work for Emacs by not rendering cursors or regions
+;; in non-focused windows.
+(setq-default cursor-in-non-selected-windows nil)
+(setq highlight-nonselected-windows nil)
+
+;; Emacs "updates" its ui more often than it needs to, so slow it down slightly
+(setq idle-update-delay 1.0)  ; default is 0.5
+
+;; Introduced in Emacs HEAD (b2f8c9f), this inhibits fontification while
+;; receiving input, which should help a little with scrolling performance.
+(setq redisplay-skip-fontification-on-input t)
 
 ;; remove ugly bars
 (menu-bar-mode -1)
@@ -20,6 +59,7 @@
 
 ;; smooth scrolling
 (setq redisplay-dont-pause t
+      fast-but-imprecise-scrolling t
       scroll-margin 1
       scroll-step 1
       scroll-conservatively 10000
@@ -361,9 +401,7 @@
   :ensure t
   :commands (lsp lsp-deferred)
   :init
-  (setq lsp-keymap-prefix "C-l"
-        gc-cons-threshold (* 200 1024 1024)
-        read-process-output-max (* 3 1024 1024))
+  (setq lsp-keymap-prefix "C-l")
   :config
   (lsp-enable-which-key-integration t)
   (setq lsp-rust-server 'rust-analyzer
@@ -400,7 +438,7 @@
   (LaTeX-mode . company-mode)
   (org-mode . company-mode)
   :custom
-  (company-minimum-prefix-length 2)
+  (company-minimum-prefix-length 3)
   (company-idle-delay 0.5)
   :bind (:map company-active-map
               ("C-j" . company-select-next-or-abort) ;; down
