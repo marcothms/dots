@@ -6,24 +6,26 @@
 ;
 ; ~ M. Thomas
 
-(setq make-backup-files nil) ;; We dont need these
-(setq auto-save-default nil) ;; Not this one either
-(menu-bar-mode -1) ;; The menu bar looks ugly in terminal
-(tool-bar-mode -1) ;; Nobody needs this
+(setq make-backup-files nil
+      auto-save-default nil
+      inhibit-startup-screen t
+      tramp-default-method "ssh"
+      initial-major-mode 'fundamental-mode
+      initial-scratch-message nil)
+
+;; remove ugly bars
+(menu-bar-mode -1)
+(tool-bar-mode -1)
 (scroll-bar-mode -1)
-(setq inhibit-startup-screen t) ;; Leave me alone with your tutorials
-(setq tramp-default-method "ssh") ;; speed up tramp mode
-(setq initial-major-mode 'fundamental-mode) ;; better startup speed
-(setq initial-scratch-message nil) ;; don't show me help at startup
 
 ;; smooth scrolling
 (setq redisplay-dont-pause t
-  scroll-margin 1
-  scroll-step 1
-  scroll-conservatively 10000
-  scroll-preserve-screen-position 1)
+      scroll-margin 1
+      scroll-step 1
+      scroll-conservatively 10000
+      scroll-preserve-screen-position 1)
 
-;; Show matching parenthesis
+;; show matching parenthesis
 (show-paren-mode t)
 (setq show-paren-style 'paranthesis)
 
@@ -76,6 +78,7 @@
 
 (use-package quelpa
   :ensure t)
+
 (use-package quelpa-use-package
   :ensure t)
 
@@ -327,17 +330,17 @@
   :ensure t
   :defer t
   :config
-  (progn (setq treemacs-follow-after-init t
-               treemacs-persist-file (expand-file-name ".cache/treemacs-persist" user-emacs-directory)
-               treemacs-width 40
-               treemacs-project-follow-cleanup t
-               treemacs-tag-follow-cleanup t
-               treemacs-expand-after-init nil
-               treemacs-recenter-after-file-follow t
-               treemacs-recenter-after-tag-follow t
-               treemacs-tag-follow-delay 1)
-         (treemacs-tag-follow-mode t)
-         (treemacs-load-theme "doom-atom"))
+  (setq treemacs-follow-after-init t
+        treemacs-persist-file (expand-file-name ".cache/treemacs-persist" user-emacs-directory)
+        treemacs-width 40
+        treemacs-project-follow-cleanup t
+        treemacs-tag-follow-cleanup t
+        treemacs-expand-after-init nil
+        treemacs-recenter-after-file-follow t
+        treemacs-recenter-after-tag-follow t
+        treemacs-tag-follow-delay 1)
+  (treemacs-tag-follow-mode t)
+  (treemacs-load-theme "doom-atom")
   :bind
   (:map global-map
     ("C-x t t" . treemacs)))
