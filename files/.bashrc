@@ -37,14 +37,15 @@ else
     ssh-add
 fi
 
-if [ -f ~/.bashrc_local ]; then
-    source ~/.bashrc_local
-fi
-
 # ============================== vi-Mode
 set -o vi
 
 # ============================== Source global definitions
 if [ -f /etc/bashrc ]; then
         . /etc/bashrc
+fi
+
+# ============================== Source local definitions
+if [ -f ~/.bashrc_local ]; then
+    source ~/.bashrc_local
 fi
