@@ -29,11 +29,9 @@ alias cp='cp -i' # ask before removal
 alias mv='mv -i' # ask before removal
 
 # ============================== SSH-Agent
-if [ -f ~/.ssh/agent.env ]; then
-    . ~/.ssh/agent.env > /dev/null
-else
+if ! [ -S /tmp/marc-agent.sock ]; then
     echo "Starting ssh-agent"
-    eval `ssh-agent | tee ~/.ssh/agent.env`
+    ssh-agent -a /tmp/marc-agent.sock
     ssh-add
 fi
 

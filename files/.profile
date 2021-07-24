@@ -4,9 +4,7 @@
 export PATH=$PATH:$HOME/scripts:$HOME/.cargo/bin:$HOME/.cabal/bin:$HOME/.ghcup/bin:$HOME/.local/bin
 
 # ssh
-if [ -f ~/.ssh/agent.env ] ; then
-    . ~/.ssh/agent.env > /dev/null
-fi
+export SSH_AUTH_SOCK=/tmp/marc-agent.sock
 
 # editor
 export EDITOR="vim"
