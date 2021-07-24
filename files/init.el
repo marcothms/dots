@@ -17,11 +17,11 @@
 ;; Lower the gc threshold again afterwards
 (add-hook 'emacs-startup-hook
   (lambda ()
-    (setq gc-cons-threshold (* 256 1024 1024) ; 256 MB
+    (setq gc-cons-threshold (* 32 1024 1024)
           gc-cons-percentage 0.1)))
 
 ;; This is important for e.g. lsp mode
-(setq read-process-output-max (* 3 1024 1024)) ;; 3mb
+(setq read-process-output-max (* 3 1024 1024))
 
 (setq make-backup-files nil
       auto-mode-case-fold nil
@@ -29,8 +29,8 @@
       inhibit-startup-screen t
       tramp-default-method "ssh"
       initial-major-mode 'fundamental-mode
-      initial-scratch-message nil)
-
+      initial-scratch-message nil
+      fast-but-imprecise-scrolling t)
 
 ;; Disable bidirectional text scanning for a modest performance boost. I've set
 ;; this to `nil' in the past, but the `bidi-display-reordering's docs say that
@@ -59,14 +59,6 @@
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
-
-;; smooth scrolling
-(setq redisplay-dont-pause t
-      fast-but-imprecise-scrolling t
-      scroll-margin 1
-      scroll-step 1
-      scroll-conservatively 10000
-      scroll-preserve-screen-position 1)
 
 ;; show matching parenthesis
 (show-paren-mode t)
@@ -149,7 +141,6 @@
 ;; Themes and icons
 (use-package doom-themes
   :straight t
-  :init
   :config
   (setq doom-gruvbox-light-variant "soft")
   (load-theme 'doom-gruvbox-light t)
@@ -159,7 +150,7 @@
 ;; Cool mode line
 (use-package doom-modeline
   :straight t
-  :init
+  :config
   (setq doom-modeline-height 25)
   (doom-modeline-mode 1))
 
@@ -380,7 +371,7 @@
         treemacs-recenter-after-file-follow t
         treemacs-recenter-after-tag-follow t
         treemacs-tag-follow-delay 1)
-  (treemacs-tag-follow-mode t)
+  (treemacs-follow-mode t)
   (treemacs-load-theme "doom-atom")
   :bind
   (:map global-map
@@ -440,6 +431,8 @@
 ;; Frontend for company
 (use-package company-box
   :straight t
+  :config
+  (setq company-box-doc-delay 2.0)
   :hook
   (company-mode . company-box-mode))
 
@@ -585,5 +578,7 @@
 (when (file-exists-p "~/.emacs.d/local.el")
   (message "Loading ~/.emacs.d/local.el")
   (load-file "~/.emacs.d/local.el"))
+
+
 
 ) ;; close performance let
