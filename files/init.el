@@ -64,7 +64,7 @@
 
 ;; Font
 ; default font
-(set-face-attribute 'default nil :font "SFMono Nerd Font Mono" :height 140)
+(set-face-attribute 'default nil :font "SFMono Nerd Font Mono" :height 130)
 ; more fonts
 ;(set-fontset-font t 'unicode "Source Code Pro" nil 'prepend)
 ;(set-fontset-font t 'unicode "Noto Color Emoji" nil 'append)
