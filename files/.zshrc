@@ -45,8 +45,6 @@ zstyle ':vcs_info:git:*' formats '|%b '
 
 # ============================== Aliases
 alias emacsnw="TERM=alacritty-direct emacsclient -nw -a 'vim'"
-alias fontscache="fc-cache -f -v"
-alias ofen="cc"
 
 if command -v rg &> /dev/null; then
     alias grep="rg"
@@ -56,8 +54,6 @@ if command -v btm &> /dev/null; then
     alias top="btm"
     alias htop="btm"
 fi
-
-alias sag="ssh-add ~/.ssh/github"
 
 alias s="cd ~/scripts/"
 alias c='clear'
