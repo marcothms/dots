@@ -6,7 +6,6 @@
 ;
 ; ~ M. Thomas
 
-;; Initial optimization blob, mostly taken from doom emacs
 (let ((file-name-handler-alist nil))
 
 ;; Set the gc threshold high initially so the init.el can just be
@@ -17,8 +16,7 @@
 ;; Lower the gc threshold again afterwards
 (add-hook 'emacs-startup-hook
   (lambda ()
-    (setq gc-cons-threshold (* 32 1024 1024)
-          gc-cons-percentage 0.1)))
+    (setq gc-cons-threshold (* 32 1024 1024))))
 
 ;; This is important for e.g. lsp mode
 (setq read-process-output-max (* 3 1024 1024))
@@ -68,10 +66,10 @@
 ; default font
 (set-face-attribute 'default nil :font "SFMono Nerd Font Mono" :height 140)
 ; more fonts
-(set-fontset-font t 'unicode "Source Code Pro" nil 'prepend)
-(set-fontset-font t 'unicode "Noto Color Emoji" nil 'append)
-; fonts for daemon
-(add-to-list 'default-frame-alist '(font . "SFMono Nerd Font Mono"))
+;(set-fontset-font t 'unicode "Source Code Pro" nil 'prepend)
+;(set-fontset-font t 'unicode "Noto Color Emoji" nil 'append)
+;; fonts for daemon
+;(add-to-list 'default-frame-alist '(font . "SFMono Nerd Font Mono"))
 
 ;; Make ESC quit prompts
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
@@ -97,6 +95,7 @@
 (setq whitespace-style '(face trailing tabs tab-mark))
 
 ;; straight.el bootstrap
+(setq straight-check-for-modifications 'live)
 (defvar bootstrap-version)
 (let ((bootstrap-file
        (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
@@ -119,24 +118,24 @@
 
 ;; Copy environment
 (use-package exec-path-from-shell
-  :straight t)
-
-(exec-path-from-shell-copy-env "SSH_AGENT_PID")
-(exec-path-from-shell-copy-env "SSH_AUTH_SOCK")
-(exec-path-from-shell-copy-env "PATH")
+  :straight t
+  :config
+  (setq exec-path-from-shell-arguments '("-l"))
+  (exec-path-from-shell-copy-envs '("PATH" "SSH_AGENT_PID" "SSH_AUTH_SOCK")))
 
 ;; Spellchecker
-(if (executable-find "hunspell")
-    (use-package ispell
-      :config
-      (setq ispell-program-name "hunspell"
-            ispell-dictionary "de_DE,en_GB,en_US")
-      (ispell-set-spellchecker-params)
-      (ispell-hunspell-add-multi-dic "de_DE,en_GB,en_US")
-      :hook
-      (org-mode . flyspell-mode)
-      (markdown-mode . flyspell-mode)
-      (text-mode . flyspell-mode)))
+(use-package ispell
+  :straight t
+  :if (executable-find "hunspell")
+  :config
+  (setq ispell-program-name "hunspell"
+        ispell-dictionary "de_DE,en_GB,en_US")
+  (ispell-set-spellchecker-params)
+  (ispell-hunspell-add-multi-dic "de_DE,en_GB,en_US")
+  :hook
+  (org-mode . flyspell-mode)
+  (markdown-mode . flyspell-mode)
+  (text-mode . flyspell-mode))
 
 ;; Themes and icons
 (use-package doom-themes
@@ -245,8 +244,8 @@
   (evil-mode))
 
 (use-package evil-collection
-  :after evil
   :straight t
+  :after evil
   :config
   (evil-collection-init))
 
@@ -304,6 +303,10 @@
         '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
           "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
           "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+  (org-babel-do-load-languages 'org-babel-load-languages '((python . t)
+                                                           (shell . t)
+                                                           (C . t)
+                                                           (dot . t)))
   :init
   (setq org-todo-keywords '((sequence "TODO" "PROGRESS" "|" "DONE"))
         org-log-done 'time
@@ -312,17 +315,6 @@
                 ("u" "University" entry (file "~/org/uni.org") "* TODO %?\n")
                 ("p" "Personal" entry (file "~/org/personal.org") "* TODO %?\n")))
         org-edit-src-content-indentation 0))
-
-;; enable languages for inline evaluation
-(org-babel-do-load-languages
- 'org-babel-load-languages '((python . t)
-                             (shell . t)
-                             (C . t)
-                             (dot . t)))
-; don't ask me every time!
-(defun my-org-confirm-babel-evaluate (lang body)
-  (not (member lang '("python" "shell" "C" "dot"))))
-(setq org-confirm-babel-evaluate 'my-org-confirm-babel-evaluate)
 
 ;; fancy bullets for org
 (use-package org-bullets
@@ -432,22 +424,18 @@
 (use-package company-box
   :straight t
   :config
-  (setq company-box-doc-delay 2.0)
+  (setq company-box-doc-delay 2.0
+        company-box-max-candidates 10)
   :hook
   (company-mode . company-box-mode))
 
 ;; project support
 (use-package projectile
   :straight t
+  :after lsp
   :config
   (setq projectile-completion-system 'ivy)
   (projectile-mode +1))
-
-;; ui for projectline
-(use-package counsel-projectile
-  :straight t
-  :init
-  (define-key projectile-mode-map (kbd "M-p") 'projectile-command-map))
 
 ;; snippet support
 (defun company-mode/backend-with-yas (backend)
@@ -471,11 +459,13 @@
 (use-package yasnippet-snippets
   :straight (yasnippet-snippets :type git :host github :repo "AndreaCrotti/yasnippet-snippets"
                                 :fork (:host github
-                                       :repo "crammk/yasnippet-snippets")))
+                                             :repo "crammk/yasnippet-snippets"))
+  :after yasnippet)
 
 ;; compiling for lsp
 (use-package flycheck
-  :straight t)
+  :straight t
+  :after lsp)
 
 ;; rust
 (use-package rust-mode
@@ -536,6 +526,7 @@
 ;; Java
 (use-package lsp-java
   :straight t
+  :after lsp
   :config
   (setq lsp-java-format-on-type-enabled nil))
 
@@ -553,6 +544,7 @@
 
 (use-package lsp-haskell
   :straight t
+  :after lsp
   :hook
   (haskell-mode . lsp)
   (haskell-literate-mode . lsp))
@@ -578,7 +570,5 @@
 (when (file-exists-p "~/.emacs.d/local.el")
   (message "Loading ~/.emacs.d/local.el")
   (load-file "~/.emacs.d/local.el"))
-
-
 
 ) ;; close performance let
