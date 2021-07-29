@@ -311,6 +311,7 @@
         org-log-done 'time
         org-capture-templates
         (quote (("j" "Japanese" entry (file "~/org/japanese.org") "* TODO %?\n")
+                ("w" "Work" entry (file "~/org/work.org") "* TODO %?\n")
                 ("u" "University" entry (file "~/org/uni.org") "* TODO %?\n")
                 ("p" "Personal" entry (file "~/org/personal.org") "* TODO %?\n")))
         org-edit-src-content-indentation 0))
