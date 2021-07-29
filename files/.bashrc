@@ -10,7 +10,7 @@ DIR="\[\033[1;94m\]\w\[\033[m\]"
 export PS1="${HOST} ${DIR}${GIT} ${ICON} "
 
 # ============================== Aliases
-alias emacsnw="emacsclient -c -nw -a 'emacs -nw'"
+alias emacsnw="TERM=xterm-direct emacsclient -c -nw -a 'emacs -nw'"
 alias s="cd ~/scripts/"
 alias c='clear'
 
