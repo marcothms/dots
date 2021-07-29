@@ -4,7 +4,7 @@
 export PATH=$PATH:$HOME/scripts:$HOME/.cargo/bin:$HOME/.cabal/bin:$HOME/.ghcup/bin:$HOME/.local/bin
 
 # ssh
-export SSH_AUTH_SOCK=/tmp/marc-agent.sock
+export SSH_AUTH_SOCK=/tmp/mthomas-agent.sock
 
 # editor
 export EDITOR="vim"

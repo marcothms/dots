@@ -99,9 +99,9 @@ export HISTFILE="$HOME/.zsh_history"
 export SAVEHIST=5000
 
 # ============================== ssh-agent
-if ! [ -S /tmp/marc-agent.sock ]; then
+if ! [ -S /tmp/mthomas-agent.sock ]; then
     echo "Starting ssh-agent"
-    ssh-agent -a /tmp/marc-agent.sock
+    ssh-agent -a /tmp/mthomas-agent.sock
     ssh-add
 fi
 
