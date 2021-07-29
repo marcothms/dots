@@ -10,8 +10,7 @@
 
 ;; Set the gc threshold high initially so the init.el can just be
 ;; loaded in one move
-(setq gc-cons-threshold most-positive-fixnum ; 2^61 bytes
-      gc-cons-percentage 0.6)
+(setq gc-cons-threshold most-positive-fixnum) ; 2^61 bytes
 
 ;; Lower the gc threshold again afterwards
 (add-hook 'emacs-startup-hook
