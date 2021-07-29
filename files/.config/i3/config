@@ -12,6 +12,7 @@ workspace_layout stacking
 
 ### keybinds for starting
 bindsym $mod+Return exec alacritty
+bindsym Ctrl+Return exec xterm
 bindsym $mod+d exec --no-startup-id dmenu_run
 bindsym $mod+e exec "emacsclient -c"
 bindsym $mod+Ctrl+e exec "emacsclient --eval '(emacs-everywhere)'"
