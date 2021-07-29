@@ -15,5 +15,5 @@ if [ $USER == "marc" ];then
 	   --ringver-color=ffffffff --ringwrong-color=ffffffff --ind-pos="x+86:y+1003" \
 	   --radius=15 --verif-text="" --wrong-text="" --noinput-text=""
 else
-   xlock -mode blank
+   $HOME/scripts/lock-work.sh
 fi
