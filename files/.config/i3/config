@@ -1,5 +1,5 @@
 set $mod Mod4
-font pango:SFMono Nerd Font Mono 10
+font pango:SFMono Nerd Font Mono 12
 
 # correct locking
 exec --no-startup-id xss-lock --transfer-sleep-lock -- lock.sh

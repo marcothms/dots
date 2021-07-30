@@ -14,8 +14,8 @@ alias emacsnw="TERM=xterm-direct emacsclient -c -nw -a 'emacs -nw'"
 alias s="cd ~/scripts/"
 alias c='clear'
 
-alias l='ls -lfh'     #size,show type,human readable
-alias la='ls -lafh'   #long list,show almost all,show type,human readable
+alias l='ls -lh'     #size,show type,human readable
+alias la='ls -lah'   #long list,show almost all,show type,human readable
 alias ll='ls -l'      #long list
 
 alias rm='rm -i' # ask before removal
