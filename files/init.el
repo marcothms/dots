@@ -64,11 +64,8 @@
 ;; Font
 ; default font
 (set-face-attribute 'default nil :font "SFMono Nerd Font Mono" :height 130)
-; more fonts
-;(set-fontset-font t 'unicode "Source Code Pro" nil 'prepend)
-;(set-fontset-font t 'unicode "Noto Color Emoji" nil 'append)
-;; fonts for daemon
-;(add-to-list 'default-frame-alist '(font . "SFMono Nerd Font Mono"))
+; fonts for daemon
+(add-to-list 'default-frame-alist '(font . "SFMono Nerd Font Mono"))
 
 ;; Make ESC quit prompts
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
