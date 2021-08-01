@@ -1,23 +1,4 @@
-#!/bin/bash
-# Executed by startx
-
-userresources=$HOME/.Xresources
-usermodmap=$HOME/.Xmodmap
-
-# merge in defaults and keymaps
-if [ -f "$userresources" ]; then
-    xrdb -merge "$userresources"
-fi
-
-if [ -f "$usermodmap" ]; then
-    xmodmap "$usermodmap"
-fi
-
-# start programs
-fcitx5 -d &
-nextcloud &
-nm-applet &
-dunst &
+#!/bin/sh
 
 # desktop or laptop?
 if [ `hostname` == "nazarick" ];then

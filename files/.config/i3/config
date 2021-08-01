@@ -11,12 +11,12 @@ floating_modifier $mod
 workspace_layout stacking
 
 ### keybinds for starting
-bindsym $mod+Return exec alacritty
-bindsym Ctrl+Return exec xterm
+bindsym $mod+Return exec --no-startup-id alacritty
+bindsym Ctrl+Return exec --no-startup-id xterm
 bindsym $mod+d exec --no-startup-id dmenu_run
-bindsym $mod+e exec "emacsclient -c"
-bindsym $mod+Ctrl+e exec "emacsclient --eval '(emacs-everywhere)'"
-bindsym $mod+Shift+s exec "flameshot gui"
+bindsym $mod+e exec --no-startup-id "emacsclient -c"
+bindsym $mod+Ctrl+e exec --no-startup-id "emacsclient --eval '(emacs-everywhere)'"
+bindsym $mod+Shift+s exec --no-startup-id "flameshot gui"
 
 ### keybinds for moving windows
 bindsym $mod+Shift+q kill
@@ -83,11 +83,11 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 # audio and display control
-bindsym XF86AudioMute exec amixer -q set Master toggle
+bindsym XF86AudioMute exec --no-startup-id amixer -q set Master toggle
 bindsym XF86AudioLowerVolume exec --no-startup-id "pactl set-sink-volume @DEFAULT_SINK@ -2%"
 bindsym XF86AudioRaiseVolume exec --no-startup-id "pactl set-sink-volume @DEFAULT_SINK@ +2%"
-bindsym XF86MonBrightnessUp exec light -A 5 # increase screen brightness
-bindsym XF86MonBrightnessDown exec light -U 5 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5 # increase screen brightness
+bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5 # decrease screen brightness
 
 # styling
 new_window none
@@ -128,4 +128,16 @@ client.unfocused        #f2e5bc #f2e5bc #282828 #fbf1c7 #f2e5bc
 client.urgent           #cc241d #fb4934 #282828 #cc241d #fb4934
 
 # startup
-exec $HOME/.xinitrc
+exec --no-startup-id "fcitx5 -d &"
+exec --no-startup-id "nextcloud &"
+exec --no-startup-id "nm-applet &"
+exec --no-startup-id "dunst &"
+
+# set screens
+exec --no-startup-id $HOME/.screenlayout/layout.sh
+
+# set wallpaper
+exec --no-startup-id $HOME/scripts/wallpaper.sh
+
+# set X things
+exec --no-startup-id "xrdb -merge $HOME/.Xresources"
