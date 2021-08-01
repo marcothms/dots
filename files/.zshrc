@@ -50,12 +50,6 @@ if command -v rg &> /dev/null; then
     alias grep="rg"
 fi
 
-if command -v btm &> /dev/null; then
-    alias top="btm"
-    alias htop="btm"
-fi
-
-alias s="cd ~/scripts/"
 alias c='clear'
 
 alias l='ls -lFh'     #size,show type,human readable
