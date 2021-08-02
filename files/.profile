@@ -10,9 +10,6 @@ export SSH_AUTH_SOCK=/tmp/mthomas-agent.sock
 export EDITOR="vim"
 export VISIAL=${EDITOR}
 
-# keyboard layout
-setxkbmap -layout za
-
 # fcitx exports
 export GTK_IM_MODULE='fcitx'
 export QT_IM_MODULE='fcitx'
