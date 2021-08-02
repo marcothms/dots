@@ -11,7 +11,6 @@ export PS1="${HOST} ${DIR}${GIT} ${ICON} "
 
 # ============================== Aliases
 alias emacsnw="TERM=xterm-direct emacsclient -c -nw -a 'emacs -nw'"
-alias s="cd ~/scripts/"
 alias c='clear'
 
 alias l='ls -lh'     #size,show type,human readable

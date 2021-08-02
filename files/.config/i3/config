@@ -36,6 +36,9 @@ bindsym $mod+Shift+l move right
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 
+# sticky
+bindsym $mod+s sticky toggle
+
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+Tab layout toggle stacked split
 
@@ -128,10 +131,7 @@ client.unfocused        #f2e5bc #f2e5bc #282828 #fbf1c7 #f2e5bc
 client.urgent           #cc241d #fb4934 #282828 #cc241d #fb4934
 
 # startup
-exec --no-startup-id "fcitx5 -d &"
-exec --no-startup-id "nextcloud &"
-exec --no-startup-id "nm-applet &"
-exec --no-startup-id "dunst &"
+exec --no-startup-id $HOME/scripts/start_progs.sh
 
 # set screens
 exec --no-startup-id $HOME/.screenlayout/layout.sh
