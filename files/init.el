@@ -63,7 +63,7 @@
 
 ;; Font
 ; default font
-(set-face-attribute 'default nil :font "SFMono Nerd Font Mono" :height 130)
+(set-face-attribute 'default nil :font "SFMono Nerd Font Mono" :height 110)
 ; fonts for daemon
 (add-to-list 'default-frame-alist '(font . "SFMono Nerd Font Mono"))
 

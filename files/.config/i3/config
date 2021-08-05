@@ -1,5 +1,5 @@
 set $mod Mod4
-font pango:SFMono Nerd Font Mono 12
+font pango:SFMono Nerd Font Mono 11
 
 # correct locking
 exec --no-startup-id xss-lock --transfer-sleep-lock -- lock.sh
@@ -12,7 +12,7 @@ workspace_layout stacking
 
 ### keybinds for starting
 bindsym $mod+Return exec --no-startup-id alacritty
-bindsym Ctrl+Return exec --no-startup-id xterm
+bindsym $mod+Ctrl+Return exec --no-startup-id xterm
 bindsym $mod+d exec --no-startup-id dmenu_run
 bindsym $mod+e exec --no-startup-id "emacsclient -c"
 bindsym $mod+Ctrl+e exec --no-startup-id "emacsclient --eval '(emacs-everywhere)'"
