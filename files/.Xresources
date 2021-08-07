@@ -1,6 +1,6 @@
 ! Font
 XTerm.vt100.faceName: xft:SFMono Nerd Font Mono:antialias=true
-XTerm.vt100.faceSize: 13
+XTerm.vt100.faceSize: 11
 
 ! Remove Scrollbar
 XTerm.vt100.scrollBar: false
