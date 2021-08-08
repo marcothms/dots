@@ -146,8 +146,14 @@
 (use-package doom-modeline
   :straight t
   :config
-  (setq doom-modeline-height 25)
   (doom-modeline-mode 1))
+
+; show icons in daemonized emacs
+(defun enable-doom-modeline-icons (_frame)
+  (setq doom-modeline-icon t))
+
+(add-hook 'after-make-frame-functions 
+          #'enable-doom-modeline-icons)
 
 ;; show color codes
 (use-package rainbow-mode
