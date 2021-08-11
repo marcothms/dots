@@ -139,5 +139,8 @@ exec --no-startup-id $HOME/.screenlayout/layout.sh
 # set wallpaper
 exec --no-startup-id $HOME/scripts/wallpaper.sh
 
+# set keyboard layout
+exec --no-startup-id "setxkbmap -layout za"
+
 # set X things
 exec --no-startup-id "xrdb -merge $HOME/.Xresources"
