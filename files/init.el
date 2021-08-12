@@ -569,6 +569,20 @@
   (setq emacs-everywhere-markdown-apps nil
         emacs-everywhere-markdown-windows nil))
 
+(use-package hl-todo
+  :straight t
+  :hook
+  (prog-mode . hl-todo-mode)
+  :config
+  (defface hl-todo-TODO
+    '((t :background "#cc241d" :foreground "#f2e5bc" :inherit (hl-todo)))
+    "TODO Face")
+  (setq hl-todo-highlight-punctuation ":"
+        hl-todo-color-background t
+        hl-todo-keyword-faces '(("TODO"  . hl-todo-TODO)
+                                ("XXX"   . hl-todo-TODO)
+                                ("FIXME" . hl-todo-TODO))))
+
 ;; load local file
 (when (file-exists-p "~/.emacs.d/local.el")
   (message "Loading ~/.emacs.d/local.el")
