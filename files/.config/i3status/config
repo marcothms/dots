@@ -14,13 +14,13 @@ order += "tztime local"
 order += "volume master"
 
 wireless _first_ {
-    format_up = "📡  %essid"
-    format_down = "📡  Disconnected"
+    format_up = "📡 %essid"
+    format_down = "📡 Disconnected"
 }
 
 volume master {
-    format = "🔉  %volume"
-    format_muted = "🔇  Muted"
+    format = "🔉 %volume"
+    format_muted = "🔇 Muted"
     device = "default"
     mixer = "Master"
     mixer_idx = 0
@@ -28,17 +28,17 @@ volume master {
 
 battery all {
     last_full_capacity = true
-    format = "🔋  %status %percentage"
+    format = "%status %percentage"
     format_down = "No Battery"
-    status_chr = "Charging"
-    status_bat = "Battery"
-    status_unk = "Unknown"
-    status_full = "Charged"
+    status_chr = "⚡ Charging"
+    status_bat = "🔋 Battery"
+    status_unk = "? Unknown"
+    status_full = "🔋 Full"
     path = "/sys/class/power_supply/BAT%d/uevent"
     low_threshold = 10
 }
 
 tztime local {
-  format = "📅  %time"
+  format = "📅 %time"
   format_time = "%a %-d %b %H:%M"
 }
