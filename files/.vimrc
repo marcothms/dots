@@ -50,7 +50,7 @@ set scrolloff=5 " min lines above or below the cursor
 set laststatus=0 " i dont need a statusline
 set showtabline=0 " i dont need tabs
 
-"============================== Indents and Whitespaces
+" ============================== Indents and Whitespaces
 set list
 set listchars=tab:──\ ,extends:›,precedes:‹,nbsp:·,trail:·
 set fillchars+=vert:\  "don't draw verticle split
