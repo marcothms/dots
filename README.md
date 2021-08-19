@@ -9,6 +9,7 @@
 
 ## Programs
 
++ Audiocontrol: pasystray
 + Bluetooth-Manager: blueman
 + Editor: emacs
 + Image-Viewer: sxiv
