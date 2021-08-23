@@ -482,6 +482,10 @@
                  (push '("<=" . ?≤) prettify-symbols-alist)
                  (push '(">=" . ?≥) prettify-symbols-alist))))
 
+(use-package wgsl-mode
+  :straight (wgsl-mode :type git :host github :repo "CramMK/wgsl-mode")
+  :mode ("\\.wgsl\\'" . wgsl-mode))
+
 ;; LaTeX
 (use-package auctex
   :straight t
