@@ -146,7 +146,8 @@
 (use-package doom-modeline
   :straight t
   :config
-  (doom-modeline-mode 1))
+  (doom-modeline-mode 1)
+  (setq doom-modeline-indent-info t))
 
 ; show icons in daemonized emacs
 (defun enable-doom-modeline-icons (_frame)
@@ -309,7 +310,6 @@
                                                            (shell . t)
                                                            (C . t)
                                                            (dot . t)))
-  :init
   (setq org-todo-keywords '((sequence "TODO" "PROGRESS" "|" "DONE"))
         org-log-done 'time
         org-capture-templates
@@ -318,6 +318,11 @@
                 ("u" "University" entry (file "~/org/uni.org") "* TODO %?\n")
                 ("p" "Personal" entry (file "~/org/personal.org") "* TODO %?\n")))
         org-edit-src-content-indentation 0))
+  (defun my-beamer-bold (contents backend info)
+    (when (eq backend 'beamer)
+      (replace-regexp-in-string "\\`\\\\[A-Za-z0-9]+" "\\\\textbf" contents)))
+
+  (add-to-list 'org-export-filter-bold-functions 'my-beamer-bold)
 
 ;; fancy bullets for org
 (use-package org-bullets
