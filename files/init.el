@@ -317,12 +317,12 @@
                 ("w" "Work" entry (file "~/org/work.org") "* TODO %?\n")
                 ("u" "University" entry (file "~/org/uni.org") "* TODO %?\n")
                 ("p" "Personal" entry (file "~/org/personal.org") "* TODO %?\n")))
-        org-edit-src-content-indentation 0))
+        org-edit-src-content-indentation 0)
   (defun my-beamer-bold (contents backend info)
     (when (eq backend 'beamer)
       (replace-regexp-in-string "\\`\\\\[A-Za-z0-9]+" "\\\\textbf" contents)))
 
-  (add-to-list 'org-export-filter-bold-functions 'my-beamer-bold)
+  (add-to-list 'org-export-filter-bold-functions 'my-beamer-bold))
 
 ;; fancy bullets for org
 (use-package org-bullets
