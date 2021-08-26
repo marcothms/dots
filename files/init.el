@@ -295,7 +295,10 @@
     "odi" 'org-display-inline-images
     "olp" 'org-latex-preview)
   :hook
+  ;; dont make real spaces at the start
   (org-mode . (lambda () (electric-indent-local-mode -1)))
+  ;; add virtual spaces
+  (org-mode . org-indent-mode)
   :config
   (setq org-format-latex-options (plist-put org-format-latex-options :scale 1.5)
         org-agenda-files (quote ("~/org"))
@@ -320,13 +323,24 @@
         org-edit-src-content-indentation 0))
 
 ;; fancy bullets for org
-(use-package org-bullets
+(use-package org-superstar
   :straight t
-  :after org
   :hook
-  (org-mode . org-bullets-mode)
-  :custom
-  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
+  (org-mode . org-superstar-mode)
+  :config
+  ;; uncomment if slowdown happens
+  ;;(setq inhibit-compacting-font-caches t)
+  ;; base config, as i wont use level 8
+  (set-face-attribute 'org-level-8 nil :font "Product Sans" :weight 'bold :inherit 'default)
+  ;; make first 3 bigger
+  (set-face-attribute 'org-level-3 nil :inherit 'org-level-8 :height 1.1)
+  (set-face-attribute 'org-level-2 nil :inherit 'org-level-8 :height 1.25)
+  (set-face-attribute 'org-level-1 nil :inherit 'org-level-8 :height 1.5)
+  ;; Low levels are unimportant => no scaling
+  (set-face-attribute 'org-level-7 nil :inherit 'org-level-8)
+  (set-face-attribute 'org-level-6 nil :inherit 'org-level-8)
+  (set-face-attribute 'org-level-5 nil :inherit 'org-level-8)
+  (set-face-attribute 'org-level-4 nil :inherit 'org-level-8))
 
 ;; auto latex rendering in org-mode
 (use-package org-fragtog
@@ -586,6 +600,11 @@
         hl-todo-keyword-faces '(("TODO"  . hl-todo-TODO)
                                 ("XXX"   . hl-todo-TODO)
                                 ("FIXME" . hl-todo-TODO))))
+
+(add-hook 'prog-mode-hook #'hs-minor-mode)
+(global-set-key (kbd "C-c <right>") 'hs-show-block)
+(global-set-key (kbd "C-c <left>") 'hs-hide-block)
+
 
 ;; load local file
 (when (file-exists-p "~/.emacs.d/local.el")
