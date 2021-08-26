@@ -64,8 +64,10 @@
 ;; Font
 ; default font
 (set-face-attribute 'default nil :font "SFMono Nerd Font Mono" :height 110)
+(set-fontset-font t 'unicode "Source Code Pro" nil 'prepend)
+(set-fontset-font t 'unicode "Noto Color Emoji" nil 'append)
 ; fonts for daemon
-(add-to-list 'default-frame-alist '(font . "SFMono Nerd Font Mono"))
+;(add-to-list 'default-frame-alist '(font . "SFMono Nerd Font Mono"))
 
 ;; Make ESC quit prompts
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
@@ -149,12 +151,12 @@
   (doom-modeline-mode 1)
   (setq doom-modeline-indent-info t))
 
-; show icons in daemonized emacs
-(defun enable-doom-modeline-icons (_frame)
-  (setq doom-modeline-icon t))
-
-(add-hook 'after-make-frame-functions 
-          #'enable-doom-modeline-icons)
+;; show icons in daemonized emacs
+;;(defun enable-doom-modeline-icons (_frame)
+;;  (setq doom-modeline-icon t))
+;;
+;;(add-hook 'after-make-frame-functions 
+;;          #'enable-doom-modeline-icons)
 
 ;; show color codes
 (use-package rainbow-mode

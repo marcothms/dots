@@ -10,7 +10,8 @@ DIR="\[\033[1;94m\]\w\[\033[m\]"
 export PS1="${HOST} ${DIR}${GIT} ${ICON} "
 
 # ============================== Aliases
-alias emacsnw="TERM=xterm-direct emacsclient -c -nw -a 'emacs -nw'"
+#alias emacsnw="TERM=xterm-direct emacsclient -c -nw -a 'emacs -nw'"
+alias emacsnw="TERM=xterm-direct emacs -nw"
 alias c='clear'
 
 alias l='ls -lh'     #size,show type,human readable
