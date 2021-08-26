@@ -44,7 +44,6 @@ export PROMPT="${NAME}${DIR}${GIT} ${ICON}%{$reset_color%} "
 zstyle ':vcs_info:git:*' formats '|%b '
 
 # ============================== Aliases
-#alias emacsnw="TERM=alacritty-direct emacsclient -nw -a 'emacs -nw'"
 alias emacsnw="TERM=alacritty-direct emacs -nw"
 
 if command -v rg &> /dev/null; then

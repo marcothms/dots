@@ -66,8 +66,6 @@
 (set-face-attribute 'default nil :font "SFMono Nerd Font Mono" :height 110)
 (set-fontset-font t 'unicode "Source Code Pro" nil 'prepend)
 (set-fontset-font t 'unicode "Noto Color Emoji" nil 'append)
-; fonts for daemon
-;(add-to-list 'default-frame-alist '(font . "SFMono Nerd Font Mono"))
 
 ;; Make ESC quit prompts
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
@@ -151,12 +149,17 @@
   (doom-modeline-mode 1)
   (setq doom-modeline-indent-info t))
 
-;; show icons in daemonized emacs
-;;(defun enable-doom-modeline-icons (_frame)
-;;  (setq doom-modeline-icon t))
-;;
-;;(add-hook 'after-make-frame-functions 
-;;          #'enable-doom-modeline-icons)
+;; Cool dashboard
+(use-package dashboard
+  :straight t
+  :config
+  (dashboard-setup-startup-hook)
+  (setq dashboard-banner-logo-title "Welcome back, Marc."
+        dashboard-center-content t
+        dashboard-startup-banner 'logo
+        dashboard-items '((recents . 5)
+                          (agenda . 5)))
+  (set-face-attribute 'dashboard-banner-logo-title nil :font "Product Sans" :weight 'bold :height 1.5 :inherit 'default))
 
 ;; show color codes
 (use-package rainbow-mode
@@ -580,15 +583,6 @@
   (graphviz-dot-mode . (lambda () (set-input-method "math")))
   :config
   (setq graphviz-dot-indent-width 4))
-
-;; use my beauty everywhere
-(use-package emacs-everywhere
-  :straight t
-  :hook
-  (emacs-everywhere-mode . (lambda () (set-input-method "math")))
-  :config
-  (setq emacs-everywhere-markdown-apps nil
-        emacs-everywhere-markdown-windows nil))
 
 (use-package hl-todo
   :straight t

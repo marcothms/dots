@@ -14,9 +14,7 @@ workspace_layout stacking
 bindsym $mod+Return exec --no-startup-id alacritty
 bindsym $mod+Ctrl+Return exec --no-startup-id xterm
 bindsym $mod+d exec --no-startup-id dmenu_run
-#bindsym $mod+e exec --no-startup-id "emacsclient -c"
-bindsym $mod+e exec --no-startup-id "emacs"
-bindsym $mod+Ctrl+e exec --no-startup-id "emacsclient --eval '(emacs-everywhere)'"
+bindsym $mod+e exec --no-startup-id emacs
 bindsym $mod+Shift+s exec --no-startup-id "flameshot gui"
 
 ### keybinds for moving windows
