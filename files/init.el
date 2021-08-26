@@ -293,6 +293,7 @@
     "oa"  'org-agenda
     "oca" 'org-capture
     "oes" 'org-edit-src-code
+    "obe" 'org-babel-execute-src-block
     "oti" 'org-toggle-inline-images
     "odi" 'org-display-inline-images
     "olp" 'org-latex-preview)
