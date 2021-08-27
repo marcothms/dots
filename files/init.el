@@ -309,6 +309,7 @@
   (setq org-format-latex-options (plist-put org-format-latex-options :scale 1.5)
         org-image-actual-width nil
         org-agenda-files (quote ("~/org"))
+        calendar-week-start-day 1
         org-directory "~/org"
         org-latex-listings 'minted
         org-latex-packages-alist '(("" "minted"))
