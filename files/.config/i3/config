@@ -3,7 +3,7 @@ font pango:Product Sans 11
 
 # correct locking
 exec --no-startup-id xss-lock --transfer-sleep-lock -- lock.sh
-bindsym $mod+Ctrl+BackSpace exec "loginctl lock-session"
+bindsym $mod+Ctrl+BackSpace exec --no-startup-id "loginctl lock-session"
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
