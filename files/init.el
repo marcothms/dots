@@ -389,7 +389,20 @@
         treemacs-recenter-after-tag-follow t
         treemacs-tag-follow-delay 1)
   (treemacs-follow-mode t)
-  (treemacs-load-theme "doom-atom")
+  (treemacs-load-theme "Default")
+  (dolist (face '(treemacs-root-face
+                  treemacs-git-unmodified-face
+                  treemacs-git-modified-face
+                  treemacs-git-renamed-face
+                  treemacs-git-ignored-face
+                  treemacs-git-untracked-face
+                  treemacs-git-added-face
+                  treemacs-git-conflict-face
+                  treemacs-directory-face
+                  treemacs-directory-collapsed-face
+                  treemacs-file-face
+                  treemacs-tags-face))
+    (set-face-attribute face nil :family "Product Sans" :height 120))
   :bind
   (:map global-map
     ("C-x t t" . treemacs)))

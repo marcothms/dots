@@ -11,9 +11,8 @@ floating_modifier $mod
 workspace_layout stacking
 
 ### keybinds for starting
-bindsym $mod+Return exec --no-startup-id alacritty
-bindsym $mod+Ctrl+Return exec --no-startup-id xterm
-bindsym $mod+d exec --no-startup-id dmenu_run
+bindsym $mod+Return exec --no-startup-id "terminal.sh"
+bindsym $mod+d exec --no-startup-id "dmenu_run"
 bindsym $mod+Shift+s exec --no-startup-id "flameshot gui"
 
 ### keybinds for moving windows

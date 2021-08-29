@@ -93,17 +93,11 @@ export HISTFILE="$HOME/.zsh_history"
 export SAVEHIST=5000
 
 # ============================== ssh-agent
-function start_agent() {
-    if ! [ -S /tmp/mthomas-agent.sock ]; then
-      echo "Starting ssh-agent"
-      ssh-agent -a /tmp/mthomas-agent.sock
-      ssh-add
-    else
-      echo "Agent already running..."
-    fi
-}
-
-alias ssha=start_agent
+if ! [ -S /tmp/mthomas-agent.sock ]; then
+    echo "Starting ssh-agent"
+    ssh-agent -a /tmp/mthomas-agent.sock
+    ssh-add
+fi
 
 # ============================== vi-Mode
 bindkey -v
