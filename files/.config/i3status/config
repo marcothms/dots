@@ -3,24 +3,39 @@ general {
     colors = false
     markup = pango
     interval = 5
-    color_good = '#2f343f'
-    color_degraded = '#ebcb8b'
-    color_bad = '#ba5e57'
 }
 
+order += "load"
+order += "memory"
+order += "ethernet eth0"
 order += "wireless _first_"
 order += "battery all"
-order += "tztime local"
 order += "volume master"
+order += "tztime local"
+
+load {
+        format = " %5min"
+}
+
+memory {
+        format = " %used"
+        threshold_degraded = "10%"
+        format_degraded = "MEMORY: %free"
+}
 
 wireless _first_ {
-    format_up = "📡 %essid"
-    format_down = "📡 Disconnected"
+    format_up = " %essid"
+    format_down = " wlo0 down"
+}
+
+ethernet eth0 {
+        format_up = " %ip - %speed"
+        format_down = " eth0 down"
 }
 
 volume master {
-    format = "🔉 %volume"
-    format_muted = "🔇 Muted"
+    format = " %volume"
+    format_muted = " Muted"
     device = "default"
     mixer = "Master"
     mixer_idx = 0
@@ -29,16 +44,16 @@ volume master {
 battery all {
     last_full_capacity = true
     format = "%status %percentage"
-    format_down = "No Battery"
-    status_chr = "⚡ Charging"
-    status_bat = "🔋 Battery"
+    format_down = " no battery"
+    status_chr = " "
+    status_bat = " "
     status_unk = "? Unknown"
-    status_full = "🔋 Full"
+    status_full = " "
     path = "/sys/class/power_supply/BAT%d/uevent"
     low_threshold = 10
 }
 
 tztime local {
-  format = "📅 %time"
+  format = " %time   |"
   format_time = "%a %-d %b %H:%M"
 }

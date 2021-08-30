@@ -1,5 +1,5 @@
 set $mod Mod4
-font pango:Product Sans 11
+font pango: Product Sans 11
 
 # correct locking
 exec --no-startup-id xss-lock --transfer-sleep-lock -- lock.sh
@@ -99,7 +99,7 @@ hide_edge_borders smart
 bar {
     status_command i3status
     position top
-    separator_symbol " | "
+    separator_symbol "   "
     strip_workspace_numbers yes
     tray_output primary
 
@@ -120,12 +120,22 @@ bar {
     }
 }
 
+# ebdbb2
+
+set $gruv_bg "#f2e5bc"
+set $gruv_bg_darker "#ebdbb2"
+set $gruv_fg "#282828"
+set $green "#98971a"
+set $red "#cc242d"
+set $light_red "#fb4934"
+set $yellow "#d79921"
+
 # gruvbox style window titles
-# class                 border  backgr. text    indicator child_border
-client.focused          #98971A #98971A #282828 #98971A #98971A
-client.focused_inactive #f2e5bc #d79921 #282828 #f2e5bc #f2e5bc
-client.unfocused        #f2e5bc #f2e5bc #282828 #fbf1c7 #f2e5bc
-client.urgent           #cc241d #fb4934 #282828 #cc241d #fb4934
+# class                 border          backgr.           text     indicator        child_border
+client.focused          $green          $green            $gruv_fg $green           $green
+client.focused_inactive $yellow         $yellow           $gruv_fg $gruv_bg         $gruv_bg
+client.unfocused        $gruv_bg_darker $gruv_bg_darker   $gruv_fg $gruv_bg_darker  $gruv_bg_darker
+client.urgent           $red            $light_red        $gruv_fg $red             $light_red
 
 # startup
 exec --no-startup-id $HOME/scripts/start_progs.sh
