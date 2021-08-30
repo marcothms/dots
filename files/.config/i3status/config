@@ -19,8 +19,6 @@ load {
 
 memory {
         format = " %used"
-        threshold_degraded = "10%"
-        format_degraded = "MEMORY: %free"
 }
 
 wireless _first_ {
