@@ -5,3 +5,4 @@ nextcloud &
 nm-applet &
 dunst &
 pasystray &
+spotify-tray &
