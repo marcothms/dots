@@ -154,12 +154,12 @@
   :straight t
   :config
   (dashboard-setup-startup-hook)
+  (set-face-attribute 'dashboard-banner-logo-title nil :font "Product Sans" :weight 'bold :height 1.5 :inherit 'default)
   (setq dashboard-banner-logo-title "Welcome back, Marc."
-        dashboard-center-content t
         dashboard-startup-banner 'logo
         dashboard-items '((recents . 5)
-                          (agenda . 5)))
-  (set-face-attribute 'dashboard-banner-logo-title nil :font "Product Sans" :weight 'bold :height 1.5 :inherit 'default))
+                          (agenda . 5))
+        dashboard-center-content t))
 
 ;; show color codes
 (use-package rainbow-mode
@@ -285,6 +285,11 @@
          :map minibuffer-local-map
          ("C-r" . 'counsel-minibuffer-history)))
 
+;; I dont want \alert to be my bold text in TeX
+(defun hbv/beamer-bold (contents backend info)
+  (when (eq backend 'beamer)
+    (replace-regexp-in-string "\\`\\\\[A-Za-z0-9]+" "\\\\textbf" contents)))
+
 ;; Org
 (use-package org
   :straight t
@@ -330,9 +335,15 @@
                 ("p" "Personal" entry (file "~/org/personal.org") "* TODO %?\n")))
         org-edit-src-content-indentation 0))
 
+(use-package ox
+  :after org
+  :config
+  (add-to-list 'org-export-filter-bold-functions 'hbv/beamer-bold))
+
 ;; fancy bullets for org
 (use-package org-superstar
   :straight t
+  :after org
   :hook
   (org-mode . org-superstar-mode)
   :config
