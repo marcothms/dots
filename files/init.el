@@ -154,11 +154,11 @@
   :straight t
   :config
   (dashboard-setup-startup-hook)
-  (set-face-attribute 'dashboard-banner-logo-title nil :font "Product Sans" :weight 'bold :height 1.5 :inherit 'default)
   (setq dashboard-banner-logo-title "Welcome back, Marc."
         dashboard-startup-banner 'logo
         dashboard-items '((recents . 5)
                           (agenda . 5))
+        dashboard-item-names '(("Agenda for the coming week:" . "Agenda:"))
         dashboard-center-content t))
 
 ;; show color codes
