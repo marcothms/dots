@@ -16,7 +16,6 @@
 + Launcher: [dmenu](https://github.com/crammk/dmenu)
 + Lock: i3lock-color
 + Mouse-Settings: piper
-+ Music-Control: [spotify-tray](https://github.com/tsmetana/spotify-tray)
 + Pdf-Viewer: zathura with mupdf
 + Screenshots: flameshot
 
