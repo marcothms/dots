@@ -7,7 +7,7 @@ general {
 
 order += "load"
 order += "memory"
-order += "ethernet eth0"
+order += "ethernet enp24s0"
 order += "wireless _first_"
 order += "battery all"
 order += "volume master"
@@ -26,9 +26,9 @@ wireless _first_ {
     format_down = " wlo0 down"
 }
 
-ethernet eth0 {
+ethernet enp24s0 {
         format_up = " %ip - %speed"
-        format_down = " eth0 down"
+        format_down = " enp24s0 down"
 }
 
 volume master {
