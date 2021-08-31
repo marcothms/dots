@@ -11,7 +11,7 @@ floating_modifier $mod
 workspace_layout stacking
 
 ### keybinds for starting
-bindsym $mod+Return exec --no-startup-id "terminal.sh"
+bindsym $mod+Return exec --no-startup-id "alacritty"
 bindsym $mod+d exec --no-startup-id "dmenu_run"
 bindsym $mod+Shift+s exec --no-startup-id "flameshot gui"
 
@@ -120,8 +120,6 @@ bar {
     }
 }
 
-# ebdbb2
-
 set $gruv_bg "#f2e5bc"
 set $gruv_bg_darker "#ebdbb2"
 set $gruv_fg "#282828"
@@ -145,9 +143,6 @@ exec --no-startup-id $HOME/.screenlayout/layout.sh
 
 # set wallpaper
 exec --no-startup-id $HOME/scripts/wallpaper.sh
-
-# set keyboard layout
-exec --no-startup-id "setxkbmap -layout eu"
 
 # set X things
 exec --no-startup-id "xrdb -merge $HOME/.Xresources"
