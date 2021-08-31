@@ -146,3 +146,6 @@ exec --no-startup-id $HOME/scripts/wallpaper.sh
 
 # set X things
 exec --no-startup-id "xrdb -merge $HOME/.Xresources"
+
+# set keyboard
+exec --no-startup-id "setxkbmap -layout eu"
