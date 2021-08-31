@@ -71,12 +71,15 @@
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
 ;; Relative line numbers
-(setq-default display-line-numbers 'visual
+(setq-default display-line-numbers 'relative
               display-line-numbers-widen t
               ;; this is the default
               display-line-numbers-current-absolute t)
 
+;; soft wrap
+(global-visual-line-mode t)
 
+;; display absolute numbers, when in normal mode
 (defun noct:relative ()
   (setq-local display-line-numbers 'visual))
 
@@ -221,7 +224,7 @@
   :config
   (setq which-key-idle-delay 1))
 
-;; 80 character limit line in prog mode
+;; column line
 (use-package fill-column-indicator
   :straight t
   :defer 1
@@ -229,6 +232,7 @@
   (fci-mode)
   :config
   (setq fci-rule-width 1
+        fci-rule-column 100
         fci-rule-color "#cc241d")
   :hook
   (prog-mode . fci-mode)
@@ -312,7 +316,10 @@
   ;; add virtual spaces
   (org-mode . org-indent-mode)
   :config
+  ;; fonts
+  (set-face-attribute 'org-document-title nil :font "Product Sans" :weight 'bold :inherit 'default :height 250)
   (setq org-format-latex-options (plist-put org-format-latex-options :scale 1.5)
+        org-hidden-keywords '(title setupfile)
         org-image-actual-width nil
         org-agenda-files (quote ("~/org"))
         calendar-week-start-day 1
