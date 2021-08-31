@@ -14,11 +14,11 @@ order += "volume master"
 order += "tztime local"
 
 load {
-        format = " %5min"
+    format = " %5min"
 }
 
 memory {
-        format = " %used"
+    format = " %used"
 }
 
 wireless _first_ {
@@ -27,8 +27,8 @@ wireless _first_ {
 }
 
 ethernet enp24s0 {
-        format_up = " %ip - %speed"
-        format_down = " enp24s0 down"
+    format_up = " %ip"
+    format_down = " enp24s0 down"
 }
 
 volume master {
@@ -52,6 +52,6 @@ battery all {
 }
 
 tztime local {
-  format = " %time   |"
-  format_time = "%a %-d %b %H:%M"
+    format = " %time   |"
+    format_time = "%a %-d %b %H:%M"
 }
