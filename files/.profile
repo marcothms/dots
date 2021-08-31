@@ -1,7 +1,7 @@
 # executed on login
 
 # keyboard layout
-setxkbmap -layout za
+setxkbmap -layout eu
 
 # path
 export PATH=$PATH:$HOME/scripts:$HOME/.cargo/bin:$HOME/.cabal/bin:$HOME/.ghcup/bin:$HOME/.local/bin
