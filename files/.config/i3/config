@@ -132,10 +132,10 @@ set $yellow "#d79921"
 
 # gruvbox style window titles
 # class                 border          backgr.           text     indicator        child_border
-client.focused          $green          $green            $gruv_fg $green           $green
-client.focused_inactive $yellow         $yellow           $gruv_fg $gruv_bg         $gruv_bg
-client.unfocused        $gruv_bg_darker $gruv_bg_darker   $gruv_fg $gruv_bg_darker  $gruv_bg_darker
-client.urgent           $red            $light_red        $gruv_fg $red             $light_red
+client.focused		$green		$green		  $gruv_fg $green	    $green
+client.focused_inactive $yellow	$yellow	  $gruv_fg $yellow 	    $yellow
+client.unfocused	$gruv_bg_darker $gruv_bg_darker   $gruv_fg $gruv_bg_darker  $gruv_bg_darker
+client.urgent		$red		$light_red	  $gruv_fg $red	    $light_red
 
 # startup
 exec --no-startup-id $HOME/scripts/start_progs.sh

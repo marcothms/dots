@@ -156,8 +156,9 @@
   (dashboard-setup-startup-hook)
   (setq dashboard-banner-logo-title "Welcome back, Marc."
         dashboard-startup-banner 'logo
-        dashboard-items '((recents . 5)
-                          (agenda . 5))
+        dashboard-projects-backend 'projectile
+        dashboard-projects-switch-function 'projectile-switch-project
+        dashboard-items '((agenda . 20))
         dashboard-item-names '(("Agenda for the coming week:" . "Agenda:"))
         dashboard-center-content t))
 
