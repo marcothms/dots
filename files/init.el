@@ -159,8 +159,6 @@
   (dashboard-setup-startup-hook)
   (setq dashboard-banner-logo-title "Welcome back, Marc."
         dashboard-startup-banner 'logo
-        dashboard-projects-backend 'projectile
-        dashboard-projects-switch-function 'projectile-switch-project
         dashboard-items '((agenda . 20))
         dashboard-item-names '(("Agenda for the coming week:" . "Agenda:"))
         dashboard-center-content t))
@@ -319,7 +317,7 @@
   ;; fonts
   (set-face-attribute 'org-document-title nil :font "Product Sans" :weight 'bold :inherit 'default :height 250)
   (setq org-format-latex-options (plist-put org-format-latex-options :scale 1.5)
-        org-hidden-keywords '(title setupfile)
+        org-hidden-keywords '(title)
         org-image-actual-width nil
         org-agenda-files (quote ("~/org"))
         calendar-week-start-day 1
