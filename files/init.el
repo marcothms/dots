@@ -81,7 +81,7 @@
 
 ;; display absolute numbers, when in normal mode
 (defun noct:relative ()
-  (setq-local display-line-numbers 'visual))
+  (setq-local display-line-numbers 'relative))
 
 (defun noct:absolute ()
   (setq-local display-line-numbers t))
@@ -314,14 +314,23 @@
   ;; add virtual spaces
   (org-mode . org-indent-mode)
   :config
-  ;; fonts
   (set-face-attribute 'org-document-title nil :font "Product Sans" :weight 'bold :inherit 'default :height 250)
   (setq org-format-latex-options (plist-put org-format-latex-options :scale 1.5)
         org-hidden-keywords '(title)
         org-image-actual-width nil
-        org-agenda-files (quote ("~/org"))
-        calendar-week-start-day 1
         org-directory "~/org"
+        org-agenda-files (quote ("~/org"))
+        org-ellipsis " ⮷"
+        org-hide-emphasis-markers t
+        org-todo-keywords '((sequence "TODO" "PROGRESS" "|" "DONE"))
+        org-edit-src-content-indentation 0
+        calendar-week-start-day 1
+        org-log-done 'time
+        org-capture-templates
+        (quote (("j" "Japanese" entry (file "~/org/japanese.org") "* TODO %?\n")
+                ("w" "Work" entry (file "~/org/work.org") "* TODO %?\n")
+                ("u" "University" entry (file "~/org/uni.org") "* TODO %?\n")
+                ("p" "Personal" entry (file "~/org/personal.org") "* TODO %?\n")))
         org-latex-listings 'minted
         org-latex-packages-alist '(("" "minted"))
         org-latex-pdf-process
@@ -331,15 +340,7 @@
   (org-babel-do-load-languages 'org-babel-load-languages '((python . t)
                                                            (shell . t)
                                                            (C . t)
-                                                           (dot . t)))
-  (setq org-todo-keywords '((sequence "TODO" "PROGRESS" "|" "DONE"))
-        org-log-done 'time
-        org-capture-templates
-        (quote (("j" "Japanese" entry (file "~/org/japanese.org") "* TODO %?\n")
-                ("w" "Work" entry (file "~/org/work.org") "* TODO %?\n")
-                ("u" "University" entry (file "~/org/uni.org") "* TODO %?\n")
-                ("p" "Personal" entry (file "~/org/personal.org") "* TODO %?\n")))
-        org-edit-src-content-indentation 0))
+                                                           (dot . t))))
 
 (use-package ox
   :after org
@@ -633,7 +634,6 @@
 (add-hook 'prog-mode-hook #'hs-minor-mode)
 (global-set-key (kbd "C-c <right>") 'hs-show-block)
 (global-set-key (kbd "C-c <left>") 'hs-hide-block)
-
 
 ;; load local file
 (when (file-exists-p "~/.emacs.d/local.el")
