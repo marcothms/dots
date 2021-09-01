@@ -230,7 +230,7 @@
   (fci-mode)
   :config
   (setq fci-rule-width 1
-        fci-rule-column 100
+        fci-rule-column 80
         fci-rule-color "#cc241d")
   :hook
   (prog-mode . fci-mode)
