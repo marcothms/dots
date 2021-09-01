@@ -359,8 +359,8 @@
   (set-face-attribute 'org-level-8 nil :font "Product Sans" :weight 'bold :inherit 'default)
   ;; make first 3 bigger
   (set-face-attribute 'org-level-3 nil :inherit 'org-level-8 :height 1.1)
-  (set-face-attribute 'org-level-2 nil :inherit 'org-level-8 :height 1.25)
-  (set-face-attribute 'org-level-1 nil :inherit 'org-level-8 :height 1.5)
+  (set-face-attribute 'org-level-2 nil :inherit 'org-level-8 :height 1.15)
+  (set-face-attribute 'org-level-1 nil :inherit 'org-level-8 :height 1.2)
   ;; Low levels are unimportant => no scaling
   (set-face-attribute 'org-level-7 nil :inherit 'org-level-8)
   (set-face-attribute 'org-level-6 nil :inherit 'org-level-8)
