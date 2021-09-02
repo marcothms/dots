@@ -314,6 +314,7 @@
   ;; add virtual spaces
   (org-mode . org-indent-mode)
   :config
+  (define-ley evil-normal-state-map (kdb "TAB") 'org-cycle)
   (set-face-attribute 'org-document-title nil :font "Product Sans" :weight 'bold :inherit 'default :height 250)
   (setq org-format-latex-options (plist-put org-format-latex-options :scale 1.5)
         org-hidden-keywords '(title)
