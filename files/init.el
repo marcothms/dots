@@ -327,6 +327,7 @@
         org-edit-src-content-indentation 0
         calendar-week-start-day 1
         org-log-done 'time
+        org-agenda-start-on-weekday nil
         org-capture-templates
         (quote (("j" "Japanese" entry (file "~/org/japanese.org") "* TODO %?\n")
                 ("w" "Work" entry (file "~/org/work.org") "* TODO %?\n")
@@ -346,7 +347,8 @@
 (use-package ox
   :after org
   :config
-  (add-to-list 'org-export-filter-bold-functions 'hbv/beamer-bold))
+  (add-to-list 'org-export-filter-bold-functions 'hbv/beamer-bold)
+  (add-to-list 'org-latex-logfiles-extensions "tex")) ;; dont generate .tex file
 
 ;; fancy bullets for org
 (use-package org-superstar
