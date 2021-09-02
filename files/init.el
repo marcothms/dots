@@ -329,10 +329,10 @@
         org-log-done 'time
         org-agenda-start-on-weekday nil
         org-capture-templates
-        (quote (("j" "Japanese" entry (file "~/org/japanese.org") "* TODO %?\n")
-                ("w" "Work" entry (file "~/org/work.org") "* TODO %?\n")
-                ("u" "University" entry (file "~/org/uni.org") "* TODO %?\n")
-                ("p" "Personal" entry (file "~/org/personal.org") "* TODO %?\n")))
+        (quote (("j" "Japanese" entry (file "~/org/japanese.org") "* TODO %?\n" :empty-lines-before 1)
+                ("w" "Work" entry (file "~/org/work.org") "* TODO %?\n" :empty-lines-before 1)
+                ("u" "University" entry (file "~/org/uni.org") "* TODO %?\n" :empty-lines-before 1)
+                ("p" "Personal" entry (file "~/org/personal.org") "* TODO %?\n" :empty-lines-before 1)))
         org-latex-listings 'minted
         org-latex-packages-alist '(("" "minted"))
         org-latex-pdf-process
