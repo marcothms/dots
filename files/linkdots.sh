@@ -17,10 +17,6 @@ done
 mkdir -p $HOME/.emacs.d
 ln -sf $path/init.el $HOME/.emacs.d/init.el
 
-# startx
-chmod +x $HOME/.xinitrc
-ln -sf $HOME/.xinitrc $HOME/.xsession
-
 # --- .config --- #
 conf_files="alacritty dunst zathura i3 i3status"
 
