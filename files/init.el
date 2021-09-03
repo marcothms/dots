@@ -323,7 +323,8 @@
         org-agenda-files (quote ("~/org"))
         org-ellipsis " ⮷"
         org-hide-emphasis-markers t
-        org-todo-keywords '((sequence "TODO" "PROGRESS" "|" "DONE"))
+        org-todo-keywords '((sequence "TODO" "PROGRESS" "REVIEW" "|" "DONE"))
+        org-todo-keyword-faces '(("TODO" . "#cc241d") ("PROGRESS" . "#458588") ("REVIEW" . "#b16286") ("DONE" . "#98971a"))
         org-edit-src-content-indentation 0
         calendar-week-start-day 1
         org-log-done 'time
