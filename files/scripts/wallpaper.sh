@@ -1,3 +1,3 @@
 #!/bin/sh
 
-feh --bg-fill $HOME/data/nextcloud/wallpaper/wallpaper.png
+feh --bg-fill $HOME/data/Seafile/images/wallpaper/wallpaper.png

@@ -1,9 +1,9 @@
 #!/bin/bash
 
 if [ `hostname` == "nazarick" ];then
-    pic=$HOME/data/nextcloud/wallpaper/lock219.png
+    pic=$HOME/data/Seafile/images/wallpaper/lock219.png
 else
-    pic=$HOME/data/nextcloud/wallpaper/lock169.png
+    pic=$HOME/data/Seafile/images/wallpaper/lock169.png
 fi
 
 i3lock --nofork \

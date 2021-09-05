@@ -1,7 +1,7 @@
 #!/bin/sh
 
 fcitx5 -d &
-nextcloud &
+seafile-applet &
 nm-applet &
 dunst &
 pasystray &
