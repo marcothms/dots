@@ -313,6 +313,14 @@
   (org-mode . (lambda () (electric-indent-local-mode -1)))
   ;; add virtual spaces
   (org-mode . org-indent-mode)
+  ;; fancy checkboxes
+  (org-mode . prettify-symbols-mode)
+  (org-mode . (lambda ()
+                (push '("[ ]" . "☐") prettify-symbols-alist)
+                (push '("[X]" . "☑" ) prettify-symbols-alist)
+                (push '("[-]" . "❍" ) prettify-symbols-alist)))
+                ;(push '("#+begin_src" . "↦" ) prettify-symbols-alist)
+                ;(push '("#+end_src" . "⇤" ) prettify-symbols-alist)))
   :config
   (define-key evil-normal-state-map (kbd "TAB") 'org-cycle)
   (set-face-attribute 'org-document-title nil :font "Product Sans" :weight 'bold :inherit 'default :height 250)
@@ -591,14 +599,14 @@
 (use-package lsp-java
   :straight t
   :after lsp
+  :hook
+  (java-mode . prettify-symbols-mode)
+  (java-mode . (lambda ()
+                 (push '("!=" . ?≠) prettify-symbols-alist)
+                 (push '("<=" . ?≤) prettify-symbols-alist)
+                 (push '(">=" . ?≥) prettify-symbols-alist)))
   :config
   (setq lsp-java-format-on-type-enabled nil))
-
-(add-hook 'java-mode-hook 'prettify-symbols-mode)
-(add-hook 'java-mode-hook (lambda ()
-                            (push '("!=" . ?≠) prettify-symbols-alist)
-                            (push '("<=" . ?≤) prettify-symbols-alist)
-                            (push '(">=" . ?≥) prettify-symbols-alist)))
 
 ;; Haskell
 (use-package haskell-mode
