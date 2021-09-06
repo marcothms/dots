@@ -2,9 +2,10 @@
 
 # set xresources
 xrdb -merge $HOME/.Xresources
-if [ -f $HOME/.Xmodmap ]; then
-	xmodmap $HOME/.Xmodmap
-fi
+
+# map CAPS to ~
+setxkbmap -option caps:none
+xmodmap -e "keycode 66 = grave asciitilde"
 
 # path
 export PATH=$PATH:$HOME/scripts:$HOME/.cargo/bin:$HOME/.cabal/bin:$HOME/.ghcup/bin:$HOME/.local/bin
