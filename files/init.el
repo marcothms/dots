@@ -433,7 +433,7 @@
                   treemacs-directory-collapsed-face
                   treemacs-file-face
                   treemacs-tags-face))
-    (set-face-attribute face nil :family "Product Sans" :height 120))
+    (set-face-attribute face nil :family "Product Sans" :height 90))
   :bind
   (:map global-map
     ("C-x t t" . treemacs)))
