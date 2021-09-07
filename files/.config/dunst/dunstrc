@@ -29,7 +29,8 @@
     # the top and down respectively.
     # The width can be negative.  In this case the actual width is the
     # screen width minus the width defined in within the geometry option.
-    geometry = "800x80-15+45"
+    #geometry = "800x80-15+60"
+    geometry = "0x600+15+40"
 
     # Show how many messages are currently hidden (because of geometry).
     indicate_hidden = yes
@@ -54,17 +55,17 @@
     separator_height = 0
 
     # Padding between text and separator.
-    padding = 20
+    padding = 10
 
     # Horizontal padding.
-    horizontal_padding = 20
+    horizontal_padding = 10
 
     # Defines width in pixels of frame around the notification window.
     # Set to 0 to disable.
-    frame_width = 2
+    frame_width = 4
 
     # Defines color of the frame around the notification window.
-    frame_color = "#282828"
+    frame_color = "#689d6a"
 
     # Define a color for the separator.
     # possible values are:
@@ -86,7 +87,7 @@
 
     ### Text ###
 
-    font = Product Sans 18
+    font = Product Sans 12
 
     # The spacing between lines.  If the height is smaller than the
     # font height, it will get raised to the font height.
@@ -254,22 +255,22 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#282828"
-    foreground = "#f2e5bc"
+    background = "#f9f5d7"
+    foreground = "#282828"
     timeout = 10
     # Icon for notifications with low urgency, uncomment to enable
     #icon = /path/to/icon
 
 [urgency_normal]
-    background = "#282828"
-    foreground = "#f2e5bc"
+    background = "#f9f5d7"
+    foreground = "#282828"
     timeout = 10
     # Icon for notifications with normal urgency, uncomment to enable
     #icon = /path/to/icon
 
 [urgency_critical]
-    background = "#282828"
-    foreground = "#f2e5bc"
+    background = "#f9f5d7"
+    foreground = "#282828"
     timeout = 0
     # Icon for notifications with critical urgency, uncomment to enable
     #icon = /path/to/icon

@@ -1,6 +1,6 @@
 ! Font
 XTerm.vt100.faceName: xft:SFMono Nerd Font Mono:antialias=true
-XTerm.vt100.faceSize: 11
+XTerm.vt100.faceSize: 9
 
 ! Remove Scrollbar
 XTerm.vt100.scrollBar: false
@@ -12,7 +12,7 @@ XTerm.vt100.translations: #override \n\
 
 ! Gruvbox light
 ! hard contrast: *background: #f9f5d7
-*background: #f2e5bc
+*background: #f9f5d7
 ! soft contrast: *background: #f2e5bc
 *foreground: #3c3836
 ! Black + DarkGrey

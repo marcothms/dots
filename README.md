@@ -20,8 +20,6 @@
 + Screenshots: flameshot
 
 ## Other Dependencies
-+ [Gruvbox](https://github.com/hargonix/Pop-gruvbox/): GTK Theme (clone into ~/.themes)
-+ [vim-plug](https://github.com/junegunn/vim-plug): vim plugin manager
 + fcitx5 + mozc: Japanese Keyboard
 + fzf: fuzzy file finder
 + hunspell{-de, en}: spellchecking for emacs
