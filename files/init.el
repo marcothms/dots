@@ -140,7 +140,7 @@
 (use-package doom-themes
   :straight t
   :config
-  (setq doom-gruvbox-light-variant "soft")
+  (setq doom-gruvbox-light-variant "hard")
   (load-theme 'doom-gruvbox-light t)
   (doom-themes-org-config)
   (doom-themes-treemacs-config))
@@ -149,6 +149,7 @@
 (use-package doom-modeline
   :straight t
   :config
+  (set-face-attribute 'mode-line nil :background "#f9f5d7")
   (doom-modeline-mode 1)
   (setq doom-modeline-indent-info t))
 

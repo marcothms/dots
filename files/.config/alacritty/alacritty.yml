@@ -9,7 +9,7 @@
 
 import:
   - ~/.alacritty_local.yml
-  - ~/.config/alacritty/themes/gruvbox_light.yml
+  - ~/.config/alacritty/themes/gruvbox_lighter.yml
 
 env:
   TERM: alacritty
