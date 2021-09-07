@@ -14,7 +14,7 @@
 + Editor: emacs
 + Image-Viewer: sxiv
 + Launcher: [dmenu](https://github.com/crammk/dmenu)
-+ Lock: i3lock-color
++ Lock: xlock
 + Mouse-Settings: piper
 + Pdf-Viewer: zathura with mupdf
 + Screenshots: flameshot
