@@ -25,6 +25,6 @@ export XMODIFIERS='@im=fcitx'
 export WINIT_UNIX_BACKEND=x11
 
 # gtk and qt theme - requires https://github.com/hargonix/Pop-gruvbox/ in ~/.themes
-export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
-export GTK_THEME=Pop-gruvbox:light
-export QT_QPA_PLATFORMTHEME="gtk2"
+#export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
+#export GTK_THEME=Pop-gruvbox:light
+#export QT_QPA_PLATFORMTHEME="gtk2"

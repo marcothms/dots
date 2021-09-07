@@ -44,10 +44,6 @@ export PROMPT="${NAME}${DIR}${GIT} ${ICON}%{$reset_color%} "
 zstyle ':vcs_info:git:*' formats '|%b '
 
 # ============================== Aliases
-if command -v rg &> /dev/null; then
-    alias grep="rg"
-fi
-
 alias c='clear'
 
 alias l='ls -lFh'     #size,show type,human readable
