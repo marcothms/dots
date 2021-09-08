@@ -61,8 +61,6 @@ set list
 set listchars=tab:──\ ,extends:›,precedes:‹,nbsp:·,trail:·
 set fillchars+=vert:\  "don't draw verticle split
 
-autocmd FileType perl set tabstop=8 shiftwidth=4 softtabstop=4
-
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+\%#\@<!$/
 
