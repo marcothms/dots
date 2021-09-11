@@ -92,6 +92,13 @@
 ;; Whitespace
 (global-whitespace-mode t)
 (setq whitespace-style '(face trailing tabs tab-mark))
+; remove trailing whitespaces on save
+(add-hook 'before-save-hook 'whitespace-cleanup)
+
+;; Fold code
+(add-hook 'prog-mode-hook #'hs-minor-mode)
+(global-set-key (kbd "C-c <right>") 'hs-show-block)
+(global-set-key (kbd "C-c <left>") 'hs-hide-block)
 
 ;; straight.el bootstrap
 (setq straight-check-for-modifications 'live)
@@ -643,10 +650,6 @@
         hl-todo-keyword-faces '(("TODO"  . hl-todo-TODO)
                                 ("XXX"   . hl-todo-TODO)
                                 ("FIXME" . hl-todo-TODO))))
-
-(add-hook 'prog-mode-hook #'hs-minor-mode)
-(global-set-key (kbd "C-c <right>") 'hs-show-block)
-(global-set-key (kbd "C-c <left>") 'hs-hide-block)
 
 ;; load local file
 (when (file-exists-p "~/.emacs.d/local.el")
