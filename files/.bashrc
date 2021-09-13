@@ -10,7 +10,6 @@ DIR="\[\033[1;94m\]\w\[\033[m\]"
 export PS1="${HOST} ${DIR}${GIT} ${ICON} "
 
 # ============================== Aliases
-alias emacsnw="TERM=xterm-direct emacs -nw"
 alias c='clear'
 
 alias l='ls -lh'     #size,show type,human readable
@@ -23,9 +22,9 @@ alias mv='mv -i' # ask before removal
 
 # ============================== SSH-Agent
 agent() {
-    if ! [ -S /tmp/mthomas-agent.sock ]; then
+    if ! [ -S $HOME/.ssh/mthomas-agent.sock ]; then
 	echo "Starting ssh-agent"
-	ssh-agent -a /tmp/mthomas-agent.sock
+	ssh-agent -a $HOME/.ssh/mthomas-agent.sock
 	ssh-add
     else
 	echo "Agent already running"
