@@ -53,8 +53,8 @@ set wildmenu " autocomplete :e
 set scrolloff=5 " min lines above or below the cursor
 
 " ============================== Statusline
-set laststatus=0 " i dont need a statusline
-set showtabline=0 " i dont need tabs
+set laststatus=1 " i dont need a statusline
+set showtabline=1 " tabline
 
 " ============================== Indents and Whitespaces
 set list
