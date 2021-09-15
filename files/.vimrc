@@ -18,7 +18,7 @@ endif
 
 call plug#begin()
 
-Plug 'morhetz/gruvbox' " color scheme
+Plug 'ayu-theme/ayu-vim' " color scheme
 Plug 'tpope/vim-sleuth' " heuristic file indendation
 Plug 'jiangmiao/auto-pairs' " pair completion
 
@@ -26,9 +26,9 @@ call plug#end()
 
 " ============================== Colors
 syntax on
-set background=light
-colorscheme gruvbox
-hi Normal ctermbg=NONE guibg=NONE
+let ayucolor="light"
+colorscheme ayu
+set termguicolors
 
 " ============================== General
 filetype indent plugin on
