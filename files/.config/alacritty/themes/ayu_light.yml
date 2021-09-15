@@ -1,0 +1,29 @@
+# Colors (Ayu Mirage)
+colors:
+  # Default colors
+  primary:
+    background: '#fafafa'
+    foreground: '#575f66'
+
+  # Normal colors
+  normal:
+    black: '#191E2A'
+    red: '#FF3333'
+    green: '#A6CC70'
+    yellow: '#e7c547'
+    blue: '#55b4d4'
+    magenta: '#FFD580'
+    cyan: '#95E6CB'
+    white: '#C7C7C7'
+
+  # Bright colors
+  bright:
+    black: '#686868'
+    red: '#F27983'
+    green: '#BAE67E'
+    yellow: '#FFCC66'
+    blue: '#5CCFE6'
+    magenta: '#FFEE99'
+    cyan: '#95E6CB'
+    white: '#FFFFFF'
+

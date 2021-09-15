@@ -147,8 +147,9 @@
 (use-package doom-themes
   :straight t
   :config
-  (setq doom-gruvbox-light-variant "hard")
-  (load-theme 'doom-gruvbox-light t)
+  (setq doom-themes-enable-bold t
+        doom-themes-enable-italic t)
+  (load-theme 'doom-ayu-light t)
   (doom-themes-org-config)
   (doom-themes-treemacs-config))
 
@@ -156,7 +157,6 @@
 (use-package doom-modeline
   :straight t
   :config
-  (set-face-attribute 'mode-line nil :background "#f9f5d7")
   (doom-modeline-mode 1)
   (setq doom-modeline-indent-info t))
 
@@ -340,7 +340,7 @@
         org-ellipsis " ⮷"
         org-hide-emphasis-markers t
         org-todo-keywords '((sequence "TODO" "PROGRESS" "REVIEW" "|" "DONE"))
-        org-todo-keyword-faces '(("TODO" . "#cc241d") ("PROGRESS" . "#458588") ("REVIEW" . "#b16286") ("DONE" . "#98971a"))
+        org-todo-keyword-faces '(("TODO" . "#cc241d") ("PROGRESS" . "#a6cc70") ("REVIEW" . "#b16286") ("DONE" . "#abb0b6"))
         org-edit-src-content-indentation 0
         calendar-week-start-day 1
         org-log-done 'time
@@ -643,7 +643,7 @@
   (prog-mode . hl-todo-mode)
   :config
   (defface hl-todo-TODO
-    '((t :background "#cc241d" :foreground "#f2e5bc" :inherit (hl-todo)))
+    '((t :background "#cc241d" :inherit (hl-todo)))
     "TODO Face")
   (setq hl-todo-highlight-punctuation ":"
         hl-todo-color-background t
@@ -653,6 +653,7 @@
 
 ;; load local file
 (when (file-exists-p "~/.emacs.d/local.el")
+
   (message "Loading ~/.emacs.d/local.el")
   (load-file "~/.emacs.d/local.el"))
 

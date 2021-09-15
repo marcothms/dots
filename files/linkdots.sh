@@ -4,7 +4,7 @@
 path=$(pwd)
 
 # --- home --- #
-home_files="scripts .bashrc .zshrc .gitconfig .tmux.conf .vimrc .Xresources .profile"
+home_files="scripts .zshrc .gitconfig .tmux.conf .vimrc .profile"
 
 for file in $home_files
 do

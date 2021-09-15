@@ -10,32 +10,30 @@ XTerm.vt100.translations: #override \n\
   Ctrl <Key> minus: smaller-vt-font() \n\
   Ctrl <Key> plus: larger-vt-font()
 
-! Gruvbox light
-! hard contrast: *background: #f9f5d7
-*background: #f9f5d7
-! soft contrast: *background: #f2e5bc
-*foreground: #3c3836
+! colors
+*background: #fafafa
+*foreground: #575f66
 ! Black + DarkGrey
-*color0:  #fdf4c1
-*color8:  #928374
+*color0:  #191e2a
+*color8:  #686868
 ! DarkRed + Red
-*color1:  #cc241d
-*color9:  #9d0006
+*color1:  #ff3333
+*color9:  #f27983
 ! DarkGreen + Green
-*color2:  #98971a
-*color10: #79740e
+*color2:  #a6cc70
+*color10: #bae67e
 ! DarkYellow + Yellow
-*color3:  #d79921
-*color11: #b57614
+*color3:  #e7c547
+*color11: #ffcc66
 ! DarkBlue + Blue
-*color4:  #458588
-*color12: #076678
+*color4:  #55b4d4
+*color12: #5ccfe6
 ! DarkMagenta + Magenta
-*color5:  #b16286
-*color13: #8f3f71
+*color5:  #ffd580
+*color13: #ffee99
 ! DarkCyan + Cyan
-*color6:  #689d6a
-*color14: #427b58
+*color6:  #95e6cb
+*color14: #95e6cb
 ! LightGrey + White
-*color7:  #7c6f64
-*color15: #3c3836
+*color7:  #c7c7c7
+*color15: #ffffff
