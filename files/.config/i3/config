@@ -91,7 +91,6 @@ bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5 # decrease screen 
 # styling
 default_border normal
 title_align center
-hide_edge_borders smart
 
 gaps inner 10
 
