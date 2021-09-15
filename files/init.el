@@ -643,7 +643,7 @@
   (prog-mode . hl-todo-mode)
   :config
   (defface hl-todo-TODO
-    '((t :background "#cc241d" :inherit (hl-todo)))
+    '((t :background "#cc241d" :foreground "#ffffff"))
     "TODO Face")
   (setq hl-todo-highlight-punctuation ":"
         hl-todo-color-background t
