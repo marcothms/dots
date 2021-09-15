@@ -11,29 +11,29 @@ XTerm.vt100.translations: #override \n\
   Ctrl <Key> plus: larger-vt-font()
 
 ! colors
-*background: #fafafa
-*foreground: #575f66
+*background: #f8f8f8
+*foreground: #49525f
 ! Black + DarkGrey
-*color0:  #191e2a
-*color8:  #686868
+*color0:  #000000
+*color8:  #555555
 ! DarkRed + Red
-*color1:  #ff3333
-*color9:  #f27983
+*color1:  #eb410d
+*color9:  #ca4e57
 ! DarkGreen + Green
-*color2:  #a6cc70
-*color10: #bae67e
+*color2:  #67c505
+*color10: #94d506
 ! DarkYellow + Yellow
-*color3:  #e7c547
-*color11: #ffcc66
+*color3:  #ec8414
+*color11: #e0ba37
 ! DarkBlue + Blue
-*color4:  #55b4d4
-*color12: #5ccfe6
+*color4:  #3594cf
+*color12: #5555ff
 ! DarkMagenta + Magenta
-*color5:  #ffd580
-*color13: #ffee99
+*color5:  #854bc0
+*color13: #9061c0
 ! DarkCyan + Cyan
-*color6:  #95e6cb
-*color14: #95e6cb
+*color6:  #41b487
+*color14: #4bd39d
 ! LightGrey + White
-*color7:  #c7c7c7
+*color7:  #bbbbbb
 *color15: #ffffff

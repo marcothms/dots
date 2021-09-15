@@ -123,8 +123,8 @@ export FZF_DEFAULT_OPTS='
        --layout=reverse
        --bind=tab:down
        --bind=btab:up
-       --color=fg:#575f66,bg:#fafafa,hl:#458588
-       --color=fg+:#575f66,bg+:#fafafa,hl+:#458588
+       --color=fg:#575f66,bg:#f8f8f8,hl:#458588
+       --color=fg+:#575f66,bg+:#f8f8f8,hl+:#458588
        --color=info:#575f66,prompt:#575f66,pointer:#575f66
        --color=marker:#575f66,spinner:#575f66,header:#575f66'
 

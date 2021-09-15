@@ -94,8 +94,7 @@ title_align center
 
 gaps inner 10
 
-set $bg "#fafafa"
-set $bg_1 "#fafaea"
+set $bg "#f8f8f8"
 set $fg "#282828"
 set $green "#a6cc70"
 set $red "#ff3333"
@@ -129,7 +128,7 @@ bar {
 # class                 border          backgr.           text     indicator        child_border
 client.focused		$green		$green		  $fg 	   $green	    $green
 client.focused_inactive $yellow	$yellow	  $fg 	   $yellow	    $yellow
-client.unfocused	$bg_1 		$bg_1	  	  $fg 	   $bg_1 	    $bg_1
+client.unfocused	$bg 		$bg	  	  $fg 	   $bg 	    $bg
 client.urgent		$red		$light_red	  $fg 	   $red	    $light_red
 
 # startup
