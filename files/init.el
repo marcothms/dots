@@ -151,7 +151,9 @@
         doom-themes-enable-italic t)
   (load-theme 'doom-ayu-light t)
   (doom-themes-org-config)
-  (doom-themes-treemacs-config))
+  (doom-themes-treemacs-config)
+  (set-face-attribute 'whitespace-tab nil :foreground "#bbbbbb" :inherit 'default))
+
 
 ;; Cool mode line
 (use-package doom-modeline
@@ -653,7 +655,6 @@
 
 ;; load local file
 (when (file-exists-p "~/.emacs.d/local.el")
-
   (message "Loading ~/.emacs.d/local.el")
   (load-file "~/.emacs.d/local.el"))
 
