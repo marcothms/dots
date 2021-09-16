@@ -63,7 +63,7 @@
 
 ;; Font
 ; default font
-(set-face-attribute 'default nil :font "SFMono Nerd Font Mono" :height 90)
+(set-face-attribute 'default nil :font "SFMono Nerd Font Mono" :height 100)
 (set-fontset-font t 'unicode "Source Code Pro" nil 'prepend)
 (set-fontset-font t 'unicode "Noto Color Emoji" nil 'append)
 
@@ -241,7 +241,7 @@
   :config
   (setq fci-rule-width 1
         fci-rule-column 80
-        fci-rule-color "#cc241d")
+        fci-rule-color "#A6CC70")
   :hook
   (prog-mode . fci-mode)
   (markdown-mode . fci-mode))
@@ -442,7 +442,7 @@
                   treemacs-directory-collapsed-face
                   treemacs-file-face
                   treemacs-tags-face))
-    (set-face-attribute face nil :family "Product Sans" :height 90))
+    (set-face-attribute face nil :family "Product Sans" :height 100))
   :bind
   (:map global-map
     ("C-x t t" . treemacs)))

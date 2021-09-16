@@ -1,6 +1,7 @@
 set $mod Mod4
 font pango: Product Sans 11
 
+
 # locking
 bindsym $mod+Ctrl+BackSpace exec --no-startup-id "lock.sh"
 
@@ -95,7 +96,7 @@ title_align center
 gaps inner 10
 
 set $bg "#fafafa"
-set $fg "#5c6773"
+set $fg "#444444"
 set $green "#a6cc70"
 set $red "#ff3333"
 set $light_red "#f27983"
@@ -113,15 +114,15 @@ bar {
         statusline $fg
 
         # equivalent to focused
-        focused_workspace       $bg	$green     $fg
+        focused_workspace       $bg		$green     $fg
         # equivalent to focused_inactive
-        active_workspace        $grub_bg $yellow    $fg
+        active_workspace        $grub_bg	$yellow    $fg
         # equivalent to unfocused
-        inactive_workspace      $bg $bg   $fg
+        inactive_workspace      $bg		$bg	   $fg
         # equivalent to urgent
-        urgent_workspace        $red     $light_red $fg
+        urgent_workspace        $red		$light_red $fg
         # equivalent to urgent
-        binding_mode            $red     $light_red $fg
+        binding_mode            $red		$light_red $fg
     }
 }
 
