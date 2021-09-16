@@ -103,6 +103,7 @@
 ;; straight.el bootstrap
 (setq straight-check-for-modifications 'live)
 (defvar bootstrap-version)
+
 (let ((bootstrap-file
        (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
       (bootstrap-version 5))
@@ -145,15 +146,14 @@
 
 ;; Themes and icons
 (use-package doom-themes
-  :straight t
+  :straight (doom-themes :type git :host github :repo "hlissner/emacs-doom-themes"
+                                :fork (:host github :repo "CramMK/emacs-doom-themes"))
   :config
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t)
   (load-theme 'doom-ayu-light t)
   (doom-themes-org-config)
-  (doom-themes-treemacs-config)
-  (set-face-attribute 'whitespace-tab nil :foreground "#bbbbbb" :inherit 'default))
-
+  (doom-themes-treemacs-config))
 
 ;; Cool mode line
 (use-package doom-modeline
