@@ -94,8 +94,8 @@ title_align center
 
 gaps inner 10
 
-set $bg "#f8f8f8"
-set $fg "#282828"
+set $bg "#fafafa"
+set $fg "#5c6773"
 set $green "#a6cc70"
 set $red "#ff3333"
 set $light_red "#f27983"
