@@ -20,7 +20,7 @@ DIR="%{$fg[blue]%}%~"
 GIT="%{$fg[red]%}\$vcs_info_msg_0_"
 
 if [[ -n "$SSH_CONNECTION" ]]; then
-    NAME="%{$fg[yellow]%}%m "
+    NAME="%B%{$fg[yellow]%}%m%b "
 fi
 
 case $TERM in

@@ -1,6 +1,13 @@
+#  _ _____
+# (_)___ /
+# | | |_ \
+# | |___) |
+# |_|____/
+#
+# ~ M. Thomas
+
 set $mod Mod4
 font pango: Product Sans 11
-
 
 # locking
 bindsym $mod+Ctrl+BackSpace exec --no-startup-id "lock.sh"
@@ -93,9 +100,10 @@ bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5 # decrease screen 
 default_border normal
 title_align center
 
-gaps inner 10
+gaps inner 5
 
 set $bg "#fafafa"
+set $bg2 "#f0f0f0"
 set $fg "#444444"
 set $green "#a6cc70"
 set $red "#ff3333"
@@ -116,7 +124,7 @@ bar {
         # equivalent to focused
         focused_workspace       $bg		$green     $fg
         # equivalent to focused_inactive
-        active_workspace        $grub_bg	$yellow    $fg
+        active_workspace        $bg		$yellow    $fg
         # equivalent to unfocused
         inactive_workspace      $bg		$bg	   $fg
         # equivalent to urgent
@@ -129,7 +137,7 @@ bar {
 # class                 border          backgr.           text     indicator        child_border
 client.focused		$green		$green		  $fg 	   $green	    $green
 client.focused_inactive $yellow	$yellow	  $fg 	   $yellow	    $yellow
-client.unfocused	$bg 		$bg	  	  $fg 	   $bg 	    $bg
+client.unfocused	$bg2 		$bg2		  $fg 	   $bg2 	    $bg2
 client.urgent		$red		$light_red	  $fg 	   $red	    $light_red
 
 # startup
