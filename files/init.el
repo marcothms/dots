@@ -295,6 +295,7 @@
   :bind (("M-x" . counsel-M-x)
          ("C-x b" . counsel-ibuffer)
          ("C-x C-f" . counsel-find-file)
+         ("C-x C-g" . counsel-git)
          :map minibuffer-local-map
          ("C-r" . 'counsel-minibuffer-history)))
 
@@ -403,16 +404,17 @@
   :straight t
   :general
   (vim-leader-def 'normal 'global
-    "gj" 'magit-blame
-    "gc" 'magit-commit
-    "gp" 'magit-push
-    "gu" 'magit-pull
-    "gs" 'magit-status
-    "gd" 'magit-diff
-    "gl" 'magit-log
-    "gc" 'magit-checkout
     "gb" 'magit-branch
-    "gi" 'magit-gitignore-in-topdir))
+    "gc" 'magit-checkout
+    "gc" 'magit-commit
+    "gd" 'magit-diff
+    "gg" 'counsel-git-grep
+    "gi" 'magit-gitignore-in-topdir
+    "gj" 'magit-blame
+    "gl" 'magit-log
+    "gp" 'magit-push
+    "gs" 'magit-status
+    "gu" 'magit-pull))
 
 ;; File bar
 (use-package treemacs
