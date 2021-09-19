@@ -18,7 +18,7 @@ mkdir -p $HOME/.emacs.d
 ln -sf $path/init.el $HOME/.emacs.d/init.el
 
 # --- .config --- #
-conf_files="alacritty dunst zathura i3 i3status"
+conf_files="alacritty zathura i3 i3status"
 
 for file in $conf_files
 do
