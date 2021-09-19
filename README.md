@@ -2,25 +2,18 @@
 
 ## System
 
-+ Notifications: dunst
++ DE: Gnome
 + Shell: zsh
 + Terminal: alacritty
-+ WM: i3
 
 ## Programs
 
-+ Audiocontrol: pasystray
-+ Bluetooth-Manager: blueman
 + Editor: emacs
-+ Image-Viewer: sxiv
-+ Launcher: [dmenu](https://github.com/crammk/dmenu)
-+ Lock: xlock
 + Mouse-Settings: piper
-+ Pdf-Viewer: zathura with mupdf
 + Screenshots: flameshot
++ pdf: zathura with mupdf
 
 ## Other Dependencies
-+ fcitx5 + mozc: Japanese Keyboard
 + fzf: fuzzy file finder
 + hunspell{-de, en}: spellchecking for emacs
 

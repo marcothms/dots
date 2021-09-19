@@ -10,16 +10,13 @@ xmodmap -e "keycode 66 = grave asciitilde"
 # path
 export PATH=$PATH:$HOME/scripts:$HOME/.cargo/bin:$HOME/.cabal/bin:$HOME/.ghcup/bin:$HOME/.local/bin
 
-# ssh
-export SSH_AUTH_SOCK=$HOME/.ssh/mthomas-agent.sock
-
 # editor
 export EDITOR="vim"
 export VISIAL=${EDITOR}
 
 # fcitx exports
-export GTK_IM_MODULE='fcitx'
-export QT_IM_MODULE='fcitx'
-export SDL_IM_MODULE='fcitx'
-export XMODIFIERS='@im=fcitx'
+export GTK_IM_MODULE='xim'
+export QT_IM_MODULE='ibus'
+export SDL_IM_MODULE='ibus'
+export XMODIFIERS='@im=ibus'
 export WINIT_UNIX_BACKEND=x11

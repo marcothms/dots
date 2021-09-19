@@ -21,7 +21,7 @@ set completion-fg               "#3c3836" # fg
 set completion-group-bg         "#fafafa" # bg1
 set completion-group-fg         "#928374" # gray
 set completion-highlight-bg     "#689d6a" # aqua
-set completion-highlight-fg     "#ebdbb2" # bg2
+set completion-highlight-fg     "#fafafa gs" # bg2
 
 # Define the color in index mode
 set index-bg                    "#fafafa" # bg2
