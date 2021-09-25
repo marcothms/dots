@@ -25,7 +25,7 @@ window:
   dynamic_padding: false
 
 font:
-  size: 10
+  size: 9
   normal:
     family: SFMono Nerd Font Mono
     style: Regular
