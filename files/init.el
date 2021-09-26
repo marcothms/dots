@@ -27,7 +27,9 @@
       tramp-default-method "ssh"
       initial-major-mode 'fundamental-mode
       initial-scratch-message nil
-      fast-but-imprecise-scrolling t)
+      fast-but-imprecise-scrolling t
+      split-height-threshold nil
+      split-width-threshold 0)
 
 ;; Disable bidirectional text scanning for a modest performance boost. I've set
 ;; this to `nil' in the past, but the `bidi-display-reordering's docs say that
@@ -167,7 +169,8 @@
   :straight t
   :config
   (dashboard-setup-startup-hook)
-  (setq dashboard-startup-banner 'logo
+  (setq dashboard-banner-logo-title"「EMACS」へようこそ, マルコさん!"
+        dashboard-startup-banner 'logo
         dashboard-items '((agenda . 20))
         dashboard-item-names '(("Agenda for the coming week:" . "Agenda:"))
         dashboard-center-content t)
@@ -578,34 +581,69 @@
   :straight t
   :config
   (quail-define-package "math" "UTF-8" "Ω" t)
-  (quail-define-rules ; add whatever extra rules you want to define here...
-   ; Equality
-   ("<="        ?≤)
-   (">="        ?≥)
-   ("~="        ?≠)
+  (quail-define-rules
+   ; Equality and order
+   ("<=" ?≤) (">=" ?≥) ("\\prec" ?≺) ("\\preceq" ?≼) ("\\succ" ?≻)
+   ("\\succeq" ?≽)
+   ("/=" ?≠) ("\\neq" ?≠) ("\\=n" ?≠)("\\equiv" ?≡) ("\\nequiv" ?≢)
+   ("\\approx" ?≈) ("\\~~" ?≈) ("\\t=" ?≜) ("\\def=" ?≝)
+
+   ; Set theory
+   ("\\sub" ?⊆) ("\\subset" ?⊂) ("\\subseteq" ?⊆) ("\\in" ?∈)
+   ("\\inn" ?∉) ("\\:" ?∈) ("\\cap" ?∩) ("\\inter" ?∩)
+   ("\\cup" ?∪) ("\\uni" ?∪) ("\\emptyset" ?∅) ("\\empty" ?∅)
+   ("\\times" ?×) ("\\x" ?×)
+
+   ; Number stuff
+   ("\\div" ?∣) ("\\infty" ?∞) ("\\sqrt" ?√) ("\\Im" ?ℑ) ("\\Re" ?ℜ)
+
    ; Logic
-   ("~"         ?¬)
-   ("->"        ?→)
-   ("=>"        ?⇒)
-   ("<->"       ?↔)
-   ("<=>"       ?⇔)
-   ; Quantoren
-   ("\\ex"      ?∃)
-   ("\\all"     ?∀)
-   ; sets of numbers
-   ("\\NN"        ?ℕ)
-   ("\\ZZ"        ?ℤ)
-   ("\\QQ"        ?ℚ)
-   ("\\RR"        ?ℝ)
-   ("\\CC"        ?ℂ)
-   ("\\PP"        ?ℙ)
+   ("\\/" ?∨) ("\\and" ?∧) ("/\\" ?∧) ("\\or" ?∨) ("~" ?¬) ("\neg" ?¬)
+   ("|-" ?⊢) ("|-n" ?⊬) ("\\bot" ?⊥) ("\\top" ?⊤) ("\\r" ?→) ("\\lr" ?↔)
+   ("\\qed" ?∎)
+
+   ; Predicate logic
+   ("\\all" ?∀) ("\\ex" ?∃) ("\\exn" ?∄)
+
+   ; functions
+   ("\\to" ?→) ("\\mapsto" ?↦) ("\\circ" ?∘) ("\\comp" ?∘) ("\\integral" ?∫)
+   ("\\fun" ?λ)
+
+   ; Sets of numbers
+   ("\\nat" ?ℕ) ("\\N" ?ℕ) ("\\int" ?ℤ) ("\\Z" ?ℤ) ("\\rat" ?ℚ) ("\\Q" ?ℚ)
+   ("\\real" ?ℝ) ("\\R" ?ℝ) ("\\complex" ?ℂ) ("\\C" ?ℂ) ("\\prime" ?ℙ)
+   ("\\P" ?ℙ)
+
+   ; Complexity
+   ("\\bigo" ?𝒪)
+
+   ; Greek
+   ("\\Ga" ?α) ("\\GA" ?Α) ("\\a" ?α)
+   ("\\Gb" ?β) ("\\GB" ?Β) ("\\b" ?β)
+   ("\\Gg" ?γ) ("\\GG" ?Γ) ("\\g" ?γ) ("\\Gamma" ?Γ)
+   ("\\Gd" ?δ) ("\\GD" ?Δ) ("\\del" ?δ) ("\\Del" ?Δ)
+   ("\\Ge" ?ε) ("\\GE" ?Ε) ("\\eps" ?ε)
+   ("\\Gz" ?ζ) ("\\GZ" ?Ζ)
+   ("\\Gh" ?η) ("\\Gh" ?Η) ("\\mu" ?μ)
+   ("\\Gth" ?θ) ("\\GTH" ?Θ) ("\\the" ?θ) ("\\The" ?Θ)
+   ("\\Gi" ?ι) ("\\GI" ?Ι) ("\\iota" ?ι)
+   ("\\Gk" ?κ) ("\\GK" ?Κ)
+   ("\\Gl" ?λ) ("\\GL" ?Λ) ("\\lam" ?λ)
+   ("\\Gm" ?μ) ("\\GM" Μ) ("\\mu" ?μ)
+   ("\\Gx" ?ξ) ("\\GX" ?Ξ) ("\\xi" ?ξ) ("\\Xi" ?Ξ)
+   ("\\Gp" ?π) ("\\GP" ?Π) ("\\pi" ?π) ("\\Pi" ?Π)
+   ("\\Gr" ?ρ) ("\\GR" ?Ρ) ("\\rho" ?ρ)
+   ("\\Gs" ?σ) ("\\GS" ?Σ) ("\\sig" ?σ) ("\\Sig" ?Σ)
+   ("\\Gt" ?τ) ("\\GT" ?Τ) ("\\tau" ?τ)
+   ("\\Gph" ?ϕ) ("\\GPH" ?Φ) ("\\phi" ?ϕ) ("\\Phi" ?Φ)
+   ("\\Gc" ?χ) ("\\GC" ?Χ) ("\\chi" ?χ)
+   ("\\Gp" ?ψ) ("\\GP" ?Ψ) ("\\psi" ?ψ)
+   ("\\Go" ?ω) ("\\GO" ?Ω) ("\\omega" ?ω) ("\\Omega" ?Ω)
   )
   (mapc (lambda (x)
           (if (cddr x)
               (quail-defrule (cadr x) (car (cddr x)))))
-        (append math-symbol-list-basic
-                math-symbol-list-extended
-                math-symbol-list-superscripts
+        (append math-symbol-list-superscripts
                 math-symbol-list-subscripts)))
 
 ;; Java
