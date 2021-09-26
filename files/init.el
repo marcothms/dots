@@ -167,11 +167,12 @@
   :straight t
   :config
   (dashboard-setup-startup-hook)
-  (setq dashboard-banner-logo-title "Welcome back, Marc."
-        dashboard-startup-banner 'logo
+  (setq dashboard-startup-banner 'logo
         dashboard-items '((agenda . 20))
         dashboard-item-names '(("Agenda for the coming week:" . "Agenda:"))
-        dashboard-center-content t))
+        dashboard-center-content t)
+  (when (file-exists-p "~/.emacs.d/dashboard.png")
+    (setq dashboard-startup-banner "~/.emacs.d/dashboard.png")))
 
 ;; show color codes
 (use-package rainbow-mode
