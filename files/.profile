@@ -11,10 +11,10 @@ xmodmap -e "keycode 66 = grave asciitilde"
 export PATH=$PATH:$HOME/scripts:$HOME/.cargo/bin:$HOME/.cabal/bin:$HOME/.ghcup/bin:$HOME/.local/bin
 
 # editor
-export EDITOR="vim"
+export EDITOR="nvim"
 export VISIAL=${EDITOR}
 
-# fcitx exports
+# anthy
 export GTK_IM_MODULE='xim'
 export QT_IM_MODULE='ibus'
 export SDL_IM_MODULE='ibus'
