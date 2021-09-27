@@ -27,7 +27,7 @@ window:
 font:
   size: 10
   normal:
-    family: SFMono Nerd Font Mono
+    family: JuliaMono
     style: Regular
 
 background_opacity: 1

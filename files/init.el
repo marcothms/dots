@@ -65,9 +65,9 @@
 
 ;; Font
 ; default font
-(set-face-attribute 'default nil :font "SFMono Nerd Font Mono" :height 100)
-(set-fontset-font t 'unicode "Source Code Pro" nil 'prepend)
-(set-fontset-font t 'unicode "Noto Color Emoji" nil 'append)
+(set-face-attribute 'default nil :font "JuliaMono" :height 100)
+(set-fontset-font t 'unicode "Noto Color Emoji" nil 'prepend)
+(set-fontset-font t 'unicode "Noto Sans Mono CJK JP" nil 'append)
 
 ;; Make ESC quit prompts
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
