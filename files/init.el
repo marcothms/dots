@@ -8,6 +8,12 @@
 
 (let ((file-name-handler-alist nil))
 
+
+;;;
+;;; PERFORMANCE
+;;;
+
+
 ;; Set the gc threshold high initially so the init.el can just be
 ;; loaded in one move
 (setq gc-cons-threshold most-positive-fixnum) ; 2^61 bytes
@@ -19,17 +25,6 @@
 
 ;; This is important for e.g. lsp mode
 (setq read-process-output-max (* 3 1024 1024))
-
-(setq make-backup-files nil
-      auto-mode-case-fold nil
-      auto-save-default nil
-      inhibit-startup-screen t
-      tramp-default-method "ssh"
-      initial-major-mode 'fundamental-mode
-      initial-scratch-message nil
-      fast-but-imprecise-scrolling t
-      split-height-threshold nil
-      split-width-threshold 0)
 
 ;; Disable bidirectional text scanning for a modest performance boost. I've set
 ;; this to `nil' in the past, but the `bidi-display-reordering's docs say that
@@ -54,53 +49,34 @@
 ;; receiving input, which should help a little with scrolling performance.
 (setq redisplay-skip-fontification-on-input t)
 
-;; remove ugly bars
-(menu-bar-mode -1)
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
 
-;; show matching parenthesis
-(show-paren-mode t)
-(setq show-paren-style 'paranthesis)
+;;;
+;;; GENERAL
+;;;
 
-;; Font
-; default font
-(set-face-attribute 'default nil :font "JuliaMono" :height 100)
-(set-fontset-font t 'unicode "Noto Color Emoji" nil 'prepend)
-(set-fontset-font t 'unicode "Noto Sans Mono CJK JP" nil 'append)
+
+(setq make-backup-files nil
+      auto-mode-case-fold nil
+      auto-save-default nil
+      inhibit-startup-screen t
+      tramp-default-method "ssh"
+      initial-major-mode 'fundamental-mode
+      initial-scratch-message nil
+      fast-but-imprecise-scrolling t
+      split-height-threshold nil
+      split-width-threshold 0)
 
 ;; Make ESC quit prompts
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
-;; Relative line numbers
-(setq-default display-line-numbers 'relative
-              display-line-numbers-widen t
-              ;; this is the default
-              display-line-numbers-current-absolute t)
-
-;; soft wrap
+;; Soft wrap
 (global-visual-line-mode t)
 
-;; display absolute numbers, when in normal mode
-(defun noct:relative ()
-  (setq-local display-line-numbers 'relative))
 
-(defun noct:absolute ()
-  (setq-local display-line-numbers t))
+;;;
+;;; PACKAGE MANAGEMENT
+;;;
 
-(add-hook 'evil-insert-state-entry-hook #'noct:absolute)
-(add-hook 'evil-insert-state-exit-hook #'noct:relative)
-
-;; Whitespace
-(global-whitespace-mode t)
-(setq whitespace-style '(face trailing tabs tab-mark))
-; remove trailing whitespaces on save
-(add-hook 'before-save-hook 'whitespace-cleanup)
-
-;; Fold code
-(add-hook 'prog-mode-hook #'hs-minor-mode)
-(global-set-key (kbd "C-c <right>") 'hs-show-block)
-(global-set-key (kbd "C-c <left>") 'hs-hide-block)
 
 ;; straight.el bootstrap
 (setq straight-check-for-modifications 'live)
@@ -118,33 +94,91 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
-;; inhibit package.el load
+;; Inhibit package.el load
 (setq package-enable-at-startup nil)
-
 (straight-use-package 'use-package)
 
-;; Packages
 
-;; Copy environment
-(use-package exec-path-from-shell
-  :straight t
-  :config
-  (setq exec-path-from-shell-arguments '("-l"))
-  (exec-path-from-shell-copy-envs '("PATH" "SSH_AGENT_PID" "SSH_AUTH_SOCK")))
+;;;
+;;; KEYBIND STUFF
+;;;
 
-;; Spellchecker
-(use-package ispell
+;; General
+(use-package general
   :straight t
-  :if (executable-find "hunspell")
+  :init
+  ;; Space as leader key
+  (general-create-definer vim-leader-def :prefix "SPC"))
+
+;; Help to find keybindings
+(use-package which-key
+  :straight t
+  :init
+  (which-key-mode)
+  :diminish
+  (which-key-mode)
   :config
-  (setq ispell-program-name "hunspell"
-        ispell-dictionary "de_DE,en_GB,en_US")
-  (ispell-set-spellchecker-params)
-  (ispell-hunspell-add-multi-dic "de_DE,en_GB,en_US")
-  :hook
-  (org-mode . flyspell-mode)
-  (markdown-mode . flyspell-mode)
-  (text-mode . flyspell-mode))
+  (setq which-key-idle-delay 1))
+
+;; Vim bindings
+(use-package evil
+  :straight t
+  :bind
+  (:map evil-motion-state-map
+        ("C-y" . nil))
+  (:map evil-insert-state-map
+        ("C-y" . nil))
+  :init
+  ;; so C-z works for background
+  (setq evil-toggle-key "C-~"
+        evil-want-C-d-scroll t
+        evil-want-C-u-scroll t
+        evil-want-integration t
+        evil-want-keybinding nil)
+  :config
+  (evil-mode))
+
+(use-package evil-collection
+  :straight t
+  :after evil
+  :config
+  (evil-collection-init))
+
+
+;;;
+;;; Appearance
+;;;
+
+
+;; Font
+(set-face-attribute 'default nil :font "JuliaMono" :height 100)
+(set-fontset-font t 'unicode "Noto Color Emoji" nil 'prepend)
+(set-fontset-font t 'unicode "Noto Sans Mono CJK JP" nil 'append)
+
+;; Remove ugly bars
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+
+;; Show matching parenthesis
+(show-paren-mode t)
+(setq show-paren-style 'paranthesis)
+
+;; Relative line numbers
+(setq-default display-line-numbers 'relative
+              display-line-numbers-widen t
+              ;; this is the default
+              display-line-numbers-current-absolute t)
+
+;; Display absolute numbers, when in normal mode
+(defun noct:relative ()
+  (setq-local display-line-numbers 'relative))
+
+(defun noct:absolute ()
+  (setq-local display-line-numbers t))
+
+(add-hook 'evil-insert-state-entry-hook #'noct:absolute)
+(add-hook 'evil-insert-state-exit-hook #'noct:relative)
 
 ;; Themes and icons
 (use-package doom-themes
@@ -177,13 +211,13 @@
   (when (file-exists-p "~/.emacs.d/dashboard.png")
     (setq dashboard-startup-banner "~/.emacs.d/dashboard.png")))
 
-;; show color codes
+;; Show color codes as colors inline
 (use-package rainbow-mode
   :straight t
   :hook
   (prog-mode . rainbow-mode))
 
-;; icons
+;; Icons
 (use-package all-the-icons
   :straight t)
 
@@ -197,46 +231,13 @@
   :config
   (setq nyan-cat-face-number 4))
 
-;; Indentation for c
-(setq-default c-basic-offset 8)
+;; Show whitespace
+(global-whitespace-mode t)
+(setq whitespace-style '(face trailing tabs tab-mark))
+; remove trailing whitespaces on save
+(add-hook 'before-save-hook 'whitespace-cleanup)
 
-;; Heuristic indentation
-(use-package dtrt-indent
-  :straight t
-  :hook
-  (prog-mode . dtrt-indent-mode)
-  (text-mode . dtrt-indent-mode)
-  (org-mode . dtrt-indent-mode)
-  (markdown-mode . dtrt-indent-mode))
-
-;; Auto parens
-(use-package electric-pair
-  :config
-  (setq electric-pair-open-newline-between-pairs nil)
-  :hook
-  (prog-mode . electric-pair-mode)
-  (text-mode . electric-pair-mode)
-  (org-mode . electric-pair-mode)
-  (markdown-mode . electric-pair-mode))
-
-;; general
-(use-package general
-  :straight t
-  :init
-  ;; Space as leader key
-  (general-create-definer vim-leader-def :prefix "SPC"))
-
-;; Help to find keybindings
-(use-package which-key
-  :straight t
-  :init
-  (which-key-mode)
-  :diminish
-  (which-key-mode)
-  :config
-  (setq which-key-idle-delay 1))
-
-;; column line
+;; Column line
 (use-package fill-column-indicator
   :straight t
   :defer 1
@@ -250,31 +251,63 @@
   (prog-mode . fci-mode)
   (markdown-mode . fci-mode))
 
-;; Vim bindings
-(use-package evil
-  :straight t
-  :bind
-  (:map evil-motion-state-map
-        ("C-y" . nil))
-  (:map evil-insert-state-map
-        ("C-y" . nil))
-  :init
-  ;; so C-z works for background
-  (setq evil-toggle-key "C-~"
-        evil-want-C-d-scroll t
-        evil-want-C-u-scroll t
-        evil-want-integration t
-        evil-want-keybinding nil)
-  :config
-  (evil-mode))
 
-(use-package evil-collection
-  :straight t
-  :after evil
-  :config
-  (evil-collection-init))
+;;;
+;;; HELPERS
+;;;
 
-;; Completion for swiper
+
+;; Copy environment
+;; TODO: is the still needed
+;; (use-package exec-path-from-shell
+;;   :straight t
+;;   :config
+;;   (setq exec-path-from-shell-arguments '("-l"))
+;;   (exec-path-from-shell-copy-envs '("PATH" "SSH_AGENT_PID" "SSH_AUTH_SOCK")))
+
+
+;; Heuristic indentation
+(use-package dtrt-indent
+  :straight t
+  :hook
+  (prog-mode . dtrt-indent-mode)
+  (text-mode . dtrt-indent-mode)
+  (org-mode . dtrt-indent-mode)
+  (markdown-mode . dtrt-indent-mode))
+
+;; Indentation for C
+(setq-default c-basic-offset 8)
+
+;; Auto parenthesis
+(use-package electric-pair
+  :config
+  (setq electric-pair-open-newline-between-pairs nil)
+  :hook
+  (prog-mode . electric-pair-mode)
+  (text-mode . electric-pair-mode)
+  (org-mode . electric-pair-mode)
+  (markdown-mode . electric-pair-mode))
+
+;; Spellchecker
+(use-package ispell
+  :straight t
+  :if (executable-find "hunspell")
+  :config
+  (setq ispell-program-name "hunspell"
+        ispell-dictionary "de_DE,en_GB,en_US")
+  (ispell-set-spellchecker-params)
+  (ispell-hunspell-add-multi-dic "de_DE,en_GB,en_US")
+  :hook
+  (org-mode . flyspell-mode)
+  (markdown-mode . flyspell-mode)
+  (text-mode . flyspell-mode))
+
+
+;;;
+;;; IVY
+;;;
+
+;; Completetion frontend for counsel
 (use-package ivy
   :straight t
   :diminish
@@ -294,6 +327,7 @@
   :config
   (ivy-mode 1))
 
+;; Fancy menus and buffers
 (use-package counsel
   :straight t
   :bind (("M-x" . counsel-M-x)
@@ -303,12 +337,13 @@
          :map minibuffer-local-map
          ("C-r" . 'counsel-minibuffer-history)))
 
-;; I dont want \alert to be my bold text in TeX
-(defun hbv/beamer-bold (contents backend info)
-  (when (eq backend 'beamer)
-    (replace-regexp-in-string "\\`\\\\[A-Za-z0-9]+" "\\\\textbf" contents)))
 
-;; Org
+;;;
+;;; ORG
+;;;
+
+
+;; God bless this mode...
 (use-package org
   :straight t
   ;; C-c C-t org rotate
@@ -321,8 +356,7 @@
     "oes" 'org-edit-src-code
     "obe" 'org-babel-execute-src-block
     "oti" 'org-toggle-inline-images
-    "odi" 'org-display-inline-images
-    "olp" 'org-latex-preview)
+    "odi" 'org-display-inline-images)
   :hook
   ;; dont make real spaces at the start
   (org-mode . (lambda () (electric-indent-local-mode -1)))
@@ -368,13 +402,19 @@
                                                            (C . t)
                                                            (dot . t))))
 
+;; I dont want \alert to be my bold text in TeX
+(defun mth/beamer-bold (contents backend info)
+  (when (eq backend 'beamer)
+    (replace-regexp-in-string "\\`\\\\[A-Za-z0-9]+" "\\\\textbf" contents)))
+
+;; Custom export settings
 (use-package ox
   :after org
   :config
-  (add-to-list 'org-export-filter-bold-functions 'hbv/beamer-bold)
+  (add-to-list 'org-export-filter-bold-functions 'mth/beamer-bold)
   (add-to-list 'org-latex-logfiles-extensions "tex")) ;; dont generate .tex file
 
-;; fancy bullets for org
+;; Fancy bullets for org
 (use-package org-superstar
   :straight t
   :after org
@@ -395,15 +435,28 @@
   (set-face-attribute 'org-level-5 nil :inherit 'org-level-8)
   (set-face-attribute 'org-level-4 nil :inherit 'org-level-8))
 
-;; auto latex rendering in org-mode
+;; Auto latex rendering in org-mode
 (use-package org-fragtog
   :straight t
   :hook
   (org-mode . org-fragtog-mode))
 
-;; Development Packages
+;; Graphs in org
+(use-package graphviz-dot-mode
+  :straight t
+  :hook
+  (graphviz-dot-mode . (lambda () (set-input-method "math")))
+  :config
+  (setq graphviz-dot-indent-width 4))
 
-;; git
+
+
+;;;
+;;; PROGRAMMING
+;;;
+
+
+;; Git integration
 (use-package magit
   :straight t
   :general
@@ -464,7 +517,28 @@
   :after (treemacs magit)
   :straight t)
 
-;; Lsp
+;; Highlight TODOs
+(use-package hl-todo
+  :straight t
+  :hook
+  (prog-mode . hl-todo-mode)
+  :config
+  (defface hl-todo-TODO
+    '((t :background "#cc241d" :foreground "#ffffff"))
+    "TODO Face")
+  (setq hl-todo-highlight-punctuation ":"
+        hl-todo-color-background t
+        hl-todo-keyword-faces '(("TODO"  . hl-todo-TODO)
+                                ("XXX"   . hl-todo-TODO)
+                                ("FIXME" . hl-todo-TODO))))
+
+
+;;;
+;;; LSP
+;;;
+
+
+;; Lsp-mode has more features than eglot
 (use-package lsp-mode
   :straight t
   :commands (lsp lsp-deferred)
@@ -482,7 +556,7 @@
   (python-mode . lsp)
   (haskell-mode . lsp))
 
-;; Tags
+;; Tags (search e.g. for structs)
 (use-package lsp-ivy
   :straight t
   :after lsp-mode
@@ -513,7 +587,7 @@
   :hook
   (company-mode . company-box-mode))
 
-;; project support
+;; Project support
 (use-package projectile
   :straight t
   :after lsp
@@ -521,7 +595,7 @@
   (setq projectile-completion-system 'ivy)
   (projectile-mode +1))
 
-;; snippet support
+;; Snippet support
 (defun company-mode/backend-with-yas (backend)
   (if (and (listp backend) (member 'company-yasnippet backend))
       backend
@@ -540,18 +614,19 @@
   (company-mode . yas-minor-mode)
   (company-mode . company-mode/add-yasnippet))
 
+;; Actual snippets
 (use-package yasnippet-snippets
   :straight (yasnippet-snippets :type git :host github :repo "AndreaCrotti/yasnippet-snippets"
                                 :fork (:host github
                                              :repo "crammk/yasnippet-snippets"))
   :after yasnippet)
 
-;; compiling for lsp
+;; Compilation for lsp
 (use-package flycheck
   :straight t
   :after lsp)
 
-;; rust
+;; Rust
 (use-package rust-mode
   :straight t
   :hook
@@ -563,20 +638,44 @@
                  (push '("<=" . ?≤) prettify-symbols-alist)
                  (push '(">=" . ?≥) prettify-symbols-alist))))
 
+;; Haskell
+(use-package haskell-mode
+  :straight t
+  :hook
+  (haskell-mode . interactive-haskell-mode))
+
+(use-package lsp-haskell
+  :straight t
+  :after lsp
+  :hook
+  (haskell-mode . lsp)
+  (haskell-literate-mode . lsp))
+
+;; WebGpuShaderLanguage
 (use-package wgsl-mode
   :straight (wgsl-mode :type git :host github :repo "CramMK/wgsl-mode")
   :mode ("\\.wgsl\\'" . wgsl-mode))
 
-;; LaTeX
-(use-package auctex
+;; Java
+(use-package lsp-java
   :straight t
-  :defer t
-  :init
-  (setq TeX-auto-save t
-        TeX-parse-self t
-        preview-scale-function 1.5))
+  :after lsp
+  :hook
+  (java-mode . prettify-symbols-mode)
+  (java-mode . (lambda ()
+                 (push '("!=" . ?≠) prettify-symbols-alist)
+                 (push '("<=" . ?≤) prettify-symbols-alist)
+                 (push '(">=" . ?≥) prettify-symbols-alist)))
+  :config
+  (setq lsp-java-format-on-type-enabled nil))
 
-;; Math Symbols
+
+;;;
+;;; INPUT METHODS
+;;;
+
+
+;; Custom math symbols
 (use-package math-symbol-lists
   :straight t
   :config
@@ -645,58 +744,5 @@
               (quail-defrule (cadr x) (car (cddr x)))))
         (append math-symbol-list-superscripts
                 math-symbol-list-subscripts)))
-
-;; Java
-(use-package lsp-java
-  :straight t
-  :after lsp
-  :hook
-  (java-mode . prettify-symbols-mode)
-  (java-mode . (lambda ()
-                 (push '("!=" . ?≠) prettify-symbols-alist)
-                 (push '("<=" . ?≤) prettify-symbols-alist)
-                 (push '(">=" . ?≥) prettify-symbols-alist)))
-  :config
-  (setq lsp-java-format-on-type-enabled nil))
-
-;; Haskell
-(use-package haskell-mode
-  :straight t
-  :hook
-  (haskell-mode . interactive-haskell-mode))
-
-(use-package lsp-haskell
-  :straight t
-  :after lsp
-  :hook
-  (haskell-mode . lsp)
-  (haskell-literate-mode . lsp))
-
-;; Graphs
-(use-package graphviz-dot-mode
-  :straight t
-  :hook
-  (graphviz-dot-mode . (lambda () (set-input-method "math")))
-  :config
-  (setq graphviz-dot-indent-width 4))
-
-(use-package hl-todo
-  :straight t
-  :hook
-  (prog-mode . hl-todo-mode)
-  :config
-  (defface hl-todo-TODO
-    '((t :background "#cc241d" :foreground "#ffffff"))
-    "TODO Face")
-  (setq hl-todo-highlight-punctuation ":"
-        hl-todo-color-background t
-        hl-todo-keyword-faces '(("TODO"  . hl-todo-TODO)
-                                ("XXX"   . hl-todo-TODO)
-                                ("FIXME" . hl-todo-TODO))))
-
-;; load local file
-(when (file-exists-p "~/.emacs.d/local.el")
-  (message "Loading ~/.emacs.d/local.el")
-  (load-file "~/.emacs.d/local.el"))
 
 ) ;; close performance let
