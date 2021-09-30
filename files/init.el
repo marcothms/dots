@@ -257,15 +257,6 @@
 ;;;
 
 
-;; Copy environment
-;; TODO: is the still needed
-;; (use-package exec-path-from-shell
-;;   :straight t
-;;   :config
-;;   (setq exec-path-from-shell-arguments '("-l"))
-;;   (exec-path-from-shell-copy-envs '("PATH" "SSH_AGENT_PID" "SSH_AUTH_SOCK")))
-
-
 ;; Heuristic indentation
 (use-package dtrt-indent
   :straight t
