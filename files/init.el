@@ -403,7 +403,10 @@
   :after org
   :config
   (add-to-list 'org-export-filter-bold-functions 'mth/beamer-bold)
-  (add-to-list 'org-latex-logfiles-extensions "tex")) ;; dont generate .tex file
+  (add-to-list 'org-latex-logfiles-extensions "tex")
+  (setq org-latex-inputenc-alist '(("utf8" . "utf8x"))
+        org-latex-default-packages-alist (cons '("mathletters" "ucs" nil) org-latex-default-packages-alist)))
+
 
 ;; Fancy bullets for org
 (use-package org-superstar
