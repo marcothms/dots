@@ -103,6 +103,7 @@
 ;;; KEYBIND STUFF
 ;;;
 
+
 ;; General
 (use-package general
   :straight t
@@ -267,7 +268,7 @@
   (markdown-mode . dtrt-indent-mode))
 
 ;; Indentation for C
-(setq-default c-basic-offset 8)
+;(setq-default c-basic-offset 8)
 
 ;; Auto parenthesis
 (use-package electric-pair
@@ -297,6 +298,7 @@
 ;;;
 ;;; IVY
 ;;;
+
 
 ;; Completetion frontend for counsel
 (use-package ivy
@@ -345,7 +347,6 @@
     "oa"  'org-agenda
     "oca" 'org-capture
     "oes" 'org-edit-src-code
-    "obe" 'org-babel-execute-src-block
     "oti" 'org-toggle-inline-images
     "odi" 'org-display-inline-images)
   :hook
@@ -365,8 +366,9 @@
   (define-key evil-normal-state-map (kbd "TAB") 'org-cycle)
   (set-face-attribute 'org-document-title nil :font "Product Sans" :weight 'bold :inherit 'default :height 250)
   (setq org-format-latex-options (plist-put org-format-latex-options :scale 1.5)
-        org-hidden-keywords '(title)
-        org-image-actual-width nil
+        org-hidden-keywords '(title)  ; hide title
+	org-startup-with-inline-images t
+        org-image-actual-width nil  ; rescale inline images
         org-directory "~/org"
         org-agenda-files (quote ("~/org"))
         org-ellipsis " ⮷"
@@ -390,6 +392,7 @@
           "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
   (org-babel-do-load-languages 'org-babel-load-languages '((python . t)
                                                            (shell . t)
+                                                           (haskell . t)
                                                            (C . t)
                                                            (dot . t))))
 
@@ -442,6 +445,14 @@
   (graphviz-dot-mode . (lambda () (set-input-method "math")))
   :config
   (setq graphviz-dot-indent-width 4))
+
+;; Sagemath for university
+(use-package sage-shell-mode
+  :straight t)
+
+;; Sagemath babel integration
+(use-package ob-sagemath
+  :straight t)
 
 
 

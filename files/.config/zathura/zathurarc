@@ -9,43 +9,14 @@ set statusbar-v-padding 0
 set show-scrollbars     false
 
 # colors
-set notification-error-bg       "#fafafa" # bg
-set notification-error-fg       "#9d0006" # bright:red
-set notification-warning-bg     "#fafafa" # bg
-set notification-warning-fg     "#b57614" # bright:yellow
-set notification-bg             "#fafafa" # bg
-set notification-fg             "#79740e" # bright:green
-
 set completion-bg               "#fafafa" # bg
-set completion-fg               "#3c3836" # fg
-set completion-group-bg         "#fafafa" # bg1
-set completion-group-fg         "#928374" # gray
-set completion-highlight-bg     "#689d6a" # aqua
-set completion-highlight-fg     "#fafafa gs" # bg2
-
-# Define the color in index mode
-set index-bg                    "#fafafa" # bg2
-set index-fg                    "#3c3836" # fg
-set index-active-bg             "#689d6a" # aqua
-set index-active-fg             "#ebdbb2" # bg2
+set completion-fg               "#5c6773" # fg
 
 set inputbar-bg                 "#fafafa" # bg
-set inputbar-fg                 "#3c3836" # fg
+set inputbar-fg                 "#5c6773" # fg
 
 set statusbar-bg                "#fafafa" # bg
-set statusbar-fg                "#3c3836" # fg
-
-set highlight-color             "#b57614" # bright:yellow
-set highlight-active-color      "#af3a03" # bright:orange
+set statusbar-fg                "#5c6773" # fg
 
 set default-bg                  "#fafafa" # bg
-set default-fg                  "#3c3836" # fg
-set render-loading              true
-set render-loading-bg           "#fafafa" # bg
-set render-loading-fg           "#3c3836" # fg
-
-# Recolor book content's color
-set recolor-lightcolor          "#fafafa" # bg
-set recolor-darkcolor           "#3c3836" # fg
-set recolor                     "true"
-set recolor-keephue             "true"
+set default-fg                  "#5c6773" # fg
