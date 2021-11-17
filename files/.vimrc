@@ -29,6 +29,7 @@ syntax on
 let ayucolor="light"
 colorscheme ayu
 set termguicolors
+hi Normal guibg=NONE ctermbg=NONE
 
 " ============================== General
 filetype indent plugin on

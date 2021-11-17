@@ -62,9 +62,9 @@
       tramp-default-method "ssh"
       initial-major-mode 'fundamental-mode
       initial-scratch-message nil
-      fast-but-imprecise-scrolling t
-      split-height-threshold nil
-      split-width-threshold 0)
+      fast-but-imprecise-scrolling t)
+;      split-height-threshold nil
+;      split-width-threshold 0)
 
 ;; Make ESC quit prompts
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
@@ -152,7 +152,7 @@
 
 
 ;; Font
-(set-face-attribute 'default nil :font "JuliaMono" :height 100)
+(set-face-attribute 'default nil :font "JuliaMono" :height 110)
 (set-fontset-font t 'unicode "Noto Color Emoji" nil 'prepend)
 (set-fontset-font t 'unicode "Noto Sans Mono CJK JP" nil 'append)
 
@@ -197,7 +197,8 @@
   :straight t
   :config
   (doom-modeline-mode 1)
-  (setq doom-modeline-indent-info t))
+  (setq doom-modeline-indent-info t
+        doom-modeline-buffer-file-name-style 'file-name))
 
 ;; Cool dashboard
 (use-package dashboard
@@ -228,7 +229,7 @@
   :init
   (nyan-mode)
   (nyan-start-animation)
-  (nyan-toggle-wavy-trail)
+  ;; (nyan-toggle-wavy-trail)
   :config
   (setq nyan-cat-face-number 4))
 
@@ -364,27 +365,28 @@
                 ;(push '("#+end_src" . "⇤" ) prettify-symbols-alist)))
   :config
   (define-key evil-normal-state-map (kbd "TAB") 'org-cycle)
-  (set-face-attribute 'org-document-title nil :font "Product Sans" :weight 'bold :inherit 'default :height 250)
+  (set-face-attribute 'org-document-title nil :weight 'bold :inherit 'default :height 250)
   (setq org-format-latex-options (plist-put org-format-latex-options :scale 1.5)
         org-hidden-keywords '(title)  ; hide title
-	org-startup-with-inline-images t
+        org-startup-with-inline-images t
         org-image-actual-width nil  ; rescale inline images
         org-directory "~/org"
         org-agenda-files (quote ("~/org"))
         org-ellipsis " ⮷"
-        org-hide-emphasis-markers t
+        org-hide-emphasis-markers t  ; hide bold and underline markers
         org-todo-keywords '((sequence "TODO" "PROGRESS" "REVIEW" "|" "DONE"))
         org-todo-keyword-faces '(("TODO" . "#cc241d") ("PROGRESS" . "#a6cc70") ("REVIEW" . "#b16286") ("DONE" . "#abb0b6"))
         org-edit-src-content-indentation 0
+        org-log-done nil  ; just mark DONE without a time stamp
+        org-log-repeat nil
+        org-agenda-start-on-weekday nil  ; my week starts on a monday
         calendar-week-start-day 1
-        org-log-done 'time
-        org-agenda-start-on-weekday nil
         org-capture-templates
         (quote (("j" "Japanese" entry (file "~/org/japanese.org") "* TODO %?\n" :empty-lines-before 1)
                 ("w" "Work" entry (file "~/org/work.org") "* TODO %?\n" :empty-lines-before 1)
                 ("u" "University" entry (file "~/org/uni.org") "* TODO %?\n" :empty-lines-before 1)
                 ("p" "Personal" entry (file "~/org/personal.org") "* TODO %?\n" :empty-lines-before 1)))
-        org-latex-listings 'minted
+        org-latex-listings 'minted  ; export with code highlighting
         org-latex-packages-alist '(("" "minted"))
         org-latex-pdf-process
         '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
@@ -394,7 +396,8 @@
                                                            (shell . t)
                                                            (haskell . t)
                                                            (C . t)
-                                                           (dot . t))))
+                                                           (dot . t)
+                                                           (R . t))))
 
 ;; I dont want \alert to be my bold text in TeX
 (defun mth/beamer-bold (contents backend info)
@@ -410,7 +413,6 @@
   (setq org-latex-inputenc-alist '(("utf8" . "utf8x"))
         org-latex-default-packages-alist (cons '("mathletters" "ucs" nil) org-latex-default-packages-alist)))
 
-
 ;; Fancy bullets for org
 (use-package org-superstar
   :straight t
@@ -421,16 +423,7 @@
   ;; uncomment if slowdown happens
   ;;(setq inhibit-compacting-font-caches t)
   ;; base config, as i wont use level 8
-  (set-face-attribute 'org-level-8 nil :font "Product Sans" :weight 'bold :inherit 'default)
-  ;; make first 3 bigger
-  (set-face-attribute 'org-level-3 nil :inherit 'org-level-8 :height 1.1)
-  (set-face-attribute 'org-level-2 nil :inherit 'org-level-8 :height 1.15)
-  (set-face-attribute 'org-level-1 nil :inherit 'org-level-8 :height 1.2)
-  ;; Low levels are unimportant => no scaling
-  (set-face-attribute 'org-level-7 nil :inherit 'org-level-8)
-  (set-face-attribute 'org-level-6 nil :inherit 'org-level-8)
-  (set-face-attribute 'org-level-5 nil :inherit 'org-level-8)
-  (set-face-attribute 'org-level-4 nil :inherit 'org-level-8))
+  )
 
 ;; Auto latex rendering in org-mode
 (use-package org-fragtog
@@ -453,7 +446,6 @@
 ;; Sagemath babel integration
 (use-package ob-sagemath
   :straight t)
-
 
 
 ;;;
@@ -485,7 +477,7 @@
   :config
   (setq treemacs-follow-after-init t
         treemacs-persist-file (expand-file-name ".cache/treemacs-persist" user-emacs-directory)
-        treemacs-width 40
+        treemacs-width 50
         treemacs-project-follow-cleanup t
         treemacs-tag-follow-cleanup t
         treemacs-expand-after-init nil
@@ -506,7 +498,7 @@
                   treemacs-directory-collapsed-face
                   treemacs-file-face
                   treemacs-tags-face))
-    (set-face-attribute face nil :family "Product Sans" :height 100))
+    (set-face-attribute face nil :family "JuliaMono" :height 110))
   :bind
   (:map global-map
     ("C-x t t" . treemacs)))
@@ -576,6 +568,7 @@
   (LaTeX-mode . company-mode)
   (org-mode . company-mode)
   :custom
+
   (company-minimum-prefix-length 3)
   (company-idle-delay 0.5)
   :bind (:map company-active-map
@@ -699,11 +692,13 @@
    ("\\times" ?×) ("\\x" ?×)
 
    ; Number stuff
-   ("\\div" ?∣) ("\\infty" ?∞) ("\\sqrt" ?√) ("\\Im" ?ℑ) ("\\Re" ?ℜ)
+   ("\\mid" ?∣) ("\\infty" ?∞) ("\\sqrt" ?√) ("\\Im" ?ℑ) ("\\Re" ?ℜ)
 
    ; Logic
    ("\\/" ?∨) ("\\and" ?∧) ("/\\" ?∧) ("\\or" ?∨) ("~" ?¬) ("\neg" ?¬)
-   ("|-" ?⊢) ("|-n" ?⊬) ("\\bot" ?⊥) ("\\top" ?⊤) ("\\r" ?→) ("\\lr" ?↔)
+   ("|-" ?⊢) ("|-n" ?⊬) ("\\bot" ?⊥) ("\\top" ?⊤)
+   ("\\r" ?→) ("\\lr" ?↔)
+   ("\\R" ?⇒) ("\\Lr" ?⇔)
    ("\\qed" ?∎)
 
    ; Predicate logic
@@ -725,11 +720,11 @@
    ("\\Ga" ?α) ("\\GA" ?Α) ("\\a" ?α)
    ("\\Gb" ?β) ("\\GB" ?Β) ("\\b" ?β)
    ("\\Gg" ?γ) ("\\GG" ?Γ) ("\\g" ?γ) ("\\Gamma" ?Γ)
-   ("\\Gd" ?δ) ("\\GD" ?Δ) ("\\del" ?δ) ("\\Del" ?Δ)
-   ("\\Ge" ?ε) ("\\GE" ?Ε) ("\\eps" ?ε)
+   ("\\Gd" ?δ) ("\\GD" ?Δ) ("\\delta" ?δ) ("\\Delta" ?Δ)
+   ("\\Ge" ?ε) ("\\GE" ?Ε) ("\\epsilon" ?ε)
    ("\\Gz" ?ζ) ("\\GZ" ?Ζ)
    ("\\Gh" ?η) ("\\Gh" ?Η) ("\\mu" ?μ)
-   ("\\Gth" ?θ) ("\\GTH" ?Θ) ("\\the" ?θ) ("\\The" ?Θ)
+   ("\\Gth" ?θ) ("\\GTH" ?Θ) ("\\theta" ?θ) ("\\Theta" ?Θ)
    ("\\Gi" ?ι) ("\\GI" ?Ι) ("\\iota" ?ι)
    ("\\Gk" ?κ) ("\\GK" ?Κ)
    ("\\Gl" ?λ) ("\\GL" ?Λ) ("\\lam" ?λ)

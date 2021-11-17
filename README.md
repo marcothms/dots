@@ -5,23 +5,15 @@
 + DE: Gnome
 + Shell: zsh
 + Terminal: alacritty
++ Theme: Orchis Green + Tela Icons
 
 ## Programs
 
 + Editor: emacs
 + Mouse-Settings: piper
 + Screenshots: flameshot
-+ pdf: zathura with mupdf
++ pdf: Okular
 
 ## Other Dependencies
 + fzf: fuzzy file finder
 + hunspell{-de, en}: spellchecking for emacs
-
-## Fonts
-| Usage    | Font                  |
-| -------- | --------------------- |
-| Terminal | SFMono Nerd Font Mono |
-| Non-Mono | Product Sans          |
-| JP       | Noto Sans CJK JP      |
-| JP       | Stick Regular         |
-| Icons    | Material Design Icons |

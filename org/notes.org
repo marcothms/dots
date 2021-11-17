@@ -19,10 +19,13 @@
 
 #+LATEX_HEADER: \theoremstyle{definition}
 #+LATEX_HEADER: \newtheorem{definition}{Definition}[section]
+
 #+LATEX_HEADER: \newtheorem{theorem}{Satz}[section]
 
-#+LATEX_HEADER: \theoremstyle{algo}
+#+LATEX_HEADER: \theoremstyle{definition}
 #+LATEX_HEADER: \newtheorem{algo}{Algorithmus}[section]
+
+#+LATEX_HEADER: \theoremstyle{definition}
 #+LATEX_HEADER: \newtheorem*{remark}{Bemerkung}
 
 #+LATEX_HEADER: \date{\today}
