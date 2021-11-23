@@ -1,8 +1,9 @@
 #+LaTeX_CLASS: article
-#+LaTeX_CLASS_OPTIONS: [letterpaper]
+#+LaTeX_CLASS_OPTIONS: [a4paper]
 #+LANGUAGE: de
 #+OPTIONS: toc:t
 
+#+LATEX_HEADER: \usepackage{a4wide}
 #+LATEX_HEADER: \usepackage{mathtools}
 #+LATEX_HEADER: \usepackage{amsthm}
 #+LATEX_HEADER: \usepackage{amssymb}

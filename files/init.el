@@ -408,9 +408,9 @@
 (use-package ox
   :after org
   :config
-  (add-to-list 'org-export-filter-bold-functions 'mth/beamer-bold)
+  (add-to-list 'org-export-filter-bold-functions 'mth/beamer-bold)  ; bold should be bold
   (add-to-list 'org-latex-logfiles-extensions "tex")
-  (setq org-latex-inputenc-alist '(("utf8" . "utf8x"))
+  (setq org-latex-inputenc-alist '(("utf8" . "utf8x"))  ; export unicode as correct latex
         org-latex-default-packages-alist (cons '("mathletters" "ucs" nil) org-latex-default-packages-alist)))
 
 ;; Fancy bullets for org
@@ -424,6 +424,17 @@
   ;;(setq inhibit-compacting-font-caches t)
   ;; base config, as i wont use level 8
   )
+
+;; Fancy agenda
+(use-package org-super-agenda
+  :straight t
+  :after org
+  :config
+  (setq org-super-agenda-groups
+        '(
+          (:auto-group t)
+          ))
+  (org-super-agenda-mode))
 
 ;; Auto latex rendering in org-mode
 (use-package org-fragtog
