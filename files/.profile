@@ -20,3 +20,6 @@ export QT_IM_MODULE='ibus'
 export SDL_IM_MODULE='ibus'
 export XMODIFIERS='@im=ibus'
 export WINIT_UNIX_BACKEND=x11
+
+eval $(systemctl --user show-environment | grep SSH_AUTH_SOCK)
+export SSH_AUTH_SOCK

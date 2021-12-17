@@ -145,6 +145,12 @@
   :config
   (evil-collection-init))
 
+(use-package evil-matchit
+  :straight t
+  :after evil
+  :config
+  (global-evil-matchit-mode 1))
+
 
 ;;;
 ;;; Appearance
@@ -358,8 +364,8 @@
   ;; fancy checkboxes
   (org-mode . prettify-symbols-mode)
   (org-mode . (lambda ()
-                (push '("[ ]" . "☐") prettify-symbols-alist)
-                (push '("[X]" . "☑" ) prettify-symbols-alist)
+                ;; (push '("[ ]" . "☐") prettify-symbols-alist)
+                ;; (push '("[X]" . "☑" ) prettify-symbols-alist)
                 (push '("[-]" . "❍" ) prettify-symbols-alist)))
                 ;(push '("#+begin_src" . "↦" ) prettify-symbols-alist)
                 ;(push '("#+end_src" . "⇤" ) prettify-symbols-alist)))
@@ -373,7 +379,7 @@
         org-directory "~/org"
         org-agenda-files (quote ("~/org"))
         org-ellipsis " ⮷"
-        org-hide-emphasis-markers t  ; hide bold and underline markers
+        ;; org-hide-emphasis-markers t  ; hide bold and underline markers
         org-todo-keywords '((sequence "TODO" "PROGRESS" "REVIEW" "|" "DONE"))
         org-todo-keyword-faces '(("TODO" . "#cc241d") ("PROGRESS" . "#a6cc70") ("REVIEW" . "#b16286") ("DONE" . "#abb0b6"))
         org-edit-src-content-indentation 0

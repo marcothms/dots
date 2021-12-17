@@ -1,0 +1,159 @@
+set $mod Mod4
+font pango:JuliaMono 12
+floating_modifier $mod
+
+# applications
+bindsym $mod+Return exec --no-startup-id alacritty
+bindsym $mod+d exec --no-startup-id rofi -show drun
+
+bindsym XF86AudioMute exec amixer -q set Master toggle
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer set Master 3%-
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set Master 3%+
+bindsym XF86MonBrightnessUp exec light -A 10 # increase screen brightness
+bindsym XF86MonBrightnessDown exec light -U 10 # decrease screen brightness
+
+# kill focused window
+bindsym $mod+Shift+BackSpace kill
+
+# lock
+bindsym $mod+Control+BackSpace exec --no-startup-id xlock -mode maze
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+v split h
+
+# split in vertical orientation
+bindsym $mod+s split v
+
+# enable stacked
+bindsym $mod+a layout stacking
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# workspace layout
+workspace_layout stacked
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# workspaces
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# switch to workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+# titlebar
+title_align center
+new_window 1pixel
+
+# colors
+set $white  "#ffffff"
+set $black  "#5c6773"
+set $dblack "#000000"
+set $green  "#a6cc70"
+set $red    "#ff3333"
+set $blue   "#55b4d4"
+set $yellow "#e7c547"
+
+# class                 border  backgr. text    indicator child_border
+client.focused          $green  $green  $black  $green    $green
+client.focused_inactive $yellow $yellow $black  $yellow   $yellow
+client.unfocused        $yellow $yellow $black  $yellow   $yellow
+client.urgent           $red    $red    $white  $red      $red
+
+# i3 bar
+bar {
+        position top
+        status_command i3status
+        tray_output primary
+        separator_symbol " | "
+        tray_padding 5
+        colors {
+                background $white
+                statusline $black
+
+                focused_workspace       $green  $green  $black
+                active_workspace        $white  $white  $black
+                inactive_workspace      $white  $white  $black
+                urgent_workspace        $red    $red    $black
+                binding_mode            $red    $red    $black
+        }
+}
+
+# flaoting on start
+for_window [class="Nautilus"] floating enable
+for_window [class="Pavucontrol"] floating enable
+
+# border
+hide_edge_borders smart
+for_window [class="^.*"] border pixel 0
+
+# gaps
+gaps inner 10
+
+# wallpaper and screen
+exec --no-startup-id /home/marc/.local/bin/screen.sh
+
+# startup
+exec --no-startup-id nm-applet
+exec --no-startup-id keepassxc
+exec --no-startup-id seafile-applet
+exec --no-startup-id fcitx5
+exec --no-startup-id volumeicon
+exec --no-startup-id picom

@@ -54,6 +54,8 @@ alias rm='rm -i' # Ask before removal
 alias cp='cp -i' # Ask before removal
 alias mv='mv -i' # Ask before removal
 
+alias nssh='SSH_AUTH_SOCK= ssh'
+
 if [ -f ~/.zshrc_local ]; then
     source ~/.zshrc_local
 fi

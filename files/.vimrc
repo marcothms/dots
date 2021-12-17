@@ -23,7 +23,6 @@ Plug 'tpope/vim-sleuth' " heuristic file indendation
 Plug 'jiangmiao/auto-pairs' " pair completion
 
 call plug#end()
-
 " ============================== Colors
 syntax on
 let ayucolor="light"
