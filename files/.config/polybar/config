@@ -1,0 +1,89 @@
+[bar/bar]
+
+font-0 = "JuliaMono:pixelsize=10;3"
+font-1 = "Noto Sans Mono CJK JP:pixelsize=10;1"
+
+scroll-up = i3wm-wsprev
+scroll-down = i3wm-wsnext
+
+fixed-center = true
+
+tray-position = right
+
+width = 100%
+height = 30
+
+background = #ffffff
+foreground = #5c6773
+
+radius-bottom = 2
+
+#line-size = 1
+#line-color = #f00
+
+#border-size = 2
+#border-color = #ffffff
+padding-left = 1
+padding-right = 1
+module-margin = 1
+
+modules-left = logo i3 title
+modules-center =
+modules-right = wireless-network pulseaudio date time
+
+[module/i3]
+strip-wsnumbers = true
+type = internal/i3
+format = <label-state> <label-mode>
+
+label-focused = %index%
+label-focused-background = #a6cc70
+label-focused-padding = 1
+
+label-unfocused = %index%
+label-unfocused-padding = 1
+
+label-visible = %index%
+label-visible-padding = 1
+
+label-urgent = %index%
+label-urgent-background = #ff3333
+label-urgent-padding = 1
+
+[module/date]
+type = internal/date
+interval = 1.0
+date = %A, %B %d, %Y
+
+[module/time]
+type = internal/date
+interval = 1.0
+date = %H:%M:%S
+
+[module/pulseaudio]
+type = internal/pulseaudio
+sink = alsa_output.pci-0000_12_00.3.analog-stereo
+use-ui-max = true
+interval = 5
+format-volume = <label-volume>
+label-muted = muted
+
+[module/title]
+type = internal/xwindow
+format-padding = 1
+label-maxlen = 100
+
+[module/logo]
+type = custom/text
+content = "花"
+content-padding = 1
+
+[module/wireless-network]
+type = internal/network
+interface = wlo1
+interval = 3.0
+udspeed-minwidth = 0
+format-connected = <label-connected>
+format-disconnected = <label-disconnected>
+label-connected = %essid%
+label-disconnected = "no wifi"

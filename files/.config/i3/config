@@ -5,12 +5,21 @@ floating_modifier $mod
 # applications
 bindsym $mod+Return exec --no-startup-id alacritty
 bindsym $mod+d exec --no-startup-id rofi -show drun
+bindsym $mod+Shift+s exec --no-startup-id flameshot gui
 
-bindsym XF86AudioMute exec amixer -q set Master toggle
+# audio and brightness
+bindsym XF86AudioMute exec --no-startup-id amixer -q set Master toggle
 bindsym XF86AudioLowerVolume exec --no-startup-id amixer set Master 3%-
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set Master 3%+
-bindsym XF86MonBrightnessUp exec light -A 10 # increase screen brightness
-bindsym XF86MonBrightnessDown exec light -U 10 # decrease screen brightness
+bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
+bindsym XF86MonBrightnessUp exec --no-startup-id light -A 10
+bindsym XF86MonBrightnessDown exec --no-startup-id light -U 10
+
+# smoother keyboard (autorepeat)
+exec --no-startup-id xset r rate 300 50
+
+# no mouse accel
+exec --no-startup-id xset m 1
 
 # kill focused window
 bindsym $mod+Shift+BackSpace kill
@@ -118,24 +127,6 @@ client.unfocused        $yellow $yellow $black  $yellow   $yellow
 client.urgent           $red    $red    $white  $red      $red
 
 # i3 bar
-bar {
-        position top
-        status_command i3status
-        tray_output primary
-        separator_symbol " | "
-        tray_padding 5
-        colors {
-                background $white
-                statusline $black
-
-                focused_workspace       $green  $green  $black
-                active_workspace        $white  $white  $black
-                inactive_workspace      $white  $white  $black
-                urgent_workspace        $red    $red    $black
-                binding_mode            $red    $red    $black
-        }
-}
-
 # flaoting on start
 for_window [class="Nautilus"] floating enable
 for_window [class="Pavucontrol"] floating enable
@@ -143,6 +134,9 @@ for_window [class="Pavucontrol"] floating enable
 # border
 hide_edge_borders smart
 for_window [class="^.*"] border pixel 0
+
+# bar
+exec --no-startup-id polybar -r  titlebar
 
 # gaps
 gaps inner 10
