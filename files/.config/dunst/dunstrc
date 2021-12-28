@@ -4,7 +4,7 @@
 
     monitor = 0
     follow = mouse
-    geometry = "320x6-30+60"
+    geometry = "400x6-30+60"
     indicate_hidden = yes
     shrink = no
     notification_height = 15
@@ -13,7 +13,7 @@
     padding = 10
     horizontal_padding = 10
     frame_width = 0
-    frame_color = "#ffffff"
+    frame_color = "#aaaaaa"
     separator_color = frame
     sort = yes
     idle_threshold = 120
@@ -38,7 +38,7 @@
     icon_position = left
     min_icon_size = 48
     max_icon_size = 96
-    icon_path = /usr/share/icons/Qogir/status/48/:/usr/share/icons/Qogir/devices/48/:/usr/share/icons/Qogir/48x48/apps/
+    icon_path = /usr/share/icons/Papirus/48x48/status/:/usr/share/icons/Papirus/48x48/devices/:/usr/share/icons/Papirus/48x48/apps/
 
 # History
 

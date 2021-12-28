@@ -14,7 +14,7 @@ configuration {
 // blur version
 * {
   bg: #ffffff;
-  ac: #0087af;
+  ac: #A6CC70;
 }
 
 * {

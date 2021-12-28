@@ -8,31 +8,29 @@ scroll-down = i3wm-wsnext
 
 fixed-center = true
 
-tray-position = right
-
 width = 100%
 height = 30
 
 background = #ffffff
 foreground = #5c6773
 
-radius-bottom = 2
+bottom = false
 
-#line-size = 1
-#line-color = #f00
+tray-position = right
 
-#border-size = 2
-#border-color = #ffffff
+line-size = 4
+
 padding-left = 1
 padding-right = 1
 module-margin = 1
 
-modules-left = logo i3 title
-modules-center =
-modules-right = wireless-network pulseaudio date time
+modules-left = logo i3 polywins
+modules-center = date time
+modules-right = backlight pulseaudio battery
 
 [module/i3]
 strip-wsnumbers = true
+wrapping-scroll = false
 type = internal/i3
 format = <label-state> <label-mode>
 
@@ -47,7 +45,7 @@ label-visible = %index%
 label-visible-padding = 1
 
 label-urgent = %index%
-label-urgent-background = #ff3333
+label-urgent-overline = #ff3333
 label-urgent-padding = 1
 
 [module/date]
@@ -62,11 +60,12 @@ date = %H:%M:%S
 
 [module/pulseaudio]
 type = internal/pulseaudio
-sink = alsa_output.pci-0000_12_00.3.analog-stereo
+sink = master
 use-ui-max = true
 interval = 5
-format-volume = <label-volume>
+format-volume = 音 「<label-volume>」
 label-muted = muted
+click-right = pavucontrol
 
 [module/title]
 type = internal/xwindow
@@ -78,12 +77,26 @@ type = custom/text
 content = "花"
 content-padding = 1
 
-[module/wireless-network]
-type = internal/network
-interface = wlo1
-interval = 3.0
-udspeed-minwidth = 0
-format-connected = <label-connected>
-format-disconnected = <label-disconnected>
-label-connected = %essid%
-label-disconnected = "no wifi"
+[module/battery]
+type = internal/battery
+full-at = 99
+battery = BAT0
+adapter = ADP1
+time-format = %H:%M
+
+label-charging = 電池　「charging %percentage%% - %time%」
+label-discharging = 電池　「%percentage%%」
+label-full = 電池 「full」
+
+[module/backlight]
+type = internal/backlight
+card = amdgpu_bl0
+label = 電気 「%percentage%%」
+
+[module/polywins]
+type = custom/script
+exec = /home/marc/dots/files/polywins.sh 2>/dev/null
+format = <label>
+label = %output%
+label-padding = 1
+tail = true

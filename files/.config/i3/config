@@ -9,17 +9,13 @@ bindsym $mod+Shift+s exec --no-startup-id flameshot gui
 
 # audio and brightness
 bindsym XF86AudioMute exec --no-startup-id amixer -q set Master toggle
-bindsym XF86AudioLowerVolume exec --no-startup-id amixer set Master 3%-
-bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set Master 3%+
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer set Master 1%-
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set Master 1%+
 bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
+bindsym XF86AudioNext exec --no-startup-id playerctl next
+bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 bindsym XF86MonBrightnessUp exec --no-startup-id light -A 10
 bindsym XF86MonBrightnessDown exec --no-startup-id light -U 10
-
-# smoother keyboard (autorepeat)
-exec --no-startup-id xset r rate 300 50
-
-# no mouse accel
-exec --no-startup-id xset m 1
 
 # kill focused window
 bindsym $mod+Shift+BackSpace kill
@@ -38,12 +34,6 @@ bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
-
-# alternatively, you can use the cursor keys:
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
 bindsym $mod+v split h
@@ -121,10 +111,10 @@ set $blue   "#55b4d4"
 set $yellow "#e7c547"
 
 # class                 border  backgr. text    indicator child_border
-client.focused          $green  $green  $black  $green    $green
-client.focused_inactive $yellow $yellow $black  $yellow   $yellow
-client.unfocused        $yellow $yellow $black  $yellow   $yellow
-client.urgent           $red    $red    $white  $red      $red
+client.focused          $green  $green  $black  $green    $black
+client.focused_inactive $yellow $yellow $black  $yellow   $black
+client.unfocused        $white  $white  $black  $white    $black
+client.urgent           $red    $red    $white  $red      $black
 
 # i3 bar
 # flaoting on start
@@ -136,7 +126,7 @@ hide_edge_borders smart
 for_window [class="^.*"] border pixel 0
 
 # bar
-exec --no-startup-id polybar -r  titlebar
+exec --no-startup-id polybar -r bar
 
 # gaps
 gaps inner 10
@@ -149,5 +139,4 @@ exec --no-startup-id nm-applet
 exec --no-startup-id keepassxc
 exec --no-startup-id seafile-applet
 exec --no-startup-id fcitx5
-exec --no-startup-id volumeicon
-exec --no-startup-id picom
+exec --no-startup-id picom --backend glx --no-vsync

@@ -568,7 +568,8 @@
   (rust-mode . lsp)
   (java-mode . lsp)
   (python-mode . lsp)
-  (haskell-mode . lsp))
+  (haskell-mode . lsp)
+  (c++-mode . lsp))
 
 ;; Tags (search e.g. for structs)
 (use-package lsp-ivy
@@ -633,7 +634,7 @@
 (use-package yasnippet-snippets
   :straight (yasnippet-snippets :type git :host github :repo "AndreaCrotti/yasnippet-snippets"
                                 :fork (:host github
-                                             :repo "crammk/yasnippet-snippets"))
+                                             :repo "marcothms/yasnippet-snippets"))
   :after yasnippet)
 
 ;; Compilation for lsp
@@ -668,7 +669,7 @@
 
 ;; WebGpuShaderLanguage
 (use-package wgsl-mode
-  :straight (wgsl-mode :type git :host github :repo "CramMK/wgsl-mode")
+  :straight (wgsl-mode :type git :host github :repo "marcothms/wgsl-mode")
   :mode ("\\.wgsl\\'" . wgsl-mode))
 
 ;; Java
