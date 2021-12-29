@@ -48,7 +48,7 @@
 # Misc
 
     always_run_script = true
-    startup_notification = true
+    startup_notification = false
     verbosity = mesg
     corner_radius = 2
     force_xinerama = false
@@ -58,8 +58,8 @@
 
 
 [shortcuts]
-    close = ctrl+space
-    history = ctrl+shift+space
+    close = ctrl+Escape
+    history = ctrl+shift+Escape
     context = ctrl+shift+period
 
 

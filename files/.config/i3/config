@@ -14,8 +14,8 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set Master 1%+
 bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
 bindsym XF86AudioNext exec --no-startup-id playerctl next
 bindsym XF86AudioPrev exec --no-startup-id playerctl previous
-bindsym XF86MonBrightnessUp exec --no-startup-id light -A 10
-bindsym XF86MonBrightnessDown exec --no-startup-id light -U 10
+bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5
+bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5
 
 # kill focused window
 bindsym $mod+Shift+BackSpace kill
@@ -120,19 +120,20 @@ client.urgent           $red    $red    $white  $red      $black
 # flaoting on start
 for_window [class="Nautilus"] floating enable
 for_window [class="Pavucontrol"] floating enable
+for_window [title="Event Tester"] floating enable
 
 # border
 hide_edge_borders smart
 for_window [class="^.*"] border pixel 0
 
 # bar
-exec --no-startup-id polybar -r bar
+exec_always --no-startup-id /home/marc/dots/scripts/polybar.sh
 
 # gaps
 gaps inner 10
 
-# wallpaper and screen
-exec --no-startup-id /home/marc/.local/bin/screen.sh
+# wallpaper
+exec_always --no-startup-id feh --bg-fill /home/marc/data/Seafile/images/wallpaper/life_and_death.png
 
 # startup
 exec --no-startup-id nm-applet
@@ -140,3 +141,6 @@ exec --no-startup-id keepassxc
 exec --no-startup-id seafile-applet
 exec --no-startup-id fcitx5
 exec --no-startup-id picom --backend glx --no-vsync
+exec --no-startup-id enact --watch --pos top
+
+exec_always --no-startup-id notify-send -i ~/.emacs.d/dashboard.png "よろしくマルコさん！" "「i3」へようこそ。"

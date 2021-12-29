@@ -1,7 +1,16 @@
+[colors]
+white = #ffffff
+black = #5c6773
+green = #a6cc70
+red = #ff3333
+
 [bar/bar]
 
 font-0 = "JuliaMono:pixelsize=10;3"
 font-1 = "Noto Sans Mono CJK JP:pixelsize=10;1"
+font-2 = "FontAwesome:pixelsize=10;3"
+
+monitor = ${env:MON}
 
 scroll-up = i3wm-wsprev
 scroll-down = i3wm-wsnext
@@ -11,8 +20,8 @@ fixed-center = true
 width = 100%
 height = 30
 
-background = #ffffff
-foreground = #5c6773
+background = ${colors.white}
+foreground = ${colors.black}
 
 bottom = false
 
@@ -30,12 +39,14 @@ modules-right = backlight pulseaudio battery
 
 [module/i3]
 strip-wsnumbers = true
+pin-workspaces = true
+index-sort = true
 wrapping-scroll = false
 type = internal/i3
 format = <label-state> <label-mode>
 
 label-focused = %index%
-label-focused-background = #a6cc70
+label-focused-background = ${colors.green}
 label-focused-padding = 1
 
 label-unfocused = %index%
@@ -45,26 +56,29 @@ label-visible = %index%
 label-visible-padding = 1
 
 label-urgent = %index%
-label-urgent-overline = #ff3333
+label-urgent-overline = ${colors.red}
 label-urgent-padding = 1
 
 [module/date]
 type = internal/date
 interval = 1.0
-date = %A, %B %d, %Y
+date =  %a, %d %b
 
 [module/time]
 type = internal/date
 interval = 1.0
-date = %H:%M:%S
+date =  %I:%M %p
 
 [module/pulseaudio]
 type = internal/pulseaudio
 sink = master
 use-ui-max = true
 interval = 5
-format-volume = 音 「<label-volume>」
-label-muted = muted
+
+format-volume =  <label-volume>
+
+format-muted-foreground = ${colors.red}
+label-muted =  Muted
 click-right = pavucontrol
 
 [module/title]
@@ -84,18 +98,41 @@ battery = BAT0
 adapter = ADP1
 time-format = %H:%M
 
-label-charging = 電池　「charging %percentage%% - %time%」
-label-discharging = 電池　「%percentage%%」
-label-full = 電池 「full」
+# charging
+format-charging = <animation-charging> <label-charging>
+label-charging = %percentage% - %time%
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-framerate = 750
+
+# discharging
+format-discharging = <ramp-capacity> <label-discharging>
+label-discharging = %percentage%
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+
+# full
+label-full =  100
 
 [module/backlight]
 type = internal/backlight
 card = amdgpu_bl0
-label = 電気 「%percentage%%」
+
+format = <ramp> <label>
+label = %percentage%
+
+ramp-0 = 
+ramp-1 = 
 
 [module/polywins]
 type = custom/script
-exec = /home/marc/dots/files/polywins.sh 2>/dev/null
+exec = /home/marc/dots/scripts/polywins.sh 2>/dev/null
 format = <label>
 label = %output%
 label-padding = 1
