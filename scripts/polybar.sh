@@ -1,7 +1,10 @@
 killall -q polybar
 
-for mon in $(xrandr | grep 'connected' | awk '{print $1}'):
-do
-	echo ${mon}
-	MON=${mon} polybar -r bar &
-done
+if type "xrandr"; then
+  for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
+    echo $m
+    MON=$m polybar --reload bar &
+  done
+else
+  polybar --reload bar &
+fi

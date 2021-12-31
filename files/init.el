@@ -206,19 +206,6 @@
   (setq doom-modeline-indent-info t
         doom-modeline-buffer-file-name-style 'file-name))
 
-;; Cool dashboard
-(use-package dashboard
-  :straight t
-  :config
-  (dashboard-setup-startup-hook)
-  (setq dashboard-banner-logo-title"「EMACS」へようこそ, マルコさん!"
-        dashboard-startup-banner 'logo
-        dashboard-items '((agenda . 20))
-        dashboard-item-names '(("Agenda for the coming week:" . "Agenda:"))
-        dashboard-center-content t)
-  (when (file-exists-p "~/.emacs.d/dashboard.png")
-    (setq dashboard-startup-banner "~/.emacs.d/dashboard.png")))
-
 ;; Show color codes as colors inline
 (use-package rainbow-mode
   :straight t
@@ -388,8 +375,7 @@
         org-agenda-start-on-weekday nil  ; my week starts on a monday
         calendar-week-start-day 1
         org-capture-templates
-        (quote (("j" "Japanese" entry (file "~/org/japanese.org") "* TODO %?\n" :empty-lines-before 1)
-                ("w" "Work" entry (file "~/org/work.org") "* TODO %?\n" :empty-lines-before 1)
+        (quote (("w" "Work" entry (file "~/org/work.org") "* TODO %?\n" :empty-lines-before 1)
                 ("u" "University" entry (file "~/org/uni.org") "* TODO %?\n" :empty-lines-before 1)
                 ("p" "Personal" entry (file "~/org/personal.org") "* TODO %?\n" :empty-lines-before 1)))
         org-latex-listings 'minted  ; export with code highlighting

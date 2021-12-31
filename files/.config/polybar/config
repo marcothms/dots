@@ -93,7 +93,6 @@ content-padding = 1
 
 [module/battery]
 type = internal/battery
-full-at = 99
 battery = BAT0
 adapter = ADP1
 time-format = %H:%M
