@@ -4,23 +4,24 @@
 
     monitor = 0
     follow = mouse
-    geometry = "400x6-30+60"
+    width = 400
+    origin = "top-center"
+    offset = "0x80"
     indicate_hidden = yes
     shrink = no
-    notification_height = 15
     separator_height = 1
     transparency = 0
-    padding = 10
-    horizontal_padding = 10
-    frame_width = 0
-    frame_color = "#aaaaaa"
+    padding = 8
+    horizontal_padding = 8
+    frame_width = 2
+    frame_color = "#A6CC70"
     separator_color = frame
     sort = yes
     idle_threshold = 120
 
 # Text
 
-    font = JuliaMono 12
+    font = JuliaMono 10
     line_height = 04
     markup = full
     format = "<span><b>%s %p</b></span>\n%b"
@@ -36,8 +37,8 @@
 # Icons
 
     icon_position = left
-    min_icon_size = 48
-    max_icon_size = 96
+    min_icon_size = 16
+    max_icon_size = 48
     icon_path = /usr/share/icons/Papirus/48x48/status/:/usr/share/icons/Papirus/48x48/devices/:/usr/share/icons/Papirus/48x48/apps/
 
 # History
@@ -48,32 +49,22 @@
 # Misc
 
     always_run_script = true
-    startup_notification = false
-    verbosity = mesg
-    corner_radius = 2
+    corner_radius = 0
     force_xinerama = false
     mouse_left_click = do_action
     mouse_middle_click = close_all
     mouse_right_click = close_current
 
 
-[shortcuts]
-    close = ctrl+Escape
-    history = ctrl+shift+Escape
-    context = ctrl+shift+period
-
-
 [urgency_low]
     background="#ffffff"
     foreground="#050505"
-    timeout = 7
-
+    timeout = 3
 
 [urgency_normal]
     background="#ffffff"
     foreground="#050505"
-    timeout = 10
-
+    timeout = 3
 
 [urgency_critical]
     background="#ffffff"

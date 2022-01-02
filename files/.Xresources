@@ -1,3 +1,5 @@
+Xft.dpi: 180
+
 ! Font
 XTerm.vt100.faceName: xft:SFMono Nerd Font Mono:antialias=true
 XTerm.vt100.faceSize: 10

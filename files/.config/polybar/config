@@ -6,9 +6,9 @@ red = #ff3333
 
 [bar/bar]
 
-font-0 = "JuliaMono:pixelsize=10;3"
-font-1 = "Noto Sans Mono CJK JP:pixelsize=10;1"
-font-2 = "FontAwesome:pixelsize=10;3"
+font-0 = "JuliaMono:pixelsize=10;4"
+font-1 = "Noto Sans Mono CJK JP:pixelsize=10;3"
+font-2 = "FontAwesome:pixelsize=10;4"
 
 monitor = ${env:MON}
 
@@ -18,7 +18,9 @@ scroll-down = i3wm-wsnext
 fixed-center = true
 
 width = 100%
-height = 30
+height = 50
+
+dpi = ${xrdb:Xft.dpi:-1}
 
 background = ${colors.white}
 foreground = ${colors.black}
@@ -26,6 +28,8 @@ foreground = ${colors.black}
 bottom = false
 
 tray-position = right
+tray-scale = 1.0
+tray-maxsize = 25
 
 line-size = 4
 
@@ -34,8 +38,8 @@ padding-right = 1
 module-margin = 1
 
 modules-left = logo i3 polywins
-modules-center = date time
-modules-right = backlight pulseaudio battery
+modules-center =
+modules-right = time date backlight pulseaudio battery conservation
 
 [module/i3]
 strip-wsnumbers = true
@@ -45,17 +49,28 @@ wrapping-scroll = false
 type = internal/i3
 format = <label-state> <label-mode>
 
-label-focused = %index%
+ws-icon-0 = 1;一
+ws-icon-1 = 2;二
+ws-icon-2 = 3;三
+ws-icon-3 = 4;四
+ws-icon-4 = 5;五
+ws-icon-5 = 6;六
+ws-icon-6 = 7;七
+ws-icon-7 = 8;八
+ws-icon-8 = 9;九
+ws-icon-9 = 10;十
+
+label-focused = %icon%
 label-focused-background = ${colors.green}
 label-focused-padding = 1
 
-label-unfocused = %index%
+label-unfocused = %icon%
 label-unfocused-padding = 1
 
-label-visible = %index%
+label-visible = %icon%
 label-visible-padding = 1
 
-label-urgent = %index%
+label-urgent = %icon%
 label-urgent-overline = ${colors.red}
 label-urgent-padding = 1
 
@@ -67,7 +82,7 @@ date =  %a, %d %b
 [module/time]
 type = internal/date
 interval = 1.0
-date =  %I:%M %p
+date =  %H:%M
 
 [module/pulseaudio]
 type = internal/pulseaudio
@@ -93,23 +108,17 @@ content-padding = 1
 
 [module/battery]
 type = internal/battery
-battery = BAT0
+battery = BAT1
 adapter = ADP1
 time-format = %H:%M
 
 # charging
-format-charging = <animation-charging> <label-charging>
-label-charging = %percentage% - %time%
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
-animation-charging-3 = 
-animation-charging-4 = 
-animation-charging-framerate = 750
+format-charging = <ramp-capacity> <label-charging>
+label-charging = %percentage%% 
 
 # discharging
 format-discharging = <ramp-capacity> <label-discharging>
-label-discharging = %percentage%
+label-discharging = %percentage%% - %time%
 ramp-capacity-0 = 
 ramp-capacity-1 = 
 ramp-capacity-2 = 
@@ -117,11 +126,19 @@ ramp-capacity-3 = 
 ramp-capacity-4 = 
 
 # full
-label-full =  100
+label-full =  100%
+
+[module/conservation]
+type = custom/script
+exec = cat /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode
+click-left = alacritty --command ~/dots/scripts/conservation_mode.sh
+format = <label>
+label =  %output%
+tail = true
 
 [module/backlight]
 type = internal/backlight
-card = amdgpu_bl0
+card = intel_backlight
 
 format = <ramp> <label>
 label = %percentage%
@@ -131,8 +148,7 @@ ramp-1 = 
 
 [module/polywins]
 type = custom/script
-exec = /home/marc/dots/scripts/polywins.sh 2>/dev/null
+exec = ~/dots/scripts/polywins.sh 2>/dev/null
 format = <label>
 label = %output%
-label-padding = 1
 tail = true

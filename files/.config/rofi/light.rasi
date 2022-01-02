@@ -7,7 +7,7 @@ configuration {
   bw: 0;
   terminal: "alacritty";
   sidebar-mode: false;
-  font: "JuliaMono 12";
+  font: "JuliaMono 20";
 
 }
 
@@ -19,7 +19,7 @@ configuration {
 
 * {
   background-color: rgba(0, 0, 0, 0);
- font: "JuliaMono 10";
+ font: "JuliaMono 18";
 }
 
 
@@ -30,7 +30,7 @@ window {
   border-radius: 4px;
   padding: 30;
   width: 30%;
-  height: 50%;
+  height: 45%;
   transparency: "real";
 }
 
@@ -41,7 +41,7 @@ mainbox {
 }
 
 listview {
-  columns: 3;
+  columns: 2;
   lines:   3;
   padding: 8;
   spacing: 0;
@@ -65,13 +65,7 @@ element selected {
 }
 
 element-icon {
-  size: 60;
-  horizontal-align: 0.5;
-  vertical-align: 0.5;
-}
-
-element-icon {
-  size: 40;
+  size: 100;
   horizontal-align: 0.5;
   vertical-align: 0.5;
 }
@@ -91,12 +85,12 @@ inputbar {
 prompt {
   enabled: true;
   padding: 0.5% 1% 0% 1%;
-  font: "JuliaMono 12";
+  font: "JuliaMono 20";
 }
 
 entry {
   text-color: @txt;
   padding: 8 12 8 12;
-  font: "JuliaMono 12";
+  font: "JuliaMono 20";
   margin: 0% 0% 0% 0%;
 }

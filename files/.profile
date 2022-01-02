@@ -4,10 +4,10 @@
 xrdb -merge $HOME/.Xresources
 
 # map CAPS to ~
+setxkbmap eu
 setxkbmap -option caps:none
 xmodmap -e "keycode 66 = grave asciitilde"
 xmodmap -e "keycode 49 = Escape"
-setxkbmap eu
 
 # energy options
 xset s off
@@ -21,7 +21,7 @@ xset r rate 300 50
 xset m 1
 
 # path
-export PATH=$PATH:$HOME/scripts:$HOME/.cargo/bin:$HOME/.cabal/bin:$HOME/.ghcup/bin:$HOME/.local/bin
+export PATH=$PATH:$HOME/dots/scripts:$HOME/.cargo/bin:$HOME/.cabal/bin:$HOME/.ghcup/bin:$HOME/.local/bin
 
 # editor
 export EDITOR="nvim"

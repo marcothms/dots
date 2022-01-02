@@ -1,11 +1,12 @@
 set $mod Mod4
-font pango:JuliaMono 12
+font pango:JuliaMono 10
 floating_modifier $mod
 
 # applications
 bindsym $mod+Return exec --no-startup-id alacritty
-bindsym $mod+d exec --no-startup-id rofi -show drun
+bindsym $mod+d exec --no-startup-id rofi -theme ~/.config/rofi/light.rasi -show drun
 bindsym $mod+Shift+s exec --no-startup-id flameshot gui
+bindsym XF86Calculator exec --no-startup-id emacs
 
 # audio and brightness
 bindsym XF86AudioMute exec --no-startup-id amixer -q set Master toggle
@@ -16,6 +17,10 @@ bindsym XF86AudioNext exec --no-startup-id playerctl next
 bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5
 bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5
+
+# notifications
+bindsym Ctrl+space exec --no-startup-id dunstctl close
+bindsym Ctrl+Shift+space exec --no-startup-id dunstctl history-pop
 
 # kill focused window
 bindsym $mod+Shift+BackSpace kill
@@ -53,9 +58,6 @@ bindsym $mod+Shift+space floating toggle
 # workspace layout
 workspace_layout stacked
 
-# change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
-
 # workspaces
 set $ws1 "1"
 set $ws2 "2"
@@ -92,6 +94,9 @@ bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
+bindsym $mod+Left workspace prev
+bindsym $mod+Right workspace next
+
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -121,19 +126,20 @@ client.urgent           $red    $red    $white  $red      $black
 for_window [class="Nautilus"] floating enable
 for_window [class="Pavucontrol"] floating enable
 for_window [title="Event Tester"] floating enable
+for_window [class="flameshot"] floating enable
 
 # border
 hide_edge_borders smart
 for_window [class="^.*"] border pixel 0
 
 # bar
-exec_always --no-startup-id /home/marc/dots/scripts/polybar.sh
+exec_always --no-startup-id ~/dots/scripts/polybar.sh
 
 # gaps
 gaps inner 10
 
 # wallpaper
-exec_always --no-startup-id feh --bg-fill /home/marc/data/Seafile/images/wallpaper/life_and_death.png
+exec_always --no-startup-id feh --bg-fill ~/data/Seafile/images/wallpaper/wallpaper.png
 
 # startup
 exec --no-startup-id nm-applet
@@ -141,6 +147,7 @@ exec --no-startup-id keepassxc
 exec --no-startup-id seafile-applet
 exec --no-startup-id fcitx5
 exec --no-startup-id picom --backend glx --no-vsync
-exec --no-startup-id enact --watch --pos top
+exec --no-startup-id enact --watch --pos top -n 1
+exec --no-startup-id libinput-gestures-setup start
 
-exec_always --no-startup-id notify-send -i ~/.emacs.d/dashboard.png "よろしくマルコさん！" "「i3」へようこそ。"
+exec_always --no-startup-id notify-send -i ~/data/Seafile/images/anime/dashboard.png "よろしくマルコさん！" "「i3」へようこそ。"

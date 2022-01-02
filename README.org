@@ -1,0 +1,36 @@
+#+TITLE:my dots
+
+dots for my lenovo yoga slim 7i pro 「itomori」
+
+[[./screen.png]]
+
+* an incomplete list of dependencies:
+** main environment
++ emacs 💜
++ i3-gaps
++ alacritty
++ zsh
++ dunst
++ picom
++ polybar
++ rofi
++ xlock
+** main programs
++ discord
++ spotify
++ seafile-applet
++ keepassxc
++ okular / zathura
+** control stuff
++ [[https://github.com/bulletmark/libinput-gestures][libinput-gestures]]
++ amixer
++ playerctl
++ light
++ feh
++ [[https://github.com/marcothms/enact/tree/new_primary][enact]]
++ nm-applet
++ xdotool
++ wmctrl
+** special stuff
++ fcitx5 (with mozc)
++ hunspell DE
