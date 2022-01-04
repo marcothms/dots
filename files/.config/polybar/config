@@ -27,6 +27,8 @@ foreground = ${colors.black}
 
 bottom = false
 
+screenchange-reload = true
+
 tray-position = right
 tray-scale = 1.0
 tray-maxsize = 25
@@ -35,11 +37,11 @@ line-size = 4
 
 padding-left = 1
 padding-right = 1
-module-margin = 1
+module-margin = 2
 
-modules-left = logo i3 polywins
+modules-left = logo i3 polywins spotify
 modules-center =
-modules-right = time date backlight pulseaudio battery conservation
+modules-right = backlight pulseaudio battery conservation date time
 
 [module/i3]
 strip-wsnumbers = true
@@ -130,7 +132,7 @@ label-full =  100%
 
 [module/conservation]
 type = custom/script
-exec = cat /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode
+exec = if [ /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode ]; then echo "On"; else echo "Off"; fi
 click-left = alacritty --command ~/dots/scripts/conservation_mode.sh
 format = <label>
 label =  %output%
@@ -152,3 +154,14 @@ exec = ~/dots/scripts/polywins.sh 2>/dev/null
 format = <label>
 label = %output%
 tail = true
+
+[module/spotify]
+type = custom/script
+interval = 1
+format =  <label>
+#exec = python3 ~/dots/scripts/spotify.py -f '{play_pause} {artist}: {song}' --font=2
+exec = python3 ~/dots/scripts/spotify.py -f '{artist}: {song}'
+
+click-left = playerctl play-pause
+click-right = playerctl next
+click-middle = playerctl previous

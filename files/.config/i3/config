@@ -123,7 +123,6 @@ client.urgent           $red    $red    $white  $red      $black
 
 # i3 bar
 # flaoting on start
-for_window [class="Nautilus"] floating enable
 for_window [class="Pavucontrol"] floating enable
 for_window [title="Event Tester"] floating enable
 for_window [class="flameshot"] floating enable
