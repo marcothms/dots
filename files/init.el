@@ -1,4 +1,4 @@
 (require 'org)
-(find-file (concat user-emacs-directory "init.org"))
+(find-file (concat (getenv "HOME") "dots/files/init.org"))
 (org-babel-tangle)
-(load-file (concat user-emacs-directory "init.el"))
+(load-file (concat (getenv "HOME") "dots/files/init.el"))
