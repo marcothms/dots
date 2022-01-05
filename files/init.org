@@ -9,10 +9,39 @@ All changes to the configuration should be done in =init.org=, *not* in
 is replaced the first time Emacs is started (assuming it has been renamed
 to =~/.emacs.d=).
 
-To use the tangled =init.el=, you should link it to =~/.emacs.d/init.el=:
+To use the tangled =init.el=, I link it to =~/.emacs.d/init.el=:
 #+begin_src sh :tangle no
 ln -s ~/dots/files/init.el ~/.emacs.d/init.el
 #+end_src
+
+This file replaces itself with the actual configuration at first run.
+#+BEGIN_SRC emacs-lisp :tangle no
+(require 'org)
+(find-file (concat (getenv "HOME") "dots/files/init.org"))
+(org-babel-tangle)
+(load-file (concat (getenv "HOME") "dots/files/init.el"))
+#+END_SRC
+
+It tangles the org-file, so that this file is overwritten with the actual
+configuration.
+
+There is no reason to track the =init.el= that is generated; by running
+the following command =git= will not bother tracking it:
+#+BEGIN_SRC sh :tangle no
+git update-index --assume-unchanged init.el
+#+END_SRC
+
+If one wishes to make changes to the repo-version of =init.el= start
+tracking again with:
+#+BEGIN_SRC sh :tangle no
+git update-index --no-assume-unchanged init.el
+#+END_SRC
+
+** Startup
+=lexical-binding= can improve speed.
+#+BEGIN_SRC emacs-lisp :tangle yes
+;;; -*- lexical-binding: t -*-
+#+END_SRC
 
 ** Tangle
 The =init.el= should (after the first run) mirror the source blocks in
@@ -26,10 +55,8 @@ the =after-save-hook= ensuring to always tangle and byte-compile the
 
 #+BEGIN_SRC emacs-lisp :tangle yes
 (defun tangle-init ()
-  "If the current buffer is 'init.org' the code-blocks are
-tangled, and the tangled file is compiled."
   (when (equal (buffer-file-name)
-               (expand-file-name "/home/marc/dots/files/init.org"))
+               (expand-file-name (concat (getenv "HOME") "/dots/files/init.org")))
     ;; Avoid running hooks when tangling.
     (let ((prog-mode-hook nil))
       (org-babel-tangle))))
@@ -92,8 +119,7 @@ Default is 0.5.
 Introduced in Emacs HEAD (b2f8c9f), this inhibits fontification while
 receiving input, which should help a little with scrolling performance.
 #+begin_src emacs-lisp :tangle yes
-(setq idle-update-delay 1.0
-      redisplay-skip-fontification-on-input t)
+(setq redisplay-skip-fontification-on-input t)
 #+end_src
 
 
@@ -110,6 +136,19 @@ Some defaults, which i forget the reason of using it.
       initial-scratch-message nil
       fast-but-imprecise-scrolling t)
 #+end_src
+
+*** Auto revert
+Automaticly revert =doc-view=-buffers when the file changes on disk.
+#+BEGIN_SRC emacs-lisp :tangle yes
+(add-hook 'doc-view-mode-hook 'auto-revert-mode)
+#+END_SRC
+
+*** Short yes/no
+Answering /yes/ and /no/ to each question from Emacs can be tedious, a
+single /y/ or /n/ will suffice.
+#+BEGIN_SRC emacs-lisp :tangle yes
+(fset 'yes-or-no-p 'y-or-n-p)
+#+END_SRC
 
 *** Quit prompts
 Make ESC quit prompts.
@@ -752,7 +791,7 @@ Python's lsp has auto configuration for =lsp-mode=
 ** Input methods
 *** spelling
 Sjoe my speling misttakes.
-#+begin_src emacs-lisp :tanlge yes
+#+begin_src emacs-lisp :tangle yes
 (use-package ispell
   :straight t
   :if (executable-find "hunspell")
