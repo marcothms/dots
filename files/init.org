@@ -1,60 +1,102 @@
-;
-;   ___ _ __ ___   __ _  ___ ___
-;  / _ \ '_ ` _ \ / _` |/ __/ __|
-; |  __/ | | | | | (_| | (__\__ \
-;  \___|_| |_| |_|\__,_|\___|___/
-;
-; ~ M. Thomas
+#+TITLE:emacs configuration
+#+AUTHOR: Marco Thomas
 
-(let ((file-name-handler-alist nil))
-
-
-;;;
-;;; PERFORMANCE
-;;;
+* Meta
+** init.el vs init.org
+All changes to the configuration should be done in =init.org=, *not* in
+=init.el=. Any changes in the =init.el= will be overwritten by saving
+=init.org=. The =init.el= in this repo should not be tracked by git, and
+is replaced the first time Emacs is started (assuming it has been renamed
+to =~/.emacs.d=).
 
 
-;; Set the gc threshold high initially so the init.el can just be
-;; loaded in one move
-(setq gc-cons-threshold most-positive-fixnum) ; 2^61 bytes
+** Tangle
+The =init.el= should (after the first run) mirror the source blocks in
+the =init.org=. We can use =C-c C-v t= to run =org-babel-tangle=, which
+extracts the code blocks from the current file into a source-specific
+file (in this case a =.el=-file).
 
-;; Lower the gc threshold again afterwards
+To avoid doing this each time a change is made we can add a function to
+the =after-save-hook= ensuring to always tangle and byte-compile the
+=org=-document after changes.
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+(defun tangle-init ()
+  "If the current buffer is 'init.org' the code-blocks are
+tangled, and the tangled file is compiled."
+  (when (equal (buffer-file-name)
+               (expand-file-name (concat user-emacs-directory "init.org")))
+    ;; Avoid running hooks when tangling.
+    (let ((prog-mode-hook nil))
+      (org-babel-tangle))))
+
+(add-hook 'after-save-hook 'tangle-init)
+#+END_SRC
+
+
+** Performance for start-up
+A common optimization is to temporarily disable garbage collection during
+initialization. Here, we set the ~gc-cons-threshold~ to a ridiculously large
+number, and restore the default value after initialization.
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+(setq gc-cons-threshold most-positive-fixnum)
 (add-hook 'emacs-startup-hook
   (lambda ()
     (setq gc-cons-threshold (* 32 1024 1024))))
+#+END_SRC
 
-;; This is important for e.g. lsp mode
+
+* Configuration
+** Performance
+*** lsp-mode
+Some optimization for =lsp-mode=
+#+begin_src emacs-lisp :tangle yes
 (setq read-process-output-max (* 3 1024 1024))
+#+end_src
 
-;; Disable bidirectional text scanning for a modest performance boost. I've set
-;; this to `nil' in the past, but the `bidi-display-reordering's docs say that
-;; is an undefined state and suggest this to be just as good:
+*** Scrolling
+Disable bidirectional text scanning for a modest performance boost. I've set
+this to =nil= in the past, but the =bidi-display-reordering='s docs say that
+is an undefined state and suggest this to be just as good:
+#+begin_src emacs-lisp :tangle yes
 (setq-default bidi-display-reordering 'left-to-right
               bidi-paragraph-direction 'left-to-right)
+#+end_src
 
-;; Disabling the BPA makes redisplay faster, but might produce incorrect display
-;; reordering of bidirectional text with embedded parentheses and other bracket
-;; characters whose 'paired-bracket' Unicode property is non-nil.
-(setq bidi-inhibit-bpa t)  ; Emacs 27 only
+Disabling the BPA makes redisplay faster, but might produce incorrect display
+reordering of bidirectional text with embedded parentheses and other bracket
+characters whose =paired-bracket= Unicode property is non-nil.
+Emacs 27+ only.
+#+begin_src emacs-lisp :tangle yes
+(setq bidi-inhibit-bpa t)
+#+end_src
 
-;; Reduce rendering/line scan work for Emacs by not rendering cursors or regions
-;; in non-focused windows.
+Reduce rendering/line scan work for Emacs by not rendering cursors or regions
+in non-focused windows.
+#+begin_src emacs-lisp :tangle yes
 (setq-default cursor-in-non-selected-windows nil)
 (setq highlight-nonselected-windows nil)
+#+end_src
 
-;; Emacs "updates" its ui more often than it needs to, so slow it down slightly
-(setq idle-update-delay 1.0)  ; default is 0.5
+Emacs "updates" its ui more often than it needs to, so slow it down slightly.
+Default is 0.5.
+#+begin_src emacs-lisp :tangle yes
+(setq idle-update-delay 1.0)
+#+end_src
 
-;; Introduced in Emacs HEAD (b2f8c9f), this inhibits fontification while
-;; receiving input, which should help a little with scrolling performance.
-(setq redisplay-skip-fontification-on-input t)
+Introduced in Emacs HEAD (b2f8c9f), this inhibits fontification while
+receiving input, which should help a little with scrolling performance.
+#+begin_src emacs-lisp :tangle yes
+(setq idle-update-delay 1.0
+      redisplay-skip-fontification-on-input t)
+#+end_src
 
 
-;;;
-;;; GENERAL
-;;;
-
-
+** General
+*** Super general
+Some defaults, which i forget the reason of using it.
+#+begin_src emacs-lisp :tangle yes
 (setq make-backup-files nil
       auto-mode-case-fold nil
       auto-save-default nil
@@ -63,22 +105,22 @@
       initial-major-mode 'fundamental-mode
       initial-scratch-message nil
       fast-but-imprecise-scrolling t)
-;      split-height-threshold nil
-;      split-width-threshold 0)
+#+end_src
 
-;; Make ESC quit prompts
+*** Quit prompts
+Make ESC quit prompts.
+#+begin_src emacs-lisp :tangle yes
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
+#+end_src
 
-;; Soft wrap
+*** Soft wrap
+#+begin_src emacs-lisp :tangle yes
 (global-visual-line-mode t)
+#+end_src
 
 
-;;;
-;;; PACKAGE MANAGEMENT
-;;;
-
-
-;; straight.el bootstrap
+** straight.el (Packages)
+#+begin_src emacs-lisp :tangle yes
 (setq straight-check-for-modifications 'live)
 (defvar bootstrap-version)
 
@@ -93,25 +135,28 @@
       (goto-char (point-max))
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
+#+end_src
 
-;; Inhibit package.el load
+Inhibit package.el from loading, as we don't need it.
+#+begin_src emacs-lisp :tangle yes
 (setq package-enable-at-startup nil)
 (straight-use-package 'use-package)
+#+end_src
 
 
-;;;
-;;; KEYBIND STUFF
-;;;
-
-
-;; General
+** Keybindings
+*** leader key
+=general= allows me to use key-binds with a leader key, just like =vim=.
+#+begin_src emacs-lisp :tangle yes
 (use-package general
   :straight t
   :init
-  ;; Space as leader key
   (general-create-definer vim-leader-def :prefix "SPC"))
+#+end_src
 
-;; Help to find keybindings
+*** which-key
+Show me a cool completion bar at the bottom of the screen, with all possible keybindings.
+#+begin_src emacs-lisp :tangle yes
 (use-package which-key
   :straight t
   :init
@@ -120,8 +165,11 @@
   (which-key-mode)
   :config
   (setq which-key-idle-delay 1))
+#+end_src
 
-;; Vim bindings
+*** evil-mode
+Forgive me, but I'm =evil=.
+#+begin_src emacs-lisp :tangle yes
 (use-package evil
   :straight t
   :bind
@@ -150,28 +198,39 @@
   :after evil
   :config
   (global-evil-matchit-mode 1))
+#+end_src
 
 
-;;;
-;;; Appearance
-;;;
-
-
-;; Font
+** Appearance
+*** Fonts
+I mainly use these fonts:
++ JuliaMono as main mono-spaced
++ Noto Emoji to show emojis in emacs
++ Noto JP for japanese characters
+#+begin_src emacs-lisp :tangle yes
 (set-face-attribute 'default nil :font "JuliaMono" :height 110)
 (set-fontset-font t 'unicode "Noto Color Emoji" nil 'prepend)
 (set-fontset-font t 'unicode "Noto Sans Mono CJK JP" nil 'append)
+#+end_src
 
-;; Remove ugly bars
+*** Bars
+I don't need ugly ass bars.
+#+begin_src emacs-lisp :tangle yes
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
+#+end_src
 
-;; Show matching parenthesis
+*** Parenthesis
+Show me the friend of my parenthesis.
+#+begin_src emacs-lisp :tangle yes
 (show-paren-mode t)
 (setq show-paren-style 'paranthesis)
+#+end_src
 
-;; Relative line numbers
+*** Line numbers
+Show me relative line numbers, when in =normal= mode and absolute ones, when in =insert= mode.
+#+begin_src emacs-lisp :tangle yes
 (setq-default display-line-numbers 'relative
               display-line-numbers-widen t
               ;; this is the default
@@ -186,8 +245,11 @@
 
 (add-hook 'evil-insert-state-entry-hook #'noct:absolute)
 (add-hook 'evil-insert-state-exit-hook #'noct:relative)
+#+end_src
 
-;; Themes and icons
+*** Theme
+Setting my beloved =ayu= light theme with some icons.
+#+begin_src emacs-lisp :tangle yes
 (use-package doom-themes
   :straight (doom-themes :type git :host github :repo "hlissner/emacs-doom-themes"
                                 :fork (:host github :repo "CramMK/emacs-doom-themes"))
@@ -197,8 +259,11 @@
   (load-theme 'doom-ayu-light t)
   (doom-themes-org-config)
   (doom-themes-treemacs-config))
+#+end_src
 
-;; Cool mode line
+*** Modeline
+Use =doom-modeline= as a bar... together with icons and nyan cat!
+#+begin_src emacs-lisp :tangle yes
 (use-package doom-modeline
   :straight t
   :config
@@ -206,17 +271,9 @@
   (setq doom-modeline-indent-info t
         doom-modeline-buffer-file-name-style 'file-name))
 
-;; Show color codes as colors inline
-(use-package rainbow-mode
-  :straight t
-  :hook
-  (prog-mode . rainbow-mode))
-
-;; Icons
 (use-package all-the-icons
   :straight t)
 
-;; NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA NYA
 (use-package nyan-mode
   :straight t
   :init
@@ -225,14 +282,29 @@
   ;; (nyan-toggle-wavy-trail)
   :config
   (setq nyan-cat-face-number 4))
+#+end_src
 
-;; Show whitespace
+*** Inline colors
+Show me color codes as colors!
+TODO: Disable this in c/c++ mode.
+#+begin_src emacs-lisp :tangle yes
+(use-package rainbow-mode
+  :straight t
+  :hook
+  (prog-mode . rainbow-mode))
+#+end_src
+
+*** Whitespaces
+Show me those pesky trailing whitespaces... I hate them. Kill them.
+#+begin_src emacs-lisp :tangle yes
 (global-whitespace-mode t)
 (setq whitespace-style '(face trailing tabs tab-mark))
-; remove trailing whitespaces on save
 (add-hook 'before-save-hook 'whitespace-cleanup)
+#+end_src
 
-;; Column line
+*** 80 column indicator
+I only need 80 columns on my 4K display.
+#+begin_src emacs-lisp :tangle yes
 (use-package fill-column-indicator
   :straight t
   :defer 1
@@ -245,235 +317,11 @@
   :hook
   (prog-mode . fci-mode)
   (markdown-mode . fci-mode))
+#+end_src
 
-
-;;;
-;;; HELPERS
-;;;
-
-
-;; Heuristic indentation
-(use-package dtrt-indent
-  :straight t
-  :hook
-  (prog-mode . dtrt-indent-mode)
-  (text-mode . dtrt-indent-mode)
-  (org-mode . dtrt-indent-mode)
-  (markdown-mode . dtrt-indent-mode))
-
-;; Indentation for C
-;(setq-default c-basic-offset 8)
-
-;; Auto parenthesis
-(use-package electric-pair
-  :config
-  (setq electric-pair-open-newline-between-pairs nil)
-  :hook
-  (prog-mode . electric-pair-mode)
-  (text-mode . electric-pair-mode)
-  (org-mode . electric-pair-mode)
-  (markdown-mode . electric-pair-mode))
-
-;; Spellchecker
-(use-package ispell
-  :straight t
-  :if (executable-find "hunspell")
-  :config
-  (setq ispell-program-name "hunspell"
-        ispell-dictionary "de_DE,en_GB,en_US")
-  (ispell-set-spellchecker-params)
-  (ispell-hunspell-add-multi-dic "de_DE,en_GB,en_US")
-  :hook
-  (org-mode . flyspell-mode)
-  (markdown-mode . flyspell-mode)
-  (text-mode . flyspell-mode))
-
-
-;;;
-;;; IVY
-;;;
-
-
-;; Completetion frontend for counsel
-(use-package ivy
-  :straight t
-  :diminish
-  :bind (("C-s" . swiper) ; TODO: possibly map this to / at some point?
-         :map ivy-minibuffer-map
-         ("TAB" . ivy-alt-done)
-         ("C-l" . ivy-alt-done)
-         ("C-j" . ivy-next-line)
-         ("C-k" . ivy-previous-line)
-         :map ivy-switch-buffer-map
-         ("C-k" . ivy-previous-line)
-         ("C-l" . ivy-done)
-         ("C-d" . ivy-switch-buffer-kill)
-         :map ivy-reverse-i-search-map
-         ("C-k" . ivy-previous-line)
-         ("C-d" . ivy-reverse-i-search-kill))
-  :config
-  (ivy-mode 1))
-
-;; Fancy menus and buffers
-(use-package counsel
-  :straight t
-  :bind (("M-x" . counsel-M-x)
-         ("C-x b" . counsel-ibuffer)
-         ("C-x C-f" . counsel-find-file)
-         ("C-x C-g" . counsel-git)
-         :map minibuffer-local-map
-         ("C-r" . 'counsel-minibuffer-history)))
-
-
-;;;
-;;; ORG
-;;;
-
-
-;; God bless this mode...
-(use-package org
-  :straight t
-  ;; C-c C-t org rotate
-  :general
-  (vim-leader-def 'normal 'global
-    "oci" 'org-clock-in
-    "oco" 'org-clock-out
-    "oa"  'org-agenda
-    "oca" 'org-capture
-    "oes" 'org-edit-src-code
-    "oti" 'org-toggle-inline-images
-    "odi" 'org-display-inline-images)
-  :hook
-  ;; dont make real spaces at the start
-  (org-mode . (lambda () (electric-indent-local-mode -1)))
-  ;; add virtual spaces
-  (org-mode . org-indent-mode)
-  ;; fancy checkboxes
-  (org-mode . prettify-symbols-mode)
-  (org-mode . (lambda ()
-                ;; (push '("[ ]" . "☐") prettify-symbols-alist)
-                ;; (push '("[X]" . "☑" ) prettify-symbols-alist)
-                (push '("[-]" . "❍" ) prettify-symbols-alist)))
-                ;(push '("#+begin_src" . "↦" ) prettify-symbols-alist)
-                ;(push '("#+end_src" . "⇤" ) prettify-symbols-alist)))
-  :config
-  (define-key evil-normal-state-map (kbd "TAB") 'org-cycle)
-  (set-face-attribute 'org-document-title nil :weight 'bold :inherit 'default :height 250)
-  (setq org-format-latex-options (plist-put org-format-latex-options :scale 1.5)
-        org-hidden-keywords '(title)  ; hide title
-        org-startup-with-inline-images t
-        org-image-actual-width nil  ; rescale inline images
-        org-directory "~/org"
-        org-agenda-files (quote ("~/org"))
-        org-ellipsis " ⮷"
-        ;; org-hide-emphasis-markers t  ; hide bold and underline markers
-        org-todo-keywords '((sequence "TODO" "PROGRESS" "REVIEW" "|" "DONE"))
-        org-todo-keyword-faces '(("TODO" . "#cc241d") ("PROGRESS" . "#a6cc70") ("REVIEW" . "#b16286") ("DONE" . "#abb0b6"))
-        org-edit-src-content-indentation 0
-        org-log-done nil  ; just mark DONE without a time stamp
-        org-log-repeat nil
-        org-agenda-start-on-weekday nil  ; my week starts on a monday
-        calendar-week-start-day 1
-        org-capture-templates
-        (quote (("w" "Work" entry (file "~/org/work.org") "* TODO %?\n" :empty-lines-before 1)
-                ("u" "University" entry (file "~/org/uni.org") "* TODO %?\n" :empty-lines-before 1)
-                ("p" "Personal" entry (file "~/org/personal.org") "* TODO %?\n" :empty-lines-before 1)))
-        org-latex-listings 'minted  ; export with code highlighting
-        org-latex-packages-alist '(("" "minted"))
-        org-latex-pdf-process
-        '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
-          "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
-          "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
-  (org-babel-do-load-languages 'org-babel-load-languages '((python . t)
-                                                           (shell . t)
-                                                           (haskell . t)
-                                                           (C . t)
-                                                           (dot . t)
-                                                           (R . t))))
-
-;; I dont want \alert to be my bold text in TeX
-(defun mth/beamer-bold (contents backend info)
-  (when (eq backend 'beamer)
-    (replace-regexp-in-string "\\`\\\\[A-Za-z0-9]+" "\\\\textbf" contents)))
-
-;; Custom export settings
-(use-package ox
-  :after org
-  :config
-  (add-to-list 'org-export-filter-bold-functions 'mth/beamer-bold)  ; bold should be bold
-  (add-to-list 'org-latex-logfiles-extensions "tex")
-  (setq org-latex-inputenc-alist '(("utf8" . "utf8x"))  ; export unicode as correct latex
-        org-latex-default-packages-alist (cons '("mathletters" "ucs" nil) org-latex-default-packages-alist)))
-
-;; Fancy bullets for org
-(use-package org-superstar
-  :straight t
-  :after org
-  :hook
-  (org-mode . org-superstar-mode)
-  :config
-  ;; uncomment if slowdown happens
-  ;;(setq inhibit-compacting-font-caches t)
-  ;; base config, as i wont use level 8
-  )
-
-;; Fancy agenda
-(use-package org-super-agenda
-  :straight t
-  :after org
-  :config
-  (setq org-super-agenda-groups
-        '(
-          (:auto-group t)
-          ))
-  (org-super-agenda-mode))
-
-;; Auto latex rendering in org-mode
-(use-package org-fragtog
-  :straight t
-  :hook
-  (org-mode . org-fragtog-mode))
-
-;; Graphs in org
-(use-package graphviz-dot-mode
-  :straight t
-  :hook
-  (graphviz-dot-mode . (lambda () (set-input-method "math")))
-  :config
-  (setq graphviz-dot-indent-width 4))
-
-;; Sagemath for university
-(use-package sage-shell-mode
-  :straight t)
-
-;; Sagemath babel integration
-(use-package ob-sagemath
-  :straight t)
-
-
-;;;
-;;; PROGRAMMING
-;;;
-
-
-;; Git integration
-(use-package magit
-  :straight t
-  :general
-  (vim-leader-def 'normal 'global
-    "gb" 'magit-branch
-    "gc" 'magit-checkout
-    "gc" 'magit-commit
-    "gd" 'magit-diff
-    "gg" 'counsel-git-grep
-    "gi" 'magit-gitignore-in-topdir
-    "gj" 'magit-blame
-    "gl" 'magit-log
-    "gp" 'magit-push
-    "gs" 'magit-status
-    "gu" 'magit-pull))
-
-;; File bar
+*** File bar
+Sometimes I want to see all of my files.
+#+begin_src emacs-lisp :tangle yes
 (use-package treemacs
   :straight t
   :defer t
@@ -512,12 +360,226 @@
 (use-package treemacs-evil
   :after (treemacs evil)
   :straight t)
+#+end_src
+
+
+** Mini buffers
+*** ivy
+Ivy - a generic completion frontend for Emacs.
+Swiper - isearch with an overview, and more. Oh, man!
+#+begin_src emacs-lisp :tangle yes
+(use-package ivy
+  :straight t
+  :diminish
+  :bind (("C-s" . swiper)
+         :map ivy-minibuffer-map
+         ("TAB" . ivy-alt-done)
+         ("C-l" . ivy-alt-done)
+         ("C-j" . ivy-next-line)
+         ("C-k" . ivy-previous-line)
+         :map ivy-switch-buffer-map
+         ("C-k" . ivy-previous-line)
+         ("C-l" . ivy-done)
+         ("C-d" . ivy-switch-buffer-kill)
+         :map ivy-reverse-i-search-map
+         ("C-k" . ivy-previous-line)
+         ("C-d" . ivy-reverse-i-search-kill))
+  :config
+  (ivy-mode 1))
+#+end_src
+
+*** counsel
+Spice up some of those old buffers.
+#+begin_src emacs-lisp :tangle yes
+(use-package counsel
+  :straight t
+  :bind (("M-x" . counsel-M-x)
+         ("C-x b" . counsel-ibuffer)
+         ("C-x C-f" . counsel-find-file)
+         ("C-x C-g" . counsel-git)
+         :map minibuffer-local-map
+         ("C-r" . 'counsel-minibuffer-history)))
+#+end_src
+
+
+** ORG MODE <3
+*** Setup
+TODO: split up this box
+#+begin_src emacs-lisp :tangle yes
+(use-package org
+  :straight t
+  ;; C-c C-t org rotate
+  :general
+  (vim-leader-def 'normal 'global
+    "oci" 'org-clock-in
+    "oco" 'org-clock-out
+    "oa"  'org-agenda
+    "oca" 'org-capture
+    "oes" 'org-edit-src-code
+    "oti" 'org-toggle-inline-images
+    "odi" 'org-display-inline-images)
+  :hook
+  ;; dont make real spaces at the start
+  (org-mode . (lambda () (electric-indent-local-mode -1)))
+  ;; add virtual spaces
+  (org-mode . org-indent-mode)
+  :config
+  (define-key evil-normal-state-map (kbd "TAB") 'org-cycle)
+  (set-face-attribute 'org-document-title nil :weight 'bold :inherit 'default :height 250)
+  (setq org-format-latex-options (plist-put org-format-latex-options :scale 1.5)
+        org-hidden-keywords '(title)  ; hide title
+        org-startup-with-inline-images t
+        org-image-actual-width nil  ; rescale inline images
+        org-directory "~/org"
+        org-agenda-files (quote ("~/org"))
+        org-ellipsis " ⮷"
+        ;; org-hide-emphasis-markers t  ; hide bold and underline markers
+        org-todo-keywords '((sequence "TODO" "PROGRESS" "REVIEW" "|" "DONE"))
+        org-todo-keyword-faces '(("TODO" . "#cc241d") ("PROGRESS" . "#a6cc70") ("REVIEW" . "#b16286") ("DONE" . "#abb0b6"))
+        org-edit-src-content-indentation 0
+        org-log-done nil  ; just mark DONE without a time stamp
+        org-log-repeat nil
+        org-agenda-start-on-weekday nil  ; my week starts on a monday
+        calendar-week-start-day 1
+        org-capture-templates
+        (quote (("w" "Work" entry (file "~/org/work.org") "* TODO %?\n" :empty-lines-before 1)
+                ("u" "University" entry (file "~/org/uni.org") "* TODO %?\n" :empty-lines-before 1)
+                ("p" "Personal" entry (file "~/org/personal.org") "* TODO %?\n" :empty-lines-before 1)))
+        org-latex-listings 'minted  ; export with code highlighting
+        org-latex-packages-alist '(("" "minted"))
+        org-latex-pdf-process
+        '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+          "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+          "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+#+end_src
+
+Inline code execution is the shit!
+#+begin_src emacs-lisp :tangle yes
+(org-babel-do-load-languages 'org-babel-load-languages '((python . t)
+                                                         (shell . t)
+                                                         (haskell . t)
+                                                         (C . t)
+                                                         (dot . t))))
+
+(use-package sage-shell-mode
+  :straight t)
+
+(use-package ob-sagemath
+  :straight t)
+#+end_src
+
+*** LaTeX Export
+For some reason =\alert= is misinterpreted in LaTeX...
+#+begin_src emacs-lisp :tangle yes
+(defun mth/beamer-bold (contents backend info)
+  (when (eq backend 'beamer)
+    (replace-regexp-in-string "\\`\\\\[A-Za-z0-9]+" "\\\\textbf" contents)))
+#+end_src
+
+I also want some special export settings for my =.org= to =.tex=.
+#+begin_src emacs-lisp :tangle yes
+(use-package ox
+  :after org
+  :config
+  (add-to-list 'org-export-filter-bold-functions 'mth/beamer-bold)
+  (add-to-list 'org-latex-logfiles-extensions "tex")
+  (setq org-latex-inputenc-alist '(("utf8" . "utf8x"))  ; export unicode as correct latex
+        org-latex-default-packages-alist (cons '("mathletters" "ucs" nil) org-latex-default-packages-alist)))
+#+end_src
+
+Show me my math equations inline!
+#+begin_src emacs-lisp :tangle yes
+(use-package org-fragtog
+  :straight t
+  :hook
+  (org-mode . org-fragtog-mode))
+#+end_src
+
+Who needs fancy online tooling anyway...
+#+begin_src emacs-lisp :tangle yes
+(use-package graphviz-dot-mode
+  :straight t
+  :hook
+  (graphviz-dot-mode . (lambda () (set-input-method "math")))
+  :config
+  (setq graphviz-dot-indent-width 4))
+#+end_src
+
+*** Fancy
+I want my =org-bullets= to look fancy, so I'm using some UTF8 chars.
+Use =(setq inhibit-compacting-font-caches t)=, if performance is low.
+#+begin_src emacs-lisp :tangle yes
+(use-package org-superstar
+  :straight t
+  :after org
+  :hook
+  (org-mode . org-superstar-mode))
+#+end_src
+
+Also the default =agenda= looks a bit messy.
+#+begin_src emacs-lisp :tangle yes
+(use-package org-super-agenda
+  :straight t
+  :after org
+  :config
+  (setq org-super-agenda-groups '((:auto-group t)))
+  (org-super-agenda-mode))
+#+end_src
+
+
+** General programming tools
+*** Indentation
+Use some magic heuristics for indentation.
+#+begin_src emacs-lisp :tangle yes
+(use-package dtrt-indent
+  :straight t
+  :hook
+  (prog-mode . dtrt-indent-mode)
+  (text-mode . dtrt-indent-mode)
+  (org-mode . dtrt-indent-mode)
+  (markdown-mode . dtrt-indent-mode))
+#+end_src
+
+*** Auto pairs
+Auto matching pairs are reaaaaally nice.
+#+begin_src emacs-lisp :tangle yes
+(use-package electric-pair
+  :config
+  (setq electric-pair-open-newline-between-pairs nil)
+  :hook
+  (prog-mode . electric-pair-mode)
+  (text-mode . electric-pair-mode)
+  (org-mode . electric-pair-mode)
+  (markdown-mode . electric-pair-mode))
+#+end_src
+
+*** Git
+=magit= aka most convenient git client, I've ever used.
+#+begin_src emacs-lisp :tangle yes
+(use-package magit
+  :straight t
+  :general
+  (vim-leader-def 'normal 'global
+    "gb" 'magit-branch
+    "gc" 'magit-checkout
+    "gc" 'magit-commit
+    "gd" 'magit-diff
+    "gg" 'counsel-git-grep
+    "gi" 'magit-gitignore-in-topdir
+    "gj" 'magit-blame
+    "gl" 'magit-log
+    "gp" 'magit-push
+    "gs" 'magit-status
+    "gu" 'magit-pull))
 
 (use-package treemacs-magit
   :after (treemacs magit)
   :straight t)
+#+end_src
 
-;; Highlight TODOs
+*** Highlight todo's
+Sometimes, a big red TODO is more intimidating than one with normal text color.
+#+begin_src emacs-lisp :tangle yes
 (use-package hl-todo
   :straight t
   :hook
@@ -531,16 +593,14 @@
         hl-todo-keyword-faces '(("TODO"  . hl-todo-TODO)
                                 ("XXX"   . hl-todo-TODO)
                                 ("FIXME" . hl-todo-TODO))))
+#+end_src
 
 
-;;;
-;;; LSP
-;;;
-
-
-;; Lsp-mode has more features than eglot
-(use-package lsp-mode
-  :straight t
+** LSP, completion, projects
+*** lsp-mode
+=lsp-mode= is feature-richer than =eglot=, so I'm using this one.
+#+begin_src emacs-lisp :tangle yes
+(use-package lsp-mode :straight t
   :commands (lsp lsp-deferred)
   :init
   (setq lsp-keymap-prefix "C-l")
@@ -552,18 +612,30 @@
         lsp-enable-file-watchers nil)
   :hook
   (rust-mode . lsp)
-  (java-mode . lsp)
   (python-mode . lsp)
   (haskell-mode . lsp)
   (c++-mode . lsp))
+#+end_src
 
-;; Tags (search e.g. for structs)
+In order for =lsp-mode= to work, it needs to compile code on the =fly=.
+#+begin_src emacs-lisp :tangle yes
+(use-package flycheck
+  :straight t
+  :after lsp)
+#+end_src
+
+*** tags
+=tags= can be used to search for =tagged= entities, such as =structs= etc.
+#+begin_src emacs-lisp :tangle yes
 (use-package lsp-ivy
   :straight t
   :after lsp-mode
   :bind(:map lsp-mode-map ("C-l g a" . lsp-ivy-workspace-symbol)))
+#+end_src
 
-;; Completion for Lsp
+*** completion
+First of all, we need a backend for our completion and analysis.
+#+begin_src emacs-lisp :tangle yes
 (use-package company
   :straight t
   :hook
@@ -572,15 +644,16 @@
   (LaTeX-mode . company-mode)
   (org-mode . company-mode)
   :custom
-
   (company-minimum-prefix-length 3)
   (company-idle-delay 0.5)
   :bind (:map company-active-map
-              ("C-j" . company-select-next-or-abort) ;; down
-              ("C-k" . company-select-previous-or-abort) ;; up
-              ("C-l" . company-complete-selection))) ;; right, as in complete towards the right
+              ("C-j" . company-select-next-or-abort)
+              ("C-k" . company-select-previous-or-abort)
+              ("C-l" . company-complete-selection)))
+#+end_src
 
-;; Frontend for company
+Then we can sprinkle in a fancy front-end for it.
+#+begin_src emacs-lisp :tangle yes
 (use-package company-box
   :straight t
   :config
@@ -588,16 +661,12 @@
         company-box-max-candidates 10)
   :hook
   (company-mode . company-box-mode))
+#+end_src
 
-;; Project support
-(use-package projectile
-  :straight t
-  :after lsp
-  :config
-  (setq projectile-completion-system 'ivy)
-  (projectile-mode +1))
-
-;; Snippet support
+*** snippets
+**** completion
+Here I use =company= to display snippet recommendations.
+#+begin_src emacs-lisp :tangle yes
 (defun company-mode/backend-with-yas (backend)
   (if (and (listp backend) (member 'company-yasnippet backend))
       backend
@@ -606,7 +675,10 @@
 
 (defun company-mode/add-yasnippet ()
   (setq company-backends (mapcar #'company-mode/backend-with-yas company-backends)))
+#+end_src
 
+**** yasnippet
+#+begin_src emacs-lisp :tangle yes
 (use-package yasnippet
   :straight t
   :init
@@ -615,20 +687,30 @@
   :hook
   (company-mode . yas-minor-mode)
   (company-mode . company-mode/add-yasnippet))
+#+end_src
 
-;; Actual snippets
+We also need the actual snippets.
+#+begin_src emacs-lisp :tangle yes
 (use-package yasnippet-snippets
   :straight (yasnippet-snippets :type git :host github :repo "AndreaCrotti/yasnippet-snippets"
                                 :fork (:host github
                                              :repo "marcothms/yasnippet-snippets"))
   :after yasnippet)
+#+end_src
 
-;; Compilation for lsp
-(use-package flycheck
+*** projects
+#+begin_src emacs-lisp :tangle yes
+(use-package projectile
   :straight t
-  :after lsp)
+  :after lsp
+  :config
+  (setq projectile-completion-system 'ivy)
+  (projectile-mode +1))
+#+end_src
 
-;; Rust
+*** language servers
+**** rust
+#+begin_src emacs-lisp :tangle yes
 (use-package rust-mode
   :straight t
   :hook
@@ -639,8 +721,10 @@
                  (push '("!=" . ?≠) prettify-symbols-alist)
                  (push '("<=" . ?≤) prettify-symbols-alist)
                  (push '(">=" . ?≥) prettify-symbols-alist))))
+#+end_src
 
-;; Haskell
+**** haskell
+#+begin_src emacs-lisp :tangle yes
 (use-package haskell-mode
   :straight t
   :hook
@@ -652,32 +736,35 @@
   :hook
   (haskell-mode . lsp)
   (haskell-literate-mode . lsp))
+#+end_src
 
-;; WebGpuShaderLanguage
-(use-package wgsl-mode
-  :straight (wgsl-mode :type git :host github :repo "marcothms/wgsl-mode")
-  :mode ("\\.wgsl\\'" . wgsl-mode))
+**** python
+Python's lsp has auto configuration for =lsp-mode=
 
-;; Java
-(use-package lsp-java
+
+
+** Input methods
+*** spelling
+Sjoe my speling misttakes.
+#+begin_src emacs-lisp :tanlge yes
+(use-package ispell
   :straight t
-  :after lsp
-  :hook
-  (java-mode . prettify-symbols-mode)
-  (java-mode . (lambda ()
-                 (push '("!=" . ?≠) prettify-symbols-alist)
-                 (push '("<=" . ?≤) prettify-symbols-alist)
-                 (push '(">=" . ?≥) prettify-symbols-alist)))
+  :if (executable-find "hunspell")
   :config
-  (setq lsp-java-format-on-type-enabled nil))
+  (setq ispell-program-name "hunspell"
+        ispell-dictionary "de_DE,en_GB,en_US")
+  (ispell-set-spellchecker-params)
+  (ispell-hunspell-add-multi-dic "de_DE,en_GB,en_US")
+  :hook
+  (org-mode . flyspell-mode)
+  (markdown-mode . flyspell-mode)
+  (text-mode . flyspell-mode))
+#+end_src
 
 
-;;;
-;;; INPUT METHODS
-;;;
-
-
-;; Custom math symbols
+*** math
+Who needs LaTeX when you can the power of unicode?
+#+begin_src emacs-lisp :tangle yes
 (use-package math-symbol-lists
   :straight t
   :config
@@ -748,5 +835,4 @@
               (quail-defrule (cadr x) (car (cddr x)))))
         (append math-symbol-list-superscripts
                 math-symbol-list-subscripts)))
-
-) ;; close performance let
+#+end_src
