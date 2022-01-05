@@ -9,6 +9,10 @@ All changes to the configuration should be done in =init.org=, *not* in
 is replaced the first time Emacs is started (assuming it has been renamed
 to =~/.emacs.d=).
 
+To use the tangled =init.el=, you should link it to =~/.emacs.d/init.el=:
+#+begin_src sh :tangle no
+ln -s ~/dots/files/init.el ~/.emacs.d/init.el
+#+end_src
 
 ** Tangle
 The =init.el= should (after the first run) mirror the source blocks in
@@ -25,7 +29,7 @@ the =after-save-hook= ensuring to always tangle and byte-compile the
   "If the current buffer is 'init.org' the code-blocks are
 tangled, and the tangled file is compiled."
   (when (equal (buffer-file-name)
-               (expand-file-name (concat user-emacs-directory "init.org")))
+               (expand-file-name "/home/marc/dots/files/init.org"))
     ;; Avoid running hooks when tangling.
     (let ((prog-mode-hook nil))
       (org-babel-tangle))))
@@ -596,43 +600,7 @@ Sometimes, a big red TODO is more intimidating than one with normal text color.
 #+end_src
 
 
-** LSP, completion, projects
-*** lsp-mode
-=lsp-mode= is feature-richer than =eglot=, so I'm using this one.
-#+begin_src emacs-lisp :tangle yes
-(use-package lsp-mode :straight t
-  :commands (lsp lsp-deferred)
-  :init
-  (setq lsp-keymap-prefix "C-l")
-  :config
-  (lsp-enable-which-key-integration t)
-  (setq lsp-rust-server 'rust-analyzer
-        lsp-auto-guess-root t
-        lsp-idle-delay 1
-        lsp-enable-file-watchers nil)
-  :hook
-  (rust-mode . lsp)
-  (python-mode . lsp)
-  (haskell-mode . lsp)
-  (c++-mode . lsp))
-#+end_src
-
-In order for =lsp-mode= to work, it needs to compile code on the =fly=.
-#+begin_src emacs-lisp :tangle yes
-(use-package flycheck
-  :straight t
-  :after lsp)
-#+end_src
-
-*** tags
-=tags= can be used to search for =tagged= entities, such as =structs= etc.
-#+begin_src emacs-lisp :tangle yes
-(use-package lsp-ivy
-  :straight t
-  :after lsp-mode
-  :bind(:map lsp-mode-map ("C-l g a" . lsp-ivy-workspace-symbol)))
-#+end_src
-
+** Code completion
 *** completion
 First of all, we need a backend for our completion and analysis.
 #+begin_src emacs-lisp :tangle yes
@@ -696,6 +664,44 @@ We also need the actual snippets.
                                 :fork (:host github
                                              :repo "marcothms/yasnippet-snippets"))
   :after yasnippet)
+#+end_src
+
+
+** LSP and projects
+*** lsp-mode
+=lsp-mode= is feature-richer than =eglot=, so I'm using this one.
+#+begin_src emacs-lisp :tangle yes
+(use-package lsp-mode :straight t
+  :commands (lsp lsp-deferred)
+  :init
+  (setq lsp-keymap-prefix "C-l")
+  :config
+  (lsp-enable-which-key-integration t)
+  (setq lsp-rust-server 'rust-analyzer
+        lsp-auto-guess-root t
+        lsp-idle-delay 1
+        lsp-enable-file-watchers nil)
+  :hook
+  (rust-mode . lsp)
+  (python-mode . lsp)
+  (haskell-mode . lsp)
+  (c++-mode . lsp))
+#+end_src
+
+In order for =lsp-mode= to work, it needs to compile code on the =fly=.
+#+begin_src emacs-lisp :tangle yes
+(use-package flycheck
+  :straight t
+  :after lsp)
+#+end_src
+
+*** tags
+=tags= can be used to search for =tagged= entities, such as =structs= etc.
+#+begin_src emacs-lisp :tangle yes
+(use-package lsp-ivy
+  :straight t
+  :after lsp-mode
+  :bind(:map lsp-mode-map ("C-l g a" . lsp-ivy-workspace-symbol)))
 #+end_src
 
 *** projects
