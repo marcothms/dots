@@ -19,9 +19,9 @@ ICON="%(?.%{$fg[green]%}.%{$fg[red]%})λ"
 DIR="%{$fg[blue]%}%~"
 GIT="%{$fg[red]%}\$vcs_info_msg_0_"
 
-if [[ -n "$SSH_CONNECTION" ]]; then
+# if [[ -n "$SSH_CONNECTION" ]]; then
     NAME="%B%{$fg[yellow]%}%m%b "
-fi
+# fi
 
 case $TERM in
   (*xterm* | rxvt | alacritty)
@@ -55,6 +55,7 @@ alias cp='cp -i' # Ask before removal
 alias mv='mv -i' # Ask before removal
 
 alias nssh='SSH_AUTH_SOCK= ssh'
+alias cpu='watch -n.1 "grep \"^[c]pu MHz\" /proc/cpuinfo"'
 
 if [ -f ~/.zshrc_local ]; then
     source ~/.zshrc_local

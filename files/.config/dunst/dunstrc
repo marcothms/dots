@@ -6,15 +6,15 @@
     follow = mouse
     width = 400
     origin = "top-center"
-    offset = "0x80"
+    offset = "0x20"
     indicate_hidden = yes
     shrink = no
     separator_height = 1
     transparency = 0
-    padding = 8
+    padding = 10
     horizontal_padding = 8
     frame_width = 2
-    frame_color = "#A6CC70"
+    frame_color = "#5c6773"
     separator_color = frame
     sort = yes
     idle_threshold = 120
@@ -57,16 +57,16 @@
 
 
 [urgency_low]
-    background="#ffffff"
+    background="#eeeeee"
     foreground="#050505"
     timeout = 3
 
 [urgency_normal]
-    background="#ffffff"
+    background="#eeeeee"
     foreground="#050505"
     timeout = 3
 
 [urgency_critical]
-    background="#ffffff"
+    background="#eeeeee"
     foreground="#050505"
     timeout = 0

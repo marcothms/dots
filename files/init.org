@@ -37,11 +37,13 @@ tracking again with:
 git update-index --no-assume-unchanged init.el
 #+END_SRC
 
+
 ** Startup
 =lexical-binding= can improve speed.
 #+BEGIN_SRC emacs-lisp :tangle yes
 ;;; -*- lexical-binding: t -*-
 #+END_SRC
+
 
 ** Tangle
 The =init.el= should (after the first run) mirror the source blocks in
@@ -405,7 +407,6 @@ Sometimes I want to see all of my files.
   :straight t)
 #+end_src
 
-
 ** Mini buffers
 *** ivy
 Ivy - a generic completion frontend for Emacs.
@@ -446,12 +447,12 @@ Spice up some of those old buffers.
 
 
 ** ORG MODE <3
-*** Setup
-TODO: split up this box
+*** Setup and keys
+Bootstrap =org-mode= together with keybindings.
+=C-c C-t= for =org-todo=.
 #+begin_src emacs-lisp :tangle yes
 (use-package org
   :straight t
-  ;; C-c C-t org rotate
   :general
   (vim-leader-def 'normal 'global
     "oci" 'org-clock-in
@@ -462,47 +463,53 @@ TODO: split up this box
     "oti" 'org-toggle-inline-images
     "odi" 'org-display-inline-images)
   :hook
-  ;; dont make real spaces at the start
-  (org-mode . (lambda () (electric-indent-local-mode -1)))
-  ;; add virtual spaces
-  (org-mode . org-indent-mode)
+  (org-mode . (lambda () (electric-indent-local-mode -1)))   ;; dont make real spaces at the start of a line
+  (org-mode . org-indent-mode)                               ;; add virtual spaces
   :config
-  (define-key evil-normal-state-map (kbd "TAB") 'org-cycle)
-  (set-face-attribute 'org-document-title nil :weight 'bold :inherit 'default :height 250)
-  (setq org-format-latex-options (plist-put org-format-latex-options :scale 1.5)
-        org-hidden-keywords '(title)  ; hide title
-        org-startup-with-inline-images t
-        org-image-actual-width nil  ; rescale inline images
-        org-directory "~/org"
-        org-agenda-files (quote ("~/org"))
-        org-ellipsis " ⮷"
-        ;; org-hide-emphasis-markers t  ; hide bold and underline markers
-        org-todo-keywords '((sequence "TODO" "PROGRESS" "REVIEW" "|" "DONE"))
-        org-todo-keyword-faces '(("TODO" . "#cc241d") ("PROGRESS" . "#a6cc70") ("REVIEW" . "#b16286") ("DONE" . "#abb0b6"))
-        org-edit-src-content-indentation 0
-        org-log-done nil  ; just mark DONE without a time stamp
-        org-log-repeat nil
-        org-agenda-start-on-weekday nil  ; my week starts on a monday
-        calendar-week-start-day 1
-        org-capture-templates
-        (quote (("w" "Work" entry (file "~/org/work.org") "* TODO %?\n" :empty-lines-before 1)
-                ("u" "University" entry (file "~/org/uni.org") "* TODO %?\n" :empty-lines-before 1)
-                ("p" "Personal" entry (file "~/org/personal.org") "* TODO %?\n" :empty-lines-before 1)))
-        org-latex-listings 'minted  ; export with code highlighting
-        org-latex-packages-alist '(("" "minted"))
-        org-latex-pdf-process
-        '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
-          "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
-          "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+  (define-key evil-normal-state-map (kbd "TAB") 'org-cycle)) ;; use TAB to FOLD in every evil-mode
 #+end_src
 
-Inline code execution is the shit!
+*** Misc
+#+begin_src emacs-lisp :tangle yes
+(setq org-hidden-keywords '(title)           ;; hide title
+      org-startup-with-inline-images t       ;; start with inline images enabled
+      org-image-actual-width nil             ;; rescale inline images
+      org-directory "~/org"                  ;; set org file directory
+      org-agenda-files (quote ("~/org"))     ;; indexed files by org agenda
+      org-edit-src-content-indentation 0     ;; don't indent stupidly in org-edit-src-code
+      org-log-done nil                       ;; just mark DONE without a time stamp
+      org-log-repeat nil                     ;; don't set a time after marking sth DONE
+      org-agenda-start-on-weekday nil        ;; my week starts on a monday
+      calendar-week-start-day 1              ;; my week starts on a monday
+)
+#+end_src
+
+*** org-todo faces
+Which =org-todo= keywords should be used and how they look.
+#+begin_src emacs-lisp :tangle yes
+(setq org-todo-keywords '((sequence "TODO" "PROGRESS" "REVIEW" "|" "DONE"))
+      org-todo-keyword-faces '(("TODO" . "#cc241d") ("PROGRESS" . "#a6cc70") ("REVIEW" . "#b16286") ("DONE" . "#abb0b6")))
+#+end_src
+
+*** org-capture
+Set some capture templates, for quick notes.
+#+begin_src emacs-lisp :tangle yes
+(setq org-capture-templates
+  (quote (("w" "Work" entry (file "~/org/work.org") "* TODO %?\n" :empty-lines-before 1)
+          ("u" "University" entry (file "~/org/uni.org") "* TODO %?\n" :empty-lines-before 1)
+          ("p" "Personal" entry (file "~/org/personal.org") "* TODO %?\n" :empty-lines-before 1))))
+#+end_src
+
+*** org-babel
+Executing code inline is just a breeze.
+Firstly tho, they must be enabled here.
+Also be *careful*  with =haskell= recursion, it can lead to system crashes (at least for me).
 #+begin_src emacs-lisp :tangle yes
 (org-babel-do-load-languages 'org-babel-load-languages '((python . t)
                                                          (shell . t)
                                                          (haskell . t)
                                                          (C . t)
-                                                         (dot . t))))
+                                                         (dot . t)))
 
 (use-package sage-shell-mode
   :straight t)
@@ -512,25 +519,37 @@ Inline code execution is the shit!
 #+end_src
 
 *** LaTeX Export
-For some reason =\alert= is misinterpreted in LaTeX...
+Enable LaTeX export with =pdflatex= and use =minted= for code highlighting.
+Also fix math =utf8= chars.
+#+begin_src emacs-lisp :tangle yes
+(setq org-latex-listings 'minted
+      org-latex-packages-alist '(("" "minted"))
+      org-latex-pdf-process
+      '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f")
+      org-latex-inputenc-alist '(("utf8" . "utf8x"))
+      org-latex-default-packages-alist (cons '("mathletters" "ucs" nil) org-latex-default-packages-alist)
+      org-format-latex-options (plist-put org-format-latex-options :scale 1.5))
+#+end_src
+
+For some reason =\alert= is misinterpreted in LaTeX.
 #+begin_src emacs-lisp :tangle yes
 (defun mth/beamer-bold (contents backend info)
   (when (eq backend 'beamer)
     (replace-regexp-in-string "\\`\\\\[A-Za-z0-9]+" "\\\\textbf" contents)))
 #+end_src
 
-I also want some special export settings for my =.org= to =.tex=.
+Use the above fix and disable creating of =.tex= files.
 #+begin_src emacs-lisp :tangle yes
 (use-package ox
   :after org
   :config
   (add-to-list 'org-export-filter-bold-functions 'mth/beamer-bold)
-  (add-to-list 'org-latex-logfiles-extensions "tex")
-  (setq org-latex-inputenc-alist '(("utf8" . "utf8x"))  ; export unicode as correct latex
-        org-latex-default-packages-alist (cons '("mathletters" "ucs" nil) org-latex-default-packages-alist)))
+  (add-to-list 'org-latex-logfiles-extensions "tex"))
 #+end_src
 
-Show me my math equations inline!
+Show math equations inline!
 #+begin_src emacs-lisp :tangle yes
 (use-package org-fragtog
   :straight t
@@ -538,7 +557,7 @@ Show me my math equations inline!
   (org-mode . org-fragtog-mode))
 #+end_src
 
-Who needs fancy online tooling anyway...
+Use graphivz to draw graphs.
 #+begin_src emacs-lisp :tangle yes
 (use-package graphviz-dot-mode
   :straight t
@@ -548,7 +567,15 @@ Who needs fancy online tooling anyway...
   (setq graphviz-dot-indent-width 4))
 #+end_src
 
-*** Fancy
+*** Fonts and fancy
+Some custom fonts stuff.
+#+begin_src emacs-lisp :tangle yes
+(set-face-attribute 'org-document-title nil :weight 'bold :inherit 'default :height 250)
+(setq org-ellipsis " ⮷"                    ;; folding icon
+      ;; org-hide-emphasis-markers t          ;; hide markers such as *, =, _
+)
+#+end_src
+
 I want my =org-bullets= to look fancy, so I'm using some UTF8 chars.
 Use =(setq inhibit-compacting-font-caches t)=, if performance is low.
 #+begin_src emacs-lisp :tangle yes
@@ -787,6 +814,21 @@ In order for =lsp-mode= to work, it needs to compile code on the =fly=.
 Python's lsp has auto configuration for =lsp-mode=
 
 
+** Debugging with dap-mode
+#+begin_src emacs-lisp :tangle yes
+(use-package dap-mode
+  :straight t)
+#+end_src
+
+*** python
+Setup some things to use dap-mode together with python.
+It depends on =ptvsd=, which can be installed via =pip=.
+#+begin_src emacs-lisp :tangle yes
+(require 'dap-python)
+#+end_src
+*** rust
+TODO: add rust config for debugging
+
 
 ** Input methods
 *** spelling
@@ -805,7 +847,6 @@ Sjoe my speling misttakes.
   (markdown-mode . flyspell-mode)
   (text-mode . flyspell-mode))
 #+end_src
-
 
 *** math
 Who needs LaTeX when you can the power of unicode?

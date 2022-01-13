@@ -7,7 +7,6 @@ xrdb -merge $HOME/.Xresources
 setxkbmap eu
 setxkbmap -option caps:none
 xmodmap -e "keycode 66 = grave asciitilde"
-xmodmap -e "keycode 49 = Escape"
 
 # energy options
 xset s off

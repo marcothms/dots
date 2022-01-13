@@ -1,13 +1,14 @@
 [colors]
 white = #ffffff
 black = #5c6773
+grey = #eeeeee
 green = #a6cc70
 red = #ff3333
 
 [bar/bar]
 
-font-0 = "JuliaMono:pixelsize=10;4"
-font-1 = "Noto Sans Mono CJK JP:pixelsize=10;3"
+font-0 = "PT Sans:pixelsize=10:weight=bold;4"
+font-1 = "Noto Sans Mono CJK JP:pixelsize=10:weight=bold;3"
 font-2 = "FontAwesome:pixelsize=10;4"
 
 monitor = ${env:MON}
@@ -18,18 +19,18 @@ scroll-down = i3wm-wsnext
 fixed-center = true
 
 width = 100%
-height = 50
+height = 40
 
 dpi = ${xrdb:Xft.dpi:-1}
 
-background = ${colors.white}
-foreground = ${colors.black}
+background = ${colors.black}
+foreground = ${colors.white}
 
 bottom = false
 
 screenchange-reload = true
 
-tray-position = right
+tray-position = ${env:TRAYPOS:right}
 tray-scale = 1.0
 tray-maxsize = 25
 
@@ -39,9 +40,9 @@ padding-left = 1
 padding-right = 1
 module-margin = 2
 
-modules-left = logo i3 polywins spotify
+modules-left = logo i3 polywins sep spotify
 modules-center =
-modules-right = backlight pulseaudio battery conservation date time
+modules-right = cpu sep cpu_temp sep temp sep ram sep backlight sep pulseaudio sep  conservation sep battery sep date sep
 
 [module/i3]
 strip-wsnumbers = true
@@ -63,28 +64,25 @@ ws-icon-8 = 9;九
 ws-icon-9 = 10;十
 
 label-focused = %icon%
-label-focused-background = ${colors.green}
-label-focused-padding = 1
+label-focused-padding = 2
+label-focused-overline = ${colors.green}
 
 label-unfocused = %icon%
-label-unfocused-padding = 1
+label-unfocused-padding = 2
 
 label-visible = %icon%
-label-visible-padding = 1
+label-visible-padding = 2
 
 label-urgent = %icon%
 label-urgent-overline = ${colors.red}
-label-urgent-padding = 1
+label-urgent-padding = 2
 
 [module/date]
 type = internal/date
 interval = 1.0
-date =  %a, %d %b
-
-[module/time]
-type = internal/date
-interval = 1.0
-date =  %H:%M
+date = %a, %d %b
+time = %H:%M
+label =  %date% %time%
 
 [module/pulseaudio]
 type = internal/pulseaudio
@@ -135,7 +133,7 @@ type = custom/script
 exec = if [ /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode ]; then echo "On"; else echo "Off"; fi
 click-left = alacritty --command ~/dots/scripts/conservation_mode.sh
 format = <label>
-label =  %output%
+label =   %output%
 tail = true
 
 [module/backlight]
@@ -158,10 +156,40 @@ tail = true
 [module/spotify]
 type = custom/script
 interval = 1
-format =  <label>
+format =  <label>
 #exec = python3 ~/dots/scripts/spotify.py -f '{play_pause} {artist}: {song}' --font=2
-exec = python3 ~/dots/scripts/spotify.py -f '{artist}: {song}'
+exec = python3 ~/dots/scripts/spotify.py -f '{artist}: {song}' -t 50
 
-click-left = playerctl play-pause
-click-right = playerctl next
-click-middle = playerctl previous
+click-left = playerctl -p spotify play-pause
+click-right = playerctl -p spotify next
+click-middle = playerctl -p spotify previous
+
+[module/sep]
+type = custom/text
+content = "|"
+content-foreground = ${colors.grey}
+
+[module/temp]
+type = internal/temperature
+interval = 5
+format =  <label>
+
+[module/cpu_temp]
+type = internal/temperature
+interval = 5
+# 0 is acpi next to cpu
+# 10 is inside the cpu
+thermal-zone = 10
+format =  <label>
+
+[module/cpu]
+type = internal/cpu
+interval = 5
+label = %percentage%%
+format =  <label>
+
+[module/ram]
+type = internal/memory
+interval = 5
+label = %gb_used%
+format =  <label>

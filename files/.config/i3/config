@@ -2,6 +2,11 @@ set $mod Mod4
 font pango:JuliaMono 10
 floating_modifier $mod
 
+# bindings idea:
+# mod + KEY = open sth
+# mod + shift = move sth
+# mod + ctrl = manipulate display
+
 # applications
 bindsym $mod+Return exec --no-startup-id alacritty
 bindsym $mod+d exec --no-startup-id rofi -theme ~/.config/rofi/light.rasi -show drun
@@ -9,12 +14,12 @@ bindsym $mod+Shift+s exec --no-startup-id flameshot gui
 bindsym XF86Calculator exec --no-startup-id emacs
 
 # audio and brightness
-bindsym XF86AudioMute exec --no-startup-id amixer -q set Master toggle
-bindsym XF86AudioLowerVolume exec --no-startup-id amixer set Master 1%-
-bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set Master 1%+
-bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
-bindsym XF86AudioNext exec --no-startup-id playerctl next
-bindsym XF86AudioPrev exec --no-startup-id playerctl previous
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioPlay exec --no-startup-id playerctl -p spotify play-pause
+bindsym XF86AudioNext exec --no-startup-id playerctl -p spotify next
+bindsym XF86AudioPrev exec --no-startup-id playerctl -p spotify previous
 bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5
 bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5
 
@@ -25,8 +30,12 @@ bindsym Ctrl+Shift+space exec --no-startup-id dunstctl history-pop
 # kill focused window
 bindsym $mod+Shift+BackSpace kill
 
-# lock
-bindsym $mod+Control+BackSpace exec --no-startup-id xlock -mode maze
+# lock etc
+bindsym $mod+Control+BackSpace exec --no-startup-id ~/dots/scripts/powermenu.sh
+
+# change monitor layout
+bindsym $mod+Control+d exec --no-startup-id ~/dots/scripts/monitor.sh dual
+bindsym $mod+Control+s exec --no-startup-id ~/dots/scripts/monitor.sh single
 
 # change focus
 bindsym $mod+h focus left
@@ -97,6 +106,9 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 bindsym $mod+Left workspace prev
 bindsym $mod+Right workspace next
 
+bindsym $mod+Ctrl+h move workspace to output left
+bindsym $mod+Ctrl+l move workspace to output right
+
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -116,10 +128,10 @@ set $blue   "#55b4d4"
 set $yellow "#e7c547"
 
 # class                 border  backgr. text    indicator child_border
-client.focused          $green  $green  $black  $green    $black
+client.focused          $green  $green  $black  $green    $green
 client.focused_inactive $yellow $yellow $black  $yellow   $black
 client.unfocused        $white  $white  $black  $white    $black
-client.urgent           $red    $red    $white  $red      $black
+client.urgent           $red    $red    $white  $red      $red
 
 # i3 bar
 # flaoting on start
@@ -129,24 +141,18 @@ for_window [class="flameshot"] floating enable
 
 # border
 hide_edge_borders smart
-for_window [class="^.*"] border pixel 0
-
-# bar
-exec_always --no-startup-id ~/dots/scripts/polybar.sh
+for_window [class="^.*"] border pixel 2
 
 # gaps
 gaps inner 10
 
-# wallpaper
-exec_always --no-startup-id feh --bg-fill ~/data/Seafile/images/wallpaper/wallpaper.png
+# desktop (wallpaper, bar, picom)
+exec_always --no-startup-id ~/dots/scripts/reload_desktop.sh
 
 # startup
 exec --no-startup-id nm-applet
 exec --no-startup-id keepassxc
 exec --no-startup-id seafile-applet
 exec --no-startup-id fcitx5
-exec --no-startup-id picom --backend glx --no-vsync
-exec --no-startup-id enact --watch --pos top -n 1
 exec --no-startup-id libinput-gestures-setup start
-
-exec_always --no-startup-id notify-send -i ~/data/Seafile/images/anime/dashboard.png "よろしくマルコさん！" "「i3」へようこそ。"
+exec --no-startup-id redshift-gtk -l 48.13333:11.56667

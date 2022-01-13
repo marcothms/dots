@@ -11,7 +11,6 @@ dots for my lenovo yoga slim 7i pro 「itomori」
 + alacritty
 + zsh
 + dunst
-+ picom
 + polybar
 + rofi
 + xlock
@@ -23,14 +22,17 @@ dots for my lenovo yoga slim 7i pro 「itomori」
 + okular / zathura
 ** control stuff
 + [[https://github.com/bulletmark/libinput-gestures][libinput-gestures]]
-+ amixer
++ pactl
 + playerctl
 + light
 + feh
-+ [[https://github.com/marcothms/enact/tree/new_primary][enact]]
 + nm-applet
 + xdotool
 + wmctrl
++ redshift-gtk
 ** special stuff
 + fcitx5 (with mozc)
 + hunspell DE
+** GTK theming
++ papirus icons
++ materia gtk theme

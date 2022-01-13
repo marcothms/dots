@@ -1,0 +1,10 @@
+* {
+  background: #eeeeee;
+  background-alt: #eeeeee;
+  foreground: #000000;
+  accent: #A6CC70;
+  border: #eeeeee;
+  border-alt: #eeeeee;
+  selected: @accent;
+  urgent: #ff3333;
+}
