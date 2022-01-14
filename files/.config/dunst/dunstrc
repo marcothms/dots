@@ -6,22 +6,22 @@
     follow = mouse
     width = 400
     origin = "top-center"
-    offset = "0x20"
+    offset = "0x100"
     indicate_hidden = yes
     shrink = no
     separator_height = 1
     transparency = 0
     padding = 10
-    horizontal_padding = 8
-    frame_width = 2
-    frame_color = "#A6CC70"
+    horizontal_padding = 10
+    frame_width = 0
+    frame_color = "#eeeeee"
     separator_color = frame
     sort = yes
     idle_threshold = 120
 
 # Text
 
-    font = Roboto 10
+    font = Roboto 13
     line_height = 04
     markup = full
     format = "<span><b>%s %p</b></span>\n%b"
@@ -57,16 +57,16 @@
 
 
 [urgency_low]
-    background="#eeeeee"
-    foreground="#050505"
+    background="#222222"
+    foreground="#ffffff"
     timeout = 3
 
 [urgency_normal]
-    background="#eeeeee"
-    foreground="#050505"
+    background="#333333"
+    foreground="#ffffff"
     timeout = 3
 
 [urgency_critical]
-    background="#eeeeee"
-    foreground="#050505"
+    background="#222222"
+    foreground="#ffffff"
     timeout = 0

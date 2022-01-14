@@ -4,6 +4,21 @@ dots for my lenovo yoga slim 7i pro 「itomori」
 
 [[./screen.png]]
 
+* colors
+** main
++ fg: #5c6773
++ bg: #ffffff
+** colorful
++ red: #FF3333
++ green: #A6CC70
++ yellow: #e7c547
++ blue: #55b4d4
++ magenta: #A37ACC
++ cyan: #95E6CB
+** custom ui colors
++ dark bg alt: #222222
++ light bg alt: #eeeeee
+
 * an incomplete list of dependencies:
 ** main environment
 + emacs 💜

@@ -45,6 +45,7 @@ element {
   orientation: vertical;
   padding: 15 15 15 15;
   border-radius: 6;
+  text-color: @foreground;
 }
 
 element selected {
@@ -80,5 +81,6 @@ entry {
   padding: 8 12 8 12;
   margin: 0% 0% 0% 0%;
   placeholder: "Search";
-  placeholder-color: #444444;
+  placeholder-color: #eeeeee;
+  text-color: @foreground;
 }

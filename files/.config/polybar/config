@@ -1,7 +1,6 @@
 [colors]
 white = #ffffff
-black = #5c6773
-grey = #eeeeee
+black = #222222
 green = #a6cc70
 red = #ff3333
 
@@ -166,7 +165,6 @@ click-middle = playerctl -p spotify previous
 [module/sep]
 type = custom/text
 content = "|"
-content-foreground = ${colors.grey}
 
 [module/temp]
 type = internal/temperature

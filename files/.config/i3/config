@@ -2,10 +2,7 @@ set $mod Mod4
 font pango:Roboto 10
 floating_modifier $mod
 
-# bindings idea:
-# mod + KEY = open sth
-# mod + shift = move sth
-# mod + ctrl = manipulate display
+# bindings idea: mod + KEY = open sth mod + shift = move sth mod + ctrl = manipulate display
 
 # applications
 bindsym $mod+Return exec --no-startup-id alacritty
@@ -119,8 +116,8 @@ title_align center
 
 # colors
 set $white  "#ffffff"
-set $black  "#5c6773"
-set $dblack "#000000"
+set $fg     "#5c6773"
+set $black  "#000000"
 set $grey   "#eeeeee"
 set $green  "#a6cc70"
 set $red    "#ff3333"
@@ -128,9 +125,9 @@ set $blue   "#55b4d4"
 set $yellow "#e7c547"
 
 # class                 border  backgr. text    indicator child_border
-client.focused          $grey  $green   $black  $grey     $grey
-client.focused_inactive $grey  $grey    $black  $grey     $grey
-client.unfocused        $grey  $grey    $black  $grey     $grey
+client.focused          $green $green   $fg     $green    $grey
+client.focused_inactive $grey  $grey    $fg     $grey     $grey
+client.unfocused        $grey  $grey    $fg     $grey     $grey
 client.urgent           $red   $red     $white  $red      $red
 
 # i3 bar
