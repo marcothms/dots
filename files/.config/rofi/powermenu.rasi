@@ -1,11 +1,11 @@
 
 configuration {
-	font:							"JuliaMono 18";
-    show-icons:                     false;
-	icon-theme: 					"Papirus";
-    drun-display-format:            "{name}";
-    disable-history:                false;
-	sidebar-mode: 					false;
+    font:			"Roboto 20";
+    show-icons:                 false;
+    icon-theme: 		"Papirus";
+    drun-display-format:        "{name}";
+    disable-history:            false;
+    sidebar-mode: 		false;
 }
 
 @import "~/.config/rofi/colors.rasi"

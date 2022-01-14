@@ -14,14 +14,14 @@
     padding = 10
     horizontal_padding = 8
     frame_width = 2
-    frame_color = "#5c6773"
+    frame_color = "#A6CC70"
     separator_color = frame
     sort = yes
     idle_threshold = 120
 
 # Text
 
-    font = JuliaMono 10
+    font = Roboto 10
     line_height = 04
     markup = full
     format = "<span><b>%s %p</b></span>\n%b"

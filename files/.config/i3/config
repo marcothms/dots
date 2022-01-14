@@ -1,5 +1,5 @@
 set $mod Mod4
-font pango:JuliaMono 10
+font pango:Roboto 10
 floating_modifier $mod
 
 # bindings idea:
@@ -116,22 +116,22 @@ bindsym $mod+Shift+r restart
 
 # titlebar
 title_align center
-new_window 1pixel
 
 # colors
 set $white  "#ffffff"
 set $black  "#5c6773"
 set $dblack "#000000"
+set $grey   "#eeeeee"
 set $green  "#a6cc70"
 set $red    "#ff3333"
 set $blue   "#55b4d4"
 set $yellow "#e7c547"
 
 # class                 border  backgr. text    indicator child_border
-client.focused          $green  $green  $black  $green    $green
-client.focused_inactive $yellow $yellow $black  $yellow   $black
-client.unfocused        $white  $white  $black  $white    $black
-client.urgent           $red    $red    $white  $red      $red
+client.focused          $grey  $green   $black  $grey     $grey
+client.focused_inactive $grey  $grey    $black  $grey     $grey
+client.unfocused        $grey  $grey    $black  $grey     $grey
+client.urgent           $red   $red     $white  $red      $red
 
 # i3 bar
 # flaoting on start
@@ -140,8 +140,7 @@ for_window [title="Event Tester"] floating enable
 for_window [class="flameshot"] floating enable
 
 # border
-hide_edge_borders smart
-for_window [class="^.*"] border pixel 2
+smart_borders on
 
 # gaps
 gaps inner 10

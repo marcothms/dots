@@ -7,7 +7,7 @@ red = #ff3333
 
 [bar/bar]
 
-font-0 = "PT Sans:pixelsize=10:weight=bold;4"
+font-0 = "Roboto:pixelsize=10:weight=bold;4"
 font-1 = "Noto Sans Mono CJK JP:pixelsize=10:weight=bold;3"
 font-2 = "FontAwesome:pixelsize=10;4"
 
@@ -40,9 +40,9 @@ padding-left = 1
 padding-right = 1
 module-margin = 2
 
-modules-left = logo i3 polywins sep spotify
+modules-left = logo i3 polywins spotify
 modules-center =
-modules-right = cpu sep cpu_temp sep temp sep ram sep backlight sep pulseaudio sep  conservation sep battery sep date sep
+modules-right = ram sep cpu sep cpu_temp sep temp sep backlight sep pulseaudio sep  conservation sep battery sep date sep
 
 [module/i3]
 strip-wsnumbers = true
@@ -141,7 +141,7 @@ type = internal/backlight
 card = intel_backlight
 
 format = <ramp> <label>
-label = %percentage%
+label = %percentage%%
 
 ramp-0 = 
 ramp-1 = 
@@ -157,8 +157,7 @@ tail = true
 type = custom/script
 interval = 1
 format =  <label>
-#exec = python3 ~/dots/scripts/spotify.py -f '{play_pause} {artist}: {song}' --font=2
-exec = python3 ~/dots/scripts/spotify.py -f '{artist}: {song}' -t 50
+exec = python3 ~/dots/scripts/spotify.py -f '{artist}: {song}' -t 50 -q
 
 click-left = playerctl -p spotify play-pause
 click-right = playerctl -p spotify next
@@ -177,7 +176,6 @@ format =  <label>
 [module/cpu_temp]
 type = internal/temperature
 interval = 5
-# 0 is acpi next to cpu
 # 10 is inside the cpu
 thermal-zone = 10
 format =  <label>

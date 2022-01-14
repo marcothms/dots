@@ -5,16 +5,16 @@
 
 active_text_color="#ffffff"
 active_bg=
-active_underline="#a6cc70"
+active_underline=
 
-inactive_text_color="#ffffff"
+inactive_text_color="#cccccc"
 inactive_bg=
 inactive_underline=
 
 separator="·"
 show="window_class" # options: window_title, window_class, window_classname
 forbidden_classes="Polybar Conky Gmrun"
-empty_desktop_message="Desktop"
+empty_desktop_message="i3"
 
 char_limit=15
 max_windows=15

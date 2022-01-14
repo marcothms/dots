@@ -7,22 +7,20 @@ configuration {
   bw: 0;
   terminal: "alacritty";
   sidebar-mode: false;
-  font: "JuliaMono 20";
-
 }
 
 @import "~/.config/rofi/colors.rasi"
 
 * {
   background-color: rgba(0, 0, 0, 0);
-  font: "JuliaMono 18";
+  font: "Roboto 20";
 }
 
 window {
   background-color: @background;
   padding: 30;
   width: 30%;
-  height: 45%;
+  height: 30%;
   transparency: "real";
 }
 
@@ -76,12 +74,10 @@ inputbar {
 prompt {
   enabled: true;
   padding: 0.5% 1% 0% 1%;
-  font: "JuliaMono 20";
 }
 
 entry {
   padding: 8 12 8 12;
-  font: "JuliaMono 20";
   margin: 0% 0% 0% 0%;
   placeholder: "Search";
   placeholder-color: #444444;
