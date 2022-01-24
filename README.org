@@ -48,7 +48,7 @@ It will link all dotfiles to their correct place.
 + wmctrl
 + redshift-gtk
 ** special stuff
-+ fcitx5 (=fcitx5 fcitx5-configtool fcitx5-gtk fcitx5-mozc fcitx-qt=)
++ fcitx5 (=fcitx5 fcitx5-configtool fcitx5-gtk fcitx5-mozc fcitx5-qt=)
 + hunspell-de (=hunspell-en= should be installed)
 ** GTK theming
 + papirus icons
