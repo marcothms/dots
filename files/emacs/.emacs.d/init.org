@@ -857,7 +857,7 @@ Sjoe my speling misttakes.
 #+end_src
 
 *** math
-Who needs LaTeX when you can the power of unicode?
+Who needs LaTeX when you can have the power of unicode?
 #+begin_src emacs-lisp :tangle yes
 (use-package math-symbol-lists
   :straight t
@@ -917,7 +917,7 @@ Who needs LaTeX when you can the power of unicode?
    ("\\Gx" ?ξ) ("\\GX" ?Ξ) ("\\xi" ?ξ) ("\\Xi" ?Ξ)
    ("\\Gp" ?π) ("\\GP" ?Π) ("\\pi" ?π) ("\\Pi" ?Π)
    ("\\Gr" ?ρ) ("\\GR" ?Ρ) ("\\rho" ?ρ)
-   ("\\Gs" ?σ) ("\\GS" ?Σ) ("\\sig" ?σ) ("\\Sig" ?Σ)
+   ("\\Gs" ?σ) ("\\GS" ?Σ) ("\\sigma" ?σ) ("\\Sigma" ?Σ)
    ("\\Gt" ?τ) ("\\GT" ?Τ) ("\\tau" ?τ)
    ("\\Gph" ?ϕ) ("\\GPH" ?Φ) ("\\phi" ?ϕ) ("\\Phi" ?Φ)
    ("\\Gc" ?χ) ("\\GC" ?Χ) ("\\chi" ?χ)
@@ -940,12 +940,15 @@ Built-in DocView isn't too nice to use.
 Keybinds:
 + =C-s=: search, just as in =swiper=
 + =C-s= (again): forward search
-+ =C=r=: backward search
++ =C-r=: backward search
 #+begin_src emacs-lisp :tangle yes
 (use-package pdf-tools
   :straight t
   :config
-  (define-key pdf-view-mode-map (kbd "C-s") 'isearch-forward-regexp))
+  (define-key pdf-view-mode-map [remap swiper] 'isearch-forward-regexp)
+  (define-key pdf-view-mode-map [remap evil-ex] 'pdf-view-goto-page)
+  (setq-default pdf-view-display-size 'fit-page)
+  (setq pdf-view-resize-factor 1.1))
 
 ;; load necessary things, when a PDF gets opened
 (pdf-tools-install)

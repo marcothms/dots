@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # send notification
-notify-send -i /usr/share/icons/Papirus/48x48/devices/computer-laptop.svg "Reload" "Reloading desktop..."
+notify-send -i /usr/share/icons/Papirus/48x48/status/state_paused.svg "Reload" "Reloading desktop..."
 
 # bar
 killall -q polybar
@@ -15,4 +15,4 @@ feh --bg-fill $HOME/data/Seafile/images/wallpaper/wallpaper.png
 source $HOME/.profile
 
 # send notification
-notify-send -i /usr/share/icons/Papirus/48x48/devices/computer-laptop.svg "Reload" "Reloaded desktop"
+notify-send -i /usr/share/icons/Papirus/48x48/status/state_running.svg "Reload" "Reload done!"
