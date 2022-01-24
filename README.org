@@ -1,6 +1,9 @@
 #+TITLE:my dots
 
-dots for my lenovo yoga slim 7i pro 「itomori」
+dots for my lenovo yoga slim 7i pro 「itomori」, managed with =gnu stow=.
+
+Files can be =stow='ed and un'=stow='-ed with =stow.sh=.
+It will link all dotfiles to their correct place.
 
 [[./screen.png]]
 
@@ -34,7 +37,6 @@ dots for my lenovo yoga slim 7i pro 「itomori」
 + spotify
 + seafile-applet
 + keepassxc
-+ okular / zathura
 ** control stuff
 + [[https://github.com/bulletmark/libinput-gestures][libinput-gestures]]
 + pactl
@@ -46,8 +48,8 @@ dots for my lenovo yoga slim 7i pro 「itomori」
 + wmctrl
 + redshift-gtk
 ** special stuff
-+ fcitx5 (with mozc)
-+ hunspell DE
++ fcitx5 (=fcitx5 fcitx5-configtool fcitx5-gtk fcitx5-mozc fcitx-qt=)
++ hunspell-de (=hunspell-en= should be installed)
 ** GTK theming
 + papirus icons
 + materia gtk theme

@@ -1,0 +1,19 @@
+[user]
+	name = Marco Thomas
+	email = rb.ma.tho@gmail.com
+[includeIf "gitdir:~/dev/lrz-gitlab/**"]
+	path = "~/dev/lrz-gitlab/.gitconfig"
+[alias]
+	aa = add .
+	st = status
+	sh = show
+	d = diff
+	c = commit -v
+	ca = commit -v --amend
+	co = checkout
+	b = branch
+	pl = pull --rebase
+	ps = push
+	lg = log --oneline --decorate --graph
+	yoink = pull
+	yeet = push

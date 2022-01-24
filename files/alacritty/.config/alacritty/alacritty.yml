@@ -1,0 +1,57 @@
+#       __    _                 _ _   _
+#      / /_ _| | __ _  ___ _ __(_) |_| |_ _   _
+#     / / _` | |/ _` |/ __| '__| | __| __| | | |
+#  _ / / (_| | | (_| | (__| |  | | |_| |_| |_| |
+# (_)_/ \__,_|_|\__,_|\___|_|  |_|\__|\__|\__, |
+#                                         |___/
+#
+# ~ M. Thomas
+
+import:
+  - ~/.alacritty_local.yml
+  - ~/.config/alacritty/themes/ayu_light.yml
+
+env:
+  TERM: alacritty
+
+window:
+  title: Alacritty
+  dynamic_title: true
+
+  padding:
+    x: 20
+    y: 20
+
+  dynamic_padding: false
+
+font:
+  size: 10
+  normal:
+    family: JuliaMono
+    style: Regular
+
+background_opacity: 1
+
+selection:
+  save_to_clipboard: true
+
+cursor:
+  # Values for `style`:
+  #   - ▇ Block
+  #   - _ Underline
+  #   - | Beam
+  style: Block
+
+  unfocused_hollow: true
+
+live_config_reload: true
+
+mouse:
+  hide_when_typing: true
+
+key_bindings:
+  - { key: V,        mods: Control|Shift, action: Paste            }
+  - { key: C,        mods: Control|Shift, action: Copy             }
+  - { key: Key0,     mods: Control,       action: ResetFontSize    }
+  - { key: Equals,   mods: Control,       action: IncreaseFontSize }
+  - { key: Minus,    mods: Control,       action: DecreaseFontSize }

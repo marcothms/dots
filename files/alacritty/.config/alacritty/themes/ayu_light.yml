@@ -1,0 +1,29 @@
+# Ayu
+colors:
+  # Default colors
+  primary:
+    background: '#ffffff'
+    foreground: '#5c6773'
+
+  # Normal colors
+  normal:
+    black: '#000000'
+    red: '#FF3333'
+    green: '#A6CC70'
+    yellow: '#e7c547'
+    blue: '#55b4d4'
+    magenta: '#A37ACC'
+    cyan: '#95E6CB'
+    white: '#C7C7C7'
+
+  # Bright colors
+  bright:
+    black: '#686868'
+    red: '#F27983'
+    green: '#BAE67E'
+    yellow: '#FFCC66'
+    blue: '#5CCFE6'
+    magenta: '#D4BFFF'
+    cyan: '#95E6CB'
+    white: '#FFFFFF'
+
