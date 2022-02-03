@@ -32,11 +32,13 @@ It will link all dotfiles to their correct place.
 + polybar
 + rofi
 + xlock
++ picom (no settings, just for compositing)
 ** main programs
 + discord
 + spotify
 + seafile-applet
 + keepassxc
++ okular
 ** control stuff
 + [[https://github.com/bulletmark/libinput-gestures][libinput-gestures]]
 + pactl

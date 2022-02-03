@@ -1,7 +1,7 @@
 #!/bin/sh
 
-# send notification
-notify-send -i /usr/share/icons/Papirus/48x48/status/state_paused.svg "Reload" "Reloading desktop..."
+# dunst
+systemctl restart --user dunst
 
 # bar
 killall -q polybar
@@ -14,5 +14,5 @@ feh --bg-fill $HOME/data/Seafile/images/wallpaper/wallpaper.png
 # for some reason xmodmap and xset settings reset sometimes
 source $HOME/.profile
 
-# send notification
-notify-send -i /usr/share/icons/Papirus/48x48/status/state_running.svg "Reload" "Reload done!"
+# notification
+notify-send -i /usr/share/icons/Papirus/48x48/status/state_running.svg "i3wm" "Reloaded desktop"

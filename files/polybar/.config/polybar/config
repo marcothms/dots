@@ -1,8 +1,9 @@
 [colors]
 white = #ffffff
-black = #222222
+black = #ee222222
 green = #a6cc70
 red = #ff3333
+yellow = #e7c547
 
 [bar/bar]
 
@@ -29,19 +30,19 @@ bottom = false
 
 screenchange-reload = true
 
-tray-position = ${env:TRAYPOS:right}
+tray-position = ${env:TRAYPOS:none}
 tray-scale = 1.0
 tray-maxsize = 25
 
 line-size = 4
 
-padding-left = 1
-padding-right = 1
-module-margin = 2
+# keep these two the same
+padding = 3
+module-margin = 3
 
-modules-left = logo i3 polywins spotify
+modules-left = logo i3 polywins
 modules-center =
-modules-right = ram sep cpu sep cpu_temp sep temp sep backlight sep pulseaudio sep  conservation sep battery sep date sep
+modules-right = spotify backlight pulseaudio mic conservation battery date
 
 [module/i3]
 strip-wsnumbers = true
@@ -81,7 +82,7 @@ type = internal/date
 interval = 1.0
 date = %a, %d %b
 time = %H:%M
-label =  %date% %time%
+label = %date% %time%
 
 [module/pulseaudio]
 type = internal/pulseaudio
@@ -113,11 +114,13 @@ time-format = %H:%M
 
 # charging
 format-charging = <ramp-capacity> <label-charging>
-label-charging = %percentage%% 
+label-charging = %percentage%%
+format-charging-foreground = ${colors.green}
 
 # discharging
 format-discharging = <ramp-capacity> <label-discharging>
 label-discharging = %percentage%% - %time%
+format-discharging-foreground = ${colors.yellow}
 ramp-capacity-0 = 
 ramp-capacity-1 = 
 ramp-capacity-2 = 
@@ -129,7 +132,7 @@ label-full =  100%
 
 [module/conservation]
 type = custom/script
-exec = if [ /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode ]; then echo "On"; else echo "Off"; fi
+exec = if [ "$(cat /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode)" == "1" ]; then echo "On"; else echo "Off"; fi
 click-left = alacritty --command ~/dots/scripts/laptop/conservation_mode.sh
 format = <label>
 label =   %output%
@@ -142,8 +145,9 @@ card = intel_backlight
 format = <ramp> <label>
 label = %percentage%%
 
-ramp-0 = 
-ramp-1 = 
+# ramp-0 = 
+# ramp-1 = 
+ramp-0 = 
 
 [module/polywins]
 type = custom/script
@@ -164,7 +168,7 @@ click-middle = playerctl -p spotify previous
 
 [module/sep]
 type = custom/text
-content = "|"
+content = ""
 
 [module/temp]
 type = internal/temperature
@@ -189,3 +193,12 @@ type = internal/memory
 interval = 5
 label = %gb_used%
 format =  <label>
+
+[module/mic]
+type = custom/script
+exec = if [ "$(pactl get-source-mute @DEFAULT_SOURCE@)" == "Mute: no" ]; then echo "On"; else echo "Muted"; fi
+tail = true
+interval = 1
+format =  <label>
+click-left = pactl set-source-mute @DEFAULT_SOURCE@ toggle && notify-send -i /usr/share/icons/Papirus/48x48/devices/audio-input-microphone.svg -u critical "Audio" "Mic Mute toggled"
+

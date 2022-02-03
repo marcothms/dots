@@ -138,4 +138,5 @@ except Exception as e:
     if isinstance(e, dbus.exceptions.DBusException):
         print('')
     else:
-        print(e)
+        # i dont want long exceptions strings in my bar
+        print('')

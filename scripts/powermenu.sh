@@ -2,14 +2,15 @@
 
 
 dir="$HOME/.config/rofi"
-rofi_command="rofi -theme $dir/powermenu.rasi"
+rofi_command="rofi"
+lock_command="xlock -mode maze -font variable -messagefont variable -fpsfont variable -planfont variable"
 
 # Options
-shutdown="Shutdown"
-reboot="Reboot"
-lock="Lock"
-suspend="Suspend"
-logout="Logout"
+shutdown="shutdown"
+reboot="reboot"
+lock="lock"
+suspend="suspend"
+logout="logout"
 
 # Confirmation
 confirm_exit() {
@@ -26,9 +27,9 @@ msg() {
 }
 
 # Variable passed to rofi
-options="$shutdown\n$reboot\n$lock\n$suspend\n$logout"
+options="$lock\n$shutdown\n$reboot\n$suspend\n$logout"
 
-chosen="$(echo -e "$options" | $rofi_command -p "" -dmenu -selected-row 2)"
+chosen="$(echo -e "$options" | $rofi_command -p "🔌 Powermenu" -dmenu)"
 case $chosen in
     $shutdown)
 	ans=$(confirm_exit &)
@@ -51,7 +52,7 @@ case $chosen in
         fi
         ;;
     $lock)
-	xlock -mode maze
+	$lock_command
         ;;
     $suspend)
 	ans=$(confirm_exit &)

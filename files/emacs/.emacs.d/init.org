@@ -254,14 +254,16 @@ I mainly use these fonts:
 
 Use non-monospace font for org-mode!
 Blocks will still be mono-spaced.
-#+begin_src emacs-lisp :tangle yes
+*CURRENTLY DISABLED*
+#+begin_src emacs-lisp :tangle no
 (set-face-attribute 'variable-pitch nil :family "Roboto")
 (set-face-attribute 'fixed-pitch nil :family "JuliaMono")
 
 (use-package mixed-pitch
   :straight t
   :hook
-  (text-mode . mixed-pitch-mode))
+  (text-mode . mixed-pitch-mode)
+  (org-agenda-mode . mixed-pitch-mode))
 #+end_src
 
 *** Bars
@@ -342,7 +344,8 @@ TODO: Disable this in c/c++ mode.
 (use-package rainbow-mode
   :straight t
   :hook
-  (prog-mode . rainbow-mode))
+  (prog-mode . rainbow-mode)
+  (org-mode . rainbow-mode))
 #+end_src
 
 *** Whitespaces
@@ -368,6 +371,18 @@ I only need 80 columns on my 4K display.
   :hook
   (prog-mode . fci-mode)
   (markdown-mode . fci-mode))
+#+end_src
+
+*** Highlight indentation
+Show me indentation markers.
+#+begin_src emacs-lisp :tangle yes
+(use-package highlight-indent-guides
+  :straight t
+  :config
+  (setq highlight-indent-guides-method 'character
+        highlight-indent-guides-responsive 'top)
+  :hook
+  (prog-mode . highlight-indent-guides-mode))
 #+end_src
 
 *** File bar
@@ -477,16 +492,12 @@ Bootstrap =org-mode= together with keybindings.
 
 *** Misc
 #+begin_src emacs-lisp :tangle yes
-(setq ;; org-hidden-keywords '(title)           ;; hide title
-      org-startup-with-inline-images t       ;; start with inline images enabled
+(setq org-startup-with-inline-images t       ;; start with inline images enabled
       org-image-actual-width nil             ;; rescale inline images
       org-directory "~/org"                  ;; set org file directory
-      org-agenda-files (quote ("~/org"))     ;; indexed files by org agenda
       org-edit-src-content-indentation 0     ;; don't indent stupidly in org-edit-src-code
       org-log-done nil                       ;; just mark DONE without a time stamp
       org-log-repeat nil                     ;; don't set a time after marking sth DONE
-      org-agenda-start-on-weekday nil        ;; my week starts on a monday
-      calendar-week-start-day 1              ;; my week starts on a monday
 )
 #+end_src
 
@@ -522,6 +533,40 @@ Also be *careful*  with =haskell= recursion, it can lead to system crashes (at l
 
 (use-package ob-sagemath
   :straight t)
+#+end_src
+
+*** org-agenda
+The default =agenda= looks a bit messy.
+#+begin_src emacs-lisp :tangle yes
+(use-package org-super-agenda
+  :straight t
+  :after org
+  :config
+  (setq org-super-agenda-groups '((:auto-outline-path t)))
+  (org-super-agenda-mode))
+#+end_src
+
+Setup some stuff for =agenda=
+#+begin_src emacs-lisp :tangle yes
+(setq org-agenda-files (quote ("~/org"))     ;; indexed files by org agenda
+      org-agenda-start-on-weekday nil        ;; my week starts on a monday
+      calendar-week-start-day 1              ;; my week starts on a monday
+)
+#+end_src
+
+I need my =hjkl= :(
+#+begin_src emacs-lisp :tangle yes
+(define-key org-agenda-mode-map (kbd "h") 'org-agenda-earlier)
+(define-key org-agenda-mode-map (kbd "l") 'org-agenda-later)
+(define-key org-agenda-mode-map (kbd "j") 'org-agenda-next-line)
+(define-key org-agenda-mode-map (kbd "k") 'org-agenda-previous-line)
+(define-key org-agenda-mode-map (kbd "t") 'org-agenda-goto-today)
+
+(define-key org-super-agenda-header-map (kbd "h") 'org-agenda-earlier)
+(define-key org-super-agenda-header-map (kbd "l") 'org-agenda-later)
+(define-key org-super-agenda-header-map (kbd "j") 'org-agenda-next-line)
+(define-key org-super-agenda-header-map (kbd "k") 'org-agenda-previous-line)
+(define-key org-super-agenda-header-map (kbd "t") 'org-agenda-goto-today)
 #+end_src
 
 *** LaTeX Export
@@ -576,7 +621,6 @@ Use graphivz to draw graphs.
 *** Fonts and fancy
 Some custom fonts stuff.
 #+begin_src emacs-lisp :tangle yes
-(set-face-attribute 'org-document-title nil :family "Roboto" :weight 'bold :inherit 'default :height 250)
 (setq org-ellipsis " ⮷"                    ;; folding icon
       ;; org-hide-emphasis-markers t          ;; hide markers such as *, =, _
 )
@@ -591,17 +635,8 @@ Use =(setq inhibit-compacting-font-caches t)=, if performance is low.
   :hook
   (org-mode . org-superstar-mode)
   :config
-  (setq org-superstar-remove-leading-stars t))
-#+end_src
-
-Also the default =agenda= looks a bit messy.
-#+begin_src emacs-lisp :tangle yes
-(use-package org-super-agenda
-  :straight t
-  :after org
-  :config
-  (setq org-super-agenda-groups '((:auto-group t)))
-  (org-super-agenda-mode))
+  (setq org-superstar-remove-leading-stars t
+        org-superstar-headline-bullets-list '(9673 10061 10040)))
 #+end_src
 
 
@@ -751,8 +786,7 @@ We also need the actual snippets.
   (setq lsp-keymap-prefix "C-l")
   :config
   (lsp-enable-which-key-integration t)
-  (setq lsp-rust-server 'rust-analyzer
-        lsp-auto-guess-root t
+  (setq lsp-auto-guess-root t
         lsp-idle-delay 1
         lsp-enable-file-watchers nil)
   :hook
@@ -790,6 +824,7 @@ In order for =lsp-mode= to work, it needs to compile code on the =fly=.
 
 *** language servers
 **** rust
+Basic =rust-mode= with some fancy characters.
 #+begin_src emacs-lisp :tangle yes
 (use-package rust-mode
   :straight t
@@ -801,6 +836,13 @@ In order for =lsp-mode= to work, it needs to compile code on the =fly=.
                  (push '("!=" . ?≠) prettify-symbols-alist)
                  (push '("<=" . ?≤) prettify-symbols-alist)
                  (push '(">=" . ?≥) prettify-symbols-alist))))
+#+end_src
+
+I want to use =rust-analyzer= and see inlay type hints for variables.
+#+begin_src emacs-lisp :tangle yes
+(setq lsp-rust-server 'rust-analyzer
+      lsp-rust-analyzer-server-display-inlay-hints t)
+(add-hook 'rust-mode 'lsp-rust-analyzer-inlay-hints-mode)
 #+end_src
 
 **** haskell

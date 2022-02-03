@@ -1,0 +1,29 @@
+configuration {
+  filebrowser {
+    directory: "/home/marc";
+    directories-first: true;
+  }
+  show-icons: true;
+  display-drun: "🔎 Launch";
+  display-filebrowser: "💾 Files";
+  display-window: "🖥️ Switch application";
+  location: 0;
+  terminal: "alacritty";
+  sidebar-mode: false;
+  window-format: " {c}";
+}
+
+@theme "Arc"
+
+* {
+  font: "Roboto 20";
+}
+
+element.selected.active {
+  background-color: #A6CC70;
+  text-color: rgba ( 255, 255, 255, 100 % );
+}
+element.selected.normal {
+  background-color: #A6CC70;
+  text-color: rgba ( 255, 255, 255, 100 % );
+}
