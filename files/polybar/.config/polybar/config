@@ -42,7 +42,7 @@ module-margin = 3
 
 modules-left = logo i3 polywins
 modules-center =
-modules-right = spotify backlight pulseaudio mic conservation battery date
+modules-right = spotify backlight conservation battery date
 
 [module/i3]
 strip-wsnumbers = true

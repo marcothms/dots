@@ -130,13 +130,12 @@ set $blue   "#55b4d4"
 set $yellow "#e7c547"
 
 # class                 border  backgr. text    indicator child_border
-client.focused          $black $black   $white  $black    $black
+client.focused          $black $black   $white  $grey     $grey
 client.focused_inactive $grey  $grey    $fg     $grey     $grey
 client.unfocused        $grey  $grey    $fg     $grey     $grey
 client.urgent           $red   $red     $white  $red      $grey
 
 # floating on start
-for_window [class="Pavucontrol"] floating enable
 for_window [title="Event Tester"] floating enable
 for_window [class="flameshot"] floating enable
 
@@ -159,6 +158,7 @@ exec_always --no-startup-id ~/dots/scripts/reload_desktop.sh
 
 # startup
 exec --no-startup-id nm-applet
+exec --no-startup-id pasystray
 exec --no-startup-id keepassxc
 exec --no-startup-id seafile-applet
 exec --no-startup-id fcitx5

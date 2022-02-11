@@ -308,7 +308,9 @@ Setting my beloved =ayu= light theme with some icons.
                                 :fork (:host github :repo "CramMK/emacs-doom-themes"))
   :config
   (setq doom-themes-enable-bold t
-        doom-themes-enable-italic t)
+        doom-themes-enable-italic t
+        doom-ayu-light-brighter-comments t
+        doom-ayu-light-padded-modeline t)
   (load-theme 'doom-ayu-light t)
   (doom-themes-org-config)
   (doom-themes-treemacs-config))
@@ -332,7 +334,6 @@ Use =doom-modeline= as a bar... together with icons and nyan cat!
   :init
   (nyan-mode)
   (nyan-start-animation)
-  ;; (nyan-toggle-wavy-trail)
   :config
   (setq nyan-cat-face-number 4))
 #+end_src
@@ -478,6 +479,7 @@ Bootstrap =org-mode= together with keybindings.
   (vim-leader-def 'normal 'global
     "oci" 'org-clock-in
     "oco" 'org-clock-out
+    "ocd" 'org-clock-display
     "oa"  'org-agenda
     "oca" 'org-capture
     "oes" 'org-edit-src-code

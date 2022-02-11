@@ -7,21 +7,15 @@
 #
 # ~ M. Thomas
 
-import:
-  - ~/.alacritty_local.yml
-  - ~/.config/alacritty/themes/ayu_light.yml
-
 env:
   TERM: alacritty
 
 window:
-  title: Alacritty
+  title: alacritty
   dynamic_title: true
-
   padding:
     x: 20
     y: 20
-
   dynamic_padding: false
 
 font:
@@ -29,6 +23,31 @@ font:
   normal:
     family: JuliaMono
     style: Regular
+
+colors:
+  primary:
+    background: '#ffffff'
+    foreground: '#5c6773'
+
+  normal:
+    black: '#000000'
+    red: '#FF3333'
+    green: '#A6CC70'
+    yellow: '#e7c547'
+    blue: '#55b4d4'
+    magenta: '#A37ACC'
+    cyan: '#95E6CB'
+    white: '#C7C7C7'
+
+  bright:
+    black: '#686868'
+    red: '#F27983'
+    green: '#BAE67E'
+    yellow: '#FFCC66'
+    blue: '#5CCFE6'
+    magenta: '#D4BFFF'
+    cyan: '#95E6CB'
+    white: '#FFFFFF'
 
 background_opacity: 1
 

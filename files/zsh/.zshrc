@@ -54,6 +54,9 @@ alias rm='rm -i' # Ask before removal
 alias cp='cp -i' # Ask before removal
 alias mv='mv -i' # Ask before removal
 
+alias palmreject='xinput set-prop 12 340 1'
+alias palmaccept='xinput set-prop 12 340 0'
+
 alias nssh='SSH_AUTH_SOCK= ssh'
 alias cpu='watch -n.1 "grep \"^[c]pu MHz\" /proc/cpuinfo"'
 
