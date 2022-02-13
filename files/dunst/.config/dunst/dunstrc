@@ -6,14 +6,14 @@
     follow = mouse
     width = 400
     origin = "top-center"
-    offset = "0x45"
+    offset = "0x55"
     indicate_hidden = yes
     shrink = no
     separator_height = 1
     transparency = 0
     padding = 10
     horizontal_padding = 10
-    frame_width = 0
+    frame_width = 2
     frame_color = "#eeeeee"
     separator_color = frame
     sort = yes
@@ -49,7 +49,7 @@
 # Misc
 
     always_run_script = true
-    corner_radius = 0
+    corner_radius = 10
     force_xinerama = false
     mouse_left_click = do_action
     mouse_middle_click = close_all

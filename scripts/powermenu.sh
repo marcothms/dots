@@ -21,11 +21,6 @@ confirm_exit() {
 	     -theme $dir/confirm.rasi
 }
 
-# Message
-msg() {
-	rofi -theme "$dir/message.rasi" -e "Available Options  -  yes / y / no / n"
-}
-
 # Variable passed to rofi
 options="$lock\n$shutdown\n$reboot\n$suspend\n$logout"
 
@@ -37,8 +32,6 @@ case $chosen in
 		systemctl poweroff
 	elif [[ $ans == "no" || $ans == "NO" || $ans == "n" || $ans == "N" ]]; then
 		exit 0
-	else
-		msg
         fi
         ;;
     $reboot)
@@ -47,8 +40,6 @@ case $chosen in
 		systemctl reboot
 	elif [[ $ans == "no" || $ans == "NO" || $ans == "n" || $ans == "N" ]]; then
 		exit 0
-	else
-		msg
         fi
         ;;
     $lock)
@@ -60,8 +51,6 @@ case $chosen in
 		systemctl suspend
 	elif [[ $ans == "no" || $ans == "NO" || $ans == "n" || $ans == "N" ]]; then
 		exit 0
-        else
-		msg
         fi
         ;;
     $logout)
@@ -70,8 +59,6 @@ case $chosen in
 		i3-msg exit
 	elif [[ $ans == "no" || $ans == "NO" || $ans == "n" || $ans == "N" ]]; then
 		exit 0
-        else
-		msg
         fi
         ;;
 esac

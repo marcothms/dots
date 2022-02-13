@@ -32,7 +32,6 @@ It will link all dotfiles to their correct place.
 + polybar
 + rofi
 + xlock
-+ picom (no settings, just for compositing)
 ** main programs
 + discord
 + spotify

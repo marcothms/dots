@@ -1,6 +1,6 @@
 [colors]
 white = #ffffff
-black = #ee222222
+black = #222222
 green = #a6cc70
 red = #ff3333
 yellow = #e7c547
@@ -19,7 +19,7 @@ scroll-down = i3wm-wsnext
 fixed-center = true
 
 width = 100%
-height = 40
+height = 50px
 
 dpi = ${xrdb:Xft.dpi:-1}
 

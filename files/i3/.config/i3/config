@@ -146,9 +146,8 @@ for_window [class="TelegramDesktop"] move to workspace $ws3
 for_window [class="Spotify"] move to workspace $ws4
 for_window [class="Thunderbird"] move to workspace $ws9
 
-# border
+# borders
 smart_borders on
-smart_gaps on
 
 # gaps
 gaps inner 0
@@ -162,6 +161,5 @@ exec --no-startup-id pasystray
 exec --no-startup-id keepassxc
 exec --no-startup-id seafile-applet
 exec --no-startup-id fcitx5
-exec --no-startup-id picom
 exec --no-startup-id libinput-gestures-setup start
 exec --no-startup-id redshift-gtk -l 48.13333:11.56667

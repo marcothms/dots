@@ -300,6 +300,13 @@ Show me relative line numbers, when in =normal= mode and absolute ones, when in 
 (add-hook 'evil-insert-state-exit-hook #'noct:relative)
 #+end_src
 
+Show me both line and column counter in my bar.
+#+begin_src emacs-lisp :tangle yes
+(line-number-mode)
+(column-number-mode)
+#+end_src
+
+
 *** Theme
 Setting my beloved =ayu= light theme with some icons.
 #+begin_src emacs-lisp :tangle yes

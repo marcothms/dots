@@ -33,6 +33,6 @@ export SDL_IM_MODULE='ibus'
 export XMODIFIERS='@im=ibus'
 export WINIT_UNIX_BACKEND=x11
 
-# ssh agent
-eval $(systemctl --user show-environment | grep SSH_AUTH_SOCK)
-export SSH_AUTH_SOCK
+# ssh agent - requires gnome keyring
+# eval $(systemctl --user show-environment | grep SSH_AUTH_SOCK)
+# export SSH_AUTH_SOCK
