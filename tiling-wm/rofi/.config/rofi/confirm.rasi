@@ -1,0 +1,6 @@
+window {
+  width: 250;
+  padding: 1%;
+  location:               center;
+  y-offset:               -2em;
+}

@@ -18,16 +18,15 @@ endif
 
 call plug#begin()
 
-Plug 'ayu-theme/ayu-vim' " color scheme
+Plug 'altercation/vim-colors-solarized' " color scheme
 Plug 'tpope/vim-sleuth' " heuristic file indendation
 Plug 'jiangmiao/auto-pairs' " pair completion
 
 call plug#end()
 " ============================== Colors
 syntax on
-let ayucolor="light"
-colorscheme ayu
-set termguicolors
+set background=light
+colorscheme solarized
 hi Normal guibg=NONE ctermbg=NONE
 
 " ============================== General

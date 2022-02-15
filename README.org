@@ -2,55 +2,19 @@
 
 dots for my lenovo yoga slim 7i pro 「itomori」, managed with =gnu stow=.
 
-Files can be =stow='ed and un'=stow='-ed with =stow.sh=.
+Files can be =stow='ed and un'=stow='ed with =stow.sh=.
 It will link all dotfiles to their correct place.
 
-[[./screen.png]]
+* dotfiles
+All files in =files/= are currently being used and =stow='ed.
+Configuration for my =i3= are found in =tiling-wm=.
 
-* colors
-** main
-+ fg: #5c6773
-+ bg: #ffffff
-** colorful
-+ red: #FF3333
-+ green: #A6CC70
-+ yellow: #e7c547
-+ blue: #55b4d4
-+ magenta: #A37ACC
-+ cyan: #95E6CB
-** custom ui colors
-+ dark bg alt: #222222
-+ light bg alt: #eeeeee
+* fonts
+Should be installed manually or via system package manager.
+Fallsback are provided in =fallback-fonts/=
++ JuliaMono (Regular, Italic)
++ Noto Sans CJK JP
++ Noto Color Emoji
 
-* an incomplete list of dependencies:
-** main environment
-+ emacs 💜
-+ i3-gaps
-+ alacritty
-+ zsh
-+ dunst
-+ polybar
-+ rofi
-+ xlock
-** main programs
-+ discord
-+ spotify
-+ seafile-applet
-+ keepassxc
-+ okular
-** control stuff
-+ [[https://github.com/bulletmark/libinput-gestures][libinput-gestures]]
-+ pactl
-+ playerctl
-+ light
-+ feh
-+ nm-applet
-+ xdotool
-+ wmctrl
-+ redshift-gtk
-** special stuff
+* legacy packages
 + fcitx5 (=fcitx5 fcitx5-configtool fcitx5-gtk fcitx5-mozc fcitx5-qt=)
-+ hunspell-de (=hunspell-en= should be installed)
-** GTK theming
-+ papirus icons
-+ materia gtk theme

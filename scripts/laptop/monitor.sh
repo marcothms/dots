@@ -24,4 +24,4 @@ if [ "$(hostname)" = "itomori" ]; then
 fi
 
 # reload wallpaper etc
-$HOME/dots/scripts/reload_desktop.sh
+$HOME/.dots/scripts/reload_desktop.sh

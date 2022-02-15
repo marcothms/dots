@@ -1,0 +1,102 @@
+#       __    _                 _ _   _
+#      / /_ _| | __ _  ___ _ __(_) |_| |_ _   _
+#     / / _` | |/ _` |/ __| '__| | __| __| | | |
+#  _ / / (_| | | (_| | (__| |  | | |_| |_| |_| |
+# (_)_/ \__,_|_|\__,_|\___|_|  |_|\__|\__|\__, |
+#                                         |___/
+#
+# ~ M. Thomas
+
+env:
+  TERM: alacritty
+
+window:
+  title: alacritty
+  dynamic_title: true
+  padding:
+    x: 20
+    y: 20
+  dynamic_padding: false
+
+font:
+  size: 10
+  normal:
+    family: JuliaMono
+    style: Regular
+
+# # Ayu light
+# colors:
+#   primary:
+#     background: '#ffffff'
+#     foreground: '#5c6773'
+#
+#   normal:
+#     black: '#000000'
+#     red: '#FF3333'
+#     green: '#A6CC70'
+#     yellow: '#e7c547'
+#     blue: '#55b4d4'
+#     magenta: '#A37ACC'
+#     cyan: '#95E6CB'
+#     white: '#C7C7C7'
+#
+#   bright:
+#     black: '#686868'
+#     red: '#F27983'
+#     green: '#BAE67E'
+#     yellow: '#FFCC66'
+#     blue: '#5CCFE6'
+#     magenta: '#D4BFFF'
+#     cyan: '#95E6CB'
+#     white: '#FFFFFF'
+
+colors:
+  primary:
+    background: '0xfdf6e3'
+    foreground: '0x586e75'
+
+  normal:
+    black:   '0x073642'
+    red:     '0xdc322f'
+    green:   '0x859900'
+    yellow:  '0xb58900'
+    blue:    '0x268bd2'
+    magenta: '0xd33682'
+    cyan:    '0x2aa198'
+    white:   '0xeee8d5'
+
+  bright:
+    black:   '0x002b36'
+    red:     '0xcb4b16'
+    green:   '0x586e75'
+    yellow:  '0x657b83'
+    blue:    '0x839496'
+    magenta: '0x6c71c4'
+    cyan:    '0x93a1a1'
+    white:   '0xfdf6e3'
+
+background_opacity: 1
+
+selection:
+  save_to_clipboard: true
+
+cursor:
+  # Values for `style`:
+  #   - ▇ Block
+  #   - _ Underline
+  #   - | Beam
+  style: Block
+
+  unfocused_hollow: true
+
+live_config_reload: true
+
+mouse:
+  hide_when_typing: true
+
+key_bindings:
+  - { key: V,        mods: Control|Shift, action: Paste            }
+  - { key: C,        mods: Control|Shift, action: Copy             }
+  - { key: Key0,     mods: Control,       action: ResetFontSize    }
+  - { key: Equals,   mods: Control,       action: IncreaseFontSize }
+  - { key: Minus,    mods: Control,       action: DecreaseFontSize }

@@ -12,9 +12,9 @@ to =~/.emacs.d=).
 This file replaces itself with the actual configuration at first run.
 #+BEGIN_SRC emacs-lisp :tangle no
 (require 'org)
-(find-file (concat (getenv "HOME") "/dots/files/emacs/.emacs.d/init.org"))
+(find-file (concat (getenv "HOME") "/.dots/files/emacs/.emacs.d/init.org"))
 (org-babel-tangle)
-(load-file (concat (getenv "HOME") "/dots/files/emacs/.emacs.d/init.el"))
+(load-file (concat (getenv "HOME") "/.dots/files/emacs/.emacs.d/init.el"))
 #+END_SRC
 
 It tangles the org-file, so that this file is overwritten with the actual
@@ -53,7 +53,7 @@ the =after-save-hook= ensuring to always tangle and byte-compile the
 #+BEGIN_SRC emacs-lisp :tangle yes
 (defun tangle-init ()
   (when (equal (buffer-file-name)
-               (expand-file-name (concat (getenv "HOME") "/dots/files/emacs/.emacs.d/init.org")))
+               (expand-file-name (concat (getenv "HOME") "/.dots/files/emacs/.emacs.d/init.org")))
     ;; Avoid running hooks when tangling.
     (let ((prog-mode-hook nil))
       (org-babel-tangle))))
@@ -247,7 +247,7 @@ I mainly use these fonts:
 + Noto Emoji to show emojis in emacs
 + Noto JP for japanese characters
 #+begin_src emacs-lisp :tangle yes
-(set-face-attribute 'default nil :font "JuliaMono" :height 110)
+(set-face-attribute 'default nil :font "JuliaMono" :height 80)
 (set-fontset-font t 'unicode "Noto Color Emoji" nil 'prepend)
 (set-fontset-font t 'unicode "Noto Sans Mono CJK JP" nil 'append)
 #+end_src
@@ -308,7 +308,7 @@ Show me both line and column counter in my bar.
 
 
 *** Theme
-Setting my beloved =ayu= light theme with some icons.
+Setting my beloved light theme with some icons.
 #+begin_src emacs-lisp :tangle yes
 (use-package doom-themes
   :straight (doom-themes :type git :host github :repo "hlissner/emacs-doom-themes"
@@ -316,9 +316,8 @@ Setting my beloved =ayu= light theme with some icons.
   :config
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t
-        doom-ayu-light-brighter-comments t
-        doom-ayu-light-padded-modeline t)
-  (load-theme 'doom-ayu-light t)
+        doom-solarized-light-padded-modeline t)
+  (load-theme 'doom-solarized-light t)
   (doom-themes-org-config)
   (doom-themes-treemacs-config))
 #+end_src
@@ -331,7 +330,8 @@ Use =doom-modeline= as a bar... together with icons and nyan cat!
   :config
   (doom-modeline-mode 1)
   (setq doom-modeline-indent-info t
-        doom-modeline-buffer-file-name-style 'file-name))
+        doom-modeline-buffer-file-name-style 'file-name
+        doom-modeline-height 10))
 
 (use-package all-the-icons
   :straight t)
@@ -341,6 +341,7 @@ Use =doom-modeline= as a bar... together with icons and nyan cat!
   :init
   (nyan-mode)
   (nyan-start-animation)
+  (nyan-toggle-wavy-trail)
   :config
   (setq nyan-cat-face-number 4))
 #+end_src
@@ -410,7 +411,7 @@ Sometimes I want to see all of my files.
         treemacs-recenter-after-tag-follow t
         treemacs-tag-follow-delay 1)
   (treemacs-follow-mode t)
-  (treemacs-load-theme "Default")
+  (treemacs-load-theme "doom-colors")
   (dolist (face '(treemacs-root-face
                   treemacs-git-unmodified-face
                   treemacs-git-modified-face

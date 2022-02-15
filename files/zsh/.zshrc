@@ -23,22 +23,22 @@ GIT="%{$fg[red]%}\$vcs_info_msg_0_"
     NAME="%B%{$fg[yellow]%}%m%b "
 # fi
 
-case $TERM in
-  (*xterm* | rxvt | alacritty)
+ case $TERM in
+   (*xterm* | rxvt | alacritty)
 
-    # Write some info to terminal title.
-    # This is seen when the shell prompts for input.
-    function precmd {
-      print -Pn "\e]0;%(1j,%j job%(2j|s|) - ,)%~ - $TERM\a"
-    }
-    # Write command and arguments to terminal title.
-    # This is seen while the shell waits for a command to complete.
-    function preexec {
-      printf "\033]0;%s\a" "$1 - $TERM"
-    }
+     # Write some info to terminal title.
+     # This is seen when the shell prompts for input.
+     function precmd {
+       print -Pn "\e]0;%(1j,%j job%(2j|s|) - ,)%~\a"
+     }
+     # Write command and arguments to terminal title.
+     # This is seen while the shell waits for a command to complete.
+     function preexec {
+       printf "\033]0;%s\a" "$1"
+     }
 
-  ;;
-esac
+   ;;
+ esac
 
 export PROMPT="${NAME}${DIR}${GIT} ${ICON}%{$reset_color%} "
 zstyle ':vcs_info:git:*' formats '|%b '
@@ -122,10 +122,10 @@ export FZF_DEFAULT_OPTS='
        --layout=reverse
        --bind=tab:down
        --bind=btab:up
-       --color=fg:#575f66,bg:#ffffff,hl:#a6cc70
-       --color=fg+:#575f66,bg+:#ffffff,hl+:#a6cc70
-       --color=info:#575f66,prompt:#575f66,pointer:#575f66
-       --color=marker:#575f66,spinner:#575f66,header:#575f66'
+       --color=fg:#657B83,bg:#FDF6E3,hl:#859900
+       --color=fg+:#657B83,bg+:#FDF6E3,hl+:#859900
+       --color=info:#657B83,prompt:#657B83,pointer:#657B83
+       --color=marker:#657B83,spinner:#657B83,header:#657B83'
 
 ## fzf Bindings in zsh (C-r and C-t)
 if [[ -x $(which fzf 2> /dev/null) ]]

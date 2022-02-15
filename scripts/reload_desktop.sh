@@ -6,7 +6,7 @@ systemctl restart --user dunst
 # bar
 killall -q polybar
 while pgrep -u $UID -x polybar > /dev/null; do sleep 1; done
-$HOME/dots/scripts/polybar/polybar.sh
+$HOME/.dots/scripts/polybar/polybar.sh
 
 # wallpaper
 feh --bg-fill $HOME/data/Seafile/images/wallpaper/wallpaper.png

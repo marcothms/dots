@@ -1,0 +1,162 @@
+set $mod Mod4
+font pango:Roboto 10
+floating_modifier $mod
+
+# bindings idea: mod + KEY = open sth mod + shift = move sth mod + ctrl = manipulate display
+
+# applications
+bindsym $mod+Return exec --no-startup-id alacritty
+bindsym $mod+Shift+s exec --no-startup-id flameshot gui
+bindsym XF86Calculator exec --no-startup-id emacs
+
+# rofi
+bindsym $mod+d exec --no-startup-id rofi -show drun
+bindsym $mod+s exec --no-startup-id rofi -show window  # 's'witch window
+bindsym $mod+a exec --no-startup-id rofi -show filebrowser
+
+# audio and brightness
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle; exec --no-startup-id notify-send -i /usr/share/icons/Papirus/48x48/devices/audio-input-microphone.svg -u critical "Audio" "Mic Mute toggled"
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioPlay exec --no-startup-id playerctl -p spotify play-pause
+bindsym XF86AudioNext exec --no-startup-id playerctl -p spotify next
+bindsym XF86AudioPrev exec --no-startup-id playerctl -p spotify previous
+bindsym XF86MonBrightnessUp exec --no-startup-id light -A 5
+bindsym XF86MonBrightnessDown exec --no-startup-id light -U 5
+
+# notifications
+bindsym Ctrl+space exec --no-startup-id dunstctl close
+bindsym Ctrl+Shift+space exec --no-startup-id dunstctl history-pop
+
+# kill focused window
+bindsym $mod+Shift+BackSpace kill
+
+# lock etc
+bindsym $mod+Control+BackSpace exec --no-startup-id ~/dots/scripts/powermenu.sh
+
+# change monitor layout
+bindsym $mod+Control+e exec --no-startup-id ~/dots/scripts/laptop/monitor.sh external
+bindsym $mod+Control+s exec --no-startup-id ~/dots/scripts/laptop/monitor.sh single
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# split in horizontal orientation
+# bindsym $mod+v split h
+
+# split in vertical orientation
+# bindsym $mod+s split v
+
+# enable stacked
+# bindsym $mod+a layout stacking
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# workspace layout
+workspace_layout stacked
+
+# workspaces
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# switch to workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+
+bindsym $mod+Left workspace prev
+bindsym $mod+Right workspace next
+
+bindsym $mod+Ctrl+h move workspace to output left
+bindsym $mod+Ctrl+l move workspace to output right
+
+# reload the configuration file
+bindsym $mod+Shift+c reload; exec --no-startup-id notify-send 'i3wm' 'Reloaded i3 configuration'
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+# titlebar
+title_align center
+
+# colors
+set $white  "#ffffff"
+set $fg     "#5c6773"
+set $black  "#222222"
+set $grey   "#eeeeee"
+set $red    "#ff3333"
+
+# class                 border  backgr. text    indicator child_border
+client.focused          $black $black   $white  $grey     $grey
+client.focused_inactive $grey  $grey    $fg     $grey     $grey
+client.unfocused        $grey  $grey    $fg     $grey     $grey
+client.urgent           $red   $red     $white  $red      $grey
+
+# floating on start
+for_window [title="Event Tester"] floating enable
+for_window [class="flameshot"] floating enable
+
+# auto assign
+for_window [class="Firefox"] move to workspace $ws2
+for_window [class="discord"] move to workspace $ws3
+for_window [class="TelegramDesktop"] move to workspace $ws3
+for_window [class="Spotify"] move to workspace $ws4
+for_window [class="Thunderbird"] move to workspace $ws9
+
+# borders
+smart_borders on
+
+# gaps
+gaps inner 0
+
+# desktop (wallpaper, bar, ...)
+exec_always --no-startup-id ~/dots/scripts/reload_desktop.sh
+
+# startup
+exec --no-startup-id nm-applet
+exec --no-startup-id pasystray
+exec --no-startup-id keepassxc
+exec --no-startup-id seafile-applet
+exec --no-startup-id fcitx5
+exec --no-startup-id libinput-gestures-setup start
+exec --no-startup-id redshift-gtk -l 48.13333:11.56667
