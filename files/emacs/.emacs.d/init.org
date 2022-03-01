@@ -305,7 +305,6 @@ Show me both line and column counter in my bar.
 (column-number-mode)
 #+end_src
 
-
 *** Theme
 Setting my beloved light theme with some icons.
 #+begin_src emacs-lisp :tangle yes
@@ -315,7 +314,7 @@ Setting my beloved light theme with some icons.
   :config
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t
-        doom-solarized-light-padded-modeline t)
+        doom-solarized-light-padded-modeline nil)
   (load-theme 'doom-solarized-light t)
   (doom-themes-org-config)
   (doom-themes-treemacs-config))
@@ -330,7 +329,7 @@ Use =doom-modeline= as a bar... together with icons and nyan cat!
   (doom-modeline-mode 1)
   (setq doom-modeline-indent-info t
         doom-modeline-buffer-file-name-style 'file-name
-        doom-modeline-height 10))
+        doom-modeline-height 1))
 
 (use-package all-the-icons
   :straight t)
@@ -338,9 +337,8 @@ Use =doom-modeline= as a bar... together with icons and nyan cat!
 (use-package nyan-mode
   :straight t
   :init
-  (nyan-mode)
-  (nyan-start-animation)
-  (nyan-toggle-wavy-trail)
+  ;; (nyan-mode)
+  ;; (nyan-start-animation)
   :config
   (setq nyan-cat-face-number 4))
 #+end_src
@@ -797,7 +795,8 @@ We also need the actual snippets.
   (lsp-enable-which-key-integration t)
   (setq lsp-auto-guess-root t
         lsp-idle-delay 1
-        lsp-enable-file-watchers nil)
+        lsp-enable-file-watchers nil
+        lsp-headerline-breadcrumb-icons-enable nil)
   :hook
   (rust-mode . lsp)
   (python-mode . lsp)
