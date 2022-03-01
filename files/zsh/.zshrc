@@ -20,28 +20,25 @@ DIR="%{$fg[blue]%}%~"
 GIT="%{$fg[red]%}\$vcs_info_msg_0_"
 
 # if [[ -n "$SSH_CONNECTION" ]]; then
-    NAME="%B%{$fg[yellow]%}%m%b "
+    HOSTNAME="%B%{$fg[yellow]%}%m%b "
 # fi
 
- case $TERM in
-   (*xterm* | rxvt | alacritty)
+export PROMPT="${HOSTNAME}${DIR}${GIT} ${ICON}%{$reset_color%} "
+zstyle ':vcs_info:git:*' formats ' %b '
 
-     # Write some info to terminal title.
-     # This is seen when the shell prompts for input.
-     function precmd {
-       print -Pn "\e]0;%(1j,%j job%(2j|s|) - ,)%~\a"
-     }
-     # Write command and arguments to terminal title.
-     # This is seen while the shell waits for a command to complete.
-     function preexec {
-       printf "\033]0;%s\a" "$1"
-     }
+case $TERM in
+  (*xterm* | rxvt | alacritty)
 
-   ;;
- esac
-
-export PROMPT="${NAME}${DIR}${GIT} ${ICON}%{$reset_color%} "
-zstyle ':vcs_info:git:*' formats '|%b '
+    # This is seen when the shell prompts for input.
+    function precmd {
+      print -Pn "\e]0;%m: %(1j,%j job%(2j|s|) - ,)%~\a"
+    }
+    # This is seen while the shell waits for a command to complete.
+    function preexec {
+      printf "\033]0;$(hostname): %s\a" "$1"
+    }
+    ;;
+esac
 
 # ============================== Aliases
 alias c='clear'
@@ -54,8 +51,9 @@ alias rm='rm -i' # Ask before removal
 alias cp='cp -i' # Ask before removal
 alias mv='mv -i' # Ask before removal
 
-alias palmreject='xinput set-prop 19 340 1'
-alias palmaccept='xinput set-prop 19 340 0'
+alias conservation='cat /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode'
+
+alias truecolor='curl -s https://raw.githubusercontent.com/JohnMorales/dotfiles/master/colors/24-bit-color.sh | bash'
 
 alias nssh='SSH_AUTH_SOCK= ssh'
 alias cpu='watch -n.1 "grep \"^[c]pu MHz\" /proc/cpuinfo"'

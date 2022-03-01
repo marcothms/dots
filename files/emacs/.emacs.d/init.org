@@ -254,7 +254,6 @@ I mainly use these fonts:
 
 Use non-monospace font for org-mode!
 Blocks will still be mono-spaced.
-*CURRENTLY DISABLED*
 #+begin_src emacs-lisp :tangle no
 (set-face-attribute 'variable-pitch nil :family "Roboto")
 (set-face-attribute 'fixed-pitch nil :family "JuliaMono")
@@ -366,8 +365,8 @@ Show me those pesky trailing whitespaces... I hate them. Kill them.
 #+end_src
 
 *** 80 column indicator
-I only need 80 columns on my 4K display.
-#+begin_src emacs-lisp :tangle yes
+Show me a nice column indicator line.
+#+begin_src emacs-lisp :tangle no
 (use-package fill-column-indicator
   :straight t
   :defer 1
@@ -424,7 +423,7 @@ Sometimes I want to see all of my files.
                   treemacs-directory-collapsed-face
                   treemacs-file-face
                   treemacs-tags-face))
-    (set-face-attribute face nil :family "JuliaMono" :height 110))
+    (set-face-attribute face nil :family "JuliaMono" :height 80))
   :bind
   (:map global-map
     ("C-x t t" . treemacs)))
@@ -860,7 +859,13 @@ I want to use =rust-analyzer= and see inlay type hints for variables.
 (use-package haskell-mode
   :straight t
   :hook
-  (haskell-mode . interactive-haskell-mode))
+  (haskell-mode . interactive-haskell-mode)
+  (haskell-mode . prettify-symbols-mode)
+  (haskell-mode . (lambda ()
+                    (push '("->" . ?→) prettify-symbols-alist)
+                    (push '("<-" . ?←) prettify-symbols-alist)
+                    (push '("=>" . ?⇒) prettify-symbols-alist)
+                    )))
 
 (use-package lsp-haskell
   :straight t
@@ -886,6 +891,7 @@ It depends on =ptvsd=, which can be installed via =pip=.
 #+begin_src emacs-lisp :tangle yes
 (require 'dap-python)
 #+end_src
+
 *** rust
 TODO: add rust config for debugging
 

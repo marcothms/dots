@@ -9,6 +9,9 @@ It will link all dotfiles to their correct place.
 All files in =files/= are currently being used and =stow='ed.
 Configuration for my =i3= are found in =tiling-wm=.
 
+* theme
+Currently using =Flat Remix= theme
+
 * fonts
 Should be installed manually or via system package manager.
 Fallsback are provided in =fallback-fonts/=
