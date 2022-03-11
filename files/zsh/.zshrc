@@ -20,10 +20,10 @@ DIR="%{$fg[blue]%}%~"
 GIT="%{$fg[red]%}\$vcs_info_msg_0_"
 
 # if [[ -n "$SSH_CONNECTION" ]]; then
-    HOSTNAME="%B%{$fg[yellow]%}%m%b "
+    PC="%B%{$fg[yellow]%}%m%b "
 # fi
 
-export PROMPT="${HOSTNAME}${DIR}${GIT} ${ICON}%{$reset_color%} "
+export PROMPT="${PC}${DIR}${GIT} ${ICON}%{$reset_color%} "
 zstyle ':vcs_info:git:*' formats ' %b '
 
 case $TERM in

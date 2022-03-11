@@ -247,7 +247,7 @@ I mainly use these fonts:
 + Noto Emoji to show emojis in emacs
 + Noto JP for japanese characters
 #+begin_src emacs-lisp :tangle yes
-(set-face-attribute 'default nil :font "JuliaMono" :height 80)
+(set-face-attribute 'default nil :font "JuliaMono" :height 100)
 (set-fontset-font t 'unicode "Noto Color Emoji" nil 'prepend)
 (set-fontset-font t 'unicode "Noto Sans Mono CJK JP" nil 'append)
 #+end_src
@@ -588,7 +588,7 @@ Also fix math =utf8= chars.
         "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f")
       org-latex-inputenc-alist '(("utf8" . "utf8x"))
       org-latex-default-packages-alist (cons '("mathletters" "ucs" nil) org-latex-default-packages-alist)
-      org-format-latex-options (plist-put org-format-latex-options :scale 1.5))
+      org-format-latex-options (plist-put org-format-latex-options :scale 0.5))
 #+end_src
 
 For some reason =\alert= is misinterpreted in LaTeX.

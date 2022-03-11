@@ -2,6 +2,7 @@
 #+LaTeX_CLASS_OPTIONS: [a4paper]
 #+LANGUAGE: de
 #+OPTIONS: toc:t
+#+LATEX_HEADER: \date{\today}
 
 #+LATEX_HEADER: \usepackage{a4wide}
 #+LATEX_HEADER: \usepackage{mathtools}
@@ -18,16 +19,48 @@
 #+LATEX_HEADER: \usepackage{listings}
 #+LATEX_HEADER: \usepackage{color}
 #+LATEX_HEADER: \usepackage{proof}
+#+LATEX_HEADER: \usepackage{xcolor}
 
+%%% break page on new section
+#+LATEX_HEADER: \usepackage{titlesec}
+#+LATEX_HEADER: \newcommand{\sectionbreak}{\clearpage}
+
+%%% remove page numbers (fancyhdr provides its own)
+#+LATEX_HEADER: \usepackage{nopageno}
+
+%%% fancy headers and footers
+#+LATEX_HEADER: \usepackage{fancyhdr}
+#+LATEX_HEADER: \pagestyle{fancy}
+#+LATEX_HEADER: \fancyhf{}
+#+LATEX_HEADER: \renewcommand{\headrulewidth}{1pt}
+#+LATEX_HEADER: \fancyhead[L]{\rightmark}
+#+LATEX_HEADER: \fancyhead[R]{\thepage}
+
+%%% theorem-style environments
+% use `most` if you don't want the boxes
+#+LATEX_HEADER: \usepackage[]{tcolorbox}
+
+% definition
 #+LATEX_HEADER: \theoremstyle{definition}
 #+LATEX_HEADER: \newtheorem{definition}{Definition}[section]
+#+LATEX_HEADER: \tcolorboxenvironment{definition}{blanker,before skip=10pt,after skip=10pt}
+% TODO: color boxes
 
+% theorem
 #+LATEX_HEADER: \newtheorem{theorem}{Satz}[section]
+#+LATEX_HEADER: \tcolorboxenvironment{theorem}{blanker,before skip=10pt,after skip=10pt}
 
+% algorithm
 #+LATEX_HEADER: \theoremstyle{definition}
 #+LATEX_HEADER: \newtheorem{algo}{Algorithmus}[section]
+#+LATEX_HEADER: \tcolorboxenvironment{algo}{blanker,before skip=10pt,after skip=10pt}
 
+% remark
 #+LATEX_HEADER: \theoremstyle{definition}
 #+LATEX_HEADER: \newtheorem*{remark}{Bemerkung}
+#+LATEX_HEADER: \tcolorboxenvironment{remark}{blanker,before skip=10pt,after skip=10pt}
 
-#+LATEX_HEADER: \date{\today}
+%%% code blocks
+#+latex_header: \usepackage{minted}
+#+latex_header: \usemintedstyle{friendly}
+#+LATEX_HEADER: \tcolorboxenvironment{minted}{blanker,before skip=10pt,after skip=10pt}
