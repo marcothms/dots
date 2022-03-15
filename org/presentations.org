@@ -5,6 +5,7 @@
 #+OPTIONS: toc:t H:2
 #+BEAMER_THEME: Singapore
 #+BEAMER_COLOR_THEME: rose
+#+LATEX_HEADER: \date{\today}
 
 #+COLUMNS: %40ITEM %10BEAMER_env(Env) %9BEAMER_envargs(Env Args) %4BEAMER_col(Col) %10BEAMER_extra(Extra)
 
@@ -22,4 +23,3 @@
 #+LATEX_HEADER: \usepackage{color}
 #+LATEX_HEADER: \usepackage{proof}
 
-#+LATEX_HEADER: \date{\today}

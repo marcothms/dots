@@ -17,9 +17,8 @@
 #+LATEX_HEADER: \usepackage{tikz}
 #+LATEX_HEADER: \usepackage{graphicx}
 #+LATEX_HEADER: \usepackage{listings}
-#+LATEX_HEADER: \usepackage{color}
-#+LATEX_HEADER: \usepackage{proof}
 #+LATEX_HEADER: \usepackage{xcolor}
+#+LATEX_HEADER: \usepackage{color}
 
 %%% break page on new section
 #+LATEX_HEADER: \usepackage{titlesec}
@@ -37,6 +36,7 @@
 #+LATEX_HEADER: \fancyhead[R]{\thepage}
 
 %%% theorem-style environments
+#+LATEX_HEADER: \usepackage{proof}
 % use `most` if you don't want the boxes
 #+LATEX_HEADER: \usepackage[]{tcolorbox}
 

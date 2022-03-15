@@ -1,41 +1,24 @@
 #+TITLE:emacs configuration
 #+AUTHOR: Marco Thomas
+#+PROPERTY: header-args :tangle "~/.emacs.d/init.el"
 
 * Meta
 ** init.el vs init.org
 All changes to the configuration should be done in =init.org=, *not* in
-=init.el=. Any changes in the =init.el= will be overwritten by saving
-=init.org=. The =init.el= in this repo should not be tracked by git, and
-is replaced the first time Emacs is started (assuming it has been renamed
-to =~/.emacs.d=).
+=init.el=.
 
-This file replaces itself with the actual configuration at first run.
+This is what the initial =init.el= should look like.
 #+BEGIN_SRC emacs-lisp :tangle no
 (require 'org)
 (find-file (concat (getenv "HOME") "/.dots/files/emacs/.emacs.d/init.org"))
 (org-babel-tangle)
-(load-file (concat (getenv "HOME") "/.dots/files/emacs/.emacs.d/init.el"))
-#+END_SRC
-
-It tangles the org-file, so that this file is overwritten with the actual
-configuration.
-
-There is no reason to track the =init.el= that is generated; by running
-the following command =git= will not bother tracking it:
-#+BEGIN_SRC sh :tangle no
-git update-index --assume-unchanged init.el
-#+END_SRC
-
-If one wishes to make changes to the repo-version of =init.el= start
-tracking again with:
-#+BEGIN_SRC sh :tangle no
-git update-index --no-assume-unchanged init.el
+(load-file (concat (getenv "HOME") "/.emacs.d/init.el"))
 #+END_SRC
 
 
 ** Startup
 =lexical-binding= can improve speed.
-#+BEGIN_SRC emacs-lisp :tangle yes
+#+BEGIN_SRC emacs-lisp
 ;;; -*- lexical-binding: t -*-
 #+END_SRC
 
@@ -50,7 +33,7 @@ To avoid doing this each time a change is made we can add a function to
 the =after-save-hook= ensuring to always tangle and byte-compile the
 =org=-document after changes.
 
-#+BEGIN_SRC emacs-lisp :tangle yes
+#+BEGIN_SRC emacs-lisp
 (defun tangle-init ()
   (when (equal (buffer-file-name)
                (expand-file-name (concat (getenv "HOME") "/.dots/files/emacs/.emacs.d/init.org")))
@@ -66,7 +49,7 @@ the =after-save-hook= ensuring to always tangle and byte-compile the
 A common optimization is to temporarily disable garbage collection during
 initialization. Here, we set the =gc-cons-threshold= to a ridiculously large
 number, and restore the default value after initialization.
-#+BEGIN_SRC emacs-lisp :tangle yes
+#+BEGIN_SRC emacs-lisp
 (setq gc-cons-threshold most-positive-fixnum)
 (add-hook 'emacs-startup-hook
   (lambda ()
@@ -78,7 +61,7 @@ number, and restore the default value after initialization.
 ** Performance
 *** lsp-mode
 Some optimization for =lsp-mode=
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (setq read-process-output-max (* 3 1024 1024))
 #+end_src
 
@@ -86,7 +69,7 @@ Some optimization for =lsp-mode=
 Disable bidirectional text scanning for a modest performance boost. I've set
 this to =nil= in the past, but the =bidi-display-reordering='s docs say that
 is an undefined state and suggest this to be just as good:
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (setq-default bidi-display-reordering 'left-to-right
               bidi-paragraph-direction 'left-to-right)
 #+end_src
@@ -95,26 +78,26 @@ Disabling the BPA makes redisplay faster, but might produce incorrect display
 reordering of bidirectional text with embedded parentheses and other bracket
 characters whose =paired-bracket= Unicode property is non-nil.
 Emacs 27+ only.
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (setq bidi-inhibit-bpa t)
 #+end_src
 
 Reduce rendering/line scan work for Emacs by not rendering cursors or regions
 in non-focused windows.
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (setq-default cursor-in-non-selected-windows nil)
 (setq highlight-nonselected-windows nil)
 #+end_src
 
 Emacs "updates" its ui more often than it needs to, so slow it down slightly.
 Default is 0.5.
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (setq idle-update-delay 1.0)
 #+end_src
 
 Introduced in Emacs HEAD (b2f8c9f), this inhibits fontification while
 receiving input, which should help a little with scrolling performance.
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (setq redisplay-skip-fontification-on-input t)
 #+end_src
 
@@ -122,7 +105,7 @@ receiving input, which should help a little with scrolling performance.
 ** General
 *** Super general
 Some defaults, which i forget the reason of using it.
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (setq make-backup-files nil
       auto-mode-case-fold nil
       auto-save-default nil
@@ -135,31 +118,31 @@ Some defaults, which i forget the reason of using it.
 
 *** Auto revert
 Automaticly revert =doc-view=-buffers when the file changes on disk.
-#+BEGIN_SRC emacs-lisp :tangle yes
+#+BEGIN_SRC emacs-lisp
 (add-hook 'doc-view-mode-hook 'auto-revert-mode)
 #+END_SRC
 
 *** Short yes/no
 Answering /yes/ and /no/ to each question from Emacs can be tedious, a
 single /y/ or /n/ will suffice.
-#+BEGIN_SRC emacs-lisp :tangle yes
+#+BEGIN_SRC emacs-lisp
 (fset 'yes-or-no-p 'y-or-n-p)
 #+END_SRC
 
 *** Quit prompts
 Make ESC quit prompts.
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 #+end_src
 
 *** Soft wrap
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (global-visual-line-mode t)
 #+end_src
 
 
 ** straight.el (Packages)
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (setq straight-check-for-modifications 'live)
 (defvar bootstrap-version)
 
@@ -177,7 +160,7 @@ Make ESC quit prompts.
 #+end_src
 
 Inhibit package.el from loading, as we don't need it.
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (setq package-enable-at-startup nil)
 (straight-use-package 'use-package)
 #+end_src
@@ -186,7 +169,7 @@ Inhibit package.el from loading, as we don't need it.
 ** Keybindings
 *** leader key
 =general= allows me to use key-binds with a leader key, just like =vim=.
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (use-package general
   :straight t
   :init
@@ -195,7 +178,7 @@ Inhibit package.el from loading, as we don't need it.
 
 *** which-key
 Show me a cool completion bar at the bottom of the screen, with all possible keybindings.
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (use-package which-key
   :straight t
   :init
@@ -208,7 +191,7 @@ Show me a cool completion bar at the bottom of the screen, with all possible key
 
 *** evil-mode
 Forgive me, but I'm =evil=.
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (use-package evil
   :straight t
   :bind
@@ -246,7 +229,7 @@ I mainly use these fonts:
 + JuliaMono as main mono-spaced
 + Noto Emoji to show emojis in emacs
 + Noto JP for japanese characters
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (set-face-attribute 'default nil :font "JuliaMono" :height 100)
 (set-fontset-font t 'unicode "Noto Color Emoji" nil 'prepend)
 (set-fontset-font t 'unicode "Noto Sans Mono CJK JP" nil 'append)
@@ -267,7 +250,7 @@ Blocks will still be mono-spaced.
 
 *** Bars
 I don't need ugly ass bars.
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
@@ -275,14 +258,14 @@ I don't need ugly ass bars.
 
 *** Parenthesis
 Show me the friend of my parenthesis.
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (show-paren-mode t)
 (setq show-paren-style 'paranthesis)
 #+end_src
 
 *** Line numbers
 Show me relative line numbers, when in =normal= mode and absolute ones, when in =insert= mode.
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (setq-default display-line-numbers 'relative
               display-line-numbers-widen t
               ;; this is the default
@@ -300,17 +283,16 @@ Show me relative line numbers, when in =normal= mode and absolute ones, when in 
 #+end_src
 
 Show me both line and column counter in my bar.
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (line-number-mode)
 (column-number-mode)
 #+end_src
 
 *** Theme
 Setting my beloved light theme with some icons.
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (use-package doom-themes
-  :straight (doom-themes :type git :host github :repo "hlissner/emacs-doom-themes"
-                                :fork (:host github :repo "CramMK/emacs-doom-themes"))
+  :straight (doom-themes :type git :host github :repo "hlissner/emacs-doom-themes")
   :config
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t
@@ -322,7 +304,7 @@ Setting my beloved light theme with some icons.
 
 *** Modeline
 Use =doom-modeline= as a bar... together with icons and nyan cat!
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (use-package doom-modeline
   :straight t
   :config
@@ -345,18 +327,18 @@ Use =doom-modeline= as a bar... together with icons and nyan cat!
 
 *** Inline colors
 Show me color codes as colors!
-TODO: Disable this in c/c++ mode.
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (use-package rainbow-mode
   :straight t
   :hook
   (prog-mode . rainbow-mode)
-  (org-mode . rainbow-mode))
+  (org-mode . rainbow-mode)
+  (c-mode . (lambda() (rainbow-mode -1))))
 #+end_src
 
 *** Whitespaces
 Show me those pesky trailing whitespaces... I hate them. Kill them.
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (global-whitespace-mode t)
 (setq whitespace-style '(face trailing tabs tab-mark))
 (add-hook 'before-save-hook 'whitespace-cleanup)
@@ -381,7 +363,7 @@ Show me a nice column indicator line.
 
 *** Highlight indentation
 Show me indentation markers.
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (use-package highlight-indent-guides
   :straight t
   :config
@@ -393,7 +375,7 @@ Show me indentation markers.
 
 *** File bar
 Sometimes I want to see all of my files.
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (use-package treemacs
   :straight t
   :defer t
@@ -438,7 +420,7 @@ Sometimes I want to see all of my files.
 *** ivy
 Ivy - a generic completion frontend for Emacs.
 Swiper - isearch with an overview, and more. Oh, man!
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (use-package ivy
   :straight t
   :diminish
@@ -461,7 +443,7 @@ Swiper - isearch with an overview, and more. Oh, man!
 
 *** counsel
 Spice up some of those old buffers.
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (use-package counsel
   :straight t
   :bind (("M-x" . counsel-M-x)
@@ -477,7 +459,7 @@ Spice up some of those old buffers.
 *** Setup and keys
 Bootstrap =org-mode= together with keybindings.
 =C-c C-t= for =org-todo=.
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (use-package org
   :straight t
   :general
@@ -498,7 +480,7 @@ Bootstrap =org-mode= together with keybindings.
 #+end_src
 
 *** Misc
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (setq org-startup-with-inline-images t       ;; start with inline images enabled
       org-image-actual-width nil             ;; rescale inline images
       org-directory "~/org"                  ;; set org file directory
@@ -510,14 +492,14 @@ Bootstrap =org-mode= together with keybindings.
 
 *** org-todo faces
 Which =org-todo= keywords should be used and how they look.
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (setq org-todo-keywords '((sequence "TODO" "PROGRESS" "REVIEW" "|" "DONE"))
       org-todo-keyword-faces '(("TODO" . "#cc241d") ("PROGRESS" . "#a6cc70") ("REVIEW" . "#b16286") ("DONE" . "#abb0b6")))
 #+end_src
 
 *** org-capture
 Set some capture templates, for quick notes.
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (setq org-capture-templates
   (quote (("w" "Work" entry (file "~/org/work.org") "* TODO %?\n" :empty-lines-before 1)
           ("u" "University" entry (file "~/org/uni.org") "* TODO %?\n" :empty-lines-before 1)
@@ -528,12 +510,13 @@ Set some capture templates, for quick notes.
 Executing code inline is just a breeze.
 Firstly tho, they must be enabled here.
 Also be *careful*  with =haskell= recursion, it can lead to system crashes (at least for me).
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (org-babel-do-load-languages 'org-babel-load-languages '((python . t)
                                                          (shell . t)
                                                          (haskell . t)
                                                          (C . t)
-                                                         (dot . t)))
+                                                         (dot . t)
+                                                         (octave . t)))
 
 (use-package sage-shell-mode
   :straight t)
@@ -544,7 +527,7 @@ Also be *careful*  with =haskell= recursion, it can lead to system crashes (at l
 
 *** org-agenda
 The default =agenda= looks a bit messy.
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (use-package org-super-agenda
   :straight t
   :after org
@@ -554,7 +537,7 @@ The default =agenda= looks a bit messy.
 #+end_src
 
 Setup some stuff for =agenda=
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (setq org-agenda-files (quote ("~/org"))     ;; indexed files by org agenda
       org-agenda-start-on-weekday nil        ;; my week starts on a monday
       calendar-week-start-day 1              ;; my week starts on a monday
@@ -562,7 +545,7 @@ Setup some stuff for =agenda=
 #+end_src
 
 I need my =hjkl= :(
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (define-key org-agenda-mode-map (kbd "h") 'org-agenda-earlier)
 (define-key org-agenda-mode-map (kbd "l") 'org-agenda-later)
 (define-key org-agenda-mode-map (kbd "j") 'org-agenda-next-line)
@@ -576,39 +559,50 @@ I need my =hjkl= :(
 (define-key org-super-agenda-header-map (kbd "t") 'org-agenda-goto-today)
 #+end_src
 
+*** org-ref
+#+begin_src emacs-lisp
+(use-package org-ref
+  :straight t
+  :after org
+  :init
+  (setq org-ref-completion-library 'org-ref-ivy-cite))
+#+end_src
+
 *** LaTeX Export
 Enable LaTeX export with =pdflatex= and use =minted= for code highlighting.
 Also fix math =utf8= chars.
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (setq org-latex-listings 'minted
       org-latex-packages-alist '(("" "minted"))
       org-latex-pdf-process
       '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+        "bibtex %b"
         "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
         "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f")
       org-latex-inputenc-alist '(("utf8" . "utf8x"))
       org-latex-default-packages-alist (cons '("mathletters" "ucs" nil) org-latex-default-packages-alist)
-      org-format-latex-options (plist-put org-format-latex-options :scale 0.5))
+      org-format-latex-options (plist-put org-format-latex-options :scale 1))
 #+end_src
 
 For some reason =\alert= is misinterpreted in LaTeX.
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (defun mth/beamer-bold (contents backend info)
   (when (eq backend 'beamer)
     (replace-regexp-in-string "\\`\\\\[A-Za-z0-9]+" "\\\\textbf" contents)))
 #+end_src
 
 Use the above fix and disable creating of =.tex= files.
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (use-package ox
   :after org
   :config
   (add-to-list 'org-export-filter-bold-functions 'mth/beamer-bold)
-  (add-to-list 'org-latex-logfiles-extensions "tex"))
+  (add-to-list 'org-latex-logfiles-extensions "tex")
+  (add-to-list 'org-latex-logfiles-extensions "bbl"))
 #+end_src
 
 Show math equations inline!
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle no
 (use-package org-fragtog
   :straight t
   :hook
@@ -616,7 +610,7 @@ Show math equations inline!
 #+end_src
 
 Use graphivz to draw graphs.
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (use-package graphviz-dot-mode
   :straight t
   :hook
@@ -627,7 +621,7 @@ Use graphivz to draw graphs.
 
 *** Fonts and fancy
 Some custom fonts stuff.
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (setq org-ellipsis " ⮷"                    ;; folding icon
       ;; org-hide-emphasis-markers t          ;; hide markers such as *, =, _
 )
@@ -635,7 +629,7 @@ Some custom fonts stuff.
 
 I want my =org-bullets= to look fancy, so I'm using some UTF8 chars.
 Use =(setq inhibit-compacting-font-caches t)=, if performance is low.
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (use-package org-superstar
   :straight t
   :after org
@@ -650,7 +644,7 @@ Use =(setq inhibit-compacting-font-caches t)=, if performance is low.
 ** General programming tools
 *** Indentation
 Use some magic heuristics for indentation.
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (use-package dtrt-indent
   :straight t
   :hook
@@ -662,7 +656,7 @@ Use some magic heuristics for indentation.
 
 *** Auto pairs
 Auto matching pairs are reaaaaally nice.
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (use-package electric-pair
   :config
   (setq electric-pair-open-newline-between-pairs nil)
@@ -673,9 +667,9 @@ Auto matching pairs are reaaaaally nice.
   (markdown-mode . electric-pair-mode))
 #+end_src
 
-*** Git
+*** =git=
 =magit= aka most convenient git client, I've ever used.
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (use-package magit
   :straight t
   :general
@@ -699,7 +693,7 @@ Auto matching pairs are reaaaaally nice.
 
 *** Highlight todo's
 Sometimes, a big red TODO is more intimidating than one with normal text color.
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (use-package hl-todo
   :straight t
   :hook
@@ -719,7 +713,7 @@ Sometimes, a big red TODO is more intimidating than one with normal text color.
 ** Code completion
 *** completion
 First of all, we need a backend for our completion and analysis.
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (use-package company
   :straight t
   :hook
@@ -737,7 +731,7 @@ First of all, we need a backend for our completion and analysis.
 #+end_src
 
 Then we can sprinkle in a fancy front-end for it.
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (use-package company-box
   :straight t
   :config
@@ -750,7 +744,7 @@ Then we can sprinkle in a fancy front-end for it.
 *** snippets
 **** completion
 Here I use =company= to display snippet recommendations.
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (defun company-mode/backend-with-yas (backend)
   (if (and (listp backend) (member 'company-yasnippet backend))
       backend
@@ -762,7 +756,7 @@ Here I use =company= to display snippet recommendations.
 #+end_src
 
 **** yasnippet
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (use-package yasnippet
   :straight t
   :init
@@ -774,7 +768,7 @@ Here I use =company= to display snippet recommendations.
 #+end_src
 
 We also need the actual snippets.
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (use-package yasnippet-snippets
   :straight (yasnippet-snippets :type git :host github :repo "AndreaCrotti/yasnippet-snippets"
                                 :fork (:host github
@@ -786,7 +780,7 @@ We also need the actual snippets.
 ** LSP and projects
 *** lsp-mode
 =lsp-mode= is feature-richer than =eglot=, so I'm using this one.
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (use-package lsp-mode :straight t
   :commands (lsp lsp-deferred)
   :init
@@ -805,7 +799,7 @@ We also need the actual snippets.
 #+end_src
 
 In order for =lsp-mode= to work, it needs to compile code on the =fly=.
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (use-package flycheck
   :straight t
   :after lsp)
@@ -813,7 +807,7 @@ In order for =lsp-mode= to work, it needs to compile code on the =fly=.
 
 *** tags
 =tags= can be used to search for =tagged= entities, such as =structs= etc.
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (use-package lsp-ivy
   :straight t
   :after lsp-mode
@@ -821,7 +815,7 @@ In order for =lsp-mode= to work, it needs to compile code on the =fly=.
 #+end_src
 
 *** projects
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (use-package projectile
   :straight t
   :after lsp
@@ -833,7 +827,7 @@ In order for =lsp-mode= to work, it needs to compile code on the =fly=.
 *** language servers
 **** rust
 Basic =rust-mode= with some fancy characters.
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (use-package rust-mode
   :straight t
   :hook
@@ -847,14 +841,14 @@ Basic =rust-mode= with some fancy characters.
 #+end_src
 
 I want to use =rust-analyzer= and see inlay type hints for variables.
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (setq lsp-rust-server 'rust-analyzer
       lsp-rust-analyzer-server-display-inlay-hints t)
 (add-hook 'rust-mode 'lsp-rust-analyzer-inlay-hints-mode)
 #+end_src
 
 **** haskell
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (use-package haskell-mode
   :straight t
   :hook
@@ -877,9 +871,17 @@ I want to use =rust-analyzer= and see inlay type hints for variables.
 **** python
 Python's lsp has auto configuration for =lsp-mode=
 
+*** octave
+#+begin_src emacs-lisp
+(use-package octave-mode
+  :mode ("\\.m\\'" . octave-mode)
+  :hook
+  (octave-mode . company-mode))
+#+end_src
 
-** Debugging with dap-mode
-#+begin_src emacs-lisp :tangle yes
+
+** Debugging with =dap-mode=
+#+begin_src emacs-lisp
 (use-package dap-mode
   :straight t)
 #+end_src
@@ -887,7 +889,7 @@ Python's lsp has auto configuration for =lsp-mode=
 *** python
 Setup some things to use dap-mode together with python.
 It depends on =ptvsd=, which can be installed via =pip=.
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (require 'dap-python)
 #+end_src
 
@@ -898,7 +900,7 @@ TODO: add rust config for debugging
 ** Input methods
 *** spelling
 Sjoe my speling misttakes.
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (use-package ispell
   :straight t
   :if (executable-find "hunspell")
@@ -915,7 +917,7 @@ Sjoe my speling misttakes.
 
 *** math
 Who needs LaTeX when you can have the power of unicode?
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (use-package math-symbol-lists
   :straight t
   :config
@@ -998,7 +1000,7 @@ Keybinds:
 + =C-s=: search, just as in =swiper=
 + =C-s= (again): forward search
 + =C-r=: backward search
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (use-package pdf-tools
   :straight t
   :config
