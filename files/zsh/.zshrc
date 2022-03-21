@@ -51,6 +51,8 @@ alias rm='rm -i' # Ask before removal
 alias cp='cp -i' # Ask before removal
 alias mv='mv -i' # Ask before removal
 
+alias powershell='PS1="windowsadm@powershell$ " bash'
+
 alias conservation='cat /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode'
 
 alias truecolor='curl -s https://raw.githubusercontent.com/JohnMorales/dotfiles/master/colors/24-bit-color.sh | bash'

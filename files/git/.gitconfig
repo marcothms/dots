@@ -1,8 +1,8 @@
 [user]
 	name = Marco Thomas
 	email = rb.ma.tho@gmail.com
-[includeIf "gitdir:~/dev/lrz-gitlab/**"]
-	path = "~/dev/lrz-gitlab/.gitconfig"
+[includeIf "gitdir:~/dev/hm/lrz-gitlab/**"]
+	path = "~/dev/hm/lrz-gitlab/.gitconfig"
 [alias]
 	aa = add .
 	st = status

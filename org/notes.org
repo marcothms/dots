@@ -44,7 +44,11 @@
 #+LATEX_HEADER: \theoremstyle{definition}
 #+LATEX_HEADER: \newtheorem{definition}{Definition}[section]
 #+LATEX_HEADER: \tcolorboxenvironment{definition}{blanker,before skip=10pt,after skip=10pt}
-% TODO: color boxes
+
+% example
+#+LATEX_HEADER: \theoremstyle{definition}
+#+LATEX_HEADER: \newtheorem{ex}{Beispiel}[section]
+#+LATEX_HEADER: \tcolorboxenvironment{ex}{blanker,before skip=10pt,after skip=10pt}
 
 % theorem
 #+LATEX_HEADER: \newtheorem{theorem}{Satz}[section]
@@ -59,6 +63,9 @@
 #+LATEX_HEADER: \theoremstyle{definition}
 #+LATEX_HEADER: \newtheorem*{remark}{Bemerkung}
 #+LATEX_HEADER: \tcolorboxenvironment{remark}{blanker,before skip=10pt,after skip=10pt}
+
+% proof
+#+LATEX_HEADER: \tcolorboxenvironment{proof}{blanker,before skip=10pt,after skip=10pt}
 
 %%% code blocks
 #+latex_header: \usepackage{minted}

@@ -23,3 +23,12 @@
 #+LATEX_HEADER: \usepackage{color}
 #+LATEX_HEADER: \usepackage{proof}
 
+% page numbers in the bottom right
+#+LATEX_HEADER: \addtobeamertemplate{navigation symbols}{}{%
+#+LATEX_HEADER:     \usebeamerfont{footline}%
+#+LATEX_HEADER:     \usebeamercolor[fg]{footline}%
+#+LATEX_HEADER:     \hspace{1em}%
+#+LATEX_HEADER:     \raisebox{2pt}[0pt][0pt]{\insertframenumber/\inserttotalframenumber}
+#+LATEX_HEADER: }
+
+

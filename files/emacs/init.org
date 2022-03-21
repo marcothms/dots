@@ -36,7 +36,7 @@ the =after-save-hook= ensuring to always tangle and byte-compile the
 #+BEGIN_SRC emacs-lisp
 (defun tangle-init ()
   (when (equal (buffer-file-name)
-               (expand-file-name (concat (getenv "HOME") "/.dots/files/emacs/.emacs.d/init.org")))
+               (expand-file-name (concat (getenv "HOME") "/.dots/files/emacs/init.org")))
     ;; Avoid running hooks when tangling.
     (let ((prog-mode-hook nil))
       (org-babel-tangle))))
@@ -702,11 +702,15 @@ Sometimes, a big red TODO is more intimidating than one with normal text color.
   (defface hl-todo-TODO
     '((t :background "#cc241d" :foreground "#ffffff"))
     "TODO Face")
+  (defface hl-todo-UNUSED
+    '((t :background "#859900" :foreground "#ffffff"))
+    "TODO Face")
   (setq hl-todo-highlight-punctuation ":"
         hl-todo-color-background t
         hl-todo-keyword-faces '(("TODO"  . hl-todo-TODO)
                                 ("XXX"   . hl-todo-TODO)
-                                ("FIXME" . hl-todo-TODO))))
+                                ("FIXME" . hl-todo-TODO)
+                                ("UNUSED" . hl-todo-UNUSED))))
 #+end_src
 
 
@@ -878,23 +882,6 @@ Python's lsp has auto configuration for =lsp-mode=
   :hook
   (octave-mode . company-mode))
 #+end_src
-
-
-** Debugging with =dap-mode=
-#+begin_src emacs-lisp
-(use-package dap-mode
-  :straight t)
-#+end_src
-
-*** python
-Setup some things to use dap-mode together with python.
-It depends on =ptvsd=, which can be installed via =pip=.
-#+begin_src emacs-lisp
-(require 'dap-python)
-#+end_src
-
-*** rust
-TODO: add rust config for debugging
 
 
 ** Input methods
