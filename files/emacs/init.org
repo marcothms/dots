@@ -319,10 +319,11 @@ Use =doom-modeline= as a bar... together with icons and nyan cat!
 (use-package nyan-mode
   :straight t
   :init
-  ;; (nyan-mode)
+  (nyan-mode)
   ;; (nyan-start-animation)
   :config
-  (setq nyan-cat-face-number 4))
+  (setq nyan-cat-face-number 4
+        nyan-minimum-window-width 100))
 #+end_src
 
 *** Inline colors
@@ -474,14 +475,12 @@ Bootstrap =org-mode= together with keybindings.
     "odi" 'org-display-inline-images)
   :hook
   (org-mode . (lambda () (electric-indent-local-mode -1)))   ;; dont make real spaces at the start of a line
-  (org-mode . org-indent-mode)                               ;; add virtual spaces
-  :config
-  (define-key evil-normal-state-map (kbd "TAB") 'org-cycle)) ;; use TAB to FOLD in every evil-mode
+  (org-mode . org-indent-mode))                               ;; add virtual spaces
 #+end_src
 
 *** Misc
 #+begin_src emacs-lisp
-(setq org-startup-with-inline-images t       ;; start with inline images enabled
+(setq org-startup-with-inline-images nil     ;; start with inline images disabled
       org-image-actual-width nil             ;; rescale inline images
       org-directory "~/org"                  ;; set org file directory
       org-edit-src-content-indentation 0     ;; don't indent stupidly in org-edit-src-code
@@ -566,6 +565,14 @@ I need my =hjkl= :(
   :after org
   :init
   (setq org-ref-completion-library 'org-ref-ivy-cite))
+#+end_src
+
+*** org-screenshot
+#+begin_src emacs-lisp
+(use-package org-attach-screenshot
+  :straight t
+  :config (setq org-attach-screenshot-command-line "gnome-screenshot -a -f %f"
+                org-attach-screenshot-auto-refresh "never"))
 #+end_src
 
 *** LaTeX Export
@@ -703,7 +710,7 @@ Sometimes, a big red TODO is more intimidating than one with normal text color.
     '((t :background "#cc241d" :foreground "#ffffff"))
     "TODO Face")
   (defface hl-todo-UNUSED
-    '((t :background "#859900" :foreground "#ffffff"))
+    '((t :background "#B58900" :foreground "#ffffff"))
     "TODO Face")
   (setq hl-todo-highlight-punctuation ":"
         hl-todo-color-background t
@@ -711,6 +718,13 @@ Sometimes, a big red TODO is more intimidating than one with normal text color.
                                 ("XXX"   . hl-todo-TODO)
                                 ("FIXME" . hl-todo-TODO)
                                 ("UNUSED" . hl-todo-UNUSED))))
+#+end_src
+
+*** Code style
+I want =bsd= style C.
+#+begin_src emacs-lisp
+(setq c-default-style "bsd"
+      c-basic-offset 4)
 #+end_src
 
 
@@ -799,6 +813,7 @@ We also need the actual snippets.
   (rust-mode . lsp)
   (python-mode . lsp)
   (haskell-mode . lsp)
+  (c-mode . lsp)
   (c++-mode . lsp))
 #+end_src
 
@@ -994,7 +1009,10 @@ Keybinds:
   (define-key pdf-view-mode-map [remap swiper] 'isearch-forward-regexp)
   (define-key pdf-view-mode-map [remap evil-ex] 'pdf-view-goto-page)
   (setq-default pdf-view-display-size 'fit-page)
-  (setq pdf-view-resize-factor 1.1))
+  (setq pdf-view-resize-factor 1.1)
+  :hook
+  (pdf-misc-minor-mode . auto-revert-mode))
+
 
 ;; load necessary things, when a PDF gets opened
 (pdf-tools-install)
