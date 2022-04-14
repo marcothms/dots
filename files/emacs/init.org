@@ -10,7 +10,7 @@ All changes to the configuration should be done in =init.org=, *not* in
 This is what the initial =init.el= should look like.
 #+BEGIN_SRC emacs-lisp :tangle no
 (require 'org)
-(find-file (concat (getenv "HOME") "/.dots/files/emacs/.emacs.d/init.org"))
+(find-file (concat (getenv "HOME") "/.dots/files/emacs/init.org"))
 (org-babel-tangle)
 (load-file (concat (getenv "HOME") "/.emacs.d/init.el"))
 #+END_SRC
@@ -244,8 +244,7 @@ Blocks will still be mono-spaced.
 (use-package mixed-pitch
   :straight t
   :hook
-  (text-mode . mixed-pitch-mode)
-  (org-agenda-mode . mixed-pitch-mode))
+  (org-mode . mixed-pitch-mode))
 #+end_src
 
 *** Bars
@@ -297,7 +296,7 @@ Setting my beloved light theme with some icons.
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t
         doom-solarized-light-padded-modeline nil)
-  (load-theme 'doom-solarized-light t)
+  (load-theme 'doom-one-light t)
   (doom-themes-org-config)
   (doom-themes-treemacs-config))
 #+end_src
@@ -319,11 +318,11 @@ Use =doom-modeline= as a bar... together with icons and nyan cat!
 (use-package nyan-mode
   :straight t
   :init
-  (nyan-mode)
+  ;; (nyan-mode)
   ;; (nyan-start-animation)
   :config
   (setq nyan-cat-face-number 4
-        nyan-minimum-window-width 100))
+        nyan-minimum-window-width 120))
 #+end_src
 
 *** Inline colors
@@ -465,6 +464,7 @@ Bootstrap =org-mode= together with keybindings.
   :straight t
   :general
   (vim-leader-def 'normal 'global
+    "os"  'org-attach-screenshot
     "oci" 'org-clock-in
     "oco" 'org-clock-out
     "ocd" 'org-clock-display
@@ -572,7 +572,17 @@ I need my =hjkl= :(
 (use-package org-attach-screenshot
   :straight t
   :config (setq org-attach-screenshot-command-line "gnome-screenshot -a -f %f"
-                org-attach-screenshot-auto-refresh "never"))
+                org-attach-screenshot-auto-refresh "never"
+                org-attach-screenshot-insertfunction
+                (lambda (linkfilename)
+                  (insert (concat
+                           "#+caption:\n#+label: fig:"
+                           (if
+                               (string-match ".*\/\\(.*\\)\.png" linkfilename)
+                               (match-string 1 linkfilename)
+                             )
+			   "\n#+attr_latex: :width 200"
+                           "\n[[file:" linkfilename "]]\n\n")))))
 #+end_src
 
 *** LaTeX Export
@@ -748,7 +758,7 @@ First of all, we need a backend for our completion and analysis.
               ("C-l" . company-complete-selection)))
 #+end_src
 
-Then we can sprinkle in a fancy front-end for it.
+Then we can sprinkle in a fancy front-end for it. (only works in GUI emacs)
 #+begin_src emacs-lisp
 (use-package company-box
   :straight t
@@ -799,7 +809,8 @@ We also need the actual snippets.
 *** lsp-mode
 =lsp-mode= is feature-richer than =eglot=, so I'm using this one.
 #+begin_src emacs-lisp
-(use-package lsp-mode :straight t
+(use-package lsp-mode
+  :straight t
   :commands (lsp lsp-deferred)
   :init
   (setq lsp-keymap-prefix "C-l")
@@ -843,7 +854,7 @@ In order for =lsp-mode= to work, it needs to compile code on the =fly=.
   (projectile-mode +1))
 #+end_src
 
-*** language servers
+*** language server configurations
 **** rust
 Basic =rust-mode= with some fancy characters.
 #+begin_src emacs-lisp
@@ -867,9 +878,15 @@ I want to use =rust-analyzer= and see inlay type hints for variables.
 #+end_src
 
 **** haskell
+=ghcup install hls=
+and
+=cabal install stylish-haskell=
+are required.
 #+begin_src emacs-lisp
 (use-package haskell-mode
   :straight t
+  :config
+  (setq haskell-stylish-on-save t)
   :hook
   (haskell-mode . interactive-haskell-mode)
   (haskell-mode . prettify-symbols-mode)
@@ -886,9 +903,6 @@ I want to use =rust-analyzer= and see inlay type hints for variables.
   (haskell-mode . lsp)
   (haskell-literate-mode . lsp))
 #+end_src
-
-**** python
-Python's lsp has auto configuration for =lsp-mode=
 
 *** octave
 #+begin_src emacs-lisp

@@ -59,8 +59,13 @@ alias nssh='SSH_AUTH_SOCK= ssh'
 alias cpu='watch -n.1 "grep \"^[c]pu MHz\" /proc/cpuinfo"'
 
 # troll
-alias powershell='PS1="windowsadm@powershell$ " bash'
+alias powershell='clear && PS1="windowsadm@powershell$ " bash'
 alias mucdai='rm -rf'
+alias bw='mv'
+alias lö='rm'
+alias zg='ls'
+alias ädrbes='chown'
+alias erstelle='touch'
 
 if [ -f ~/.zshrc_local ]; then
     source ~/.zshrc_local
