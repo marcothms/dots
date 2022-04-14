@@ -18,7 +18,7 @@ endif
 
 call plug#begin()
 
-Plug 'altercation/vim-colors-solarized' " color scheme
+Plug 'rakr/vim-one' " color scheme
 Plug 'tpope/vim-sleuth' " heuristic file indendation
 Plug 'jiangmiao/auto-pairs' " pair completion
 
@@ -26,7 +26,7 @@ call plug#end()
 " ============================== Colors
 syntax on
 set background=light
-colorscheme solarized
+colorscheme one
 hi Normal guibg=NONE ctermbg=NONE
 
 " ============================== General
