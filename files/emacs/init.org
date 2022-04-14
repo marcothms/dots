@@ -235,18 +235,6 @@ I mainly use these fonts:
 (set-fontset-font t 'unicode "Noto Sans Mono CJK JP" nil 'append)
 #+end_src
 
-Use non-monospace font for org-mode!
-Blocks will still be mono-spaced.
-#+begin_src emacs-lisp :tangle no
-(set-face-attribute 'variable-pitch nil :family "Roboto")
-(set-face-attribute 'fixed-pitch nil :family "JuliaMono")
-
-(use-package mixed-pitch
-  :straight t
-  :hook
-  (org-mode . mixed-pitch-mode))
-#+end_src
-
 *** Bars
 I don't need ugly ass bars.
 #+begin_src emacs-lisp
