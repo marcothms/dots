@@ -20,7 +20,7 @@ DIR="%{$fg[blue]%}%~"
 GIT="%{$fg[red]%}\$vcs_info_msg_0_"
 
 # if [[ -n "$SSH_CONNECTION" ]]; then
-    PC="%B%{$fg[yellow]%}%m%b "
+    PC="%{$fg[yellow]%}%m "
 # fi
 
 export PROMPT="${PC}${DIR}${GIT} ${ICON}%{$reset_color%} "

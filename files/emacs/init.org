@@ -226,11 +226,11 @@ Forgive me, but I'm =evil=.
 ** Appearance
 *** Fonts
 I mainly use these fonts:
-+ JuliaMono as main mono-spaced
++ JuliaMono Medium as main mono-spaced
 + Noto Emoji to show emojis in emacs
 + Noto JP for japanese characters
 #+begin_src emacs-lisp
-(set-face-attribute 'default nil :font "JuliaMono" :height 100)
+(set-face-attribute 'default nil :font "JuliaMono" :height 100 :weight 'medium)
 (set-fontset-font t 'unicode "Noto Color Emoji" nil 'prepend)
 (set-fontset-font t 'unicode "Noto Sans Mono CJK JP" nil 'append)
 #+end_src
@@ -479,6 +479,7 @@ Bootstrap =org-mode= together with keybindings.
       org-edit-src-content-indentation 0     ;; don't indent stupidly in org-edit-src-code
       org-log-done nil                       ;; just mark DONE without a time stamp
       org-log-repeat nil                     ;; don't set a time after marking sth DONE
+      org-descriptive-links nil              ;; Always show plain links
 )
 #+end_src
 
@@ -858,15 +859,7 @@ In order for =lsp-mode= to work, it needs to compile code on the =fly=.
 Basic =rust-mode= with some fancy characters.
 #+begin_src emacs-lisp
 (use-package rust-mode
-  :straight t
-  :hook
-  (rust-mode . prettify-symbols-mode)
-  (rust-mode . (lambda ()
-                 (push '("->" . ?→) prettify-symbols-alist)
-                 (push '("=>" . ?⇒) prettify-symbols-alist)
-                 (push '("!=" . ?≠) prettify-symbols-alist)
-                 (push '("<=" . ?≤) prettify-symbols-alist)
-                 (push '(">=" . ?≥) prettify-symbols-alist))))
+  :straight t)
 #+end_src
 
 I want to use =rust-analyzer= and see inlay type hints for variables.
@@ -892,13 +885,7 @@ are required.
   :config
   (setq haskell-stylish-on-save t)
   :hook
-  (haskell-mode . interactive-haskell-mode)
-  (haskell-mode . prettify-symbols-mode)
-  (haskell-mode . (lambda ()
-                    (push '("->" . ?→) prettify-symbols-alist)
-                    (push '("<-" . ?←) prettify-symbols-alist)
-                    (push '("=>" . ?⇒) prettify-symbols-alist)
-                    )))
+  (haskell-mode . interactive-haskell-mode))
 
 (use-package lsp-haskell
   :straight t
