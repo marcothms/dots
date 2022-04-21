@@ -284,7 +284,7 @@ Setting my beloved light theme with some icons.
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t
         doom-solarized-light-padded-modeline nil)
-  (load-theme 'doom-one-light t)
+  (load-theme 'doom-solarized-light t)
   (doom-themes-org-config)
   (doom-themes-treemacs-config))
 #+end_src
@@ -306,11 +306,16 @@ Use =doom-modeline= as a bar... together with icons and nyan cat!
 (use-package nyan-mode
   :straight t
   :init
-  ;; (nyan-mode)
+  (nyan-mode)
   ;; (nyan-start-animation)
   :config
   (setq nyan-cat-face-number 4
         nyan-minimum-window-width 120))
+#+end_src
+
+Show me the time!
+#+begin_src emacs-lisp
+(display-time-mode)
 #+end_src
 
 *** Inline colors
@@ -578,7 +583,8 @@ Enable LaTeX export with =pdflatex= and use =minted= for code highlighting.
 Also fix math =utf8= chars.
 #+begin_src emacs-lisp
 (setq org-latex-listings 'minted
-      org-latex-packages-alist '(("" "minted"))
+      org-latex-minted-options '(("breaklines" "true")
+                                 ("breakanywhere" "true"))
       org-latex-pdf-process
       '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
         "bibtex %b"
@@ -738,8 +744,7 @@ First of all, we need a backend for our completion and analysis.
   (LaTeX-mode . company-mode)
   (org-mode . company-mode)
   :custom
-  (company-minimum-prefix-length 3)
-  (company-idle-delay 0.5)
+  (company-minimum-prefix-length 2)
   :bind (:map company-active-map
               ("C-j" . company-select-next-or-abort)
               ("C-k" . company-select-previous-or-abort)
@@ -751,7 +756,7 @@ Then we can sprinkle in a fancy front-end for it. (only works in GUI emacs)
 (use-package company-box
   :straight t
   :config
-  (setq company-box-doc-delay 2.0
+  (setq company-box-doc-delay 1.0
         company-box-max-candidates 10)
   :hook
   (company-mode . company-box-mode))
@@ -816,6 +821,12 @@ We also need the actual snippets.
   (c++-mode . lsp))
 #+end_src
 
+#+begin_src emacs-lisp
+(use-package lsp-ui
+  :straight t
+  :after lsp)
+#+end_src
+
 In order for =lsp-mode= to work, it needs to compile code on the =fly=.
 #+begin_src emacs-lisp
 (use-package flycheck
@@ -859,6 +870,11 @@ Basic =rust-mode= with some fancy characters.
 #+end_src
 
 I want to use =rust-analyzer= and see inlay type hints for variables.
+Warning: If inlay hints don't work, make sure to use the lastest:
++ rust version
++ =rust-analyzer=
++ =rust-mode=
++ =lsp-mode=
 #+begin_src emacs-lisp
 (setq lsp-rust-server 'rust-analyzer
       lsp-rust-analyzer-server-display-inlay-hints t)

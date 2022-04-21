@@ -70,4 +70,4 @@
 %%% code blocks
 #+latex_header: \usepackage{minted}
 #+latex_header: \usemintedstyle{friendly}
-#+LATEX_HEADER: \tcolorboxenvironment{minted}{blanker,before skip=10pt,after skip=10pt}
+#+LATEX_HEADER: \tcolorboxenvironment{minted}{breakable, blanker,before skip=10pt,after skip=10pt}
