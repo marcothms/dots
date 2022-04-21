@@ -15,7 +15,7 @@ Currently using =Flat Remix= theme
 * fonts
 Should be installed manually or via system package manager.
 Fallsback are provided in =fallback-fonts/=
-+ JuliaMono (Regular, Italic)
++ JuliaMono (Medium, Italic)
 + Noto Sans CJK JP
 + Noto Color Emoji
 
