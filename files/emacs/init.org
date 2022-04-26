@@ -479,7 +479,7 @@ Bootstrap =org-mode= together with keybindings.
       org-edit-src-content-indentation 0     ;; don't indent stupidly in org-edit-src-code
       org-log-done nil                       ;; just mark DONE without a time stamp
       org-log-repeat nil                     ;; don't set a time after marking sth DONE
-      org-descriptive-links nil              ;; Always show plain links
+      org-descriptive-links t                ;; Always show plain links
 )
 #+end_src
 
@@ -728,8 +728,7 @@ Sometimes, a big red TODO is more intimidating than one with normal text color.
 *** Code style
 I want =bsd= style C.
 #+begin_src emacs-lisp
-(setq c-default-style "bsd"
-      c-basic-offset 4)
+(setq c-default-style "bsd")
 #+end_src
 
 

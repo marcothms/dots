@@ -31,4 +31,8 @@
 #+LATEX_HEADER:     \raisebox{2pt}[0pt][0pt]{\insertframenumber/\inserttotalframenumber}
 #+LATEX_HEADER: }
 
+% code blocks
+#+latex_header: \usepackage{minted}
+#+latex_header: \usemintedstyle{friendly}
+#+LATEX_HEADER: \tcolorboxenvironment{minted}{blanker,before skip=10pt,after skip=10pt}
 

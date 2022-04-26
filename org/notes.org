@@ -20,6 +20,9 @@
 #+LATEX_HEADER: \usepackage{xcolor}
 #+LATEX_HEADER: \usepackage{color}
 
+%%% cleaner newline indentation
+#+LATEX_HEADER: \usepackage[parfill]{parskip}
+
 %%% break page on new section
 #+LATEX_HEADER: \usepackage{titlesec}
 #+LATEX_HEADER: \newcommand{\sectionbreak}{\clearpage}
@@ -70,4 +73,4 @@
 %%% code blocks
 #+latex_header: \usepackage{minted}
 #+latex_header: \usemintedstyle{friendly}
-#+LATEX_HEADER: \tcolorboxenvironment{minted}{breakable, blanker,before skip=10pt,after skip=10pt}
+#+LATEX_HEADER: \tcolorboxenvironment{minted}{blanker,before skip=10pt,after skip=10pt}
