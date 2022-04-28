@@ -52,12 +52,19 @@ alias cp='cp -i' # Ask before removal
 alias mv='mv -i' # Ask before removal
 
 # tools
+ocr () {
+    if [ -z $1 ]; then
+	echo "Please input a file."
+	return
+    fi
+    ocrmypdf -l deu+eng+jpn --output-type pdf $1 OCR_$1
+}
+
 alias conservation='cat /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode'
 alias truecolor='curl -s https://raw.githubusercontent.com/JohnMorales/dotfiles/master/colors/24-bit-color.sh | bash'
 alias nssh='SSH_AUTH_SOCK= ssh'
 alias cpu='watch -n.1 "grep \"^[c]pu MHz\" /proc/cpuinfo"'
-alias greppdf='f() {find . -iname "*.pdf" -exec pdfgrep $1 {} +};f'
-
+#
 # troll
 alias powershell='clear && PS1="windowsadm@powershell$ " bash'
 alias mucdai='rm -rf'
@@ -134,6 +141,24 @@ export FZF_DEFAULT_OPTS='
        --color=info:#657B83,prompt:#657B83,pointer:#657B83
        --color=marker:#657B83,spinner:#657B83,header:#657B83'
 
+## ripgrep-all
+# https://github.com/phiresky/ripgrep-all
+rga-fzf() {
+	RG_PREFIX="rga --files-with-matches"
+	local file
+	file="$(
+		FZF_DEFAULT_COMMAND="$RG_PREFIX '$1'" \
+			fzf --sort --preview="[[ ! -z {} ]] && rga --pretty --context 5 {q} {}" \
+				--phony -q "$1" \
+				--bind "change:reload:$RG_PREFIX {q}" \
+				--preview-window="70%:wrap"
+	)" &&
+	echo "opening $file" &&
+	xdg-open "$file"
+}
+zle -N rga-fzf
+bindkey '^G' "rga-fzf"
+
 ## fzf Bindings in zsh (C-r and C-t)
 if [[ -x $(which fzf 2> /dev/null) ]]
 then
@@ -204,7 +229,7 @@ then
     return $ret
     }
     zle     -N   fzf-file-widget
-    bindkey '^T' fzf-file-widget
+    bindkey '^F' fzf-file-widget
 
     # Ensure precmds are run after cd
     fzf-redraw-prompt() {
