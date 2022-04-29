@@ -409,7 +409,6 @@ Sometimes I want to see all of my files.
   :straight t)
 #+end_src
 
-*** Mini buffers
 *** ivy
 Ivy - a generic completion frontend for Emacs.
 Swiper - isearch with an overview, and more. Oh, man!

@@ -1,9 +1,4 @@
-#        __      _
-#       / /     | |
-#      / /______| |__  _ __ ___
-#     / /_  / __| '_ \| '__/ __|
-#  _ / / / /\__ \ | | | | | (__
-# (_)_/ /___|___/_| |_|_|  \___|
+# ~/.zshrc
 #
 # ~ M. Thomas
 
@@ -14,21 +9,17 @@ precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
 setopt prompt_subst
 
-LN=$'\n'
 ICON="%(?.%{$fg[green]%}.%{$fg[red]%})λ"
 DIR="%{$fg[blue]%}%~"
 GIT="%{$fg[red]%}\$vcs_info_msg_0_"
+HOSTN="%{$fg[yellow]%}%m "
 
-# if [[ -n "$SSH_CONNECTION" ]]; then
-    PC="%{$fg[yellow]%}%m "
-# fi
-
-export PROMPT="${PC}${DIR}${GIT} ${ICON}%{$reset_color%} "
+export PROMPT="${HOSTN}${DIR}${GIT} ${ICON}%{$reset_color%} "
 zstyle ':vcs_info:git:*' formats ' %b '
 
+# show info in bar
 case $TERM in
   (*xterm* | rxvt | alacritty)
-
     # This is seen when the shell prompts for input.
     function precmd {
       print -Pn "\e]0;%m: %(1j,%j job%(2j|s|) - ,)%~\a"
@@ -52,7 +43,7 @@ alias cp='cp -i' # Ask before removal
 alias mv='mv -i' # Ask before removal
 
 # tools
-ocr () {
+ocr() {
     if [ -z $1 ]; then
 	echo "Please input a file."
 	return
@@ -60,11 +51,29 @@ ocr () {
     ocrmypdf -l deu+eng+jpn --output-type pdf $1 OCR_$1
 }
 
-alias conservation='cat /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode'
+conservation() {
+    location='/sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode'
+    if [ -z $1 ]; then
+	cat $location
+    elif [ $1 = '0' ] || [ $1 = '1' ]; then
+	echo $1 | sudo tee $location
+    fi
+}
+
+powermode() {
+    location='/sys/firmware/acpi/platform_profile'
+    if [ -z $1 ]; then
+	echo "Current:" $(cat $location)
+	echo "Can be one of:" $(cat /sys/firmware/acpi/platform_profile_choices)
+    elif [ $1 = 'low-power' ] || [ $1 = 'balanced' ] || [ $1 = 'performance' ]; then
+	echo $1 | sudo tee $location
+    fi
+}
 alias truecolor='curl -s https://raw.githubusercontent.com/JohnMorales/dotfiles/master/colors/24-bit-color.sh | bash'
 alias nssh='SSH_AUTH_SOCK= ssh'
 alias cpu='watch -n.1 "grep \"^[c]pu MHz\" /proc/cpuinfo"'
-#
+alias suspend='systemctl suspend'
+
 # troll
 alias powershell='clear && PS1="windowsadm@powershell$ " bash'
 alias mucdai='rm -rf'
@@ -162,22 +171,6 @@ bindkey '^G' "rga-fzf"
 ## fzf Bindings in zsh (C-r and C-t)
 if [[ -x $(which fzf 2> /dev/null) ]]
 then
-    #     ____      ____
-    #    / __/___  / __/
-    #   / /_/_  / / /_
-    #  / __/ / /_/ __/
-    # /_/   /___/_/ key-bindings.zsh
-    #
-    # - $FZF_TMUX_OPTS
-    # - $FZF_CTRL_T_COMMAND
-    # - $FZF_CTRL_T_OPTS
-    # - $FZF_CTRL_R_OPTS
-    # - $FZF_ALT_C_COMMAND
-    # - $FZF_ALT_C_OPTS
-
-    # Key bindings
-    # ------------
-
     # The code at the top and the bottom of this file is the same as in completion.zsh.
     # Refer to that file for explanation.
     if 'zmodload' 'zsh/parameter' 2>'/dev/null' && (( ${+options} )); then
@@ -202,7 +195,7 @@ then
 
     [[ -o interactive ]] || return 0
 
-    # CTRL-T - Paste the selected file path(s) into the command line
+    # CTRL-F - Paste the selected file path(s) into the command line
     __fsel() {
     local cmd="${FZF_CTRL_T_COMMAND:-"command find -L . -mindepth 1 \\( -path '*/\\.*' -o -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \\) -prune \
 	-o -type f -print \
@@ -240,31 +233,6 @@ then
     zle reset-prompt
     }
     zle -N fzf-redraw-prompt
-
-    # ALT-C - cd into the selected directory
-    fzf-cd-widget() {
-    local cmd="${FZF_ALT_C_COMMAND:-"command find -L . -mindepth 1 \\( -path '*/\\.*' -o -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \\) -prune \
-	-o -type d -print 2> /dev/null | cut -b3-"}"
-    setopt localoptions pipefail no_aliases 2> /dev/null
-    local dir="$(eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse $FZF_DEFAULT_OPTS $FZF_ALT_C_OPTS" $(__fzfcmd) +m)"
-    if [[ -z "$dir" ]]; then
-	zle redisplay
-	return 0
-    fi
-    if [ -z "$BUFFER" ]; then
-	BUFFER="cd ${(q)dir}"
-	zle accept-line
-    else
-	print -sr "cd ${(q)dir}"
-	cd "$dir"
-    fi
-    local ret=$?
-    unset dir # ensure this doesn't end up appearing in prompt expansion
-    zle fzf-redraw-prompt
-    return $ret
-    }
-    zle     -N    fzf-cd-widget
-    bindkey '\ec' fzf-cd-widget
 
     # CTRL-R - Paste the selected command from history into the command line
     fzf-history-widget() {

@@ -1,0 +1,197 @@
+# config for sway
+# Read `man 5 sway` for a complete reference.
+
+# Font in sway
+font pango: JuliaMono 9
+
+# Variables
+set $mod Mod4
+set $left h
+set $down j
+set $up k
+set $right l
+
+# Color
+set $yellow	#b58900
+set $orange	#cb4b16
+set $red	#dc322f
+set $magenta	#d33682
+set $violet	#6c71c4
+set $blue	#268bd2
+set $cyan	#2aa198
+set $green	#859900
+
+set $baseA3 #fdf6e3
+set $baseA2 #eee8d5
+set $baseA1 #93a1a1
+set $baseA0 #839496
+set $baseB0 #657b83
+set $baseB1 #586e75
+set $baseB2 #073642
+set $baseB3 #002b36
+set $custom #e1cab3
+
+# clientclass 			border  backgr. text 	indicator
+client.focused 		$green	$green	$baseB3 $blue
+client.focused_inactive	$baseA2 $baseA2 $baseB2 $violet
+client.unfocused  		$baseA2 $baseA2 $baseB1 $baseA1
+client.urgent	 		$yellow $yellow $baseB3 $orange
+
+# Terminal
+set $term gnome-terminal
+
+# Application Launcer
+set $menu dmenu_path | bemenu -l 5 --tf "#859900" --hf "#859900" --nb "#002b36" --hb "#002b36" --tb "#002b36" --fb "#002b36" --fn "JuliaMono 13" | xargs swaymsg exec --
+
+# Output configuration
+set $laptop eDP-1
+
+output * bg ~/images/wallpaper/wallpaper.png fill
+
+bindswitch --reload --locked lid:on output $laptop disable
+bindswitch --reload --locked lid:off output $laptop enable
+
+# Idle configuration
+# exec swayidle -w \
+#          timeout 300 'swaylock -f -c 000000' \
+#          timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+#          before-sleep 'swaylock -f -c 000000'
+
+# Input configuration
+input type:pointer {
+    accel_profile "flat"
+}
+
+input type:keyboard {
+    xkb_layout eu
+    xkb_options caps:escape
+}
+
+# Key bindings
+# Basics:
+    # Start a terminal
+    bindsym $mod+Return exec $term
+
+    # Kill focused window
+    bindsym $mod+Shift+Backspace kill
+
+    # Start your launcher
+    bindsym $mod+d exec $menu
+
+    # Floating
+    floating_modifier $mod normal
+
+    # Screenshot
+    bindsym $mod+Shift+s exec wayshot -s "$(slurp -f '%x %y %w %h')" --stdout | wl-copy
+
+    # Reload the configuration file
+    bindsym $mod+Shift+r reload
+
+    # Logout etc
+    bindsym $mod+Backspace exec wlogout
+
+    # Show notifications
+    bindsym $mod+v exec swaync-client -t -sw
+
+# Brightness
+    bindsym XF86MonBrightnessUp exec light -A 10
+    bindsym XF86MonBrightnessDown exec light -U 10
+
+# Audio
+    bindsym XF86AudioPlay exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+    bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+    bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+
+# Moving around:
+    # Move your focus around
+    bindsym $mod+$left focus left
+    bindsym $mod+$down focus down
+    bindsym $mod+$up focus up
+    bindsym $mod+$right focus right
+    # Or use $mod+[up|down|left|right]
+    bindsym $mod+Left focus left
+    bindsym $mod+Down focus down
+    bindsym $mod+Up focus up
+    bindsym $mod+Right focus right
+
+    # Move the focused window with the same, but add Shift
+    bindsym $mod+Shift+$left move left
+    bindsym $mod+Shift+$down move down
+    bindsym $mod+Shift+$up move up
+    bindsym $mod+Shift+$right move right
+    # Ditto, with arrow keys
+    bindsym $mod+Shift+Left move left
+    bindsym $mod+Shift+Down move down
+    bindsym $mod+Shift+Up move up
+    bindsym $mod+Shift+Right move right
+
+# Workspaces:
+    # Switch to workspace
+    bindsym $mod+1 workspace number 1
+    bindsym $mod+2 workspace number 2
+    bindsym $mod+3 workspace number 3
+    bindsym $mod+4 workspace number 4
+    bindsym $mod+5 workspace number 5
+    bindsym $mod+6 workspace number 6
+    bindsym $mod+7 workspace number 7
+    bindsym $mod+8 workspace number 8
+    bindsym $mod+9 workspace number 9
+    bindsym $mod+0 workspace number 10
+    # Move focused container to workspace
+    bindsym $mod+Shift+1 move container to workspace number 1
+    bindsym $mod+Shift+2 move container to workspace number 2
+    bindsym $mod+Shift+3 move container to workspace number 3
+    bindsym $mod+Shift+4 move container to workspace number 4
+    bindsym $mod+Shift+5 move container to workspace number 5
+    bindsym $mod+Shift+6 move container to workspace number 6
+    bindsym $mod+Shift+7 move container to workspace number 7
+    bindsym $mod+Shift+8 move container to workspace number 8
+    bindsym $mod+Shift+9 move container to workspace number 9
+    bindsym $mod+Shift+0 move container to workspace number 10
+    # Note: workspaces can have any name you want, not just numbers.
+    # We just use 1-10 as the default.
+
+# Layout stuff:
+    workspace_layout stacking
+
+    # Make the current focus fullscreen
+    bindsym $mod+f fullscreen
+
+    # Toggle the current focus between tiling and floating mode
+    bindsym $mod+Shift+space floating toggle
+
+    # Swap focus between the tiling area and the floating area
+    bindsym $mod+space focus mode_toggle
+
+    for_window [title="shotman"] move position 30 30, floating enable
+
+# Status Bar
+# man 5 sway-bar
+bar {
+    position top
+
+    # When the status_command prints a new line to stdout, swaybar updates.
+    # The default just shows the current date and time.
+    status_command while ~/.config/sway/bar.sh; do sleep 1; done
+
+    colors {
+        separator $blue
+        background $baseA3
+        statusline $baseB2
+
+	# workclass 			border  backgr. text
+	focused_workspace 		$green  $green  $baseB3
+	active_workspace 		$baseA3 $baseA3 $baseB1
+	inactive_workspace 		$baseA3 $baseA3 $baseB1
+	urgent_workspace 		$orange $orange $baseB3
+
+    }
+}
+
+# Startup programs
+exec syncthing
+exec keepassxc
+exec swaync
+
+# Include some defaults
+include /etc/sway/config.d/*
