@@ -5,9 +5,6 @@ dots for my lenovo yoga slim 7i pro 「itomori」, managed with =gnu stow=.
 Files can be =stow='ed and un'=stow='ed with =stow.sh=.
 It will link all dotfiles to their correct place.
 
-* dotfiles
-All files in =files/= are currently being used and =stow='ed.
-
 * fonts
 Should be installed manually or via system package manager.
 Fallsback are provided in =fallback-fonts/=
@@ -20,9 +17,5 @@ Fallsback are provided in =fallback-fonts/=
 - =ripgrep-all=
 - =wlogout=
 - =bemenu=
-- =wayshot=
-- =slurp=
+- =slurp=, =grim=, =swappy=
 - =SwayNotificationCenter=
-
-* legacy packages
-+ fcitx5 (=fcitx5 fcitx5-configtool fcitx5-gtk fcitx5-mozc fcitx5-qt=)

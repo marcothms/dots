@@ -51,12 +51,14 @@ ocr() {
     ocrmypdf -l deu+eng+jpn --output-type pdf $1 OCR_$1
 }
 
-conservation() {
+conservationmode() {
     location='/sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode'
     if [ -z $1 ]; then
 	cat $location
     elif [ $1 = '0' ] || [ $1 = '1' ]; then
 	echo $1 | sudo tee $location
+    else
+	echo 'Invalid option'
     fi
 }
 
@@ -67,12 +69,17 @@ powermode() {
 	echo "Can be one of:" $(cat /sys/firmware/acpi/platform_profile_choices)
     elif [ $1 = 'low-power' ] || [ $1 = 'balanced' ] || [ $1 = 'performance' ]; then
 	echo $1 | sudo tee $location
+    else
+	echo 'Invalid option'
     fi
 }
+alias o='xdg-open'
+alias con='nmcli con'
+alias conup='nmcli con up id'
+alias condown='nmcli con down id'
 alias truecolor='curl -s https://raw.githubusercontent.com/JohnMorales/dotfiles/master/colors/24-bit-color.sh | bash'
 alias nssh='SSH_AUTH_SOCK= ssh'
 alias cpu='watch -n.1 "grep \"^[c]pu MHz\" /proc/cpuinfo"'
-alias suspend='systemctl suspend'
 
 # troll
 alias powershell='clear && PS1="windowsadm@powershell$ " bash'

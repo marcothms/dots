@@ -561,7 +561,7 @@ I need my =hjkl= :(
 #+end_src
 
 *** org-screenshot
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
 (use-package org-attach-screenshot
   :straight t
   :config (setq org-attach-screenshot-command-line "gnome-screenshot -a -f %f"
