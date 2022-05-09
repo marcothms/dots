@@ -226,13 +226,14 @@ Forgive me, but I'm =evil=.
 ** Appearance
 *** Fonts
 I mainly use these fonts:
-+ =JuliaMono Medium= and =SFMono Nerd Font Mono= as main mono-spaced
++ =SFMono Nerd Font Mono= as main mono-spaced
++ =JuliaMono= for all other characters
 + =Noto Emoji= to show emojis in emacs
 + =Noto JP= for japanese characters
 #+begin_src emacs-lisp
 (set-face-attribute 'default nil :font "SFMono Nerd Font" :height 110 :weight 'medium)
 ;; (set-face-attribute 'default nil :font "JuliaMono" :height 110 :weight 'medium)
-(set-fontset-font t 'unicode "JuliaMono" nil 'append)
+(set-fontset-font t 'unicode "JuliaMono" nil 'prepend)
 (set-fontset-font t 'unicode "Noto Color Emoji" nil 'prepend)
 (set-fontset-font t 'unicode "Noto Sans Mono CJK JP" nil 'append)
 #+end_src

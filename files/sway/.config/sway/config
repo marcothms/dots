@@ -2,7 +2,7 @@
 # Read `man 5 sway` for a complete reference.
 
 # Font in sway
-font pango: JuliaMono 9
+font pango: SFMono Nerd Font 9
 
 # Variables
 set $mod Mod4
@@ -74,7 +74,7 @@ input type:keyboard {
     bindsym $mod+Shift+Backspace kill
 
     # Application launcher
-    set $bemenu bemenu -l 7 --tf "#859900" --hf "#859900" --nb "#002b36" --hb "#002b36" --tb "#002b36" --fb "#002b36" --fn "JuliaMono 13" -i
+    set $bemenu bemenu -l 7 --tf "#859900" --hf "#859900" --nb "#002b36" --hb "#002b36" --tb "#002b36" --fb "#002b36" --fn "SFMono Nerd Font 13" -i
     set $files find $HOME -name '*.pdf' -not -path "$HOME/\.*" 2> /dev/null | cut -f 4- -d "/"
     bindsym $mod+d exec dmenu_path | $bemenu | xargs swaymsg exec --
     bindsym $mod+p exec $files | $bemenu -l 20 -p 'pdfs' | xargs -d '\n' -r xdg-open
