@@ -6,13 +6,10 @@ Files can be =stow='ed and un'=stow='ed with =stow.sh=.
 It will link all dotfiles to their correct place.
 
 * fonts
-Should be installed manually or via system package manager.
 Fallsback are provided in =fallback-fonts/=
-+ JuliaMono (Medium, Italic)
-+ Noto Sans CJK JP
-+ Noto Color Emoji
 
 * notable deps
+- =fzf=
 - =ripgrep=
 - =ripgrep-all=
 - =wlogout=

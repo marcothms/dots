@@ -226,11 +226,13 @@ Forgive me, but I'm =evil=.
 ** Appearance
 *** Fonts
 I mainly use these fonts:
-+ JuliaMono Medium as main mono-spaced
-+ Noto Emoji to show emojis in emacs
-+ Noto JP for japanese characters
++ =JuliaMono Medium= and =SFMono Nerd Font Mono= as main mono-spaced
++ =Noto Emoji= to show emojis in emacs
++ =Noto JP= for japanese characters
 #+begin_src emacs-lisp
-(set-face-attribute 'default nil :font "JuliaMono" :height 100 :weight 'medium)
+(set-face-attribute 'default nil :font "SFMono Nerd Font" :height 110 :weight 'medium)
+;; (set-face-attribute 'default nil :font "JuliaMono" :height 110 :weight 'medium)
+(set-fontset-font t 'unicode "JuliaMono" nil 'append)
 (set-fontset-font t 'unicode "Noto Color Emoji" nil 'prepend)
 (set-fontset-font t 'unicode "Noto Sans Mono CJK JP" nil 'append)
 #+end_src
@@ -329,12 +331,23 @@ Show me color codes as colors!
   (c-mode . (lambda() (rainbow-mode -1))))
 #+end_src
 
-*** Whitespaces
+*** Whitespaces and indentation
 Show me those pesky trailing whitespaces... I hate them. Kill them.
 #+begin_src emacs-lisp
 (global-whitespace-mode t)
 (setq whitespace-style '(face trailing tabs tab-mark))
 (add-hook 'before-save-hook 'whitespace-cleanup)
+#+end_src
+
+Show me indentation markers.
+#+begin_src emacs-lisp :tangle no
+(use-package highlight-indent-guides
+  :straight t
+  :config
+  (setq highlight-indent-guides-method 'character
+        highlight-indent-guides-responsive 'top)
+  :hook
+  (prog-mode . highlight-indent-guides-mode))
 #+end_src
 
 *** 80 column indicator
@@ -352,18 +365,6 @@ Show me a nice column indicator line.
   :hook
   (prog-mode . fci-mode)
   (markdown-mode . fci-mode))
-#+end_src
-
-*** Highlight indentation
-Show me indentation markers.
-#+begin_src emacs-lisp
-(use-package highlight-indent-guides
-  :straight t
-  :config
-  (setq highlight-indent-guides-method 'character
-        highlight-indent-guides-responsive 'top)
-  :hook
-  (prog-mode . highlight-indent-guides-mode))
 #+end_src
 
 *** File bar
@@ -724,10 +725,21 @@ Sometimes, a big red TODO is more intimidating than one with normal text color.
                                 ("UNUSED" . hl-todo-UNUSED))))
 #+end_src
 
-*** Code style
-I want =bsd= style C.
+*** iedit
+Easily rename occurrences, even without =lsp-rename=
 #+begin_src emacs-lisp
-(setq c-default-style "bsd")
+(use-package iedit
+  :straight t
+  :general
+  (vim-leader-def 'normal 'global
+    "r" 'iedit-mode))
+#+end_src
+
+*** Code style
+#+begin_src emacs-lisp
+(setq ; c-default-style "bsd"
+      c-basic-offset 4)
+(setq-default indent-tabs-mode nil)
 #+end_src
 
 
@@ -743,7 +755,8 @@ First of all, we need a backend for our completion and analysis.
   (LaTeX-mode . company-mode)
   (org-mode . company-mode)
   :custom
-  (company-minimum-prefix-length 2)
+  (company-minimum-prefix-length 3)
+  (conpany-idle-delay 0.5)
   :bind (:map company-active-map
               ("C-j" . company-select-next-or-abort)
               ("C-k" . company-select-previous-or-abort)
