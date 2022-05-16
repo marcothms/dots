@@ -226,7 +226,7 @@ Forgive me, but I'm =evil=.
 ** Appearance
 *** Fonts
 I mainly use these fonts:
-+ =SFMono Nerd Font Mono= as main mono-spaced
++ =SFMono Nerd Font Mono= as main mono-spaced (+ Icons)
 + =JuliaMono= for all other characters
 + =Noto Emoji= to show emojis in emacs
 + =Noto JP= for japanese characters
@@ -566,7 +566,7 @@ I need my =hjkl= :(
 #+begin_src emacs-lisp :tangle no
 (use-package org-attach-screenshot
   :straight t
-  :config (setq org-attach-screenshot-command-line "gnome-screenshot -a -f %f"
+  :config (setq ;org-attach-screenshot-command-line "gnome-screenshot -a -f %f"
                 org-attach-screenshot-auto-refresh "never"
                 org-attach-screenshot-insertfunction
                 (lambda (linkfilename)
@@ -578,6 +578,15 @@ I need my =hjkl= :(
                              )
 			   "\n#+attr_latex: :width 200"
                            "\n[[file:" linkfilename "]]\n\n")))))
+#+end_src
+
+*** org-alert
+#+begin_src emacs-lisp
+(use-package org-alert
+  :straight t
+  :config
+  (setq alert-default-style 'libnotify)
+  (org-alert-enable))
 #+end_src
 
 *** LaTeX Export

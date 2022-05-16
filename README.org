@@ -7,11 +7,14 @@ It will link all dotfiles to their correct place.
 
 * fonts
 Fallsback are provided in =fallback-fonts/=
+SFMono also provides icons.
 
 * notable deps
 - =fzf=
 - =ripgrep=
 - =ripgrep-all=
+- =fd=
+- =fu= (find icons)
 - =wlogout=
 - =bemenu=
 - =slurp=, =grim=, =swappy=

@@ -4,15 +4,15 @@ date=$(date +'%A, %d. %b %R')
 
 battery=$(cat /sys/class/power_supply/BAT1/capacity)
 if [ $(cat /sys/class/power_supply/BAT1/status) = 'Discharging' ]; then
-    bat_rem=" ▼ "$(upower -i /org/freedesktop/UPower/devices/battery_BAT1 | grep "time to empty" | cut -f14- -d ' ')
+    bat_rem="▼"
 else
-    bat_rem=" ⯅ "$(upower -i /org/freedesktop/UPower/devices/battery_BAT1 | grep "time to full" | cut -f15- -d ' ')
+    bat_rem="⯅"
 fi
 
 if [ $(cat /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode) = '1' ]; then
-    conservation='on'
+    conservation='capped'
 else
-    conservation='off'
+    conservation='uncapped'
 fi
 
 wifi=$(iwgetid -r)
@@ -22,5 +22,16 @@ fi
 
 powermode=$(cat /sys/firmware/acpi/platform_profile)
 
-sep='-'
-echo $battery"%"$bat_rem $sep $conservation $sep $powermode $sep $wifi $sep $date
+cpu_util=$(ps -A -o pcpu | tail -n+2 | paste -sd+ | bc)
+
+if [ $(pactl get-sink-mute @DEFAULT_SINK@ | awk '{print $2}') = 'no' ]; then
+    audio="  $(pactl get-sink-volume @DEFAULT_SINK@ | awk '{print $5}')"
+else
+    audio="婢  muted"
+fi
+
+light=$(light -G | awk '{print int($1+0.5)'})"%"
+
+sep="  "
+echo "${sep}   ${light} ${sep} ${audio} ${sep}   ${wifi} ${sep}   ${powermode}: ${cpu_util} ${sep}   ${conservation} ${sep}   ${battery}% ${bat_rem} ${sep}   ${date}"
+

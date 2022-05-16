@@ -75,7 +75,7 @@ input type:keyboard {
 
     # Application launcher
     set $bemenu bemenu -l 7 --tf "#859900" --hf "#859900" --nb "#002b36" --hb "#002b36" --tb "#002b36" --fb "#002b36" --fn "SFMono Nerd Font 13" -i
-    set $files find $HOME -name '*.pdf' -not -path "$HOME/\.*" 2> /dev/null | cut -f 4- -d "/"
+    set $files fd -I "pdf$" $HOME | cut -f 4- -d "/"
     bindsym $mod+d exec dmenu_path | $bemenu | xargs swaymsg exec --
     bindsym $mod+p exec $files | $bemenu -l 20 -p 'pdfs' | xargs -d '\n' -r xdg-open
 
@@ -129,28 +129,28 @@ input type:keyboard {
     set $ws10 '10'
 
     # Switch to workspace
-    bindsym $mod+1 workspace $ws1
-    bindsym $mod+2 workspace $ws2
-    bindsym $mod+3 workspace $ws3
-    bindsym $mod+4 workspace $ws4
-    bindsym $mod+5 workspace $ws5
-    bindsym $mod+6 workspace $ws6
-    bindsym $mod+7 workspace $ws7
-    bindsym $mod+8 workspace $ws8
-    bindsym $mod+9 workspace $ws9
-    bindsym $mod+0 workspace $ws10
+    bindsym $mod+1 workspace number $ws1
+    bindsym $mod+2 workspace number $ws2
+    bindsym $mod+3 workspace number $ws3
+    bindsym $mod+4 workspace number $ws4
+    bindsym $mod+5 workspace number $ws5
+    bindsym $mod+6 workspace number $ws6
+    bindsym $mod+7 workspace number $ws7
+    bindsym $mod+8 workspace number $ws8
+    bindsym $mod+9 workspace number $ws9
+    bindsym $mod+0 workspace number $ws10
 
     # Move focused container to workspace
-    bindsym $mod+Shift+1 move container to workspace $ws1
-    bindsym $mod+Shift+2 move container to workspace $ws2
-    bindsym $mod+Shift+3 move container to workspace $ws3
-    bindsym $mod+Shift+4 move container to workspace $ws4
-    bindsym $mod+Shift+5 move container to workspace $ws5
-    bindsym $mod+Shift+6 move container to workspace $ws6
-    bindsym $mod+Shift+7 move container to workspace $ws7
-    bindsym $mod+Shift+8 move container to workspace $ws8
-    bindsym $mod+Shift+9 move container to workspace $ws9
-    bindsym $mod+Shift+0 move container to workspace $ws10
+    bindsym $mod+Shift+1 move container to workspace number $ws1
+    bindsym $mod+Shift+2 move container to workspace number $ws2
+    bindsym $mod+Shift+3 move container to workspace number $ws3
+    bindsym $mod+Shift+4 move container to workspace number $ws4
+    bindsym $mod+Shift+5 move container to workspace number $ws5
+    bindsym $mod+Shift+6 move container to workspace number $ws6
+    bindsym $mod+Shift+7 move container to workspace number $ws7
+    bindsym $mod+Shift+8 move container to workspace number $ws8
+    bindsym $mod+Shift+9 move container to workspace number $ws9
+    bindsym $mod+Shift+0 move container to workspace number $ws10
 
 # Layout stuff:
     workspace_layout stacking
@@ -168,6 +168,7 @@ input type:keyboard {
     bindsym $mod+space focus mode_toggle
 
     # Window rules
+    title_align center
     default_border none
     for_window [app_id="firefox" title="Firefox — Sharing Indicator"] kill
     assign [app_id="org.keepassxc.KeePassXC"] $ws9
@@ -177,7 +178,7 @@ input type:keyboard {
 bar {
     position top
     tray_output none
-    status_command while ~/.config/sway/bar.sh; do sleep 5; done
+    status_command while ~/.config/sway/bar.sh; do sleep 1; done
 
     colors {
         separator $blue

@@ -73,6 +73,13 @@ powermode() {
 	echo 'Invalid option'
     fi
 }
+
+replace() {
+    from=$1
+    to=$2
+    find -type f -exec sed -i -e "s/${from}/${to}/g" {} \;
+}
+
 alias o='xdg-open'  # to change a mime use: `xdg-mime default APPLICATION HANDLE`
 alias con='nmcli con'
 alias conup='nmcli con up id'
