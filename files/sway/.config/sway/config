@@ -152,6 +152,10 @@ input type:keyboard {
     bindsym $mod+Shift+9 move container to workspace number $ws9
     bindsym $mod+Shift+0 move container to workspace number $ws10
 
+    # Move between displays
+    bindsym $mod+Control+$left move workspace to output left
+    bindsym $mod+Control+$right move workspace to output right
+
 # Layout stuff:
     workspace_layout stacking
 

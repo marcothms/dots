@@ -317,7 +317,7 @@ Use =doom-modeline= as a bar... together with icons and nyan cat!
 #+end_src
 
 Show me the time!
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
 (display-time-mode)
 #+end_src
 
@@ -696,13 +696,12 @@ Auto matching pairs are reaaaaally nice.
   :straight t
   :general
   (vim-leader-def 'normal 'global
-    "gb" 'magit-branch
+    "gb" 'magit-blame
     "gc" 'magit-checkout
     "gc" 'magit-commit
     "gd" 'magit-diff
     "gg" 'counsel-git-grep
     "gi" 'magit-gitignore-in-topdir
-    "gj" 'magit-blame
     "gl" 'magit-log
     "gp" 'magit-push
     "gs" 'magit-status
@@ -989,9 +988,9 @@ Who needs LaTeX when you can have the power of unicode?
    ("\\bigo" ?𝒪)
 
    ; Greek
-   ("\\Ga" ?α) ("\\GA" ?Α) ("\\a" ?α)
-   ("\\Gb" ?β) ("\\GB" ?Β) ("\\b" ?β)
-   ("\\Gg" ?γ) ("\\GG" ?Γ) ("\\g" ?γ) ("\\Gamma" ?Γ)
+   ("\\Ga" ?α) ("\\GA" ?Α) ("\\alpha" ?α)
+   ("\\Gb" ?β) ("\\GB" ?Β) ("\\beta" ?β)
+   ("\\Gg" ?γ) ("\\GG" ?Γ) ("\\gamma" ?γ) ("\\Gamma" ?Γ)
    ("\\Gd" ?δ) ("\\GD" ?Δ) ("\\delta" ?δ) ("\\Delta" ?Δ)
    ("\\Ge" ?ε) ("\\GE" ?Ε) ("\\epsilon" ?ε)
    ("\\Gz" ?ζ) ("\\GZ" ?Ζ)
@@ -999,7 +998,7 @@ Who needs LaTeX when you can have the power of unicode?
    ("\\Gth" ?θ) ("\\GTH" ?Θ) ("\\theta" ?θ) ("\\Theta" ?Θ)
    ("\\Gi" ?ι) ("\\GI" ?Ι) ("\\iota" ?ι)
    ("\\Gk" ?κ) ("\\GK" ?Κ)
-   ("\\Gl" ?λ) ("\\GL" ?Λ) ("\\lam" ?λ)
+   ("\\Gl" ?λ) ("\\GL" ?Λ) ("\\lambda" ?λ)
    ("\\Gm" ?μ) ("\\GM" Μ) ("\\mu" ?μ)
    ("\\Gx" ?ξ) ("\\GX" ?Ξ) ("\\xi" ?ξ) ("\\Xi" ?Ξ)
    ("\\Gp" ?π) ("\\GP" ?Π) ("\\pi" ?π) ("\\Pi" ?Π)

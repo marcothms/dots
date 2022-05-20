@@ -16,22 +16,23 @@ else
 fi
 
 wifi=$(iwgetid -r)
-if [ -z $wifi ]; then
+if [ -z "$wifi" ]; then
     wifi='no wifi'
 fi
 
 powermode=$(cat /sys/firmware/acpi/platform_profile)
 
-cpu_util=$(ps -A -o pcpu | tail -n+2 | paste -sd+ | bc)
+# cpu_util=$(ps -A -o pcpu | tail -n+2 | paste -sd+ | bc)
+cpu_util=$(cat /proc/loadavg | awk '{print $1, $2, $3}')
 
 if [ $(pactl get-sink-mute @DEFAULT_SINK@ | awk '{print $2}') = 'no' ]; then
-    audio="  $(pactl get-sink-volume @DEFAULT_SINK@ | awk '{print $5}')"
+    audio=" $(pactl get-sink-volume @DEFAULT_SINK@ | awk '{print $5}')"
 else
-    audio="婢  muted"
+    audio="婢 muted"
 fi
 
 light=$(light -G | awk '{print int($1+0.5)'})"%"
 
-sep="  "
-echo "${sep}   ${light} ${sep} ${audio} ${sep}   ${wifi} ${sep}   ${powermode}: ${cpu_util} ${sep}   ${conservation} ${sep}   ${battery}% ${bat_rem} ${sep}   ${date}"
+sep=" "
+echo "${sep}  ${light} ${sep} ${audio} ${sep}  ${wifi} ${sep}  ${powermode}: ${cpu_util} ${sep}  ${conservation} ${sep}  ${battery}% ${bat_rem} ${sep}  ${date}"
 
