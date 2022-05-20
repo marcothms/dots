@@ -10,12 +10,13 @@ Fallsback are provided in =fallback-fonts/=
 SFMono also provides icons.
 
 * notable deps
-- =fzf=
-- =ripgrep=
-- =ripgrep-all=
-- =fd=
-- =fu= (find icons)
-- =wlogout=
-- =bemenu=
-- =slurp=, =grim=, =swappy=
-- =SwayNotificationCenter=
++ =fzf=
++ =ripgrep=
++ =ripgrep-all=
++ =fd=
++ =fu= (find icons)
++ =wlogout=
++ =bemenu=
++ =slurp=, =grim=, =swappy=
++ =SwayNotificationCenter=
++ all =fcitx5= stuff (data, gtk, qt, mozc)

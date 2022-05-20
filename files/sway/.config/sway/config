@@ -197,6 +197,7 @@ bar {
 # Startup programs
 exec syncthing
 exec swaync
+exec fcitx5
 
 # Include some defaults
 include /etc/sway/config.d/*
