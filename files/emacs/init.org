@@ -104,7 +104,7 @@ receiving input, which should help a little with scrolling performance.
 
 ** General
 *** Super general
-Some defaults, which i forget the reason of using it.
+Some defaults, which i forget the reason of using them.
 #+begin_src emacs-lisp
 (setq make-backup-files nil
       auto-mode-case-fold nil
@@ -115,12 +115,6 @@ Some defaults, which i forget the reason of using it.
       initial-scratch-message nil
       fast-but-imprecise-scrolling t)
 #+end_src
-
-*** Auto revert
-Automaticly revert =doc-view=-buffers when the file changes on disk.
-#+BEGIN_SRC emacs-lisp
-(add-hook 'doc-view-mode-hook 'auto-revert-mode)
-#+END_SRC
 
 *** Short yes/no
 Answering /yes/ and /no/ to each question from Emacs can be tedious, a
@@ -159,7 +153,7 @@ Make ESC quit prompts.
   (load bootstrap-file nil 'nomessage))
 #+end_src
 
-Inhibit package.el from loading, as we don't need it.
+Inhibit =package.el= from loading, as we don't need it.
 #+begin_src emacs-lisp
 (setq package-enable-at-startup nil)
 (straight-use-package 'use-package)
@@ -232,14 +226,13 @@ I mainly use these fonts:
 + =Noto JP= for japanese characters
 #+begin_src emacs-lisp
 (set-face-attribute 'default nil :font "SFMono Nerd Font" :height 110 :weight 'medium)
-;; (set-face-attribute 'default nil :font "JuliaMono" :height 110 :weight 'medium)
 (set-fontset-font t 'unicode "JuliaMono" nil 'prepend)
 (set-fontset-font t 'unicode "Noto Color Emoji" nil 'prepend)
 (set-fontset-font t 'unicode "Noto Sans Mono CJK JP" nil 'append)
 #+end_src
 
 *** Bars
-I don't need ugly ass bars.
+I don't need ugly bars.
 #+begin_src emacs-lisp
 (menu-bar-mode -1)
 (tool-bar-mode -1)
@@ -288,8 +281,7 @@ Setting my beloved light theme with some icons.
         doom-themes-enable-italic t
         doom-solarized-light-padded-modeline nil)
   (load-theme 'doom-solarized-light t)
-  (doom-themes-org-config)
-  (doom-themes-treemacs-config))
+  (doom-themes-org-config))
 #+end_src
 
 *** Modeline
@@ -310,15 +302,9 @@ Use =doom-modeline= as a bar... together with icons and nyan cat!
   :straight t
   :init
   (nyan-mode)
-  ;; (nyan-start-animation)
   :config
   (setq nyan-cat-face-number 4
         nyan-minimum-window-width 120))
-#+end_src
-
-Show me the time!
-#+begin_src emacs-lisp :tangle no
-(display-time-mode)
 #+end_src
 
 *** Inline colors
@@ -333,82 +319,10 @@ Show me color codes as colors!
 #+end_src
 
 *** Whitespaces and indentation
-Show me those pesky trailing whitespaces... I hate them. Kill them.
+Show me trailing white-spaces.
 #+begin_src emacs-lisp
 (global-whitespace-mode t)
 (setq whitespace-style '(face trailing tabs tab-mark))
-(add-hook 'before-save-hook 'whitespace-cleanup)
-#+end_src
-
-Show me indentation markers.
-#+begin_src emacs-lisp :tangle no
-(use-package highlight-indent-guides
-  :straight t
-  :config
-  (setq highlight-indent-guides-method 'character
-        highlight-indent-guides-responsive 'top)
-  :hook
-  (prog-mode . highlight-indent-guides-mode))
-#+end_src
-
-*** 80 column indicator
-Show me a nice column indicator line.
-#+begin_src emacs-lisp :tangle no
-(use-package fill-column-indicator
-  :straight t
-  :defer 1
-  :diminish
-  (fci-mode)
-  :config
-  (setq fci-rule-width 1
-        fci-rule-column 80
-        fci-rule-color "#A6CC70")
-  :hook
-  (prog-mode . fci-mode)
-  (markdown-mode . fci-mode))
-#+end_src
-
-*** File bar
-Sometimes I want to see all of my files.
-#+begin_src emacs-lisp
-(use-package treemacs
-  :straight t
-  :defer t
-  :config
-  (setq treemacs-follow-after-init t
-        treemacs-persist-file (expand-file-name ".cache/treemacs-persist" user-emacs-directory)
-        treemacs-width 50
-        treemacs-project-follow-cleanup t
-        treemacs-tag-follow-cleanup t
-        treemacs-expand-after-init nil
-        treemacs-recenter-after-file-follow t
-        treemacs-recenter-after-tag-follow t
-        treemacs-tag-follow-delay 1)
-  (treemacs-follow-mode t)
-  (treemacs-load-theme "doom-colors")
-  (dolist (face '(treemacs-root-face
-                  treemacs-git-unmodified-face
-                  treemacs-git-modified-face
-                  treemacs-git-renamed-face
-                  treemacs-git-ignored-face
-                  treemacs-git-untracked-face
-                  treemacs-git-added-face
-                  treemacs-git-conflict-face
-                  treemacs-directory-face
-                  treemacs-directory-collapsed-face
-                  treemacs-file-face
-                  treemacs-tags-face))
-    (set-face-attribute face nil :family "JuliaMono" :height 80))
-  :bind
-  (:map global-map
-    ("C-x t t" . treemacs)))
-
-;; C-c C-p -> projectile
-;; C-c C-w -> workspace
-
-(use-package treemacs-evil
-  :after (treemacs evil)
-  :straight t)
 #+end_src
 
 *** ivy
@@ -436,7 +350,7 @@ Swiper - isearch with an overview, and more. Oh, man!
 #+end_src
 
 *** counsel
-Spice up some of those old buffers.
+Spice up some of those old mini buffers.
 #+begin_src emacs-lisp
 (use-package counsel
   :straight t
@@ -458,7 +372,6 @@ Bootstrap =org-mode= together with keybindings.
   :straight t
   :general
   (vim-leader-def 'normal 'global
-    "os"  'org-attach-screenshot
     "oci" 'org-clock-in
     "oco" 'org-clock-out
     "ocd" 'org-clock-display
@@ -468,8 +381,8 @@ Bootstrap =org-mode= together with keybindings.
     "oti" 'org-toggle-inline-images
     "odi" 'org-display-inline-images)
   :hook
-  (org-mode . (lambda () (electric-indent-local-mode -1)))   ;; dont make real spaces at the start of a line
-  (org-mode . org-indent-mode))                               ;; add virtual spaces
+  (org-mode . (lambda () (electric-indent-local-mode -1)))    ;; dont make real spaces at the start of a line
+  (org-mode . org-indent-mode))                               ;; add virtual spaces (only visual)
 #+end_src
 
 *** Misc
@@ -480,7 +393,7 @@ Bootstrap =org-mode= together with keybindings.
       org-edit-src-content-indentation 0     ;; don't indent stupidly in org-edit-src-code
       org-log-done nil                       ;; just mark DONE without a time stamp
       org-log-repeat nil                     ;; don't set a time after marking sth DONE
-      org-descriptive-links t                ;; Always show plain links
+      org-descriptive-links t                ;; Always show links
 )
 #+end_src
 
@@ -489,15 +402,6 @@ Which =org-todo= keywords should be used and how they look.
 #+begin_src emacs-lisp
 (setq org-todo-keywords '((sequence "TODO" "PROGRESS" "REVIEW" "|" "DONE"))
       org-todo-keyword-faces '(("TODO" . "#cc241d") ("PROGRESS" . "#a6cc70") ("REVIEW" . "#b16286") ("DONE" . "#abb0b6")))
-#+end_src
-
-*** org-capture
-Set some capture templates, for quick notes.
-#+begin_src emacs-lisp
-(setq org-capture-templates
-  (quote (("w" "Work" entry (file "~/org/work.org") "* TODO %?\n" :empty-lines-before 1)
-          ("u" "University" entry (file "~/org/uni.org") "* TODO %?\n" :empty-lines-before 1)
-          ("p" "Personal" entry (file "~/org/personal.org") "* TODO %?\n" :empty-lines-before 1))))
 #+end_src
 
 *** org-babel
@@ -511,12 +415,6 @@ Also be *careful*  with =haskell= recursion, it can lead to system crashes (at l
                                                          (C . t)
                                                          (dot . t)
                                                          (octave . t)))
-
-(use-package sage-shell-mode
-  :straight t)
-
-(use-package ob-sagemath
-  :straight t)
 #+end_src
 
 *** org-agenda
@@ -562,46 +460,12 @@ I need my =hjkl= :(
   (setq org-ref-completion-library 'org-ref-ivy-cite))
 #+end_src
 
-*** org-screenshot
-#+begin_src emacs-lisp :tangle no
-(use-package org-attach-screenshot
-  :straight t
-  :config (setq ;org-attach-screenshot-command-line "gnome-screenshot -a -f %f"
-                org-attach-screenshot-auto-refresh "never"
-                org-attach-screenshot-insertfunction
-                (lambda (linkfilename)
-                  (insert (concat
-                           "#+caption:\n#+label: fig:"
-                           (if
-                               (string-match ".*\/\\(.*\\)\.png" linkfilename)
-                               (match-string 1 linkfilename)
-                             )
-			   "\n#+attr_latex: :width 200"
-                           "\n[[file:" linkfilename "]]\n\n")))))
-#+end_src
-
 *** org-alert
 #+begin_src emacs-lisp
 (use-package org-alert
   :straight t
   :config
   (setq alert-default-style 'libnotify)
-  (defun org-alert--parse-entry ()
-    "Parse an entry from the org agenda and return a list of the heading and the scheduled/deadline time"
-    (let ((head (org-alert--strip-text-properties (org-get-heading t t t t)))
-  	  (body (org-alert--grab-subtree))
-	  (todo (org-get-todo-state)))
-      (string-match org-alert-time-match-string body)
-      (list head (match-string 1 body) todo)))
-  (defun org-alert--dispatch ()
-    (let* ((entry (org-alert--parse-entry))
-  	 (head (car entry))
-  	 (time (cadr entry))
-	 (todo (cadr (cdr entry))))
-      (if time
-  	(when (and (string= todo "TODO") (org-alert--check-time time))
-  	  (alert (concat time ": " head) :title org-alert-notification-title))
-        (alert head :title org-alert-notification-title))))
   (org-alert-enable))
 #+end_src
 
@@ -637,14 +501,6 @@ Use the above fix and disable creating of =.tex= files.
   (add-to-list 'org-export-filter-bold-functions 'mth/beamer-bold)
   (add-to-list 'org-latex-logfiles-extensions "tex")
   (add-to-list 'org-latex-logfiles-extensions "bbl"))
-#+end_src
-
-Show math equations inline!
-#+begin_src emacs-lisp :tangle no
-(use-package org-fragtog
-  :straight t
-  :hook
-  (org-mode . org-fragtog-mode))
 #+end_src
 
 Use graphivz to draw graphs.
@@ -693,7 +549,7 @@ Use some magic heuristics for indentation.
 #+end_src
 
 *** Auto pairs
-Auto matching pairs are reaaaaally nice.
+Auto matching pairs is nice.
 #+begin_src emacs-lisp
 (use-package electric-pair
   :config
@@ -722,10 +578,6 @@ Auto matching pairs are reaaaaally nice.
     "gp" 'magit-push
     "gs" 'magit-status
     "gu" 'magit-pull))
-
-(use-package treemacs-magit
-  :after (treemacs magit)
-  :straight t)
 #+end_src
 
 *** Highlight todo's
@@ -750,16 +602,6 @@ Sometimes, a big red TODO is more intimidating than one with normal text color.
                                 ("UNUSED" . hl-todo-UNUSED))))
 #+end_src
 
-*** iedit
-Easily rename occurrences, even without =lsp-rename=
-#+begin_src emacs-lisp
-(use-package iedit
-  :straight t
-  :general
-  (vim-leader-def 'normal 'global
-    "r" 'iedit-mode))
-#+end_src
-
 *** Code style
 #+begin_src emacs-lisp
 (setq ; c-default-style "bsd"
@@ -768,8 +610,8 @@ Easily rename occurrences, even without =lsp-rename=
 #+end_src
 
 
-** Code completion
-*** completion
+** Code suggestions
+*** company
 First of all, we need a backend for our completion and analysis.
 #+begin_src emacs-lisp
 (use-package company
@@ -835,7 +677,7 @@ We also need the actual snippets.
 #+end_src
 
 
-** LSP and projects
+** LSP and language specific settings
 *** lsp-mode
 =lsp-mode= is feature-richer than =eglot=, so I'm using this one.
 #+begin_src emacs-lisp
@@ -849,15 +691,10 @@ We also need the actual snippets.
   (setq lsp-auto-guess-root t
         lsp-idle-delay 1
         lsp-enable-file-watchers nil
-        lsp-headerline-breadcrumb-icons-enable nil)
-  :hook
-  (rust-mode . lsp)
-  (python-mode . lsp)
-  (haskell-mode . lsp)
-  (c-mode . lsp)
-  (c++-mode . lsp))
+        lsp-headerline-breadcrumb-icons-enable nil))
 #+end_src
 
+Code Lens can show error inline.
 #+begin_src emacs-lisp
 (use-package lsp-ui
   :straight t
@@ -880,17 +717,7 @@ In order for =lsp-mode= to work, it needs to compile code on the =fly=.
   :bind(:map lsp-mode-map ("C-l g a" . lsp-ivy-workspace-symbol)))
 #+end_src
 
-*** projects
-#+begin_src emacs-lisp
-(use-package projectile
-  :straight t
-  :after lsp
-  :config
-  (setq projectile-completion-system 'ivy)
-  (projectile-mode +1))
-#+end_src
-
-*** language server configurations
+*** language configurations
 **** rust
 Basic =rust-mode= with some fancy characters.
 #+begin_src emacs-lisp
@@ -925,13 +752,10 @@ are required.
 
 (use-package lsp-haskell
   :straight t
-  :after lsp
-  :hook
-  (haskell-mode . lsp)
-  (haskell-literate-mode . lsp))
+  :after lsp)
 #+end_src
 
-*** octave
+**** octave
 #+begin_src emacs-lisp
 (use-package octave-mode
   :mode ("\\.m\\'" . octave-mode)
@@ -1031,30 +855,4 @@ Who needs LaTeX when you can have the power of unicode?
               (quail-defrule (cadr x) (car (cddr x)))))
         (append math-symbol-list-superscripts
                 math-symbol-list-subscripts)))
-#+end_src
-
-
-** PDF
-*** pdf-tools
-Built-in DocView isn't too nice to use.
-=pdf-tools= offers smoother scrolling and a nicer search.
-=isearch-forward-regexp= replaces =swiper= in this mode, as =swiper= would regexp in the PDF source.
-Keybinds:
-+ =C-s=: search, just as in =swiper=
-+ =C-s= (again): forward search
-+ =C-r=: backward search
-#+begin_src emacs-lisp
-(use-package pdf-tools
-  :straight t
-  :config
-  (define-key pdf-view-mode-map [remap swiper] 'isearch-forward-regexp)
-  (define-key pdf-view-mode-map [remap evil-ex] 'pdf-view-goto-page)
-  (setq-default pdf-view-display-size 'fit-page)
-  (setq pdf-view-resize-factor 1.1)
-  :hook
-  (pdf-misc-minor-mode . auto-revert-mode))
-
-
-;; load necessary things, when a PDF gets opened
-(pdf-tools-install)
 #+end_src

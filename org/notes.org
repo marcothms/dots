@@ -4,13 +4,15 @@
 #+OPTIONS: toc:t
 #+LATEX_HEADER: \date{\today}
 
+% emacs config might also add packages
+
 #+LATEX_HEADER: \usepackage{a4wide}
 #+LATEX_HEADER: \usepackage{mathtools}
 #+LATEX_HEADER: \usepackage{amsthm}
 #+LATEX_HEADER: \usepackage{amssymb}
 #+LATEX_HEADER: \usepackage{amsmath}
 #+LATEX_HEADER: \usepackage{amsfonts}
-#+LATEX_HEADER: \usepackage[utf8]{inputenc}
+% #+LATEX_HEADER: \usepackage[utf8]{inputenc}
 #+LATEX_HEADER: \usepackage[T1]{fontenc}
 #+LATEX_HEADER: \usepackage[ngerman]{babel}
 #+LATEX_HEADER: \usepackage{hyphenat}
@@ -46,31 +48,31 @@
 % definition
 #+LATEX_HEADER: \theoremstyle{definition}
 #+LATEX_HEADER: \newtheorem{definition}{Definition}[section]
-#+LATEX_HEADER: \tcolorboxenvironment{definition}{blanker,before skip=10pt,after skip=10pt}
+#+LATEX_HEADER: \tcolorboxenvironment{definition}{before skip=10pt,after skip=10pt}
 
 % example
 #+LATEX_HEADER: \theoremstyle{definition}
 #+LATEX_HEADER: \newtheorem{ex}{Beispiel}[section]
-#+LATEX_HEADER: \tcolorboxenvironment{ex}{blanker,before skip=10pt,after skip=10pt}
+#+LATEX_HEADER: \tcolorboxenvironment{ex}{before skip=10pt,after skip=10pt}
 
 % theorem
 #+LATEX_HEADER: \newtheorem{theorem}{Satz}[section]
-#+LATEX_HEADER: \tcolorboxenvironment{theorem}{blanker,before skip=10pt,after skip=10pt}
+#+LATEX_HEADER: \tcolorboxenvironment{theorem}{before skip=10pt,after skip=10pt}
 
 % algorithm
 #+LATEX_HEADER: \theoremstyle{definition}
 #+LATEX_HEADER: \newtheorem{algo}{Algorithmus}[section]
-#+LATEX_HEADER: \tcolorboxenvironment{algo}{blanker,before skip=10pt,after skip=10pt}
+#+LATEX_HEADER: \tcolorboxenvironment{algo}{before skip=10pt,after skip=10pt}
 
 % remark
 #+LATEX_HEADER: \theoremstyle{definition}
 #+LATEX_HEADER: \newtheorem*{remark}{Bemerkung}
-#+LATEX_HEADER: \tcolorboxenvironment{remark}{blanker,before skip=10pt,after skip=10pt}
+#+LATEX_HEADER: \tcolorboxenvironment{remark}{before skip=10pt,after skip=10pt}
 
 % proof
-#+LATEX_HEADER: \tcolorboxenvironment{proof}{blanker,before skip=10pt,after skip=10pt}
+#+LATEX_HEADER: \tcolorboxenvironment{proof}{before skip=10pt,after skip=10pt}
 
 %%% code blocks
 #+latex_header: \usepackage{minted}
 #+latex_header: \usemintedstyle{friendly}
-#+LATEX_HEADER: \tcolorboxenvironment{minted}{blanker,before skip=10pt,after skip=10pt}
+#+LATEX_HEADER: \tcolorboxenvironment{minted}{before skip=10pt,after skip=10pt}
