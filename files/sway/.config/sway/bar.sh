@@ -3,6 +3,10 @@
 date=$(date +'%A, %d. %b %R')
 
 battery=$(cat /sys/class/power_supply/BAT1/capacity)
+if [ ${battery} -lt 8 ]; then
+    notify-send "Battery" "Critical Battery State!\n ${battery}% remaining!"
+fi
+
 if [ $(cat /sys/class/power_supply/BAT1/status) = 'Discharging' ]; then
     bat_rem="▼"
 else
@@ -22,7 +26,6 @@ fi
 
 powermode=$(cat /sys/firmware/acpi/platform_profile)
 
-# cpu_util=$(ps -A -o pcpu | tail -n+2 | paste -sd+ | bc)
 cpu_util=$(cat /proc/loadavg | awk '{print $1, $2, $3}')
 
 if [ $(pactl get-sink-mute @DEFAULT_SINK@ | awk '{print $2}') = 'no' ]; then
