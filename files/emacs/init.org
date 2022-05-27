@@ -691,7 +691,7 @@ We also need the actual snippets.
   (setq lsp-auto-guess-root t
         lsp-idle-delay 1
         lsp-enable-file-watchers nil
-        lsp-headerline-breadcrumb-icons-enable nil))
+        lsp-headerline-breadcrumb-icons-enable t))
 #+end_src
 
 Code Lens can show error inline.

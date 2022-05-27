@@ -178,8 +178,8 @@ input type:keyboard {
     for_window [app_id="firefox" title="Firefox — Sharing Indicator"] kill
     for_window [class="discord"] move container to workspace number $ws3
     for_window [class="Spotify"] move container to workspace number $ws4
-    assign [app_id="org.keepassxc.KeePassXC"] $ws9
-    assign [app_id="geary"] $ws8
+    for_window [app_id="geary"] move container to workspace number $ws8
+    for_window [app_id="org.keepassxc.KeepassXC"] move container to workspace number $ws9
 
 # Status Bar
 # man 5 sway-bar

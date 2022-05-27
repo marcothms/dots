@@ -3,12 +3,13 @@
 date=$(date +'%A, %d. %b %R')
 
 battery=$(cat /sys/class/power_supply/BAT1/capacity)
-if [ ${battery} -lt 8 ]; then
-    notify-send "Battery" "Critical Battery State!\n ${battery}% remaining!"
-fi
 
 if [ $(cat /sys/class/power_supply/BAT1/status) = 'Discharging' ]; then
     bat_rem="▼"
+
+    if [ ${battery} -lt 6 ]; then
+        notify-send -i battery "Battery" "Critical Battery State!\n ${battery}% remaining!"
+    fi
 else
     bat_rem="⯅"
 fi
