@@ -22,6 +22,10 @@
 #+LATEX_HEADER: \usepackage{xcolor}
 #+LATEX_HEADER: \usepackage{color}
 
+#+latex_header: \usepackage{minted}
+#+latex_header: \usemintedstyle{colorful}
+#+latex_header: \definecolor{bg}{HTML}{FDF6E3}  % used in emacs conf
+
 %%% cleaner newline indentation
 #+LATEX_HEADER: \usepackage[parfill]{parskip}
 
@@ -42,37 +46,28 @@
 
 %%% theorem-style environments
 #+LATEX_HEADER: \usepackage{proof}
-% use `most` if you don't want the boxes
-#+LATEX_HEADER: \usepackage[]{tcolorbox}
+#+LATEX_HEADER: \usepackage[skins]{tcolorbox}
 
 % definition
 #+LATEX_HEADER: \theoremstyle{definition}
 #+LATEX_HEADER: \newtheorem{definition}{Definition}[section]
-#+LATEX_HEADER: \tcolorboxenvironment{definition}{before skip=10pt,after skip=10pt}
+#+LATEX_HEADER: \tcolorboxenvironment{definition}{blanker, before skip=10pt,after skip=10pt}
 
 % example
 #+LATEX_HEADER: \theoremstyle{definition}
 #+LATEX_HEADER: \newtheorem{ex}{Beispiel}[section]
-#+LATEX_HEADER: \tcolorboxenvironment{ex}{before skip=10pt,after skip=10pt}
+#+LATEX_HEADER: \tcolorboxenvironment{example}{blanker, before skip=10pt,after skip=10pt}
 
 % theorem
 #+LATEX_HEADER: \newtheorem{theorem}{Satz}[section]
-#+LATEX_HEADER: \tcolorboxenvironment{theorem}{before skip=10pt,after skip=10pt}
+#+LATEX_HEADER: \tcolorboxenvironment{theorem}{blanker, before skip=10pt,after skip=10pt}
 
 % algorithm
 #+LATEX_HEADER: \theoremstyle{definition}
 #+LATEX_HEADER: \newtheorem{algo}{Algorithmus}[section]
-#+LATEX_HEADER: \tcolorboxenvironment{algo}{before skip=10pt,after skip=10pt}
+#+LATEX_HEADER: \tcolorboxenvironment{algo}{blanker, before skip=10pt,after skip=10pt}
 
 % remark
 #+LATEX_HEADER: \theoremstyle{definition}
 #+LATEX_HEADER: \newtheorem*{remark}{Bemerkung}
-#+LATEX_HEADER: \tcolorboxenvironment{remark}{before skip=10pt,after skip=10pt}
-
-% proof
-#+LATEX_HEADER: \tcolorboxenvironment{proof}{before skip=10pt,after skip=10pt}
-
-%%% code blocks
-#+latex_header: \usepackage{minted}
-#+latex_header: \usemintedstyle{friendly}
-#+LATEX_HEADER: \tcolorboxenvironment{minted}{before skip=10pt,after skip=10pt}
+#+LATEX_HEADER: \tcolorboxenvironment{remark}{blanker, before skip=10pt,after skip=10pt}

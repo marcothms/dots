@@ -475,7 +475,8 @@ Also fix math =utf8= chars.
 #+begin_src emacs-lisp
 (setq org-latex-listings 'minted
       org-latex-minted-options '(("breaklines" "true")
-                                 ("breakanywhere" "true"))
+                                 ("breakanywhere" "true")
+                                 ("bgcolor" "bg"))
       org-latex-pdf-process
       '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
         "bibtex %b"
