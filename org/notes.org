@@ -22,6 +22,8 @@
 #+LATEX_HEADER: \usepackage{xcolor}
 #+LATEX_HEADER: \usepackage{color}
 
+#+LATEX_HEADER: \usepackage{color,soul}
+
 #+latex_header: \usepackage{minted}
 #+latex_header: \usemintedstyle{colorful}
 #+latex_header: \definecolor{bg}{HTML}{FDF6E3}  % used in emacs conf
@@ -56,7 +58,7 @@
 % example
 #+LATEX_HEADER: \theoremstyle{definition}
 #+LATEX_HEADER: \newtheorem{ex}{Beispiel}[section]
-#+LATEX_HEADER: \tcolorboxenvironment{example}{blanker, before skip=10pt,after skip=10pt}
+#+LATEX_HEADER: \tcolorboxenvironment{ex}{blanker, before skip=10pt,after skip=10pt}
 
 % theorem
 #+LATEX_HEADER: \newtheorem{theorem}{Satz}[section]
