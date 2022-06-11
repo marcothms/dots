@@ -130,7 +130,7 @@ Make ESC quit prompts.
 #+end_src
 
 *** Soft wrap
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
 (global-visual-line-mode t)
 #+end_src
 
@@ -318,7 +318,7 @@ Show me color codes as colors!
   (c-mode . (lambda() (rainbow-mode -1))))
 #+end_src
 
-*** Whitespaces and indentation
+*** Whitespaces
 Show me trailing white-spaces.
 #+begin_src emacs-lisp
 (global-whitespace-mode t)
@@ -549,6 +549,12 @@ Use some magic heuristics for indentation.
   (markdown-mode . dtrt-indent-mode))
 #+end_src
 
+#+begin_src emacs-lisp
+(setq ; c-default-style "bsd"
+      c-basic-offset 4)
+(setq-default indent-tabs-mode nil)
+#+end_src
+
 *** Auto pairs
 Auto matching pairs is nice.
 #+begin_src emacs-lisp
@@ -601,13 +607,6 @@ Sometimes, a big red TODO is more intimidating than one with normal text color.
                                 ("XXX"   . hl-todo-TODO)
                                 ("FIXME" . hl-todo-TODO)
                                 ("UNUSED" . hl-todo-UNUSED))))
-#+end_src
-
-*** Code style
-#+begin_src emacs-lisp
-(setq ; c-default-style "bsd"
-      c-basic-offset 4)
-(setq-default indent-tabs-mode nil)
 #+end_src
 
 
