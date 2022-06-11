@@ -42,7 +42,22 @@ alias rm='rm -i' # Ask before removal
 alias cp='cp -i' # Ask before removal
 alias mv='mv -i' # Ask before removal
 
+alias -g G='| grep -i'
+alias -g L='| less'
+alias gg='git grep'
+
+alias code='/usr/bin/code --enable-features=UseOzonePlatform --ozone-platform=wayland . 2>/dev/null'
+
 # tools
+pd() {
+    pandoc $1.md -o $1.pdf --from markdown --template eisvogel --listings --toc
+}
+
+pdp() {
+    pandoc $1.md -o $1.pdf --from markdown -t beamer --toc
+}
+
+
 ocr() {
     if [ -z $1 ]; then
 	echo "Please input a file."
@@ -182,7 +197,7 @@ rga-fzf() {
 zle -N rga-fzf
 bindkey '^G' "rga-fzf"
 
-## fzf Bindings in zsh (C-r and C-t)
+## fzf Bindings in zsh (C-r and C-f)
 if [[ -x $(which fzf 2> /dev/null) ]]
 then
     # The code at the top and the bottom of this file is the same as in completion.zsh.
