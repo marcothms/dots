@@ -176,7 +176,9 @@ input type:keyboard {
     # Window rules
     title_align center
     default_border none
-    default_floating_border normal
+    titlebar_border_thickness 0
+    titlebar_padding 0
+
     for_window [app_id="firefox" title="Firefox — Sharing Indicator"] kill
     for_window [app_id="firefox"] move container to workspace number $ws2
     for_window [class="discord"] move container to workspace number $ws3

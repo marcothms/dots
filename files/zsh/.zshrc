@@ -50,7 +50,8 @@ alias code='/usr/bin/code --enable-features=UseOzonePlatform --ozone-platform=wa
 
 # tools
 pd() {
-    pandoc $1.md -o $1.pdf --from markdown --template eisvogel --listings --toc
+    # requires https://pypi.org/project/pandoc-include/
+    pandoc $1.md -o $1.pdf --from markdown --template eisvogel --listings --toc --filter pandoc-include
 }
 
 pdp() {
