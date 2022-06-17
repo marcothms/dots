@@ -1,0 +1,33 @@
+\documentclass[presentation, smaller, aspectratio=169]{beamer}
+\usetheme{Singapore}
+\usecolortheme{rose}
+
+\date{\today}
+
+\usepackage[ngerman]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{hyphenat}
+\usepackage{tikz}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{proof}
+
+\usepackage{listings}
+\usepackage{minted}
+
+% page numbers in the bottom right
+\addtobeamertemplate{navigation symbols}{}{%
+    \usebeamerfont{footline}%
+    \usebeamercolor[fg]{footline}%
+    \hspace{1em}%
+    \raisebox{2pt}[0pt][0pt]{\insertframenumber/\inserttotalframenumber}
+}
+
+% code blocks
+

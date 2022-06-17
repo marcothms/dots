@@ -1,0 +1,65 @@
+\documentclass{article}[a4paper]
+\date{\today}
+
+\usepackage[ngerman]{babel}
+\usepackage[T1]{fontenc}
+
+\usepackage{a4wide}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{hyphenat}
+\usepackage{tikz}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{color}
+
+\usepackage{listings}
+\usepackage{minted}
+
+%%% define own enumeration styles
+\usepackage{enumerate}
+
+%%% cleaner newline indentation
+\usepackage[parfill]{parskip}
+
+%%% break page on new section
+\usepackage{titlesec}
+\newcommand{\sectionbreak}{\clearpage}
+
+%%% remove page numbers (fancyhdr provides its own)
+\usepackage{nopageno}
+
+%%% fancy headers and footers
+\usepackage{fancyhdr}
+\pagestyle{headings}
+
+%%% theorem-style environments
+\usepackage{proof}
+\usepackage[skins]{tcolorbox}
+
+% definition
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\tcolorboxenvironment{definition}{blanker, before skip=10pt,after skip=10pt}
+
+% example
+\theoremstyle{definition}
+\newtheorem{example}{Beispiel}[section]
+\tcolorboxenvironment{example}{blanker, before skip=10pt,after skip=10pt}
+
+% theorem
+\newtheorem{theorem}{Satz}[section]
+\tcolorboxenvironment{theorem}{blanker, before skip=10pt,after skip=10pt}
+
+% algorithm
+\theoremstyle{definition}
+\newtheorem{algo}{Algorithmus}[section]
+\tcolorboxenvironment{algo}{blanker, before skip=10pt,after skip=10pt}
+
+% remark
+\theoremstyle{definition}
+\newtheorem*{remark}{Bemerkung}
+\tcolorboxenvironment{remark}{blanker, before skip=10pt,after skip=10pt}
