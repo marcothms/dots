@@ -17,6 +17,9 @@ Plug 'altercation/vim-colors-solarized' " color scheme
 Plug 'tpope/vim-sleuth'                 " heuristic file indendation
 Plug 'jiangmiao/auto-pairs'             " pair completion
 Plug 'ctrlpvim/ctrlp.vim'               " file finder
+Plug 'vim-airline/vim-airline'          " a nicer status line
+Plug 'vim-airline/vim-airline-themes'   " auto settings theme for airline
+Plug 'djoshea/vim-autoread'             " auto reload file, when changed on disk
 
 call plug#end()
 " ============================== Colors
@@ -47,8 +50,9 @@ set wildmenu                   " autocomplete :e
 set scrolloff=5                " minimum lines above or below the cursor
 
 " ============================== Statusline
-set laststatus=1  " dont show statusline
-set showtabline=1 " dont show tabline
+set laststatus=1  " 1: only if there are at least two windows
+set showtabline=1 " 1: only if there are at least two tab pages
+let g:airline_powerline_fonts = 1
 
 " ============================== Indents and Whitespaces
 set list
@@ -77,4 +81,6 @@ let g:netrw_liststyle = 3 " Tree-like structure
 let g:netrw_banner = 0    " Remove useless banner at the top of netrw
 
 " ============================== Macros and Mappings
+" hello
 map <leader>e :CtrlP<CR>
+
