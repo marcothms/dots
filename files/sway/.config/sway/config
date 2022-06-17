@@ -50,7 +50,7 @@ bindswitch --reload --locked lid:off output $laptop enable
 # Idle configuration
 # Lock after 20 minutes
 # Suspend after 30 minutes
-set $lock 'swaylock --image ~/images/wallpaper/wallpaper.png --effect-blur 7x5 --clock --indicator'
+set $lock 'swaylock -f --image ~/images/wallpaper/wallpaper.png'
 
 exec swayidle -w \
          timeout 1200 $lock \
@@ -181,7 +181,7 @@ input type:keyboard {
     titlebar_border_thickness 0
     titlebar_padding 0
 
-    gaps inner 5
+    gaps inner 0
 
     for_window [app_id="firefox" title="Firefox — Sharing Indicator"] kill
     for_window [app_id="firefox"] move container to workspace number $ws2

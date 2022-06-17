@@ -13,7 +13,6 @@ SFMono also provides icons.
 ### for sway
 + `SwayNotificationCenter`
 + `sworkstyle` (application icons in status bar)
-+ `swaylock-effects` (cooler lock)
 + `wlogout` (logout menu)
 + `bemenu` (dmenu replacement)
 + `slurp`, `grim`, `swappy` (screenshot)
