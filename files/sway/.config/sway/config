@@ -31,13 +31,13 @@ set $baseB2 #073642
 set $baseB3 #002b36
 set $custom #e1cab3
 
-set $bar_bg #ffffff99
+set $bar_bg #ffffffbb
 
-# clientclass 			border  backgr. text 	indicator
+# clientclass 		border  backgr. text 	indicator
 client.focused 		$green	$green	$baseB3 $blue
 client.focused_inactive	$baseA2 $baseA2 $baseB2 $violet
-client.unfocused  		$baseA2 $baseA2 $baseB1 $baseA1
-client.urgent	 		$yellow $yellow $baseB3 $orange
+client.unfocused  	$baseA2 $baseA2 $baseB1 $baseA1
+client.urgent	 	$yellow $yellow $baseB3 $orange
 
 # Output configuration
 set $laptop eDP-1
@@ -50,10 +50,12 @@ bindswitch --reload --locked lid:off output $laptop enable
 # Idle configuration
 # Lock after 20 minutes
 # Suspend after 30 minutes
+set $lock 'swaylock --image ~/images/wallpaper/wallpaper.png --effect-blur 7x5 --clock --indicator'
+
 exec swayidle -w \
-         timeout 1200 'swaylock -f' \
+         timeout 1200 $lock \
          timeout 1800 'systemctl suspend' \
-         before-sleep 'swaylock -f'
+         before-sleep $lock
 
 # Input configuration
 input type:pointer {
@@ -159,7 +161,7 @@ input type:keyboard {
     bindsym $mod+Control+$right move workspace to output right
 
 # Layout stuff:
-    workspace_layout stacking
+    workspace_layout tabbed
 
     # Make the current focus fullscreen
     bindsym $mod+f fullscreen
@@ -179,6 +181,8 @@ input type:keyboard {
     titlebar_border_thickness 0
     titlebar_padding 0
 
+    gaps inner 5
+
     for_window [app_id="firefox" title="Firefox — Sharing Indicator"] kill
     for_window [app_id="firefox"] move container to workspace number $ws2
     for_window [class="discord"] move container to workspace number $ws3
@@ -197,13 +201,14 @@ bar {
 
     colors {
         separator $blue
-        background $baseA3
+        # background $baseA3
+        background $bar_bg
         statusline $baseB2
 
 	# workclass 			border  backgr. text
 	focused_workspace 		$green  $green  $baseB3
-	active_workspace 		$baseA3 $baseA3 $baseB1
-	inactive_workspace 		$baseA3 $baseA3 $baseB1
+	active_workspace 		$bar_bg $bar_bg $baseB1
+	inactive_workspace 		$bar_bg $bar_bg $baseB1
 	urgent_workspace 		$orange $orange $baseB3
 
     }

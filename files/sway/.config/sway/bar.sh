@@ -1,6 +1,6 @@
 #!/bin/bash
 
-date=$(date +'%A, %d. %b %R')
+date=$(date +'%A, %d. %b %I:%M %p')
 
 battery=$(cat /sys/class/power_supply/BAT1/capacity)
 
