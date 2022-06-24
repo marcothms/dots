@@ -28,6 +28,12 @@
 #+latex_header: \usemintedstyle{colorful}
 #+latex_header: \definecolor{bg}{HTML}{FDF6E3}  % used in emacs conf
 
+%%% define own enumeration styles
+% use custom labels with `\begin{enumerate}[label=$\bullet$]`
+#+LATEX_HEADER: \usepackage{enumerate}
+#+LATEX_HEADER: \usepackage{enumitem}
+#+LATEX_HEADER: \setlist{nosep}
+
 %%% cleaner newline indentation
 #+LATEX_HEADER: \usepackage[parfill]{parskip}
 

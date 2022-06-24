@@ -16,11 +16,19 @@
 \usepackage{xcolor}
 \usepackage{color}
 
+%%% links in toc etc
+\usepackage{hyperref}
+
+%%% source code
 \usepackage{listings}
 \usepackage{minted}
+\definecolor{bg}{rgb}{0.95, 0.95, 1.0}
 
 %%% define own enumeration styles
+% use custom labels with `\begin{enumerate}[label=$\bullet$]`
 \usepackage{enumerate}
+\usepackage{enumitem}
+\setlist{nosep}
 
 %%% cleaner newline indentation
 \usepackage[parfill]{parskip}
@@ -43,23 +51,23 @@
 % definition
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]
-\tcolorboxenvironment{definition}{blanker, before skip=10pt,after skip=10pt}
+%\tcolorboxenvironment{definition}{blanker, before skip=10pt,after skip=10pt}
 
 % example
 \theoremstyle{definition}
 \newtheorem{example}{Beispiel}[section]
-\tcolorboxenvironment{example}{blanker, before skip=10pt,after skip=10pt}
+%\tcolorboxenvironment{example}{blanker, before skip=10pt,after skip=10pt}
 
 % theorem
 \newtheorem{theorem}{Satz}[section]
-\tcolorboxenvironment{theorem}{blanker, before skip=10pt,after skip=10pt}
+%\tcolorboxenvironment{theorem}{blanker, before skip=10pt,after skip=10pt}
 
 % algorithm
 \theoremstyle{definition}
 \newtheorem{algo}{Algorithmus}[section]
-\tcolorboxenvironment{algo}{blanker, before skip=10pt,after skip=10pt}
+%\tcolorboxenvironment{algo}{blanker, before skip=10pt,after skip=10pt}
 
 % remark
 \theoremstyle{definition}
 \newtheorem*{remark}{Bemerkung}
-\tcolorboxenvironment{remark}{blanker, before skip=10pt,after skip=10pt}
+%\tcolorboxenvironment{remark}{blanker, before skip=10pt,after skip=10pt}
