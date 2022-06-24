@@ -1,6 +1,7 @@
 #!/bin/bash
 
-date=$(date +'%A, %d. %b %I:%M %p')
+date=$(date +'%A, %d. %b')
+time=$(date +'%I:%M %p')
 
 battery=$(cat /sys/class/power_supply/BAT1/capacity)
 
@@ -38,5 +39,5 @@ fi
 light=$(light -G | awk '{print int($1+0.5)'})"%"
 
 sep=" "
-echo "${sep}  ${light} ${sep} ${audio} ${sep}  ${wifi} ${sep}  ${powermode}: ${cpu_util} ${sep}  ${conservation} ${sep}  ${battery}% ${bat_rem} ${sep}  ${date}"
+echo "${sep}  ${light} ${sep} ${audio} ${sep}  ${wifi} ${sep}  ${powermode}: ${cpu_util} ${sep}  ${conservation} ${sep}  ${battery}% ${bat_rem} ${sep}  ${date} ${sep}  ${time}"
 

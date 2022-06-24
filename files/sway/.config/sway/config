@@ -2,7 +2,7 @@
 # Read `man 5 sway` for a complete reference.
 
 # Font in sway
-font pango: SFMono Nerd Font 8
+font pango: SFMono Nerd Font 9
 
 # Variables
 set $mod Mod4
@@ -50,7 +50,7 @@ bindswitch --reload --locked lid:off output $laptop enable
 # Idle configuration
 # Lock after 20 minutes
 # Suspend after 30 minutes
-set $lock 'swaylock -f --image ~/images/wallpaper/wallpaper.png'
+set $lock 'swaylock -f --image /tmp/lock.png --indicator-idle-visible'
 
 exec swayidle -w \
          timeout 1200 $lock \
@@ -161,7 +161,7 @@ input type:keyboard {
     bindsym $mod+Control+$right move workspace to output right
 
 # Layout stuff:
-    workspace_layout tabbed
+    workspace_layout stacking
 
     # Make the current focus fullscreen
     bindsym $mod+f fullscreen
@@ -179,7 +179,6 @@ input type:keyboard {
     title_align center
     default_border none
     titlebar_border_thickness 0
-    titlebar_padding 0
 
     gaps inner 0
 
@@ -219,6 +218,9 @@ exec syncthing
 exec swaync
 exec fcitx5
 exec sworkstyle &> /tmp/sworkstyle.log
+
+# generate a lock screen
+exec convert ~/images/wallpaper/wallpaper.png -blur 0x8 /tmp/lock.png
 
 # Include some defaults
 include /etc/sway/config.d/*
