@@ -9,11 +9,11 @@ It will link all dotfiles to their correct place.
 Fallsback are provided in `fallback-fonts/`
 SFMono also provides icons.
 
-## notable deps
+## 'invisible' deps
 ### for sway
-+ `SwayNotificationCenter`
-+ `sworkstyle` (application icons in status bar)
-+ `wlogout` (logout menu)
++ `waybar` (cool bar)
++ `SwayNotificationCenter` - default conf
++ `wlogout` (logout menu) - change lock to `~/.local/bin/lock.sh`
 + `bemenu` (dmenu replacement)
 + `slurp`, `grim`, `swappy` (screenshot)
 

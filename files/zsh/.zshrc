@@ -67,7 +67,7 @@ ocr() {
     ocrmypdf -l deu+eng+jpn --output-type pdf $1 OCR_$1
 }
 
-conservationmode() {
+conservation() {
     location='/sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode'
     if [ -z $1 ]; then
 	cat $location
@@ -78,7 +78,7 @@ conservationmode() {
     fi
 }
 
-powermode() {
+power() {
     location='/sys/firmware/acpi/platform_profile'
     if [ -z $1 ]; then
 	echo "Current:" $(cat $location)

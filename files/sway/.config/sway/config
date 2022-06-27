@@ -31,13 +31,13 @@ set $baseB2 #073642
 set $baseB3 #002b36
 set $custom #e1cab3
 
-set $bar_bg #ffffffbb
+set $bar_bg   #323232
 
-# clientclass 		border  backgr. text 	indicator
-client.focused 		$green	$green	$baseB3 $blue
-client.focused_inactive	$baseA2 $baseA2 $baseB2 $violet
-client.unfocused  	$baseA2 $baseA2 $baseB1 $baseA1
-client.urgent	 	$yellow $yellow $baseB3 $orange
+# clientclass           border  backgr. text    indicator
+client.focused          $bar_bg $bar_bg #ffffff $bar_bg
+client.focused_inactive $bar_bg $bar_bg $baseA1 $violet
+client.unfocused        $bar_bg $bar_bg $baseA1 $bar_bg
+client.urgent           $yellow $yellow $baseB3 $orange
 
 # Output configuration
 set $laptop eDP-1
@@ -48,13 +48,19 @@ bindswitch --reload --locked lid:on output $laptop disable
 bindswitch --reload --locked lid:off output $laptop enable
 
 # Idle configuration
-# Lock after 20 minutes
-# Suspend after 30 minutes
-set $lock 'swaylock -f --image /tmp/lock.png --indicator-idle-visible'
+# create blurred lock screen
+exec_always convert ~/images/wallpaper/wallpaper.png -blur 0x8 /tmp/lock.png
 
+# set lockc and save to script, so other programs can also use it
+set $lock 'swaylock -f --image /tmp/lock.png --indicator-idle-visible'
+exec_always echo $lock > ~/.local/bin/lock.sh
+exec_always chmod +x ~/.local/bin/lock.sh
+
+# Lock after 20 minutes
+# Suspend after 22 minutes
 exec swayidle -w \
          timeout 1200 $lock \
-         timeout 1800 'systemctl suspend' \
+         timeout 1320 'systemctl suspend' \
          before-sleep $lock
 
 # Input configuration
@@ -72,7 +78,7 @@ input type:keyboard {
 # Key bindings
 # Basics:
     # Terminal
-    bindsym $mod+Return exec gnome-terminal
+    bindsym $mod+Return exec alacritty
 
     # Kill focused window
     bindsym $mod+Shift+Backspace kill
@@ -162,6 +168,14 @@ input type:keyboard {
 
 # Layout stuff:
     workspace_layout stacking
+    title_align center
+    default_border none
+    default_floating_border none
+    # hide title and border, if only one application open
+    hide_edge_borders --i3 smart
+
+    gaps inner 5
+    smart_gaps on
 
     # Make the current focus fullscreen
     bindsym $mod+f fullscreen
@@ -176,12 +190,6 @@ input type:keyboard {
     bindsym $mod+space focus mode_toggle
 
     # Window rules
-    title_align center
-    default_border none
-    titlebar_border_thickness 0
-
-    gaps inner 0
-
     for_window [app_id="firefox" title="Firefox — Sharing Indicator"] kill
     for_window [app_id="firefox"] move container to workspace number $ws2
     for_window [class="discord"] move container to workspace number $ws3
@@ -196,31 +204,15 @@ input type:keyboard {
 bar {
     position top
     tray_output none
-    status_command while ~/.config/sway/bar.sh; do sleep 1; done
-
-    colors {
-        separator $blue
-        # background $baseA3
-        background $bar_bg
-        statusline $baseB2
-
-	# workclass 			border  backgr. text
-	focused_workspace 		$green  $green  $baseB3
-	active_workspace 		$bar_bg $bar_bg $baseB1
-	inactive_workspace 		$bar_bg $bar_bg $baseB1
-	urgent_workspace 		$orange $orange $baseB3
-
-    }
+    swaybar_command waybar
 }
 
 # Startup programs
 exec syncthing
 exec swaync
 exec fcitx5
-exec sworkstyle &> /tmp/sworkstyle.log
-
-# generate a lock screen
-exec convert ~/images/wallpaper/wallpaper.png -blur 0x8 /tmp/lock.png
+exec nm-applet --indicator
+exec blueman-applet
 
 # Include some defaults
 include /etc/sway/config.d/*
