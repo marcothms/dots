@@ -16,6 +16,26 @@
 \usepackage{xcolor}
 \usepackage{color}
 
+%%% make \paragraph{} and \subparagraph{} look like a normal subsection
+\makeatletter
+\renewcommand\paragraph{%
+   \@startsection{paragraph}{4}{0mm}%
+      {-\baselineskip}%
+      {.5\baselineskip}%
+      {\normalfont\normalsize\bfseries}}
+\makeatother
+
+\makeatletter
+\renewcommand\subparagraph{%
+   \@startsection{subparagraph}{4}{0mm}%
+      {-\baselineskip}%
+      {.5\baselineskip}%
+      {\normalfont\normalsize\bfseries}}
+\makeatother
+
+\setcounter{tocdepth}{5}
+\setcounter{secnumdepth}{5}
+
 %%% links in toc etc
 \usepackage{hyperref}
 
@@ -51,26 +71,13 @@
 \usepackage{proof}
 \usepackage[skins]{tcolorbox}
 
+% just saved, not using anymore
+%\tcolorboxenvironment{definition}{blanker, before skip=10pt,after skip=10pt}
+
 % definition
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]
-%\tcolorboxenvironment{definition}{blanker, before skip=10pt,after skip=10pt}
-
-% example
-\theoremstyle{definition}
 \newtheorem{example}{Beispiel}[section]
-%\tcolorboxenvironment{example}{blanker, before skip=10pt,after skip=10pt}
-
-% theorem
-\newtheorem{theorem}{Satz}[section]
-%\tcolorboxenvironment{theorem}{blanker, before skip=10pt,after skip=10pt}
-
-% algorithm
-\theoremstyle{definition}
 \newtheorem{algo}{Algorithmus}[section]
-%\tcolorboxenvironment{algo}{blanker, before skip=10pt,after skip=10pt}
-
-% remark
-\theoremstyle{definition}
+\newtheorem{theorem}{Satz}[section]
 \newtheorem*{remark}{Bemerkung}
-%\tcolorboxenvironment{remark}{blanker, before skip=10pt,after skip=10pt}
