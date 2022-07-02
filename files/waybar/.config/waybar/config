@@ -19,16 +19,19 @@
     "height": 30,
 
     "modules-left": [
-        "sway/workspaces"
-    ],
-    "modules-center": [
+        "sway/workspaces",
         "sway/window"
     ],
+    "modules-center": [
+    ],
     "modules-right": [
+        "cpu",
+        "backlight",
         "battery",
         "pulseaudio",
         "clock#date",
         "clock#time",
+        "idle_inhibitor",
         "tray"
     ],
 
@@ -37,6 +40,20 @@
     // Modules
     // -------------------------------------------------------------------------
 
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": "鈴"
+        }
+    },
+
+    "backlight": {
+        // "device": "acpi_video1",
+        "format": "{icon} {percent}%",
+        "format-icons": ["", "", "", "", "", "", "", "", ""]
+    },
+
     "battery": {
         "interval": 10,
         "states": {
@@ -44,7 +61,7 @@
             "critical": 15
         },
         // Connected to AC
-        "format": " {icon}  {capacity}%", // Icon: bolt
+        "format": "{icon}  {capacity}% ", // Icon: bolt
         // Not connected to AC
         "format-discharging": "{icon}  {capacity}%",
         "format-icons": [
@@ -59,7 +76,7 @@
 
     "clock#time": {
         "interval": 5,
-        "format": "{:%I:%M %p}",
+        "format": "  {:%I:%M %p}",
         "tooltip": false
     },
 
@@ -107,7 +124,7 @@
 
     "sway/window": {
         "format": "{}",
-        "max-length": 120
+        "max-length": 80
     },
 
     "sway/workspaces": {
@@ -117,7 +134,7 @@
         "format-icons": {
             "1": "",
             "2": "",
-            "3": "‭ﭮ‬",
+            "3": "ﭮ",
             "4": "",
             "5": "",
             "8": "",
@@ -132,7 +149,7 @@
         //"scroll-step": 1,
         "format": "{icon} {volume}%",
         "format-bluetooth": "{icon} {volume}% ",
-        "format-muted": " Muted",
+        "format-muted": "婢  0%",
         "format-icons": {
             "headphones": "",
             "handsfree": "",
@@ -140,7 +157,7 @@
             "phone": "",
             "portable": "",
             "car": "",
-            "default": ["", ""]
+            "default": ["奄","奔", "墳", "墳", "墳", "墳", "墳"]
         },
         "on-click": "pavucontrol"
     },

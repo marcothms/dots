@@ -13,7 +13,6 @@ SFMono also provides icons.
 ### for sway
 + `waybar` (cool bar)
 + `SwayNotificationCenter` - default conf
-+ `wlogout` (logout menu) - change lock to `~/.local/bin/lock.sh`
 + `bemenu` (dmenu replacement)
 + `slurp`, `grim`, `swappy` (screenshot)
 

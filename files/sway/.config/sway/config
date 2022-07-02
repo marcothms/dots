@@ -34,9 +34,9 @@ set $custom #e1cab3
 set $bar_bg   #323232
 
 # clientclass           border  backgr. text    indicator
-client.focused          $bar_bg $bar_bg #ffffff $bar_bg
-client.focused_inactive $bar_bg $bar_bg $baseA1 $violet
-client.unfocused        $bar_bg $bar_bg $baseA1 $bar_bg
+client.focused          $green  $green  #ffffff $green
+client.focused_inactive $baseA2 $baseA2 $baseB0 $baseA2
+client.unfocused        $baseA2 $baseA2 $baseB0 $baseA2
 client.urgent           $yellow $yellow $baseB3 $orange
 
 # Output configuration
@@ -47,21 +47,23 @@ output * bg ~/images/wallpaper/wallpaper.png fill
 bindswitch --reload --locked lid:on output $laptop disable
 bindswitch --reload --locked lid:off output $laptop enable
 
+exec light -S 20
+
 # Idle configuration
 # create blurred lock screen
 exec_always convert ~/images/wallpaper/wallpaper.png -blur 0x8 /tmp/lock.png
 
 # set lockc and save to script, so other programs can also use it
-set $lock 'swaylock -f --image /tmp/lock.png --indicator-idle-visible'
+set $lock 'swaylock -f --image /tmp/lock.png --indicator-idle-visible -F'
 exec_always echo $lock > ~/.local/bin/lock.sh
 exec_always chmod +x ~/.local/bin/lock.sh
 
 # Lock after 20 minutes
 # Suspend after 22 minutes
 exec swayidle -w \
-         timeout 1200 $lock \
+         timeout 1200 ~/.local/bin/lock.sh \
          timeout 1320 'systemctl suspend' \
-         before-sleep $lock
+         before-sleep ~/.local/bin/lock.sh
 
 # Input configuration
 input type:pointer {
@@ -84,7 +86,7 @@ input type:keyboard {
     bindsym $mod+Shift+Backspace kill
 
     # Application launcher
-    set $bemenu bemenu -l 7 --tf "#859900" --hf "#859900" --nb "#002b36" --hb "#002b36" --tb "#002b36" --fb "#002b36" --fn "SFMono Nerd Font 13" -i
+    set $bemenu bemenu -l 7 --tf "#859900" --hf "#859900" --nb "#282828" --hb "#383838" --tb "#282828" --fb "#282828" --fn "SFMono Nerd Font 13" -i -H 30
     set $files fd -I "pdf$" $HOME | cut -f 4- -d "/"
     bindsym $mod+d exec dmenu_path | $bemenu | xargs swaymsg exec --
     bindsym $mod+p exec $files | $bemenu -l 20 -p 'pdfs' | xargs -d '\n' -r xdg-open
@@ -94,7 +96,7 @@ input type:keyboard {
     bindsym $mod+Ctrl+Shift+s exec grim -g "$(slurp)" - | swappy -f -
 
     # Logout etc
-    bindsym $mod+Ctrl+Backspace exec wlogout
+    bindsym $mod+Ctrl+Backspace exec ~/.local/bin/lock.sh
 
     # Show notifications
     bindsym $mod+v exec swaync-client -t -sw
@@ -169,13 +171,13 @@ input type:keyboard {
 # Layout stuff:
     workspace_layout stacking
     title_align center
-    default_border none
-    default_floating_border none
+    default_border pixel 3
+    default_floating_border pixel 3
     # hide title and border, if only one application open
     hide_edge_borders --i3 smart
 
     gaps inner 5
-    smart_gaps on
+    smart_gaps off
 
     # Make the current focus fullscreen
     bindsym $mod+f fullscreen

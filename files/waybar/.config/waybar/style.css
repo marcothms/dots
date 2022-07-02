@@ -54,8 +54,10 @@
     font-size: 13px;
 }
 
-/* Each module */
+/* Each module l*/
+#idle_inhibitor,
 #battery,
+#backlight,
 #clock,
 #cpu,
 #custom-keyboard-layout,
@@ -65,6 +67,12 @@
 #pulseaudio,
 #temperature,
 #tray {
+    border-radius: 5px;
+    background-color: #282828;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    margin-left: 5px;
+    padding-bottom: 2px;
     padding-left: 10px;
     padding-right: 10px;
 }
@@ -171,23 +179,35 @@
 
 #window {
     /* font-weight: bold; */
-}
-
-#workspaces button {
-    border-top: 2px solid transparent;
-    /* To compensate for the top border and still have vertical centering */
+    border-radius: 5px;
+    background-color: #282828;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    margin-left: 5px;
     padding-bottom: 2px;
     padding-left: 10px;
     padding-right: 10px;
-    color: #888888;
+}
+
+
+#workspaces button {
+    border-top: 2px solid transparent;
+    padding-bottom: 2px;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: white;
+    border-radius: 5px;
+    margin-top: 3px;
+    margin-bottom: 3px;
 }
 
 #workspaces button.focused {
-    color: white;
     background-color: #859900;
+    color: #282828;
+    border-bottom: none;
 }
 
 #workspaces button.urgent {
-    border-color: #c9545d;
-    color: #c9545d;
+    background-color: #2c303c;
 }
+
