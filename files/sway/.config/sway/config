@@ -85,18 +85,17 @@ input type:keyboard {
     # Kill focused window
     bindsym $mod+Shift+Backspace kill
 
-    # Application launcher
+    # bemenu
     set $bemenu bemenu -l 7 --tf "#859900" --hf "#859900" --nb "#282828" --hb "#383838" --tb "#282828" --fb "#282828" --fn "SFMono Nerd Font 13" -i -H 30
     set $files fd -I "pdf$" $HOME | cut -f 4- -d "/"
+    set $lock_screen printf "/home/marc/.local/bin/lock.sh\nsystemctl suspend\nshutdown now" | $bemenu -l 3 -p "power" | xargs -d '\n' -r /bin/bash -c
     bindsym $mod+d exec dmenu_path | $bemenu | xargs swaymsg exec --
     bindsym $mod+p exec $files | $bemenu -l 20 -p 'pdfs' | xargs -d '\n' -r xdg-open
+    bindsym $mod+Ctrl+Backspace exec $lock_screen
 
     # Screenshot
     bindsym $mod+Shift+s exec grim -g "$(slurp)" - | wl-copy
     bindsym $mod+Ctrl+Shift+s exec grim -g "$(slurp)" - | swappy -f -
-
-    # Logout etc
-    bindsym $mod+Ctrl+Backspace exec ~/.local/bin/lock.sh
 
     # Show notifications
     bindsym $mod+v exec swaync-client -t -sw
