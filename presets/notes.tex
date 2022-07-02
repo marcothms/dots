@@ -16,6 +16,12 @@
 \usepackage{xcolor}
 \usepackage{color}
 
+%%% lorem ipsum
+\usepackage{blindtext}
+
+%%% figures in text flow
+\usepackage{wrapfig}
+
 %%% make \paragraph{} and \subparagraph{} look like a normal subsection
 \makeatletter
 \renewcommand\paragraph{%
@@ -43,6 +49,7 @@
 \usepackage{listings}
 \usepackage{minted}
 \definecolor{bg}{rgb}{0.95, 0.95, 1.0}
+\usepackage{inconsolata}
 
 %%% define own enumeration styles
 % use custom labels with `\begin{enumerate}[label=$\bullet$]`
@@ -69,12 +76,10 @@
 
 %%% theorem-style environments
 \usepackage{proof}
-\usepackage[skins]{tcolorbox}
+%\usepackage[skins]{tcolorbox}
 
 % just saved, not using anymore
 %\tcolorboxenvironment{definition}{blanker, before skip=10pt,after skip=10pt}
-
-% definition
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]
 \newtheorem{example}{Beispiel}[section]
