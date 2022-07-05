@@ -54,7 +54,7 @@
     font-size: 13px;
 }
 
-/* Each module l*/
+/* Each module */
 #idle_inhibitor,
 #battery,
 #backlight,
@@ -66,13 +66,14 @@
 #network,
 #pulseaudio,
 #temperature,
+#window,
+#workspaces button,
 #tray {
     border-radius: 5px;
     background-color: #282828;
-    margin-top: 3px;
-    margin-bottom: 3px;
+    margin-top: 5px;
+    margin-bottom: 5px;
     margin-left: 5px;
-    padding-bottom: 2px;
     padding-left: 10px;
     padding-right: 10px;
 }
@@ -161,10 +162,6 @@
     /* No styles */
 }
 
-#custom-spotify {
-    color: rgb(102, 220, 105);
-}
-
 #temperature {
     /* No styles */
 }
@@ -174,31 +171,12 @@
 }
 
 #tray {
-    /* No styles */
+    /* Empty space on the right */
+    margin-right: 5px;
 }
-
-#window {
-    /* font-weight: bold; */
-    border-radius: 5px;
-    background-color: #282828;
-    margin-top: 3px;
-    margin-bottom: 3px;
-    margin-left: 5px;
-    padding-bottom: 2px;
-    padding-left: 10px;
-    padding-right: 10px;
-}
-
 
 #workspaces button {
-    border-top: 2px solid transparent;
-    padding-bottom: 2px;
-    padding-left: 10px;
-    padding-right: 10px;
     color: white;
-    border-radius: 5px;
-    margin-top: 3px;
-    margin-bottom: 3px;
 }
 
 #workspaces button.focused {
@@ -208,6 +186,18 @@
 }
 
 #workspaces button.urgent {
-    background-color: #2c303c;
+    background-color: #dc322f;
 }
 
+/* remove weird GTK hover effect */
+#workspaces button:hover {
+    box-shadow: inherit;
+    text-shadow: inherit;
+    background: #282828;
+    border: #282828;
+}
+
+#workspaces button.focused:hover {
+    background: #859900;
+    border: #859900;
+}

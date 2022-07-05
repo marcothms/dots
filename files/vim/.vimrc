@@ -85,4 +85,6 @@ let g:netrw_liststyle = 3 " Tree-like structure
 let g:netrw_banner = 0    " Remove useless banner at the top of netrw
 
 " ============================== Macros and Mappings
-map <leader>e :CtrlP<CR>
+map <C-x><C-f> :CtrlP<CR>
+map <C-s> :CtrlPLine<CR>
+map <C-x><C-s> :w<CR>

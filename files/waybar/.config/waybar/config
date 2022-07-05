@@ -16,7 +16,7 @@
     "position": "top",
 
     // If height property would be not present, it'd be calculated dynamically
-    "height": 30,
+    "height": 36,
 
     "modules-left": [
         "sway/workspaces",
@@ -25,6 +25,7 @@
     "modules-center": [
     ],
     "modules-right": [
+        "temperature",
         "cpu",
         "backlight",
         "battery",
@@ -124,7 +125,7 @@
 
     "sway/window": {
         "format": "{}",
-        "max-length": 80
+        "max-length": 120
     },
 
     "sway/workspaces": {
@@ -134,7 +135,7 @@
         "format-icons": {
             "1": "",
             "2": "",
-            "3": "ﭮ",
+            "3": "‭ﭮ‬",
             "4": "",
             "5": "",
             "8": "",
@@ -164,6 +165,7 @@
 
     "temperature": {
       "critical-threshold": 80,
+      "thermal-zone": 10,
       "interval": 5,
       "format": "{icon} {temperatureC}°C",
       "format-icons": [

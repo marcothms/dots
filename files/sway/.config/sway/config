@@ -35,8 +35,8 @@ set $bar_bg   #323232
 
 # clientclass           border  backgr. text    indicator
 client.focused          $green  $green  #ffffff $green
-client.focused_inactive $baseA2 $baseA2 $baseB0 $baseA2
-client.unfocused        $baseA2 $baseA2 $baseB0 $baseA2
+client.focused_inactive $bar_bg $bar_bg $baseB0 $bar_bg
+client.unfocused        $bar_bg $bar_bg $baseB0 $bar_bg
 client.urgent           $yellow $yellow $baseB3 $orange
 
 # Output configuration
@@ -86,11 +86,11 @@ input type:keyboard {
     bindsym $mod+Shift+Backspace kill
 
     # bemenu
-    set $bemenu bemenu -l 7 --tf "#859900" --hf "#859900" --nb "#282828" --hb "#383838" --tb "#282828" --fb "#282828" --fn "SFMono Nerd Font 13" -i -H 30
+    set $bemenu bemenu -l 7 --tf "#859900" --hf "#282828" --nb "#282828" --hb "#859900" --tb "#282828" --fb "#282828" --fn "SFMono Nerd Font 13" -i -H 25
     set $files fd -I "pdf$" $HOME | cut -f 4- -d "/"
     set $lock_screen printf "/home/marc/.local/bin/lock.sh\nsystemctl suspend\nshutdown now" | $bemenu -l 3 -p "power" | xargs -d '\n' -r /bin/bash -c
-    bindsym $mod+d exec dmenu_path | $bemenu | xargs swaymsg exec --
-    bindsym $mod+p exec $files | $bemenu -l 20 -p 'pdfs' | xargs -d '\n' -r xdg-open
+    bindsym $mod+d exec dmenu_path | $bemenu -p 'run' | xargs swaymsg exec --
+    bindsym $mod+p exec $files | $bemenu -l 20 -p 'pdf' | xargs -d '\n' -r xdg-open
     bindsym $mod+Ctrl+Backspace exec $lock_screen
 
     # Screenshot
@@ -168,15 +168,18 @@ input type:keyboard {
     bindsym $mod+Control+$right move workspace to output right
 
 # Layout stuff:
+    # titlebar_border_thickness 0
+    # titlebar_padding 0
     workspace_layout stacking
     title_align center
-    default_border pixel 3
-    default_floating_border pixel 3
+    default_border pixel 0
+    default_floating_border pixel 0
     # hide title and border, if only one application open
     hide_edge_borders --i3 smart
 
-    gaps inner 5
-    smart_gaps off
+    # just show gaps between windows
+    # gaps inner 5
+    # gaps outer -5
 
     # Make the current focus fullscreen
     bindsym $mod+f fullscreen
@@ -201,7 +204,6 @@ input type:keyboard {
     for_window [app_id="org.keepassxc.KeePassXC"] move container to workspace number $ws9
 
 # Status Bar
-# man 5 sway-bar
 bar {
     position top
     tray_output none

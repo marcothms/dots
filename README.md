@@ -11,12 +11,12 @@ SFMono also provides icons.
 
 ## 'invisible' deps
 ### for sway
-+ `waybar` (cool bar)
++ `waybar`
 + `SwayNotificationCenter` - default conf
 + `bemenu` (dmenu replacement)
 + `slurp`, `grim`, `swappy` (screenshot)
 
-### other
+### other (used in scripts)
 + `fzf`
 + `ripgrep`
 + `ripgrep-all`
