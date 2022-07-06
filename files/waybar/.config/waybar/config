@@ -16,11 +16,10 @@
     "position": "top",
 
     // If height property would be not present, it'd be calculated dynamically
-    "height": 36,
+    "height": 37,
 
     "modules-left": [
-        "sway/workspaces",
-        "sway/window"
+        "sway/workspaces"
     ],
     "modules-center": [
     ],

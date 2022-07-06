@@ -51,7 +51,7 @@ set backspace=indent,eol,start " always delete with backspace
 set wildmenu                   " autocomplete :e
 set scrolloff=5                " minimum lines above or below the cursor
 
-let g:ctrlp_show_hidden = 1
+let g:ctrlp_show_hidden = 1    " show hidden files in ctrlp menus
 
 " ============================== Statusline
 set laststatus=1  " 1: only if there are at least two windows
@@ -85,6 +85,11 @@ let g:netrw_liststyle = 3 " Tree-like structure
 let g:netrw_banner = 0    " Remove useless banner at the top of netrw
 
 " ============================== Macros and Mappings
+" open fuzzy file browser
 map <C-x><C-f> :CtrlP<CR>
+" open fuzzy file search
 map <C-s> :CtrlPLine<CR>
+" save
 map <C-x><C-s> :w<CR>
+" C-/ to hide search results
+map <C-_> :noh<CR>

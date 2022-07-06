@@ -71,8 +71,11 @@ input type:pointer {
 }
 
 input type:keyboard {
+    # Umlauts on RAlt + {a,u,o,s}
     xkb_layout eu
+    # Make Caps Lock an additional Esc - https://man.archlinux.org/man/xkeyboard-config.7
     xkb_options caps:escape
+    # Keyboard repeats
     repeat_delay 300
     repeat_rate 50
 }
@@ -168,14 +171,13 @@ input type:keyboard {
     bindsym $mod+Control+$right move workspace to output right
 
 # Layout stuff:
-    # titlebar_border_thickness 0
-    # titlebar_padding 0
-    workspace_layout stacking
+    titlebar_padding 1
+    workspace_layout tabbed
     title_align center
     default_border pixel 0
     default_floating_border pixel 0
     # hide title and border, if only one application open
-    hide_edge_borders --i3 smart
+    # hide_edge_borders --i3 smart
 
     # just show gaps between windows
     # gaps inner 5

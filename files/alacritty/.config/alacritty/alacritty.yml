@@ -1,11 +1,6 @@
 env:
   TERM: alacritty
 
-window:
-  padding:
-    x: 0
-    y: 0
-
 font:
   normal:
     family: SFMono Nerd Font

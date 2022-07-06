@@ -176,7 +176,7 @@ export FZF_DEFAULT_OPTS='
        --bind=tab:down
        --bind=btab:up
        --color=fg:#657B83,bg:#FDF6E3,hl:#859900
-       --color=fg+:#657B83,bg+:#FDF6E3,hl+:#859900
+       --color=fg+:#657B83,bg+:#eee8d5,hl+:#859900
        --color=info:#657B83,prompt:#657B83,pointer:#657B83
        --color=marker:#657B83,spinner:#657B83,header:#657B83'
 
