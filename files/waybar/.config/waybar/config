@@ -13,7 +13,7 @@
 
     "layer": "bottom",
 
-    "position": "top",
+    "position": "left",
 
     // If height property would be not present, it'd be calculated dynamically
     "height": 37,
@@ -61,7 +61,8 @@
             "critical": 15
         },
         // Connected to AC
-        "format": "{icon}  {capacity}% ", // Icon: bolt
+        //"format": "{icon}  {capacity}%", // Icon: bolt
+        "format": " {capacity}%", // Icon: bolt
         // Not connected to AC
         "format-discharging": "{icon}  {capacity}%",
         "format-icons": [
@@ -76,13 +77,13 @@
 
     "clock#time": {
         "interval": 5,
-        "format": "  {:%I:%M %p}",
+        "format": "{:%I:%M}",
         "tooltip": false
     },
 
     "clock#date": {
       "interval": 10,
-      "format": "  {:%a, %e %b}", // Icon: calendar-alt
+      "format": "{:%a %e}", // Icon: calendar-alt
       "tooltip-format": "{:%A, %e %B %Y}"
     },
 
@@ -130,15 +131,18 @@
     "sway/workspaces": {
         "all-outputs": false,
         "disable-scroll": false,
-        "format": "{icon} {name}",
+        "format": "{icon}",
         "format-icons": {
-            "1": "",
-            "2": "",
-            "3": "‭ﭮ‬",
-            "4": "",
-            "5": "",
-            "8": "",
-            "9": "",
+            "1": "一",
+            "2": "二",
+            "3": "三",
+            "4": "四",
+            "5": "五",
+            "6": "六",
+            "7": "七",
+            "8": "八",
+            "9": "九",
+            "10": "十",
             "urgent": "",
             "focused": "",
             "default": ""

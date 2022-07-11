@@ -18,16 +18,21 @@ Plug 'jiangmiao/auto-pairs'             " pair completion
 Plug 'ctrlpvim/ctrlp.vim'               " file finder
 Plug 'djoshea/vim-autoread'             " auto reload file, when changed on disk
 
-Plug 'altercation/vim-colors-solarized' " color scheme
+Plug 'sainnhe/everforest'               " color scheme
 Plug 'vim-airline/vim-airline'          " a nicer status line
 Plug 'vim-airline/vim-airline-themes'   " auto settings theme for airline
+Plug 'edkolev/tmuxline.vim'             " generate a theme for tmux `:TmuxLineSnapshot ~/.tmux.theme`
 
 call plug#end()
 " ============================== Colors
 syntax on
 set background=light
-colorscheme solarized
-hi Normal guibg=NONE ctermbg=NONE
+let g:everforest_background = 'hard'
+let g:everforest_better_performance = 1
+colorscheme everforest
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+set termguicolors
 
 " ============================== General
 filetype indent plugin on
@@ -86,10 +91,6 @@ let g:netrw_banner = 0    " Remove useless banner at the top of netrw
 
 " ============================== Macros and Mappings
 " open fuzzy file browser
-map <C-x><C-f> :CtrlP<CR>
-" open fuzzy file search
-map <C-s> :CtrlPLine<CR>
-" save
-map <C-x><C-s> :w<CR>
+map <C-f> :CtrlP<CR>
 " C-/ to hide search results
 map <C-_> :noh<CR>

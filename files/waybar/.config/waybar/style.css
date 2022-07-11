@@ -71,11 +71,8 @@
 #tray {
     border-radius: 5px;
     background-color: #282828;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    margin-left: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
+    margin: 5px;
+    padding: 10px
 }
 
 
@@ -180,13 +177,13 @@
 }
 
 #workspaces button.focused {
-    background-color: #859900;
+    background-color: #93b259;
     color: #282828;
     border-bottom: none;
 }
 
 #workspaces button.urgent {
-    background-color: #dc322f;
+    background-color: #f85551;
 }
 
 /* remove weird GTK hover effect */
@@ -198,6 +195,6 @@
 }
 
 #workspaces button.focused:hover {
-    background: #859900;
-    border: #859900;
+    background: #93b259;
+    border: #93b259;
 }

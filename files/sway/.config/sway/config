@@ -12,6 +12,7 @@ set $up k
 set $right l
 
 # Color
+# old solarized
 set $yellow	#b58900
 set $orange	#cb4b16
 set $red	#dc322f
@@ -31,13 +32,16 @@ set $baseB2 #073642
 set $baseB3 #002b36
 set $custom #e1cab3
 
-set $bar_bg   #323232
+# new everforest
+set $bar_bg #323232
+set $green  #93b259
+set $orange #f85551
 
 # clientclass           border  backgr. text    indicator
-client.focused          $green  $green  #ffffff $green
+client.focused          $green  $green  $bar_bg $green
 client.focused_inactive $bar_bg $bar_bg $baseB0 $bar_bg
 client.unfocused        $bar_bg $bar_bg $baseB0 $bar_bg
-client.urgent           $yellow $yellow $baseB3 $orange
+client.urgent           $orange $orange $baseB3 $orange
 
 # Output configuration
 set $laptop eDP-1
@@ -73,7 +77,8 @@ input type:pointer {
 input type:keyboard {
     # Umlauts on RAlt + {a,u,o,s}
     xkb_layout eu
-    # Make Caps Lock an additional Esc - https://man.archlinux.org/man/xkeyboard-config.7
+    # Make Caps Lock an additional Esc
+    # https://man.archlinux.org/man/xkeyboard-config.7
     xkb_options caps:escape
     # Keyboard repeats
     repeat_delay 300
@@ -89,9 +94,21 @@ input type:keyboard {
     bindsym $mod+Shift+Backspace kill
 
     # bemenu
-    set $bemenu bemenu -l 7 --tf "#859900" --hf "#282828" --nb "#282828" --hb "#859900" --tb "#282828" --fb "#282828" --fn "SFMono Nerd Font 13" -i -H 25
+    set $bemenu bemenu \
+        -l 7 \
+        --nb "#282828" \
+        --fb "#282828" \
+        --tf "#93b259" \
+        --tb "#282828" \
+        --hf "#ffffff" \
+        --hb "#393939" \
+        --fn "SFMono Nerd Font 13" -i -H 25 -W 0.35
     set $files fd -I "pdf$" $HOME | cut -f 4- -d "/"
-    set $lock_screen printf "/home/marc/.local/bin/lock.sh\nsystemctl suspend\nshutdown now" | $bemenu -l 3 -p "power" | xargs -d '\n' -r /bin/bash -c
+    set $lock_screen \
+        printf \
+            "/home/marc/.local/bin/lock.sh\nsystemctl suspend\nswaymsg reload\nshutdown now" \
+        | $bemenu -p "power" \
+        | xargs -d '\n' -r /bin/bash -c
     bindsym $mod+d exec dmenu_path | $bemenu -p 'run' | xargs swaymsg exec --
     bindsym $mod+p exec $files | $bemenu -l 20 -p 'pdf' | xargs -d '\n' -r xdg-open
     bindsym $mod+Ctrl+Backspace exec $lock_screen
@@ -177,7 +194,7 @@ input type:keyboard {
     default_border pixel 0
     default_floating_border pixel 0
     # hide title and border, if only one application open
-    # hide_edge_borders --i3 smart
+    hide_edge_borders --i3 smart
 
     # just show gaps between windows
     # gaps inner 5

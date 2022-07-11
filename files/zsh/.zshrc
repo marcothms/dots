@@ -175,10 +175,10 @@ export FZF_DEFAULT_OPTS='
        --layout=reverse
        --bind=tab:down
        --bind=btab:up
-       --color=fg:#657B83,bg:#FDF6E3,hl:#859900
-       --color=fg+:#657B83,bg+:#eee8d5,hl+:#859900
-       --color=info:#657B83,prompt:#657B83,pointer:#657B83
-       --color=marker:#657B83,spinner:#657B83,header:#657B83'
+       --color=fg:#5c6a72,bg:#fff9e8,hl:#8da101
+       --color=fg+:#5c6a72,bg+:#eee8d5,hl+:#8da101
+       --color=info:#5c6a72,prompt:#5c6a72,pointer:#5c6a72
+       --color=marker:#5c6a72,spinner:#5c6a72,header:#5c6a72'
 
 ## ripgrep-all
 # https://github.com/phiresky/ripgrep-all
