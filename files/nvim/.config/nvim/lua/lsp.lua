@@ -18,12 +18,31 @@ require("nvim-lsp-installer").setup({
 })
 
 local lsp = require('lspconfig')
+local navic = require('nvim-navic')  -- breadcrumbs
 
 -- Normal LSPs
-lsp.pylsp.setup({})
-lsp.texlab.setup({})
-lsp.sumneko_lua.setup({})
-lsp.hls.setup({})
+-- Install with `:LSPInstall`
+local servers = { "pylsp", "sumneko_lua", "hls" }
+for _,i in ipairs(servers) do
+  lsp[i].setup({
+    on_attach = function(client, bufnr)
+      navic.attach(client, bufnr)  -- breadcrumbs
+    end
+  })
+end
+
+-- LaTeX (build with `:TexlabBuild`)
+-- https://github.com/neovim/nvim-lspconfig/blob/master/lua/lspconfig/server_configurations/texlab.lua
+lsp.texlab.setup({
+  settings = {
+    texlab = {
+      build = {
+        args = { '-pdf', '-interaction=nonstopmode', '-synctex=1', '-shell-escape','%f' },
+        onSave = true,
+      }
+    }
+  }
+})
 
 -- Rust (use rust-tools to setup lsp, because it has more features)
 local opts = {
@@ -37,6 +56,9 @@ local opts = {
     },
   },
   server = {
+    on_attach = function(client, bufnr)
+      navic.attach(client, bufnr)  -- breadcrumbs
+    end,
     settings = {
       ["rust-analyzer"] = {
         checkOnSave = {
