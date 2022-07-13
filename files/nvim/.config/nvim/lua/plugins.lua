@@ -134,6 +134,7 @@ return require('packer').startup(function(use)
           "json",
           "latex",
           "lua",
+          "make",
           "python",
           "rust",
         },
@@ -152,30 +153,28 @@ return require('packer').startup(function(use)
   use("simrat39/rust-tools.nvim") -- Cooler LSP stuff for Rust
 
   -- Snippets
-  -- TODO: max candidates
-  -- TODO: time trigger activation
   use({
     'hrsh7th/nvim-cmp',
     requires = {
-      "L3MON4D3/LuaSnip",
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-path",
-      "rafamadriz/friendly-snippets",
-      "saadparwaiz1/cmp_luasnip",
+      "L3MON4D3/LuaSnip", -- Snippet engine
+      "hrsh7th/cmp-buffer", -- Source: buffer
+      "hrsh7th/cmp-nvim-lsp", -- Source: LSP symbols
+      "hrsh7th/cmp-path", -- Source: path
+      "rafamadriz/friendly-snippets", -- Source: JSON style snippets for LuaSnip
+      "saadparwaiz1/cmp_luasnip", -- Make LuaSnip work with cmp
     },
     config = function()
       local cmp = require 'cmp'
       cmp.setup({
         snippet = {
-          expand = function(args)
+          expand = function(args) -- set a snippet engine
             require("luasnip").lsp_expand(args.body)
           end,
         },
         sources = {
-          { name = 'luasnip' },
-          { name = 'nvim_lsp' },
-          { name = 'buffer' },
+          { name = 'luasnip', keyword_length = 3, max_item_count = 3 },
+          { name = 'nvim_lsp', keyword_length = 3, max_item_count = 10 },
+          { name = 'buffer', keyword_length = 5, max_item_count = 3 },
           { name = 'path' },
         },
         formatting = {
@@ -187,7 +186,7 @@ return require('packer').startup(function(use)
           end,
         },
       })
-      -- Load in friendly-snippets
+      -- Load friendly-snippets
       require('luasnip.loaders.from_vscode').lazy_load()
       -- TODO: Add own snippets
       --[[ require("luasnip.loaders.from_vscode").lazy_load({
@@ -228,10 +227,10 @@ return require('packer').startup(function(use)
   }
 
   -- git client
-   use {
-     'TimUntersberger/neogit',
-     requires = 'nvim-lua/plenary.nvim',
-     config = function()
+  use {
+    'TimUntersberger/neogit',
+    requires = 'nvim-lua/plenary.nvim',
+    config = function()
       local neogit = require('neogit')
       neogit.setup {
         signs = {
@@ -239,8 +238,8 @@ return require('packer').startup(function(use)
           item = { "﬌", "" },
         }
       }
-     end,
-   }
+    end,
+  }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

@@ -97,12 +97,16 @@ input type:keyboard {
     set $bemenu bemenu \
         -l 7 \
         --nb "#282828" \
+        --nf "#ffffff" \
+        --ab "#282828" \
+        --af "#ffffff" \
         --fb "#282828" \
         --tf "#93b259" \
         --tb "#282828" \
         --hf "#ffffff" \
         --hb "#393939" \
         --fn "SFMono Nerd Font 13" -i -H 25 -W 0.35
+
     set $files fd -I "pdf$" $HOME | cut -f 4- -d "/"
     set $lock_screen \
         printf \

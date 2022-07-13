@@ -1,8 +1,8 @@
 -- Custom warning symbols
 local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 for type, icon in pairs(signs) do
-	local hl = "DiagnosticSign" .. type
-	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
 
 -- Easily install LSPs with `:LSPInstall`
@@ -18,15 +18,15 @@ require("nvim-lsp-installer").setup({
 })
 
 local lsp = require('lspconfig')
-local navic = require('nvim-navic')  -- breadcrumbs
+local navic = require('nvim-navic') -- breadcrumbs
 
 -- Normal LSPs
 -- Install with `:LSPInstall`
 local servers = { "pylsp", "sumneko_lua", "hls" }
-for _,i in ipairs(servers) do
+for _, i in ipairs(servers) do
   lsp[i].setup({
     on_attach = function(client, bufnr)
-      navic.attach(client, bufnr)  -- breadcrumbs
+      navic.attach(client, bufnr) -- breadcrumbs
     end
   })
 end
@@ -37,7 +37,7 @@ lsp.texlab.setup({
   settings = {
     texlab = {
       build = {
-        args = { '-pdf', '-interaction=nonstopmode', '-synctex=1', '-shell-escape','%f' },
+        args = { '-pdf', '-interaction=nonstopmode', '-synctex=1', '-shell-escape', '%f' },
         onSave = true,
       }
     }
@@ -57,7 +57,7 @@ local opts = {
   },
   server = {
     on_attach = function(client, bufnr)
-      navic.attach(client, bufnr)  -- breadcrumbs
+      navic.attach(client, bufnr) -- breadcrumbs
     end,
     settings = {
       ["rust-analyzer"] = {
