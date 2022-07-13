@@ -1,7 +1,5 @@
 vim.cmd [[packadd packer.nvim]]
 
--- TODO: add own snippets (for latex {notes, presentation, wfig, srcd, srci})
-
 local fn = vim.fn
 local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
@@ -33,13 +31,23 @@ return require('packer').startup(function(use)
     end,
   }
 
+  -- Icons
+  use({
+    "kyazdani42/nvim-web-devicons",
+    config = function()
+      require 'nvim-web-devicons'.setup({
+        default = true
+      })
+    end,
+  })
+
   -- LuaLine
   use({
     "nvim-lualine/lualine.nvim",
     requires = {
-      { "kyazdani42/nvim-web-devicons", opt = true, },  -- Icons
-      "arkav/lualine-lsp-progress",                     -- Show lsp loading progress
-      "SmiteshP/nvim-navic",                            -- Show breadcrumbs
+      "kyazdani42/nvim-web-devicons",
+      "arkav/lualine-lsp-progress", -- Show lsp loading progress
+      "SmiteshP/nvim-navic", -- Show breadcrumbs
     },
     config = function()
       require('lualine').setup({
@@ -52,11 +60,10 @@ return require('packer').startup(function(use)
             'diff',
             {
               'diagnostics',
-              -- fake colors from Trouble
               diagnostics_color = {
-                warn = { fg = '#dfa000'},
-                info = { fg = "#4a94c5"},
-                hint = { fg = "35a77c"}
+                warn = { fg = "orange" },
+                info = { fg = "#479bc7" },
+                hint = { fg = "darkcyan" }
               },
             }
 
@@ -68,7 +75,7 @@ return require('packer').startup(function(use)
             function()
               -- Show trailing whitespace
               local space = vim.fn.search([[\s\+$]], 'nwc')
-              return space ~= 0 and "TW:"..space or ""
+              return space ~= 0 and "TW:" .. space or ""
             end
           }
         }
@@ -79,7 +86,26 @@ return require('packer').startup(function(use)
   -- Fuzzy Finder (Files etc)
   use({
     "nvim-telescope/telescope.nvim",
-    requires = { { "nvim-lua/plenary.nvim" } },
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope-symbols.nvim", -- Search for icons
+    },
+    config = function()
+      require('telescope').setup({
+        defaults = {
+          prompt_prefix = "   ",
+          selection_caret = "  ",
+          entry_prefix = "  ",
+          sorting_strategy = "ascending",
+          layout_strategy = "horizontal",
+          layout_config = {
+            horizontal = {
+              prompt_position = "top",
+            }
+          }
+        },
+      })
+    end,
   })
 
   -- Auto Indentation
@@ -101,7 +127,16 @@ return require('packer').startup(function(use)
     "nvim-treesitter/nvim-treesitter",
     config = function()
       require('nvim-treesitter.configs').setup({
-        ensure_installed = { "c", "rust", "lua", "python", "haskell" },
+        ensure_installed = {
+          "bash",
+          "c",
+          "haskell",
+          "json",
+          "latex",
+          "lua",
+          "python",
+          "rust",
+        },
         auto_intall = true,
         highlight = {
           enable = true,
@@ -112,21 +147,13 @@ return require('packer').startup(function(use)
   })
 
   -- LSP (install with `:LSPInstall`, inspect with `:LSPInfo`)
-  use("neovim/nvim-lspconfig")           -- Easy to manage LSP servers (attach etc)
+  use("neovim/nvim-lspconfig") -- Easy to manage LSP servers (attach etc)
   use("williamboman/nvim-lsp-installer") -- Easy to install LSP servers
-  use("simrat39/rust-tools.nvim")        -- Cooler LSP stuff for Rust
-
-  -- Show error neatly in a minibuffer
-  use {
-    "folke/trouble.nvim",
-    requires = {
-      "kyazdani42/nvim-web-devicons",
-      "folke/lsp-colors.nvim",
-    },
-    config = function() require("trouble").setup {} end,
-  }
+  use("simrat39/rust-tools.nvim") -- Cooler LSP stuff for Rust
 
   -- Snippets
+  -- TODO: max candidates
+  -- TODO: time trigger activation
   use({
     'hrsh7th/nvim-cmp',
     requires = {
@@ -138,8 +165,6 @@ return require('packer').startup(function(use)
       "saadparwaiz1/cmp_luasnip",
     },
     config = function()
-      require('luasnip.loaders.from_vscode').lazy_load()
-      -- require("luasnip.loaders.from_vscode").lazy_load({ paths = { "~/.config/nvim/snippets" } })
       local cmp = require 'cmp'
       cmp.setup({
         snippet = {
@@ -162,6 +187,15 @@ return require('packer').startup(function(use)
           end,
         },
       })
+      -- Load in friendly-snippets
+      require('luasnip.loaders.from_vscode').lazy_load()
+      -- TODO: Add own snippets
+      --[[ require("luasnip.loaders.from_vscode").lazy_load({
+        paths = {
+          "~/.config/nvim/snippets",
+          "/home/marc/.local/share/nvim/site/pack/packer/start/friendly-snippets"
+        }
+      }) ]]
     end,
   })
 
@@ -192,6 +226,21 @@ return require('packer').startup(function(use)
       require("todo-comments").setup {}
     end
   }
+
+  -- git client
+   use {
+     'TimUntersberger/neogit',
+     requires = 'nvim-lua/plenary.nvim',
+     config = function()
+      local neogit = require('neogit')
+      neogit.setup {
+        signs = {
+          section = { "﬌", "" },
+          item = { "﬌", "" },
+        }
+      }
+     end,
+   }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

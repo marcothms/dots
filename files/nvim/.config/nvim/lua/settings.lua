@@ -1,4 +1,4 @@
-local opt          = vim.opt 
+local opt          = vim.opt
 
 opt.colorcolumn    = "80"      -- Colored column at 80c
 opt.cursorline     = true      -- Highlight entire current row

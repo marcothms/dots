@@ -1,4 +1,5 @@
 local map = vim.api.nvim_set_keymap
+local wk = require 'which-key'
 local default_opts = { noremap = true, silent = true }
 
 vim.g.mapleader = ' '
@@ -29,14 +30,52 @@ map("n", "<C-k>", "<cmd> Telescope keymaps<CR>", default_opts)    -- Show all ke
 -- Telescope + LSP
 map("n", "<leader>la", "<cmd> lua vim.lsp.buf.code_action()<CR>", default_opts)   -- Apply LSP code action
 map("n", "<leader>ld", "<cmd> Telescope lsp_definitions<CR>", default_opts)       -- Show all LSP definitions (or jump if only 1)
-map("n", "<leader>le", "<cmd> TroubleToggle<CR>", default_opts)                   -- Show errors and warnings
+map("n", "<leader>le", "<cmd> Telescope diagnostics<CR>", default_opts)           -- Show errors and warnings
 map("n", "<leader>lf", "<cmd> lua vim.lsp.buf.formatting()<CR>", default_opts)    -- Format buffer with LSP
 map("n", "<leader>lh", "<cmd> lua vim.lsp.buf.hover()<CR>", default_opts)         -- Show info of symbol (double tap to enter)
+map("n", "<leader>ln", "<cmd> lua vim.lsp.buf.rename()<CR>", default_opts)        -- Rename LSP symbol
 map("n", "<leader>lr", "<cmd> Telescope lsp_references<CR>", default_opts)        -- Show all LSP references
 map("n", "<leader>ls", "<cmd> Telescope lsp_workspace_symbols<CR>", default_opts) -- Search for LSP symbols
+map("n", "<leader>lt", "<cmd> TodoTelescope<CR>", default_opts)                   -- Search for LSP symbols
+wk.register({
+  ["<leader>"] = {
+    l = {
+      a = { "Actions" },
+      d = { "Definitions" },
+      e = { "Errors" },
+      f = { "Format buffer" },
+      h = { "Hover information" },
+      n = { "(Re)Name symbol" },
+      r = { "References" },
+      s = { "Symbols" },
+      t = { "TODOs" },
+    }
+  }
+})
 
--- Telescope + git(1)
-map("n", "<leader>gs", "<cmd> Telescope git_status<CR>", default_opts)
+-- git
+map("n", "<leader>gs", "<cmd> Neogit<CR>", default_opts)
+wk.register({
+  ["<leader>"] = {
+    g = {
+      s = { "Status" },
+    }
+  }
+})
+
+-- Telescope + telescope-symbols
+map("n", "<leader>ie", "<cmd> lua require'telescope.builtin'.symbols{ sources = { 'emoji', 'gitmoji' } }<CR>", default_opts) -- Show emojis
+map("n", "<leader>im", "<cmd> lua require'telescope.builtin'.symbols{ sources = { 'julia' } }<CR>", default_opts)            -- Show math symbols
+map("n", "<leader>in", "<cmd> lua require'telescope.builtin'.symbols{ sources = { 'nerd' } }<CR>", default_opts)             -- Show nerd icons
+wk.register({
+  ["<leader>"] = {
+    i = {
+      e = { "Emoji" },
+      m = { "Math symbol" },
+      n = { "Nerd Font" },
+    }
+  }
+})
 
 -- cmp
 local cmp = require 'cmp'
