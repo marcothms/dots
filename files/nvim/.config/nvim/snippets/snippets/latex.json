@@ -1,0 +1,87 @@
+{
+  "notes": {
+    "prefix": "notes",
+    "body": [
+      "\\input{/home/marc/.dots/presets/notes.tex}",
+      "",
+      "\\title{$1}",
+      "\\subtitle{$1}",
+      "\\author{Marco Thomas}",
+      "",
+      "\\begin{document}",
+      "",
+      "\\maketitle",
+      "\\newpage",
+      "\\tableofcontents",
+      "\\newpage",
+      "",
+      "\\end{document}"
+    ],
+    "description": "Preset to create new notes document"
+  },
+  "presentations": {
+    "prefix": "presentations",
+    "body": [
+      "\\input{/home/marc/.dots/presets/presentations.tex}",
+      "",
+      "\\title{$1}",
+      "\\subtitle{$2}",
+      "\\author{Marco Thomas}",
+      "",
+      "\\begin{document}",
+      "",
+      "\\maketitle",
+      "\\newpage",
+      "\\begin{frame}",
+      "    \\frametitle{Inhaltsübersicht}",
+      "    \\tableofcontents[hideallsubsections]",
+      "\\end{frame}",
+      "\\newpage",
+      "",
+      "\\end{document}"
+    ],
+    "description": "Preset to create new presentation"
+  },
+  "wrapfigure": {
+    "prefix": "wrapfigure",
+    "body": [
+      "\\begin{wrapfigure}{${1:l or r}}{0.4\\textwidth}",
+      "    \\centering",
+      "    \\includegraphics[width=0.2\\textwidth]{figures/$2}",
+      "    \\caption{$3}",
+      "    \\label{fig:$4}",
+      "\\end{wrapfigure}"
+    ],
+    "description": "Wrap figure in text context"
+  },
+  "source": {
+    "prefix": "src",
+    "body": [
+      "\\inputminted[breaklines=true, bgcolor=bg]{${1:language}}{${2:file}}"
+    ],
+    "description": "Include a source code file"
+  },
+  "source-direct": {
+    "prefix": "srcd",
+    "body": [
+      "\\begin{minted}[breaklines=true, bgcolor=bg]{${1:language}}",
+      "\\end{minted}"
+    ],
+    "description": "Directly write a code snippet"
+  },
+  "source-inline": {
+    "prefix": "srci",
+    "body": ["\\mintinline{${1:language}}{${2:code}}"],
+    "description": "Write code inline"
+  },
+  "german quote": {
+    "prefix": "gqq",
+    "body": ["\\glqq{}$1\\grqq{}"],
+    "description": "German quotes"
+  },
+  "paragraph": {
+    "prefix": "paragraph",
+    "body": ["\\paragraph{$1}"],
+    "description": "Insert a new paragraph"
+  }
+}

@@ -1,6 +1,8 @@
-vim.cmd [[packadd packer.nvim]]
-
 local fn = vim.fn
+
+-- This should auto install packer, if it is not installed on system
+-- Otherwise use:
+-- git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
   packer_bootstrap = fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim',
@@ -137,6 +139,7 @@ return require('packer').startup(function(use)
           "make",
           "python",
           "rust",
+          "yaml",
         },
         auto_intall = true,
         highlight = {
@@ -188,13 +191,8 @@ return require('packer').startup(function(use)
       })
       -- Load friendly-snippets
       require('luasnip.loaders.from_vscode').lazy_load()
-      -- TODO: Add own snippets
-      --[[ require("luasnip.loaders.from_vscode").lazy_load({
-        paths = {
-          "~/.config/nvim/snippets",
-          "/home/marc/.local/share/nvim/site/pack/packer/start/friendly-snippets"
-        }
-      }) ]]
+      -- Load own snippets
+      require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./snippets" }})
     end,
   })
 
@@ -209,11 +207,16 @@ return require('packer').startup(function(use)
   -- Align with `:Align <regex>`
   use 'RRethy/nvim-align'
 
-  -- Easily comment out stuff (gc, gb)
+  -- Easily comment out stuff
   use({
     "numToStr/Comment.nvim",
     config = function()
-      require('Comment').setup({})
+      require('Comment').setup({
+        opleader = {
+          line = '<leader>cl',
+          block = '<leader>cb',
+        }
+      })
     end,
   })
 
