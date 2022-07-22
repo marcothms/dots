@@ -13,14 +13,14 @@ set $right l
 
 # Color
 # old solarized
-set $yellow	#b58900
-set $orange	#cb4b16
-set $red	#dc322f
-set $magenta	#d33682
-set $violet	#6c71c4
-set $blue	#268bd2
-set $cyan	#2aa198
-set $green	#859900
+set $yellow  #b58900
+set $orange  #cb4b16
+set $red     #dc322f
+set $magenta #d33682
+set $violet  #6c71c4
+set $blue    #268bd2
+set $cyan    #2aa198
+set $green   #859900
 
 set $baseA3 #fdf6e3
 set $baseA2 #eee8d5
@@ -105,16 +105,16 @@ input type:keyboard {
         --tb "#282828" \
         --hf "#ffffff" \
         --hb "#393939" \
-        --fn "SFMono Nerd Font 13" -i -H 25 -W 0.35
+        --fn "SFMono Nerd Font 13" -i -H 25 -W 0.5
 
     set $files fd -I "pdf$" $HOME | cut -f 4- -d "/"
     set $lock_screen \
         printf \
-            "/home/marc/.local/bin/lock.sh\nsystemctl suspend\nswaymsg reload\nshutdown now" \
+            "/home/marc/.local/bin/lock.sh\nsystemctl suspend\nswaymsg reload\nshutdown now\nloginctl terminate-user marc" \
         | $bemenu -p "power" \
         | xargs -d '\n' -r /bin/bash -c
     bindsym $mod+d exec dmenu_path | $bemenu -p 'run' | xargs swaymsg exec --
-    bindsym $mod+p exec $files | $bemenu -l 20 -p 'pdf' | xargs -d '\n' -r xdg-open
+    bindsym $mod+p exec $files | $bemenu -l 20 -p 'pdf' -W 0.7 | xargs -d '\n' -r xdg-open
     bindsym $mod+Ctrl+Backspace exec $lock_screen
 
     # Screenshot
@@ -223,7 +223,7 @@ input type:keyboard {
     for_window [app_id="org.telegram.desktop"] move container to workspace number $ws3
     for_window [class="Spotify"] move container to workspace number $ws4
     for_window [app_id="Joplin"] move container to workspace number $ws5
-    for_window [app_id="geary"] move container to workspace number $ws8
+    for_window [app_id="evolution"] move container to workspace number $ws8
     for_window [app_id="org.keepassxc.KeePassXC"] move container to workspace number $ws9
 
 # Status Bar

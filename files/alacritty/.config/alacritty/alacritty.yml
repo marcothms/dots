@@ -11,7 +11,7 @@ font:
     style: Bold
 
   italic:
-    family: SF Mono Nerd Font
+    family: SFMono Nerd Font
     style: Italic
 
   size: 11.0

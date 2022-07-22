@@ -23,3 +23,7 @@ SFMono also provides icons.
 + `fd` (rust find)
 + `fu` (find icons)
 + all `fcitx5` stuff (data, gtk, qt, mozc)
+
+### GTK theming stuff
++ icons: `Flat-Remix-Blue-Light-darkPanel`
++ theme: `Flat-Remix-GTK-Blue-Light-solid`
