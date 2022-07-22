@@ -72,7 +72,23 @@ wk.register({
     i = {
       e = { "Emoji" },
       m = { "Math symbol" },
-      n = { "Nerd Font" },
+      n = { "Nerd Font icon" },
+    }
+  }
+})
+
+-- Comment.nvim
+require('Comment').setup({
+  opleader = {
+    line = '<leader>cl',
+    block = '<leader>cb',
+  }
+})
+wk.register({
+  ["<leader>"] = {
+    c = {
+      l = { "Line comment" },
+      b = { "Block comment" },
     }
   }
 })
@@ -114,4 +130,3 @@ cmp.setup({
     }),
   },
 })
-

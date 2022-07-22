@@ -17,10 +17,10 @@ return require('packer').startup(function(use)
   use({
     'sainnhe/everforest',
     config = function()
+      vim.cmd("set termguicolors")
       vim.cmd("set background=light")
       vim.cmd("let g:everforest_background = 'hard'")
       vim.cmd("colorscheme everforest")
-      vim.cmd("set termguicolors")
     end,
   })
 
@@ -192,11 +192,11 @@ return require('packer').startup(function(use)
       -- Load friendly-snippets
       require('luasnip.loaders.from_vscode').lazy_load()
       -- Load own snippets
-      require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./snippets" }})
+      require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./snippets" } })
     end,
   })
 
-  -- which-key
+  -- which-key (Show key combos)
   use {
     "folke/which-key.nvim",
     config = function()
@@ -211,12 +211,7 @@ return require('packer').startup(function(use)
   use({
     "numToStr/Comment.nvim",
     config = function()
-      require('Comment').setup({
-        opleader = {
-          line = '<leader>cl',
-          block = '<leader>cb',
-        }
-      })
+      require('Comment').setup()
     end,
   })
 
@@ -243,6 +238,14 @@ return require('packer').startup(function(use)
       }
     end,
   }
+
+  -- show colors
+  use({
+    "norcalli/nvim-colorizer.lua",
+    config = function()
+      require 'colorizer'.setup()
+    end
+  })
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

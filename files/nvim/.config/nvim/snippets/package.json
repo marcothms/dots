@@ -7,7 +7,8 @@
     "snippets": [
       {
         "language": [
-          "tex"
+          "tex",
+          "plaintex"
         ],
         "path": "./snippets/latex.json"
       }

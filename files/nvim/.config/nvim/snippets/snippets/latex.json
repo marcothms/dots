@@ -4,9 +4,10 @@
     "body": [
       "\\input{/home/marc/.dots/presets/notes.tex}",
       "",
-      "\\title{$1}",
-      "\\subtitle{$1}",
+      "\\title{$1 \\\\\\[0.2em] \\large $2}",
       "\\author{Marco Thomas}",
+      "",
+      "% \\bibliography{}",
       "",
       "\\begin{document}",
       "",

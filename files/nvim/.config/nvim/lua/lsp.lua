@@ -22,7 +22,7 @@ local navic = require('nvim-navic') -- breadcrumbs
 
 -- Normal LSPs
 -- Install with `:LSPInstall`
-local servers = { "pylsp", "sumneko_lua", "hls" }
+local servers = { "pylsp", "sumneko_lua", "hls", "clangd" }
 for _, i in ipairs(servers) do
   lsp[i].setup({
     on_attach = function(client, bufnr)

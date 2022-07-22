@@ -16,31 +16,15 @@
 \usepackage{xcolor}
 \usepackage{color}
 
-%%% lorem ipsum
+%%% bibtex - cite with \autocite{}, will show in footnote
+\usepackage[style=verbose-ibid,backend=bibtex]{biblatex}
+\usepackage{csquotes}
+
+%%% lorem ipsum text
 \usepackage{blindtext}
 
 %%% figures in text flow
 \usepackage{wrapfig}
-
-%%% make \paragraph{} and \subparagraph{} look like a normal subsection
-%\makeatletter
-%\renewcommand\paragraph{%
-%   \@startsection{paragraph}{4}{0mm}%
-%      {-\baselineskip}%
-%      {.5\baselineskip}%
-%      {\normalfont\normalsize\bfseries}}
-%\makeatother
-%
-%\makeatletter
-%\renewcommand\subparagraph{%
-%   \@startsection{subparagraph}{4}{0mm}%
-%      {-\baselineskip}%
-%      {.5\baselineskip}%
-%      {\normalfont\normalsize\bfseries}}
-%\makeatother
-%
-%\setcounter{tocdepth}{5}
-%\setcounter{secnumdepth}{5}
 
 %%% links in toc etc
 \usepackage{hyperref}
@@ -76,10 +60,6 @@
 
 %%% theorem-style environments
 \usepackage{proof}
-%\usepackage[skins]{tcolorbox}
-
-% just saved, not using anymore
-%\tcolorboxenvironment{definition}{blanker, before skip=10pt,after skip=10pt}
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]
 \newtheorem{example}{Beispiel}[section]

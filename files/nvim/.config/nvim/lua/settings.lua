@@ -11,6 +11,7 @@ opt.smartindent    = true      -- Autoindent new lines
 opt.showmode       = false     -- Disable status on most bottom row
 opt.clipboard      = "unnamed" -- Copy & Paste with system clipboard
 opt.list           = true      -- Show trailing whitespaces
+opt.wrap           = false     -- Show trailing whitespaces
 
 vim.opt.undofile   = true      -- Save undo history
 vim.o.mouse        = 'a'       -- Enable mouse
