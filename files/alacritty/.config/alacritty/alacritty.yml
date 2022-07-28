@@ -6,14 +6,6 @@ font:
     family: SFMono Nerd Font
     style: Regular
 
-  bold:
-    family: SFMono Nerd Font
-    style: Bold
-
-  italic:
-    family: SFMono Nerd Font
-    style: Italic
-
   size: 11.0
 
 draw_bold_text_with_bright_colors: false

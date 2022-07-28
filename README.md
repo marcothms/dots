@@ -6,7 +6,7 @@ Files can be `stow`'ed and un'`stow`'ed with `stow.sh`.
 It will link all dotfiles to their correct place.
 
 ## fonts
-Fallsback are provided in `fallback-fonts/`
+Fonts are provided in `fonts/`
 SFMono also provides icons.
 
 ## 'invisible' deps
@@ -14,6 +14,7 @@ SFMono also provides icons.
 + `waybar`
 + `SwayNotificationCenter` - default conf
 + `bemenu` (dmenu replacement)
++ `rofi` (nice launcher)
 + `slurp`, `grim`, `swappy` (screenshot)
 
 ### other (used in scripts)
@@ -24,6 +25,9 @@ SFMono also provides icons.
 + `fu` (find icons)
 + all `fcitx5` stuff (data, gtk, qt, mozc)
 
-### GTK theming stuff
+### theming stuff
 + icons: `Flat-Remix-Blue-Light-darkPanel`
 + theme: `Flat-Remix-GTK-Blue-Light-solid`
++ rofi: https://github.com/catppuccin/rofi
+  + change font to `SFMono` and adjust colors
+
