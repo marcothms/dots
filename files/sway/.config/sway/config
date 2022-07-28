@@ -124,11 +124,11 @@ input type:keyboard {
     # Show notifications
     bindsym $mod+v exec swaync-client -t -sw
 
-# Brightness
+    # Brightness
     bindsym XF86MonBrightnessUp exec light -A 5
     bindsym XF86MonBrightnessDown exec light -U 5
 
-# Audio
+    # Audio
     bindsym XF86AudioPlay exec playerctl play-pause
     bindsym XF86AudioPrev exec playerctl previous
     bindsym XF86AudioNext exec playerctl next
