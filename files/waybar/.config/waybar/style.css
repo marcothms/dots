@@ -187,7 +187,7 @@
 }
 
 #workspaces button.urgent:hover {
-    background-color: #b85551;
+    background-color: #ff5569;
 }
 
 /* remove weird GTK hover effect */
@@ -199,6 +199,6 @@
 }
 
 #workspaces button.focused:hover {
-    background: #75b259;
-    border: #73b259;
+    background: #a1b259;
+    border: #a1b259;
 }

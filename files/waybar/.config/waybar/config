@@ -21,8 +21,6 @@
     "modules-center": [
     ],
     "modules-right": [
-        "temperature",
-        "cpu",
         "backlight",
         "battery",
         "pulseaudio",
@@ -47,7 +45,8 @@
 
     "backlight": {
         // "device": "acpi_video1",
-        "format": "{icon} {percent}%",
+        //"format": "{icon} {percent}%",
+        "format": "BRT\n{percent}%",
         "format-icons": ["", "", "", "", "", "", "", "", ""]
     },
 
@@ -58,10 +57,11 @@
             "critical": 15
         },
         // Connected to AC
-        //"format": "{icon}  {capacity}%", // Icon: bolt
-        "format": " {capacity}%", // Icon: bolt
+        //"format": " {capacity}%", // Icon: bolt
+        "format": "CHR\n{capacity}%", // Icon: bolt
         // Not connected to AC
-        "format-discharging": "{icon}  {capacity}%",
+        //"format-discharging": "{icon}  {capacity}%",
+        "format-discharging": "BAT\n{capacity}%",
         "format-icons": [
             "", // Icon: battery-full
             "", // Icon: battery-three-quarters
@@ -74,13 +74,13 @@
 
     "clock#time": {
         "interval": 5,
-        "format": "{:%I:%M}",
-        "tooltip": false
+        "format": "{:%I\n%M}",
+        "tooltip": false,
     },
 
     "clock#date": {
       "interval": 10,
-      "format": "{:%a %e}", // Icon: calendar-alt
+      "format": "{:%a\n%e}",
       "tooltip-format": "{:%A, %e %B %Y}"
     },
 
@@ -149,9 +149,11 @@
 
     "pulseaudio": {
         //"scroll-step": 1,
-        "format": "{icon} {volume}%",
-        "format-bluetooth": "{icon} {volume}% ",
-        "format-muted": "婢  0%",
+        //"format": "{icon} {volume}%",
+        "format": "VOL\n{volume}%",
+        //"format-bluetooth": "{icon} {volume}% ",
+        "format-bluetooth": "BLT\n{volume}% ",
+        "format-muted": "MUT\n 0%",
         "format-icons": {
             "headphones": "",
             "handsfree": "",

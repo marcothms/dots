@@ -109,13 +109,13 @@ input type:keyboard {
 
     set $files fd -I "pdf$" $HOME | cut -f 4- -d "/"
     set $lock_screen \
-        printf \
-            "/home/marc/.local/bin/lock.sh\nsystemctl suspend\nswaymsg reload\nshutdown now\nloginctl terminate-user marc" \
-        | $bemenu -p "power" \
-        | xargs -d '\n' -r /bin/bash -c
-    bindsym $mod+d exec dmenu_path | $bemenu -p 'run' | xargs swaymsg exec --
-    bindsym $mod+p exec $files | $bemenu -l 20 -p 'pdf' -W 0.7 | xargs -d '\n' -r xdg-open
-    bindsym $mod+Ctrl+Backspace exec $lock_screen
+        printf "/home/marc/.local/bin/lock.sh\nsystemctl suspend\nswaymsg reload\nshutdown now\nloginctl terminate-user marc"
+    #bindsym $mod+d exec dmenu_path | $bemenu -p 'run' | xargs swaymsg exec --
+    bindsym $mod+d exec rofi -show drun
+    #bindsym $mod+p exec $files | $bemenu -l 20 -p 'pdf' -W 0.7 | xargs -d '\n' -r xdg-open
+    bindsym $mod+p exec $files | rofi -dmenu -p '   PDF ' -i | xargs -d '\n' -r xdg-open
+    #bindsym $mod+Ctrl+Backspace exec $lock_screen | $bemenu -p "power" | xargs -d '\n' -r /bin/bash -c
+    bindsym $mod+Ctrl+Backspace exec $lock_screen | rofi -dmenu -p " ⏻  Power " | xargs -d '\n' -r /bin/bash -c
 
     # Screenshot
     bindsym $mod+Shift+s exec grim -g "$(slurp)" - | wl-copy
@@ -222,7 +222,7 @@ input type:keyboard {
     for_window [class="discord"] move container to workspace number $ws3
     for_window [app_id="org.telegram.desktop"] move container to workspace number $ws3
     for_window [class="Spotify"] move container to workspace number $ws4
-    for_window [app_id="Joplin"] move container to workspace number $ws5
+    for_window [class="Joplin"] move container to workspace number $ws5
     for_window [app_id="evolution"] move container to workspace number $ws8
     for_window [app_id="org.keepassxc.KeePassXC"] move container to workspace number $ws9
 
