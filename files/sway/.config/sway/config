@@ -63,11 +63,12 @@ exec_always echo $lock > ~/.local/bin/lock.sh
 exec_always chmod +x ~/.local/bin/lock.sh
 
 # Lock after 20 minutes
-# Suspend after 22 minutes
+# Lock before suspend
 exec swayidle -w \
          timeout 1200 ~/.local/bin/lock.sh \
-         timeout 1320 'systemctl suspend' \
          before-sleep ~/.local/bin/lock.sh
+         #timeout 1320 'systemctl suspend' \
+
 
 # Input configuration
 input type:pointer {
@@ -228,8 +229,6 @@ input type:keyboard {
 
 # Status Bar
 bar {
-    position top
-    tray_output none
     swaybar_command waybar
 }
 
@@ -237,8 +236,6 @@ bar {
 exec syncthing
 exec swaync
 exec fcitx5
-exec nm-applet --indicator
-exec blueman-applet
 
 # Include some defaults
 include /etc/sway/config.d/*

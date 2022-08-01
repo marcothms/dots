@@ -1,16 +1,4 @@
-// =============================================================================
-//
-// Waybar configuration
-//
-// Configuration reference: https://github.com/Alexays/Waybar/wiki/Configuration
-//
-// =============================================================================
-
 {
-    // -------------------------------------------------------------------------
-    // Global configuration
-    // -------------------------------------------------------------------------
-
     "layer": "bottom",
 
     "position": "left",
@@ -21,19 +9,13 @@
     "modules-center": [
     ],
     "modules-right": [
-        "backlight",
         "battery",
-        "pulseaudio",
-        "clock#date",
         "clock#time",
-        "idle_inhibitor",
-        "tray"
+        "clock#date"
     ],
 
 
-    // -------------------------------------------------------------------------
-    // Modules
-    // -------------------------------------------------------------------------
+    // MODULES
 
     "idle_inhibitor": {
         "format": "{icon}",
@@ -46,22 +28,20 @@
     "backlight": {
         // "device": "acpi_video1",
         //"format": "{icon} {percent}%",
-        "format": "BRT\n{percent}%",
+        "format": "{percent}",
         "format-icons": ["", "", "", "", "", "", "", "", ""]
     },
 
     "battery": {
-        "interval": 10,
+        "interval": 5,
         "states": {
+            "good": 100,
+            "ok": 50,
             "warning": 30,
             "critical": 15
         },
-        // Connected to AC
-        //"format": " {capacity}%", // Icon: bolt
-        "format": "CHR\n{capacity}%", // Icon: bolt
-        // Not connected to AC
-        //"format-discharging": "{icon}  {capacity}%",
-        "format-discharging": "BAT\n{capacity}%",
+        "format": "{capacity} ",
+        "format-discharging": "{capacity}",
         "format-icons": [
             "", // Icon: battery-full
             "", // Icon: battery-three-quarters
@@ -80,7 +60,7 @@
 
     "clock#date": {
       "interval": 10,
-      "format": "{:%a\n%e}",
+      "format": "{:%a, %e}",
       "tooltip-format": "{:%A, %e %B %Y}"
     },
 
@@ -91,16 +71,6 @@
           "warning": 70,
           "critical": 90
         }
-    },
-
-    "custom/keyboard-layout": {
-      "exec": "swaymsg -t get_inputs | grep -m1 'xkb_active_layout_name' | cut -d '\"' -f4",
-      // Interval set only as a fallback, as the value is updated by signal
-      "interval": 30,
-      "format": "  {}", // Icon: keyboard
-      // Signal sent by Sway key binding (~/.config/sway/key-bindings)
-      "signal": 1, // SIGHUP
-      "tooltip": false
     },
 
     "memory": {
@@ -150,10 +120,10 @@
     "pulseaudio": {
         //"scroll-step": 1,
         //"format": "{icon} {volume}%",
-        "format": "VOL\n{volume}%",
+        //"format": "{volume}%",
         //"format-bluetooth": "{icon} {volume}% ",
-        "format-bluetooth": "BLT\n{volume}% ",
-        "format-muted": "MUT\n 0%",
+        "format-bluetooth": "{volume}% ",
+        "format-muted": "Mute",
         "format-icons": {
             "headphones": "",
             "handsfree": "",

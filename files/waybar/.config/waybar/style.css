@@ -1,14 +1,15 @@
-/* =============================================================================
- *
- * Waybar configuration
- *
- * Configuration reference: https://github.com/Alexays/Waybar/wiki/Configuration
- *
- * =========================================================================== */
+/*
+ * Colors
+ */
 
-/* -----------------------------------------------------------------------------
- * Keyframes
- * -------------------------------------------------------------------------- */
+@define-color bg rgb (50, 50, 50);
+@define-color green rgb (147, 178, 89);
+@define-color red rgb (248, 85, 81);
+@define-color blue rgb (58, 148, 197);
+
+/*
+ * Keyframe functions
+ */
 
 @keyframes blink-warning {
     70% {
@@ -32,10 +33,9 @@
     }
 }
 
-
-/* -----------------------------------------------------------------------------
- * Base styles
- * -------------------------------------------------------------------------- */
+/*
+ * Base config
+ */
 
 /* Reset all styles */
 * {
@@ -48,13 +48,13 @@
 
 /* The whole bar */
 #waybar {
-    background: #323232;
+    background: @bg;
     color: white;
     font-family: SFMono Nerd Font;
     font-size: 13px;
 }
 
-/* Each module */
+/* All modules */
 #idle_inhibitor,
 #battery,
 #backlight,
@@ -69,21 +69,29 @@
 #window,
 #workspaces button,
 #tray {
-    border-radius: 5px;
-    background-color: #282828;
-    margin: 5px;
     padding: 10px
 }
 
+/*
+ * Modules
+ */
 
-/* -----------------------------------------------------------------------------
- * Module styles
- * -------------------------------------------------------------------------- */
+#workspaces {
+    font-size: 14px;
+}
 
 #battery {
     animation-timing-function: linear;
     animation-iteration-count: infinite;
     animation-direction: alternate;
+}
+
+#battery.good {
+    color: @green;
+}
+
+#battery.ok{
+    color: yellow;
 }
 
 #battery.warning {
@@ -104,8 +112,16 @@
     animation-duration: 2s;
 }
 
-#clock {
-    /*font-weight: bold; */
+#battery.charging {
+}
+
+#clock.date {
+    font-size: 9px;
+}
+
+#clock.time {
+    font-size: 14px;
+    font-weight: bold;
 }
 
 #cpu {
@@ -177,17 +193,12 @@
 }
 
 #workspaces button.focused {
-    background-color: #93b259;
-    color: #282828;
-    border-bottom: none;
+    border-left: 2px solid @green;
+    color: #ffffff;
 }
 
 #workspaces button.urgent {
-    background-color: #f85551;
-}
-
-#workspaces button.urgent:hover {
-    background-color: #ff5569;
+    border-left: 2px solid @red;
 }
 
 /* remove weird GTK hover effect */
@@ -199,6 +210,11 @@
 }
 
 #workspaces button.focused:hover {
-    background: #a1b259;
-    border: #a1b259;
+    border-left: 2px solid @green;
+    background: #383838;
+}
+
+#workspaces button.urgent:hover {
+    border-left: 2px solid @red;
+    background: #383838;
 }
