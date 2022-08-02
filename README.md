@@ -9,23 +9,25 @@ It will link all dotfiles to their correct place.
 Fonts are provided in `fonts/`
 SFMono also provides icons.
 
-## 'invisible' deps
+## deps
 ### for sway
 + `waybar`
-+ `SwayNotificationCenter` - default conf
-+ `bemenu` (dmenu replacement)
++ `SwayNotificationCenter`
++ `wob` (progress bar)
 + `rofi` (nice launcher)
 + `slurp`, `grim`, `swappy` (screenshot)
 
 ### other (used in scripts)
-+ `fzf`
++ `fzf` (used in many places)
 + `ripgrep`
-+ `ripgrep-all`
-+ `fd` (rust find)
-+ `fu` (find icons)
++ `ripgrep-all` (used in grep scripts)
++ `fd` (rust find; used in scripts)
++ `fu` (find icons; not needed)
 + all `fcitx5` stuff (data, gtk, qt, mozc)
 
 ### theming stuff
++ main bg: #323232
++ accent: #93b259
 + icons: `Flat-Remix-Blue-Light-darkPanel`
 + theme: `Flat-Remix-GTK-Blue-Light-solid`
 + rofi: https://github.com/catppuccin/rofi

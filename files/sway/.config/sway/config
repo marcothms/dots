@@ -126,17 +126,21 @@ input type:keyboard {
     bindsym $mod+v exec swaync-client -t -sw
 
     # Brightness
-    bindsym XF86MonBrightnessUp exec light -A 5
-    bindsym XF86MonBrightnessDown exec light -U 5
+    set $SHOW_LIGHT light -G | cut -d'.' -f1 > $WOBSOCK
+    bindsym XF86MonBrightnessUp exec light -A 5 && $SHOW_LIGHT
+    bindsym XF86MonBrightnessDown exec light -U 5 && $SHOW_LIGHT
 
     # Audio
     bindsym XF86AudioPlay exec playerctl play-pause
     bindsym XF86AudioPrev exec playerctl previous
     bindsym XF86AudioNext exec playerctl next
-    bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
-    bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
-    bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
-    bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+    set $SHOW_VOL pactl get-sink-volume @DEFAULT_SINK@ | head -n 1| awk '{print substr($5, 1, length($5)-1)}' > $WOBSOCK
+    bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5% && $SHOW_VOL
+    bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5% && $SHOW_VOL
+    set $SHOW_MUTE_OUT notify-send "Audio Output" "$(pactl get-sink-mute @DEFAULT_SINK@)" -i speaker
+    set $SHOW_MUTE_IN notify-send "Microphone" "$(pactl get-source-mute @DEFAULT_SOURCE@)" -i microphone
+    bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle && $SHOW_MUTE_IN
+    bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle && $SHOW_MUTE_OUT
 
 # Moving around:
     # Move your focus around
@@ -236,6 +240,10 @@ bar {
 exec syncthing
 exec swaync
 exec fcitx5
+
+# On-screen progress bar
+set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
+exec_always rm -f $WOBSOCK && mkfifo $WOBSOCK && tail -f $WOBSOCK | wob
 
 # Include some defaults
 include /etc/sway/config.d/*
