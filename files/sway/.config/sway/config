@@ -94,29 +94,18 @@ input type:keyboard {
     # Kill focused window
     bindsym $mod+Shift+Backspace kill
 
-    # bemenu
-    set $bemenu bemenu \
-        -l 7 \
-        --nb "#282828" \
-        --nf "#ffffff" \
-        --ab "#282828" \
-        --af "#ffffff" \
-        --fb "#282828" \
-        --tf "#93b259" \
-        --tb "#282828" \
-        --hf "#ffffff" \
-        --hb "#393939" \
-        --fn "SFMono Nerd Font 13" -i -H 25 -W 0.5
-
-    set $files fd -I "pdf$" $HOME | cut -f 4- -d "/"
+    # wofi
+    set $files fd -I "\.pdf$" $HOME | cut -f 4- -d "/"
     set $lock_screen \
         printf "/home/marc/.local/bin/lock.sh\nsystemctl suspend\nswaymsg reload\nshutdown now\nloginctl terminate-user marc"
-    #bindsym $mod+d exec dmenu_path | $bemenu -p 'run' | xargs swaymsg exec --
-    bindsym $mod+d exec rofi -show drun
-    #bindsym $mod+p exec $files | $bemenu -l 20 -p 'pdf' -W 0.7 | xargs -d '\n' -r xdg-open
-    bindsym $mod+p exec $files | rofi -dmenu -p '   PDF ' -i | xargs -d '\n' -r xdg-open
-    #bindsym $mod+Ctrl+Backspace exec $lock_screen | $bemenu -p "power" | xargs -d '\n' -r /bin/bash -c
-    bindsym $mod+Ctrl+Backspace exec $lock_screen | rofi -dmenu -p " ⏻  Power " | xargs -d '\n' -r /bin/bash -c
+    bindsym $mod+d exec wofi --show drun -p 'Open application'
+    bindsym $mod+Shift+d exec wofi --show run -p 'dmenu'
+    bindsym $mod+p exec $files \
+        | wofi -d -p 'Search pdfs' -W 70% \
+        | xargs -d '\n' -r xdg-open
+    bindsym $mod+Ctrl+Backspace exec $lock_screen \
+        | wofi -d -p "Power" -L 6 \
+        | xargs -d '\n' -r /bin/bash -c
 
     # Screenshot
     bindsym $mod+Shift+s exec grim -g "$(slurp)" - | wl-copy

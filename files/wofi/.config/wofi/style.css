@@ -1,0 +1,50 @@
+@define-color bg rgb (50, 50, 50);
+@define-color fg rgb (255, 255, 255);
+@define-color green rgb (147, 178, 89);
+@define-color red rgb (248, 85, 81);
+@define-color blue rgb (58, 148, 197);
+
+* {
+  font-family: "SFMono Nerd Font"
+}
+
+#window {
+  margin: 0px;
+  border-radius: 5px;
+  background-color: @bg;
+}
+
+#input {
+  margin: 5px;
+  border: none;
+  color: @fg;
+  background-color: #44475a;
+}
+
+#inner-box {
+  margin: 5px;
+  border: none;
+  background-color: @bg;
+}
+
+#outer-box {
+  margin: 5px;
+  border: none;
+  background-color: @bg;
+}
+
+#scroll {
+ margin: 0px;
+ border: none;
+}
+
+#text {
+ margin: 5px;
+ border: none;
+ color: @fg;
+}
+
+#entry:selected {
+  background-color: @green;
+  border-radius: 5px;
+}

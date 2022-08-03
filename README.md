@@ -14,7 +14,7 @@ SFMono also provides icons.
 + `waybar`
 + `SwayNotificationCenter`
 + `wob` (progress bar)
-+ `rofi` (nice launcher)
++ `wofi` (launcher)
 + `slurp`, `grim`, `swappy` (screenshot)
 
 ### other (used in scripts)
@@ -28,8 +28,7 @@ SFMono also provides icons.
 ### theming stuff
 + main bg: #323232
 + accent: #93b259
-+ icons: `Flat-Remix-Blue-Light-darkPanel`
-+ theme: `Flat-Remix-GTK-Blue-Light-solid`
-+ rofi: https://github.com/catppuccin/rofi
-  + change font to `SFMono` and adjust colors
++ icons: `Flat-Remix-Green-Light-darkPanel`
++ theme: `Flat-Remix-GTK-Green-Light-solid` with adjusted accent
+  + or `/usr/share/themes/Flat-Remix-Marc`
 
