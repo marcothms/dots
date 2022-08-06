@@ -22,7 +22,7 @@
 }
 
 #inner-box {
-  margin: 5px;
+  margin: -5px;
   border: none;
   background-color: @bg;
 }

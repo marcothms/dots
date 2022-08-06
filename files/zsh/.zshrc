@@ -61,8 +61,8 @@ pdp() {
 
 ocr() {
     if [ -z $1 ]; then
-	echo "Please input a file."
-	return
+        echo "Please input a file."
+        return
     fi
     ocrmypdf -l deu+eng+jpn --output-type pdf $1 OCR_$1
 }
@@ -81,12 +81,12 @@ conservation() {
 power() {
     location='/sys/firmware/acpi/platform_profile'
     if [ -z $1 ]; then
-	echo "Current:" $(cat $location)
-	echo "Can be one of:" $(cat /sys/firmware/acpi/platform_profile_choices)
+        echo "Current:" $(cat $location)
+        echo "Can be one of:" $(cat /sys/firmware/acpi/platform_profile_choices)
     elif [ $1 = 'low-power' ] || [ $1 = 'balanced' ] || [ $1 = 'performance' ]; then
-	echo $1 | sudo tee $location
+        echo $1 | sudo tee $location
     else
-	echo 'Invalid option'
+        echo 'Invalid option'
     fi
 }
 
@@ -97,12 +97,16 @@ replace() {
 }
 
 alias o='xdg-open'  # to change a mime use: `xdg-mime default APPLICATION HANDLE`
-alias con='nmcli con'
-alias conup='nmcli con up id'
-alias condown='nmcli con down id'
 alias truecolor='curl -s https://raw.githubusercontent.com/JohnMorales/dotfiles/master/colors/24-bit-color.sh | bash'
 alias nssh='SSH_AUTH_SOCK= ssh'
 alias cpu='watch -n.1 "grep \"^[c]pu MHz\" /proc/cpuinfo"'
+
+# nmcli
+alias con='nmcli con'
+alias conup='nmcli con up id'
+alias condown='nmcli con down id'
+alias conscan='nmcli dev wifi'
+alias conedit='nm-connection-editor'
 
 # troll
 alias powershell='clear && PS1="windowsadm@powershell$ " bash'

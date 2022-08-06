@@ -86,6 +86,14 @@
     animation-direction: alternate;
 }
 
+#battery.charging {
+    border-left: 2px solid @green;
+}
+
+#battery.full {
+    font-weight: bold;
+}
+
 #battery.good {
     color: @green;
 }
@@ -112,16 +120,12 @@
     animation-duration: 2s;
 }
 
-#battery.charging {
-}
-
-#clock.date {
-    font-size: 9px;
-}
-
 #clock.time {
     font-size: 14px;
     font-weight: bold;
+    /* hack, cause width parameter is bugged */
+    margin-left: 2px;
+    margin-right: 2px;
 }
 
 #cpu {
@@ -183,11 +187,6 @@
     color: red;
 }
 
-#tray {
-    /* Empty space on the right */
-    margin-right: 5px;
-}
-
 #workspaces button {
     color: white;
 }
@@ -205,16 +204,16 @@
 #workspaces button:hover {
     box-shadow: inherit;
     text-shadow: inherit;
-    background: #383838;
-    border: #383838;
+    background: #585858;
+    border: #585858;
 }
 
 #workspaces button.focused:hover {
     border-left: 2px solid @green;
-    background: #383838;
+    background: #585858;
 }
 
 #workspaces button.urgent:hover {
     border-left: 2px solid @red;
-    background: #383838;
+    background: #585858;
 }

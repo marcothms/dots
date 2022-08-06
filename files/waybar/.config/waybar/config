@@ -1,6 +1,5 @@
 {
     "layer": "bottom",
-
     "position": "left",
 
     "modules-left": [
@@ -9,9 +8,9 @@
     "modules-center": [
     ],
     "modules-right": [
+        "tray",
         "battery",
         "clock#time",
-        "clock#date"
     ],
 
 
@@ -37,10 +36,10 @@
         "states": {
             "good": 100,
             "ok": 50,
-            "warning": 30,
-            "critical": 15
+            "warning": 15,
+            "critical": 10
         },
-        "format": "{capacity} ",
+        "format": "{capacity}",
         "format-discharging": "{capacity}",
         "format-icons": [
             "", // Icon: battery-full
@@ -55,12 +54,12 @@
     "clock#time": {
         "interval": 5,
         "format": "{:%I\n%M}",
-        "tooltip": false,
+        "tooltip-format": "{:%A, %e %B %Y}"
     },
 
     "clock#date": {
       "interval": 10,
-      "format": "{:%a, %e}",
+      "format": "{:%a,%e}",
       "tooltip-format": "{:%A, %e %B %Y}"
     },
 

@@ -229,6 +229,9 @@ bar {
 exec syncthing
 exec swaync
 exec fcitx5
+exec nm-applet --indicator
+exec blueman-applet
+exec pasystray
 
 # On-screen progress bar
 set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock

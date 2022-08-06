@@ -32,8 +32,12 @@ for _, i in ipairs(servers) do
 end
 
 -- LaTeX (build with `:TexlabBuild`)
+-- Extra config for autocompile
 -- https://github.com/neovim/nvim-lspconfig/blob/master/lua/lspconfig/server_configurations/texlab.lua
 lsp.texlab.setup({
+  on_attach = function(client, bufnr)
+    navic.attach(client, bufnr) -- breadcrumbs
+  end,
   settings = {
     texlab = {
       build = {
@@ -55,7 +59,7 @@ local opts = {
       other_hints_prefix = "",
     },
   },
-  server = {
+  server = { -- these settings go directly to lsp
     on_attach = function(client, bufnr)
       navic.attach(client, bufnr) -- breadcrumbs
     end,
