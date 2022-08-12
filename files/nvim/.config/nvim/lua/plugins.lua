@@ -54,8 +54,13 @@ return require('packer').startup(function(use)
     config = function()
       require('lualine').setup({
         options = {
-          theme = 'everforest'
+          theme = 'everforest',
         },
+        -- tabline = {
+        --   lualine_c = {
+        --     require('nvim-navic').get_location
+        --   }
+        -- },
         sections = {
           lualine_b = {
             'branch',
@@ -97,8 +102,8 @@ return require('packer').startup(function(use)
               local space = vim.fn.search([[\s\+$]], 'nwc')
               return space ~= 0 and "TW:" .. space or ""
             end
-          }
-        }
+          },
+        },
       })
     end,
   })
