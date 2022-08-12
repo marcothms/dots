@@ -2,6 +2,9 @@
 -- Treesitter with `:TSUpdate`
 -- LSP with `:LSPInstall`, log with `:LSPInfo`
 
+-- Don't load this in plugins.lua
+vim.cmd("set termguicolors")
+
 require 'plugins'  -- Load plugins
 require 'settings' -- General settings
 require 'mappings' -- Keyboard mappings

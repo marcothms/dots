@@ -16,13 +16,13 @@ SFMono also provides icons.
 + `wob` (progress bar)
 + `wofi` (launcher)
 + `slurp`, `grim`, `swappy` (screenshot)
++ [`wmrctl`](https://git.sr.ht/~brocellous/wlrctl) (window switcher)
 
 ### other (used in scripts)
 + `fzf` (used in many places)
 + `ripgrep`
 + `ripgrep-all` (used in grep scripts)
 + `fd` (rust find; used in scripts)
-+ `fu` (find icons; not needed)
 + all `fcitx5` stuff (data, gtk, qt, mozc)
 
 ### theming stuff

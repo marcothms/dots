@@ -95,17 +95,32 @@ input type:keyboard {
     bindsym $mod+Shift+Backspace kill
 
     # wofi
-    set $files fd -I "\.pdf$" $HOME | cut -f 4- -d "/"
-    set $lock_screen \
-        printf "/home/marc/.local/bin/lock.sh\nsystemctl suspend\nswaymsg reload\nshutdown now\nloginctl terminate-user marc"
-    bindsym $mod+d exec wofi --show drun -p 'Open application'
-    bindsym $mod+Shift+d exec wofi --show run -p 'dmenu'
-    bindsym $mod+p exec $files \
-        | wofi -d -p 'Search pdfs' -W 70% \
-        | xargs -d '\n' -r xdg-open
-    bindsym $mod+Ctrl+Backspace exec $lock_screen \
-        | wofi -d -p "Power" -L 6 \
-        | xargs -d '\n' -r /bin/bash -c
+        # show normal applications
+        bindsym $mod+d exec wofi --show drun -p 'Open application'
+
+        # show binaries in PATH
+        bindsym $mod+Shift+d exec wofi --show run -p 'dmenu'
+
+        # show all pdfs in HOME
+        bindsym $mod+p exec \
+            fd -I "\.pdf$" $HOME \
+            | cut -f 4- -d "/" \
+            | wofi -d -p 'Search pdfs' -W 70% \
+            | xargs -d '\n' -r xdg-open
+
+        # show shutdown menu
+        bindsym $mod+Ctrl+Backspace exec \
+            printf "/home/marc/.local/bin/lock.sh\nsystemctl suspend\nswaymsg reload\nshutdown now\nloginctl terminate-user marc" \
+            | wofi -d -p "Power" -L 6 \
+            | xargs -d '\n' -r /bin/bash -c
+
+        # switch windows
+        bindsym $mod+w exec \
+            wlrctl window list \
+            | awk '{print $1}' \
+            | sed 's/://' \
+            | wofi --dmenu \
+            | xargs -r wlrctl window focus
 
     # Screenshot
     bindsym $mod+Shift+s exec grim -g "$(slurp)" - | wl-copy
