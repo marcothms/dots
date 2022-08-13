@@ -43,48 +43,50 @@ client.focused_inactive $bar_bg $bar_bg $baseB0 $bar_bg
 client.unfocused        $bar_bg $bar_bg $baseB0 $bar_bg
 client.urgent           $orange $orange $baseB3 $orange
 
-# Output configuration
+# always start on the same brightness
+exec light -S 20
+
+# Wallpaper: generate wallpaper with: https://source.unsplash.com/random/3840x2160/?japan
+    # set normal wp
+    output * bg ~/images/wallpaper/wallpaper.png fill
+
+    # create a blurred counter part for locking
+    exec_always convert ~/images/wallpaper/wallpaper.png -blur 0x8 /tmp/lock.png
+
+# turn off screen, when lid closed
 set $laptop eDP-1
-
-output * bg ~/images/wallpaper/wallpaper.png fill
-
 bindswitch --reload --locked lid:on output $laptop disable
 bindswitch --reload --locked lid:off output $laptop enable
 
-exec light -S 20
-
 # Idle configuration
-# create blurred lock screen
-exec_always convert ~/images/wallpaper/wallpaper.png -blur 0x8 /tmp/lock.png
+    # set lock and save to script, so other programs can also use it
+    set $lock 'swaylock -f --image /tmp/lock.png --indicator-idle-visible -F'
+    exec_always echo $lock > ~/.local/bin/lock.sh
+    exec_always chmod +x ~/.local/bin/lock.sh
 
-# set lockc and save to script, so other programs can also use it
-set $lock 'swaylock -f --image /tmp/lock.png --indicator-idle-visible -F'
-exec_always echo $lock > ~/.local/bin/lock.sh
-exec_always chmod +x ~/.local/bin/lock.sh
-
-# Lock after 20 minutes
-# Lock before suspend
-exec swayidle -w \
-         timeout 1200 ~/.local/bin/lock.sh \
-         before-sleep ~/.local/bin/lock.sh
-         #timeout 1320 'systemctl suspend' \
-
+    # Lock after 20 minutes, lock before suspend
+    exec swayidle -w \
+             timeout 1200 ~/.local/bin/lock.sh \
+             before-sleep ~/.local/bin/lock.sh
+             #timeout 1320 'systemctl suspend' \
 
 # Input configuration
-input type:pointer {
-    accel_profile "flat"
-}
+    # mouse/trackpad
+    input type:pointer {
+        accel_profile "flat"
+    }
 
-input type:keyboard {
-    # Umlauts on RAlt + {a,u,o,s}
-    xkb_layout eu
-    # Make Caps Lock an additional Esc
-    # https://man.archlinux.org/man/xkeyboard-config.7
-    xkb_options caps:escape
-    # Keyboard repeats
-    repeat_delay 300
-    repeat_rate 50
-}
+    # keyboard
+    input type:keyboard {
+        # Umlauts on RAlt + {a,u,o,s}
+        xkb_layout eu
+        # Make Caps Lock an additional Esc
+        # https://man.archlinux.org/man/xkeyboard-config.7
+        xkb_options caps:escape
+        # Keyboard repeats
+        repeat_delay 300
+        repeat_rate 50
+    }
 
 # Key bindings
 # Basics:
@@ -143,8 +145,8 @@ input type:keyboard {
     bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5% && $SHOW_VOL
     set $SHOW_MUTE_OUT notify-send "Audio Output" "$(pactl get-sink-mute @DEFAULT_SINK@)" -i speaker
     set $SHOW_MUTE_IN notify-send "Microphone" "$(pactl get-source-mute @DEFAULT_SOURCE@)" -i microphone
-    bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle && $SHOW_MUTE_IN
-    bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle && $SHOW_MUTE_OUT
+    bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+    bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 
 # Moving around:
     # Move your focus around
