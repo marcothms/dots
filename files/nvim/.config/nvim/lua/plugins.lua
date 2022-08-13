@@ -23,16 +23,8 @@ return require('packer').startup(function(use)
     end,
   })
 
-  -- Breadcrumbs (will be loaded into LuaLine)
-  use {
-    "SmiteshP/nvim-navic",
-    requires = "neovim/nvim-lspconfig",
-    config = function()
-      require 'nvim-navic'.setup({})
-    end,
-  }
-
   -- Icons
+  -- Load here, because otherwise icons won't show
   use({
     "kyazdani42/nvim-web-devicons",
     config = function()
@@ -49,21 +41,41 @@ return require('packer').startup(function(use)
       "kyazdani42/nvim-web-devicons",
       "arkav/lualine-lsp-progress", -- Show lsp loading progress
       "SmiteshP/nvim-navic", -- Show breadcrumbs
+      "neovim/nvim-lspconfig", -- for nvim-navic
     },
     config = function()
+      -- startup breadcrumbs
+      require 'nvim-navic'.setup({})
+
+      -- used as mode-module
+      local mode_map = {
+        ['n'] = 'N',
+        ['v'] = 'V',
+        ['i'] = 'I',
+        ['V'] = 'VL',
+        [''] = "VB",
+        ['s'] = "VB",
+      }
+
+      -- actually load bar
       require('lualine').setup({
         options = {
+          -- lualine comes with 'everforest' theme
           theme = 'everforest',
         },
-        -- tabline = {
-        --   lualine_c = {
-        --     require('nvim-navic').get_location
-        --   }
-        -- },
+        -- all sections from left to right
         sections = {
+          lualine_a = {
+            function()
+              return mode_map[vim.api.nvim_get_mode().mode] or "__"
+            end
+          },
           lualine_b = {
             'branch',
-            'diff',
+          },
+          lualine_c = { 'filename', require('nvim-navic').get_location },
+          lualine_x = {
+            'lsp_progress',
             {
               'diagnostics',
               diagnostics_color = {
@@ -71,16 +83,15 @@ return require('packer').startup(function(use)
                 info = { fg = "#479bc7" },
                 hint = { fg = "darkcyan" }
               },
-            }
-
+            },
           },
-          lualine_c = { 'filename', require('nvim-navic').get_location },
-          lualine_x = { 'lsp_progress', 'encoding', 'fileformat', 'filetype' },
           lualine_y = {
-            'progress',
+            'filetype',
+            'encoding',
+            'fileformat',
+            -- show wordcount in md and tex file
+            -- show precise count when selecting
             function()
-              -- show wordcount in md and tex file
-              -- show precise count when selecting
               if vim.bo.filetype == "md" or vim.bo.filetype == "tex" then
                 if vim.fn.wordcount().visual_words == 1 then
                   return tostring(vim.fn.wordcount().visual_words) .. " word"
@@ -95,9 +106,10 @@ return require('packer').startup(function(use)
             end
           },
           lualine_z = {
+            'progress',
             'location',
+            -- Show trailing whitespace
             function()
-              -- Show trailing whitespace
               local space = vim.fn.search([[\s\+$]], 'nwc')
               return space ~= 0 and "TW:" .. space or ""
             end
@@ -221,9 +233,7 @@ return require('packer').startup(function(use)
   -- which-key (Show key combos)
   use {
     "folke/which-key.nvim",
-    config = function()
-      require("which-key").setup {}
-    end
+    config = function() require("which-key").setup {} end
   }
 
   -- Align with `:Align <regex>`
@@ -232,18 +242,14 @@ return require('packer').startup(function(use)
   -- Easily comment out stuff
   use({
     "numToStr/Comment.nvim",
-    config = function()
-      require('Comment').setup()
-    end,
+    config = function() require('Comment').setup() end,
   })
 
   -- Highlight TODOs
   use {
     "folke/todo-comments.nvim",
     requires = "nvim-lua/plenary.nvim",
-    config = function()
-      require("todo-comments").setup {}
-    end
+    config = function() require("todo-comments").setup {} end
   }
 
   -- git client
@@ -261,7 +267,15 @@ return require('packer').startup(function(use)
     end,
   }
 
-  -- show colors
+  -- git signs at left side (+ blame line)
+  use {
+    'lewis6991/gitsigns.nvim',
+    config = function()
+      require('gitsigns').setup()
+    end
+  }
+
+  -- show color codes inline
   use({
     "norcalli/nvim-colorizer.lua",
     config = function()

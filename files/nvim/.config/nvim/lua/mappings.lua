@@ -55,10 +55,12 @@ wk.register({
 
 -- git
 map("n", "<leader>gs", "<cmd> Neogit<CR>", default_opts)
+map("n", "<leader>gb", "<cmd> Gitsigns toggle_current_line_blame<CR>", default_opts)
 wk.register({
   ["<leader>"] = {
     g = {
       s = { "Status" },
+      b = { "Blame line" },
     }
   }
 })

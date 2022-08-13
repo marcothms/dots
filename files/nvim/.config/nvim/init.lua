@@ -2,7 +2,7 @@
 -- Treesitter with `:TSUpdate`
 -- LSP with `:LSPInstall`, log with `:LSPInfo`
 
--- Don't load this in plugins.lua
+-- This must be loaded first
 vim.cmd("set termguicolors")
 
 require 'plugins'  -- Load plugins

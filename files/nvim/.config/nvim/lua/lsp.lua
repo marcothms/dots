@@ -72,4 +72,5 @@ local opts = {
   },
 }
 
+-- actually setup rust-tools with the opts from above
 require('rust-tools').setup(opts)
