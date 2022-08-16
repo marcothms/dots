@@ -2,7 +2,8 @@
 \date{\today}
 
 \usepackage[ngerman]{babel}
-\usepackage[T1]{fontenc}
+% only need this with pdflatex, don't use with xelatex
+%\usepackage[T1]{fontenc}
 
 \usepackage{a4wide}
 \usepackage{mathtools}
@@ -29,7 +30,6 @@
 \usepackage{listings}
 \usepackage{minted}
 \definecolor{bg}{rgb}{0.95, 0.95, 1.0}
-\usepackage{inconsolata}
 
 %%% define own enumeration styles
 % use custom labels with `\begin{enumerate}[label=$\bullet$]`

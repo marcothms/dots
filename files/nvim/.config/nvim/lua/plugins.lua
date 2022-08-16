@@ -55,6 +55,7 @@ return require('packer').startup(function(use)
         ['V'] = 'VL',
         [''] = "VB",
         ['s'] = "VB",
+        ['c'] = "C",
       }
 
       -- actually load bar
@@ -185,6 +186,7 @@ return require('packer').startup(function(use)
   })
 
   -- LSP (install with `:LSPInstall`, inspect with `:LSPInfo`)
+  -- Config in lsp.lua
   use("neovim/nvim-lspconfig") -- Easy to manage LSP servers (attach etc)
   use("williamboman/nvim-lsp-installer") -- Easy to install LSP servers
   use("simrat39/rust-tools.nvim") -- Cooler LSP stuff for Rust
