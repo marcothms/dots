@@ -74,7 +74,13 @@ return require('packer').startup(function(use)
           lualine_b = {
             'branch',
           },
-          lualine_c = { 'filename', require('nvim-navic').get_location },
+          lualine_c = {
+            {
+              'filename',
+              path = 1,
+            },
+            require('nvim-navic').get_location
+          },
           lualine_x = {
             'lsp_progress',
             {
@@ -134,10 +140,11 @@ return require('packer').startup(function(use)
           selection_caret = "  ",
           entry_prefix = "  ",
           sorting_strategy = "ascending",
-          layout_strategy = "horizontal",
+          layout_strategy = "vertical",
           layout_config = {
-            horizontal = {
+            vertical = {
               prompt_position = "top",
+              mirror = true,
             }
           }
         },
@@ -291,7 +298,7 @@ return require('packer').startup(function(use)
     requires = {
       'kyazdani42/nvim-web-devicons', -- optional, for file icons
     },
-    config = function ()
+    config = function()
       require("nvim-tree").setup()
     end
   }
