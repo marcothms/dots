@@ -132,3 +132,6 @@ cmp.setup({
     }),
   },
 })
+
+-- file tree
+map("n", "<C-b>", "<cmd> NvimTreeFindFileToggle<CR>", default_opts) -- Show file tree

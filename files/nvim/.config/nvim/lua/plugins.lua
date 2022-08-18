@@ -285,6 +285,17 @@ return require('packer').startup(function(use)
     end
   })
 
+  -- file tree
+  use {
+    'kyazdani42/nvim-tree.lua',
+    requires = {
+      'kyazdani42/nvim-web-devicons', -- optional, for file icons
+    },
+    config = function ()
+      require("nvim-tree").setup()
+    end
+  }
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then
