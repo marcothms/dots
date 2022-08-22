@@ -18,3 +18,4 @@
 	lg = log --oneline --decorate --graph
 	yoink = pull
 	yeet = push
+	b = blame --color-by-age -L

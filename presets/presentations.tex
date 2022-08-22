@@ -19,6 +19,29 @@
 \usepackage{color}
 \usepackage{proof}
 
+%%% show subsection title frames
+\AtBeginPart{
+\let\insertpartnumber\relax
+\let\partname\relax
+\begin{frame}[tocframe]
+\partpage
+\end{frame}
+}
+\AtBeginSection{
+\let\insertsectionnumber\relax
+\let\sectionname\relax
+\begin{frame}[tocframe]
+\sectionpage
+\end{frame}
+}
+\AtBeginSubsection{
+\let\insertsubsectionnumber\relax
+\let\subsectionname\relax
+\begin{frame}[tocframe]
+\subsectionpage
+\end{frame}
+}
+
 %%% source code
 \usepackage{listings}
 \usepackage{minted}

@@ -145,8 +145,8 @@ bindswitch --reload --locked lid:off output $laptop enable
     bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5% && $SHOW_VOL
     set $SHOW_MUTE_OUT notify-send "Audio Output" "$(pactl get-sink-mute @DEFAULT_SINK@)" -i speaker
     set $SHOW_MUTE_IN notify-send "Microphone" "$(pactl get-source-mute @DEFAULT_SOURCE@)" -i microphone
-    bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
-    bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+    bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle && $SHOW_MUTE_IN
+    bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle && $SHOW_MUTE_OUT
 
 # Moving around:
     # Move your focus around
