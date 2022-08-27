@@ -136,7 +136,7 @@ cmp.setup({
 
 -- file tree
 map("n", "<C-t>", "<cmd> NvimTreeFindFileToggle<CR>", default_opts) -- Show file tree
-map("n", "<leader>tc", "<cmd> NvimTreeCollapse<CR>", default_opts) -- Collapse tree
+map("n", "<leader>tc", "<cmd> NvimTreeCollapse<CR>", default_opts)  -- Collapse tree
 wk.register({
   ["<leader>"] = {
     t = {

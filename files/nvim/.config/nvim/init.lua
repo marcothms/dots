@@ -5,7 +5,6 @@
 -- This must be loaded first
 vim.cmd("set termguicolors")
 
-require 'plugins'  -- Load plugins
+require 'plugins'  -- Load plugins and their conf
 require 'settings' -- General settings
 require 'mappings' -- Keyboard mappings
-require 'lsp'      -- Everything related to LSP
