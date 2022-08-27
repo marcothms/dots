@@ -23,9 +23,10 @@ telescope.setup({
     }
   }
 })
-map("n", "<C-f>", "<cmd> Telescope find_files<CR>", default_opts) -- Show files
-map("n", "<C-g>", "<cmd> Telescope live_grep<CR>", default_opts)  -- Grep through current directory
-map("n", "<C-k>", "<cmd> Telescope keymaps<CR>", default_opts)    -- Show all keys
+map("n", "<C-f>", "<cmd> Telescope find_files<CR>", default_opts)                   -- Show files
+map("n", "<C-g>", "<cmd> Telescope live_grep<CR>", default_opts)                    -- Grep through current directory
+map("n", "<C-k>", "<cmd> Telescope keymaps<CR>", default_opts)                      -- Show all keys
+map("n", "<C-s>", "<cmd> Telescope current_buffer_fuzzy_find<CR>", default_opts)    -- Grep through current file
 
 -- Telescope + LSP
 map("n", "<leader>la", "<cmd> lua vim.lsp.buf.code_action()<CR>", default_opts)   -- Apply LSP code action

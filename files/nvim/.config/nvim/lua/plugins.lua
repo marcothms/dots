@@ -218,8 +218,8 @@ return require('packer').startup(function(use)
           end,
         },
         sources = {
-          { name = 'luasnip', keyword_length = 3, max_item_count = 3 },
-          { name = 'nvim_lsp', keyword_length = 3, max_item_count = 10 },
+          { name = 'luasnip', keyword_length = 1, max_item_count = 3 },
+          { name = 'nvim_lsp', keyword_length = 1, max_item_count = 10 },
           { name = 'buffer', keyword_length = 5, max_item_count = 3 },
           { name = 'path' },
         },
