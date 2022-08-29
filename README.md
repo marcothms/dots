@@ -1,6 +1,6 @@
 # my dots
 
-dots for my lenovo yoga slim 7i pro 「itomori」, managed with `gnu stow`.
+dots for my laptop 「itomori」, managed with `gnu stow`.
 
 Files can be `stow`'ed and un'`stow`'ed with `stow.sh`.
 It will link all dotfiles to their correct place.
@@ -8,6 +8,10 @@ It will link all dotfiles to their correct place.
 ## fonts
 Fonts are provided in `fonts/`
 SFMono also provides icons.
+
+## ssh-agent(1)
+Move `ssh-agent.service` to `~/.config/systemd/user/ssh-agent.service`
+and start it appropriately.
 
 ## deps
 ### for sway
