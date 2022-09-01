@@ -9,6 +9,8 @@
       "",
       "% \\bibliography{bibliography}",
       "",
+      "% don't forget to relaunch nvim :>",
+      "",
       "\\begin{document}",
       "",
       "\\maketitle",
@@ -31,6 +33,8 @@
       "\\title{$1}",
       "\\subtitle{$2}",
       "\\author{Marco Thomas}",
+      "",
+      "% don't forget to relaunch nvim :>",
       "",
       "\\begin{document}",
       "",
@@ -87,5 +91,17 @@
     "prefix": "paragraph",
     "body": ["\\paragraph{$1}"],
     "description": "Insert a new paragraph"
+  },
+  "columns": {
+    "prefix": "columns",
+    "body": [
+      "\\begin{columns}",
+      "    \\begin{column}{0.5\\textwidth}",
+      "    \\end{column}",
+      "    \\begin{column}{0.5\\textwidth}",
+      "    \\end{column}",
+      "\\end{columns}"
+    ],
+    "description": "Create columns env in a slide"
   }
 }
