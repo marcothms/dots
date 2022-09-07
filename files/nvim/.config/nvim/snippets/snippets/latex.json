@@ -41,10 +41,14 @@
       "\\maketitle",
       "\\newpage",
       "\\begin{frame}",
-      "    \\frametitle{Inhaltsübersicht}",
-      "    \\tableofcontents[hideallsubsections]",
+      "  \\frametitle{Inhaltsübersicht}",
+      "  \\tableofcontents[hideallsubsections]",
       "\\end{frame}",
       "\\newpage",
+      "",
+      "\\section{$3}",
+      "\\begin{frame}",
+      "\\end{frame}",
       "",
       "\\end{document}"
     ],
@@ -54,10 +58,10 @@
     "prefix": "wrapfigure",
     "body": [
       "\\begin{wrapfigure}{${1:l or r}}{0.4\\textwidth}",
-      "    \\centering",
-      "    \\includegraphics[width=0.2\\textwidth]{figures/$2}",
-      "    \\caption{$3}",
-      "    \\label{fig:$4}",
+      "\t\\centering",
+      "\t\\includegraphics[width=0.2\\textwidth]{figures/$2}",
+      "\t\\caption{$3}",
+      "\t\\label{fig:$4}",
       "\\end{wrapfigure}"
     ],
     "description": "Wrap figure in text context"
@@ -96,10 +100,10 @@
     "prefix": "columns",
     "body": [
       "\\begin{columns}",
-      "    \\begin{column}{0.5\\textwidth}",
-      "    \\end{column}",
-      "    \\begin{column}{0.5\\textwidth}",
-      "    \\end{column}",
+      "\t\\begin{column}{0.5\\textwidth}",
+      "\t\\end{column}",
+      "\t\\begin{column}{0.5\\textwidth}",
+      "\t\\end{column}",
       "\\end{columns}"
     ],
     "description": "Create columns env in a slide"

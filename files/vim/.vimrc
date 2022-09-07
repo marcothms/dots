@@ -16,7 +16,7 @@ call plug#begin()
 Plug 'tpope/vim-sleuth'                 " heuristic file indendation
 Plug 'jiangmiao/auto-pairs'             " pair completion
 Plug 'ctrlpvim/ctrlp.vim'               " file finder
-Plug 'djoshea/vim-autoread'             " auto reload file, when changed on disk
+Plug 'tpope/vim-fugitive'               " git wrapper
 
 Plug 'sainnhe/everforest'               " color scheme
 Plug 'vim-airline/vim-airline'          " a nicer status line
@@ -94,3 +94,7 @@ let g:netrw_banner = 0    " Remove useless banner at the top of netrw
 map <C-f> :CtrlP<CR>
 " C-/ to hide search results
 map <C-_> :noh<CR>
+" git
+map <leader>gs :Git status<CR>
+map <leader>gb :Git blame<CR>
+map <C-s> :Git grep 

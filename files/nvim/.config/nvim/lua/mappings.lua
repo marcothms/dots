@@ -24,9 +24,8 @@ telescope.setup({
   }
 })
 map("n", "<C-f>", "<cmd> Telescope find_files<CR>", default_opts)                   -- Show files
-map("n", "<C-g>", "<cmd> Telescope live_grep<CR>", default_opts)                    -- Grep through current directory
+map("n", "<C-s>", "<cmd> Telescope live_grep<CR>", default_opts)                    -- Grep through current directory
 map("n", "<C-k>", "<cmd> Telescope keymaps<CR>", default_opts)                      -- Show all keys
-map("n", "<C-s>", "<cmd> Telescope current_buffer_fuzzy_find<CR>", default_opts)    -- Grep through current file
 
 -- Telescope + LSP
 map("n", "<leader>la", "<cmd> lua vim.lsp.buf.code_action()<CR>", default_opts)   -- Apply LSP code action
@@ -56,12 +55,12 @@ wk.register({
 
 -- git
 map("n", "<leader>gs", "<cmd> Neogit<CR>", default_opts)
-map("n", "<leader>gb", "<cmd> Gitsigns toggle_current_line_blame<CR>", default_opts)
+map("n", "<leader>gb", "<cmd> Git blame<CR>", default_opts)
 wk.register({
   ["<leader>"] = {
     g = {
       s = { "Status" },
-      b = { "Blame line" },
+      b = { "Blame" },
     }
   }
 })

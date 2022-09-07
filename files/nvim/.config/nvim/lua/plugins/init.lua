@@ -123,6 +123,8 @@ return require('packer').startup(function(use)
     config = function() require('plugins.neogit-conf') end,
   }
 
+  use 'tpope/vim-fugitive'
+
   -- git signs at left side (+ blame line)
   use {
     'lewis6991/gitsigns.nvim',
