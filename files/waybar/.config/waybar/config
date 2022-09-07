@@ -9,6 +9,7 @@
     ],
     "modules-right": [
         "tray",
+        "pulseaudio#mic",
         "battery",
         "clock#time",
     ],
@@ -133,6 +134,12 @@
             "default": ["奄","奔", "墳", "墳", "墳", "墳", "墳"]
         },
         "on-click": "pavucontrol"
+    },
+
+    "pulseaudio#mic": {
+        "format": "{format_source}",
+        "format-source": "",
+        "format-source-muted": ""
     },
 
     "temperature": {

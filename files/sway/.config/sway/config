@@ -143,9 +143,10 @@ bindswitch --reload --locked lid:off output $laptop enable
     set $SHOW_VOL pactl get-sink-volume @DEFAULT_SINK@ | head -n 1| awk '{print substr($5, 1, length($5)-1)}' > $WOBSOCK
     bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5% && $SHOW_VOL
     bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5% && $SHOW_VOL
-    set $SHOW_MUTE_OUT notify-send "Audio Output" "$(pactl get-sink-mute @DEFAULT_SINK@)" -i speaker -u low
+    set $SHOW_MUTE_OUT notify-send "Audio" "$(pactl get-sink-mute @DEFAULT_SINK@)" -i speaker -u low
     set $SHOW_MUTE_IN notify-send "Microphone" "$(pactl get-source-mute @DEFAULT_SOURCE@)" -i microphone -u low
     bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle && $SHOW_MUTE_IN
+    bindsym $mod+m exec pactl set-source-mute @DEFAULT_SOURCE@ toggle && $SHOW_MUTE_IN
     bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle && $SHOW_MUTE_OUT
 
 # Moving around:

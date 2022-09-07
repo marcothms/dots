@@ -5,20 +5,21 @@
 	path = "~/dev/uni/lrz-gitlab/.gitconfig"
 [alias]
 	aa = add .
-	st = status
-	sh = show
-	d = diff
+	b = blame -L
+	br = branch
 	c = commit -v
 	ca = commit -v --amend
 	co = checkout
-	br = branch
-	pl = pull --rebase
-	u = pull --rebase
-	ps = push
+	d = diff
 	lg = log --oneline --decorate --graph
-	yoink = pull
+	lgp = lg -p
+	pl = pull --rebase
+	ps = push
+	sh = show
+	st = status
+	u = pull --rebase
 	yeet = push
-	b = blame -L
+	yoink = pull
 [blame]
 	date = relative
 	coloring = highlightRecent

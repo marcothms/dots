@@ -179,6 +179,10 @@
     /* No styles */
 }
 
+#pulseaudio.mic {
+    padding-top: 0px;
+}
+
 #temperature {
     /* No styles */
 }

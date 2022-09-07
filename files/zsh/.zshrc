@@ -44,7 +44,7 @@ alias mv='mv -i' # Ask before removal
 
 alias -g G='| grep -i'
 alias -g L='| less'
-alias gg='git grep'
+alias gg='git grep $1'
 
 alias code='/usr/bin/code --enable-features=UseOzonePlatform --ozone-platform=wayland . 2>/dev/null'
 
