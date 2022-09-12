@@ -238,6 +238,16 @@ bindswitch --reload --locked lid:off output $laptop enable
     for_window [app_id="evolution"] move container to workspace number $ws8
     for_window [app_id="org.keepassxc.KeePassXC"] move container to workspace number $ws9
 
+    # Open application desired for that window
+    # echo 'tmux a || tmux' > ~/.local/bin/tmux_detect.sh
+    bindsym $mod+Ctrl+1 exec alacritty --command bash tmux_detect.sh
+    bindsym $mod+Ctrl+2 exec firefox
+    bindsym $mod+Ctrl+3 exec discord
+    bindsym $mod+Ctrl+4 exec spotify
+    bindsym $mod+Ctrl+8 exec evolution
+    bindsym $mod+Ctrl+9 exec keepassxc
+
+
 # Status Bar
 bar {
     swaybar_command waybar

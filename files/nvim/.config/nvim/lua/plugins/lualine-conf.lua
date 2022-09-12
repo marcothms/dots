@@ -18,6 +18,23 @@ require('lualine').setup({
     -- lualine comes with 'everforest' theme
     theme = 'everforest',
   },
+  tabline = {
+    lualine_a = {
+      {
+        'tabs',
+        mode = 2
+      },
+    },
+    lualine_b = {},
+    lualine_c = { 
+      require('nvim-navic').get_location
+    },
+    lualine_x = {
+      'lsp_progress'
+    },
+    lualine_y = {},
+    lualine_z = {}
+  },
   -- all sections from left to right
   sections = {
     lualine_a = {
@@ -33,10 +50,9 @@ require('lualine').setup({
         'filename',
         path = 1,
       },
-      require('nvim-navic').get_location
+      -- require('nvim-navic').get_location
     },
     lualine_x = {
-      'lsp_progress',
       {
         'diagnostics',
         diagnostics_color = {
