@@ -15,7 +15,7 @@ GIT="%{$fg[red]%}\$vcs_info_msg_0_"
 HOSTN="%{$fg[yellow]%}%m "
 
 export PROMPT="${HOSTN}${DIR}${GIT} ${ICON}%{$reset_color%} "
-zstyle ':vcs_info:git:*' formats ' %b '
+zstyle ':vcs_info:git:*' formats ' (%b )'
 
 # show info in bar
 case $TERM in
@@ -50,16 +50,6 @@ alias gg='git grep $1'
 alias code='/usr/bin/code --enable-features=UseOzonePlatform --ozone-platform=wayland . 2>/dev/null'
 
 # tools
-pd() {
-    # requires https://pypi.org/project/pandoc-include/
-    pandoc $1.md -o $1.pdf --from markdown --template eisvogel --listings --toc --filter pandoc-include
-}
-
-pdp() {
-    pandoc $1.md -o $1.pdf --from markdown -t beamer --toc
-}
-
-
 ocr() {
     if [ -z $1 ]; then
         echo "Please input a file."
