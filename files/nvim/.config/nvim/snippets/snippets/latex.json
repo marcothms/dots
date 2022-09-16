@@ -107,5 +107,14 @@
       "\\end{columns}"
     ],
     "description": "Create columns env in a slide"
+  },
+  "frame": {
+    "prefix": "frame",
+    "body": [
+      "\\begin{frame}[fragile]{$1}",
+      "\t$2",
+      "\\end{frame}"
+    ],
+    "description": "Create frame env in a slide"
   }
 }
