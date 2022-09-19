@@ -14,7 +14,10 @@ DIR="%{$fg[blue]%}%~"
 GIT="%{$fg[red]%}\$vcs_info_msg_0_"
 HOSTN="%{$fg[yellow]%}%m "
 
-export PROMPT="${HOSTN}${DIR}${GIT} ${ICON}%{$reset_color%} "
+BREAK=''
+[ $(tput cols) -lt 150 ] && BREAK=$'\n'
+
+export PROMPT="${HOSTN}${DIR}${GIT} ${BREAK}${ICON}%{$reset_color%} "
 zstyle ':vcs_info:git:*' formats ' (%b )'
 
 # show info in bar

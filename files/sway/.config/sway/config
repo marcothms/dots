@@ -60,7 +60,7 @@ bindswitch --reload --locked lid:off output $laptop enable
 
 # Idle configuration
     # set lock and save to script, so other programs can also use it
-    set $lock 'swaylock -f --image /tmp/lock.png --indicator-idle-visible -F'
+    set $lock 'loginctl lock-session && swaylock -f --image /tmp/lock.png --indicator-idle-visible -F'
     exec_always echo $lock > ~/.local/bin/lock.sh
     exec_always chmod +x ~/.local/bin/lock.sh
 
