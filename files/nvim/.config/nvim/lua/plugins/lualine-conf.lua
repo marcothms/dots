@@ -2,14 +2,42 @@
 require 'nvim-navic'.setup({})
 
 -- used as mode-module
+-- https://github.com/nvim-lualine/lualine.nvim/issues/614
 local mode_map = {
-  ['n'] = 'N',
-  ['v'] = 'V',
-  ['i'] = 'I',
-  ['V'] = 'VL',
-  [''] = "VB",
-  ['s'] = "VB",
-  ['c'] = "C",
+  ['n']    = 'N',
+  ['no']   = 'O-P',
+  ['nov']  = 'O-P',
+  ['noV']  = 'O-P',
+  ['no'] = 'O-P',
+  ['niI']  = 'N',
+  ['niR']  = 'N',
+  ['niV']  = 'N',
+  ['nt']   = 'N',
+  ['v']    = 'V',
+  ['vs']   = 'V',
+  ['V']    = 'VL',
+  ['Vs']   = 'VL',
+  ['']   = 'VB',
+  ['s']  = 'VB',
+  ['s']    = 'S',
+  ['S']    = 'SL',
+  ['i']    = 'I',
+  ['ic']   = 'I',
+  ['ix']   = 'I',
+  ['R']    = 'R',
+  ['Rc']   = 'R',
+  ['Rx']   = 'R',
+  ['Rv']   = 'VR',
+  ['Rvc']  = 'VR',
+  ['Rvx']  = 'VR',
+  ['c']    = 'C',
+  ['cv']   = 'EX',
+  ['ce']   = 'EX',
+  ['r']    = 'R',
+  ['rm']   = 'MORE',
+  ['r?']   = 'CONFIRM',
+  ['!']    = 'SH',
+  ['t']    = 'T',
 }
 
 -- actually load bar
@@ -26,7 +54,7 @@ require('lualine').setup({
       },
     },
     lualine_b = {},
-    lualine_c = { 
+    lualine_c = {
       require('nvim-navic').get_location
     },
     lualine_x = {
@@ -50,7 +78,6 @@ require('lualine').setup({
         'filename',
         path = 1,
       },
-      -- require('nvim-navic').get_location
     },
     lualine_x = {
       {
