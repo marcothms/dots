@@ -20,6 +20,7 @@ and start it appropriately.
 + `wob` (progress bar)
 + `wofi` (launcher)
 + `slurp`, `grim`, `swappy` (screenshot)
++ `swaylock-effects`
 + [`wmrctl`](https://git.sr.ht/~brocellous/wlrctl) (window switcher)
 
 ### other (used in scripts)

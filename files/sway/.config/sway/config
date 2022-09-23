@@ -59,15 +59,12 @@ bindswitch --reload --locked lid:on output $laptop disable
 bindswitch --reload --locked lid:off output $laptop enable
 
 # Idle configuration
-    # set lock and save to script, so other programs can also use it
-    set $lock 'loginctl lock-session && swaylock -f --image /tmp/lock.png --indicator-idle-visible -F'
-    exec_always echo $lock > ~/.local/bin/lock.sh
-    exec_always chmod +x ~/.local/bin/lock.sh
+    set $lock 'loginctl lock-session && bash ~/.dots/lock.sh'
 
     # Lock after 20 minutes, lock before suspend
     exec swayidle -w \
-             timeout 1200 ~/.local/bin/lock.sh \
-             before-sleep ~/.local/bin/lock.sh
+             timeout 1200 ~/.dots/lock.sh \
+             before-sleep ~/.dots/lock.sh
              #timeout 1320 'systemctl suspend' \
 
 # Input configuration
@@ -112,7 +109,7 @@ bindswitch --reload --locked lid:off output $laptop enable
 
         # show shutdown menu
         bindsym $mod+Ctrl+Backspace exec \
-            printf "/home/marc/.local/bin/lock.sh\nsystemctl suspend\nswaymsg reload\nshutdown now\nloginctl terminate-user marc" \
+            printf "/home/marc/.dots/lock.sh\nsystemctl suspend\nswaymsg reload\nshutdown now\nloginctl terminate-user marc" \
             | wofi -d -p "Power" -L 6 \
             | xargs -d '\n' -r /bin/bash -c
 
@@ -234,7 +231,7 @@ bindswitch --reload --locked lid:off output $laptop enable
     for_window [class="discord"] move container to workspace number $ws3
     for_window [app_id="org.telegram.desktop"] move container to workspace number $ws3
     for_window [class="Spotify"] move container to workspace number $ws4
-    for_window [class="Joplin"] move container to workspace number $ws5
+    for_window [app_id="pavucontrol"] move container to workspace number $ws4
     for_window [app_id="evolution"] move container to workspace number $ws8
     for_window [app_id="org.keepassxc.KeePassXC"] move container to workspace number $ws9
 
@@ -243,7 +240,7 @@ bindswitch --reload --locked lid:off output $laptop enable
     bindsym $mod+Ctrl+1 exec alacritty --command bash tmux_detect.sh
     bindsym $mod+Ctrl+2 exec firefox
     bindsym $mod+Ctrl+3 exec discord
-    bindsym $mod+Ctrl+4 exec spotify
+    bindsym $mod+Ctrl+4 exec "spotify; pavucontrol"
     bindsym $mod+Ctrl+8 exec evolution
     bindsym $mod+Ctrl+9 exec keepassxc
 

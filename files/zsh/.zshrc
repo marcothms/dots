@@ -15,7 +15,7 @@ GIT="%{$fg[red]%}\$vcs_info_msg_0_"
 HOSTN="%{$fg[yellow]%}%m "
 
 BREAK=''
-[ $(tput cols) -lt 150 ] && BREAK=$'\n'
+[ $(tput cols) -lt 60 ] && BREAK=$'\n'
 
 export PROMPT="${HOSTN}${DIR}${GIT} ${BREAK}${ICON}%{$reset_color%} "
 zstyle ':vcs_info:git:*' formats ' (%b )'
