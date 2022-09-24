@@ -33,7 +33,7 @@ and start it appropriately.
 ### theming stuff
 + main bg: #323232
 + accent: #93b259
-+ icons: `Flat-Remix-Green-Light-darkPanel`
++ icons: `Flat-Remix-Green-Light-darkPanel` (from `flat-remix-icon-theme`)
 + theme: `Flat-Remix-GTK-Green-Light-solid` with adjusted accent
   + or `/usr/share/themes/Flat-Remix-Marc`
 

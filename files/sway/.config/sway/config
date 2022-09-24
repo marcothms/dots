@@ -59,7 +59,7 @@ bindswitch --reload --locked lid:on output $laptop disable
 bindswitch --reload --locked lid:off output $laptop enable
 
 # Idle configuration
-    set $lock 'loginctl lock-session && bash ~/.dots/lock.sh'
+    set $lock 'bash ~/.dots/lock.sh'
 
     # Lock after 20 minutes, lock before suspend
     exec swayidle -w \
@@ -109,7 +109,7 @@ bindswitch --reload --locked lid:off output $laptop enable
 
         # show shutdown menu
         bindsym $mod+Ctrl+Backspace exec \
-            printf "/home/marc/.dots/lock.sh\nsystemctl suspend\nswaymsg reload\nshutdown now\nloginctl terminate-user marc" \
+            printf "~/.dots/lock.sh\nsystemctl suspend\nswaymsg reload\nshutdown now\nloginctl terminate-user marc" \
             | wofi -d -p "Power" -L 6 \
             | xargs -d '\n' -r /bin/bash -c
 

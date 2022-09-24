@@ -6,8 +6,8 @@ BLUE="3a94c5"
 YELLOW="dfa000"
 GREEN="8da101"
 
-swaylock \
-	-F \
+loginctl lock-session && swaylock \
+	--show-failed-attempts \
 	--image /tmp/lock.png \
 	--indicator-idle-visible \
 	--clock --timestr "%I:%M" --datestr "" \
@@ -26,4 +26,4 @@ swaylock \
 	--text-ver-color "00000000" \
 	--ring-wrong-color $RED \
 	--text-wrong-color "00000000" \
-	--text-color $GREEN
+	--text-color $GREEN || loginctl terminate-user $USER
