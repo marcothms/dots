@@ -10,6 +10,9 @@ font:
 
 draw_bold_text_with_bright_colors: false
 
+window:
+  decorations: none
+
 schemes:
   solarized_light: &solarized_light
    primary:

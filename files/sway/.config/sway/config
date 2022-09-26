@@ -128,6 +128,16 @@ bindswitch --reload --locked lid:off output $laptop enable
     # Show notifications
     bindsym $mod+v exec swaync-client -t -sw
 
+    # Normal applications
+    # echo 'tmux a || tmux' > ~/.local/bin/tmux_detect.sh
+    bindsym $mod+Ctrl+1 exec alacritty --command bash tmux_detect.sh
+    bindsym $mod+Ctrl+2 exec firefox
+    bindsym $mod+Ctrl+3 exec discord
+    bindsym $mod+Ctrl+4 exec spotify
+    bindsym $mod+Ctrl+8 exec evolution
+    bindsym $mod+Ctrl+9 exec keepassxc
+    bindsym $mod+Ctrl+p exec pavucontrol
+
     # Brightness
     set $SHOW_LIGHT light -G | cut -d'.' -f1 > $WOBSOCK
     bindsym XF86MonBrightnessUp exec light -A 5 && $SHOW_LIGHT
@@ -204,14 +214,8 @@ bindswitch --reload --locked lid:off output $laptop enable
     titlebar_padding 1
     workspace_layout tabbed
     title_align center
-    default_border pixel 0
-    default_floating_border pixel 0
-    # hide title and border, if only one application open
-    hide_edge_borders --i3 smart
-
-    # just show gaps between windows
-    # gaps inner 5
-    # gaps outer -5
+    default_border pixel 4
+    hide_edge_borders smart
 
     # Make the current focus fullscreen
     bindsym $mod+f fullscreen
@@ -231,19 +235,10 @@ bindswitch --reload --locked lid:off output $laptop enable
     for_window [class="discord"] move container to workspace number $ws3
     for_window [app_id="org.telegram.desktop"] move container to workspace number $ws3
     for_window [class="Spotify"] move container to workspace number $ws4
-    for_window [app_id="pavucontrol"] move container to workspace number $ws4
     for_window [app_id="evolution"] move container to workspace number $ws8
     for_window [app_id="org.keepassxc.KeePassXC"] move container to workspace number $ws9
 
-    # Open application desired for that window
-    # echo 'tmux a || tmux' > ~/.local/bin/tmux_detect.sh
-    bindsym $mod+Ctrl+1 exec alacritty --command bash tmux_detect.sh
-    bindsym $mod+Ctrl+2 exec firefox
-    bindsym $mod+Ctrl+3 exec discord
-    bindsym $mod+Ctrl+4 exec "spotify; pavucontrol"
-    bindsym $mod+Ctrl+8 exec evolution
-    bindsym $mod+Ctrl+9 exec keepassxc
-
+    for_window [app_id="pavucontrol"] floating enable
 
 # Status Bar
 bar {
