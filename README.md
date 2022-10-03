@@ -25,7 +25,7 @@ and start it appropriately.
 
 ### other (used in scripts)
 + `fzf` (used in many places)
-+ `ripgrep`
++ `ripgrep` (`nvim` needs this)
 + `ripgrep-all` (used in grep scripts)
 + `fd` (rust find; used in scripts)
 + all `fcitx5` stuff (data, gtk, qt, mozc)
