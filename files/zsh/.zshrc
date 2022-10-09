@@ -14,8 +14,8 @@ DIR="%{$fg[blue]%}%~"
 GIT="%{$fg[red]%}\$vcs_info_msg_0_"
 HOSTN="%{$fg[yellow]%}%m "
 
-BREAK=''
-[ $(tput cols) -lt 60 ] && BREAK=$'\n'
+# BREAK=''
+# [ $(tput cols) -lt 60 ] && BREAK=$'\n'
 
 export PROMPT="${HOSTN}${DIR}${GIT} ${BREAK}${ICON}%{$reset_color%} "
 zstyle ':vcs_info:git:*' formats ' (%b )'
@@ -110,10 +110,6 @@ alias lö='rm'
 alias zg='ls'
 alias ädrbes='chown'
 alias erstelle='touch'
-
-if [ -f ~/.zshrc_local ]; then
-    source ~/.zshrc_local
-fi
 
 # ============================== Completion
 unsetopt menu_complete   # do not autoselect the first completion entry
@@ -302,3 +298,8 @@ fancy-ctrl-z () {
 }
 zle -N fancy-ctrl-z
 bindkey '^Z' fancy-ctrl-z
+
+# ============================== Source other definitions
+if [ -f ~/.zshrc_local ]; then
+    source ~/.zshrc_local
+fi
