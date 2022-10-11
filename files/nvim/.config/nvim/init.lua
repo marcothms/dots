@@ -1,6 +1,10 @@
 -- Make sure to update packer with `:PackerInstall` and `:PackerSync`
 -- Treesitter with `:TSUpdate`
 -- LSP with `:LSPInstall`, log with `:LSPInfo`
+--
+-- Rollback possible with packer.nvim
+-- `:PackerSnapshot <DATE><MONTH DIGIT><YEAR>`
+-- Location: ~/.cache/nvim/packer.nvim
 
 -- This must be loaded first
 vim.cmd("set termguicolors")

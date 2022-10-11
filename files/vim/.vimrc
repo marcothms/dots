@@ -63,6 +63,14 @@ set laststatus=1  " 1: only if there are at least two windows
 set showtabline=1 " 1: only if there are at least two tab pages
 let g:airline_powerline_fonts = 1
 
+let g:tmuxline_preset = {
+      \'a'    : ['#H'],
+      \'win'  : ['#I', '#W'],
+      \'cwin' : ['#[fg=default,bold]#I', '#W'],
+      \'y'    : ['%R'],
+      \'z'    : ['#S']}
+let g:tmuxline_status_justify = 'left'
+
 " ============================== Indents and Whitespaces
 set list
 set listchars=tab:──\ ,extends:›,precedes:‹,nbsp:·,trail:· " show chars for whitespaces
