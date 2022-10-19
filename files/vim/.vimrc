@@ -66,7 +66,7 @@ let g:airline_powerline_fonts = 1
 let g:tmuxline_preset = {
       \'a'    : ['#H'],
       \'win'  : ['#I', '#W'],
-      \'cwin' : ['#[fg=default,bold]#I', '#W'],
+      \'cwin' : ['#[fg=black,bold]#I', '#W'],
       \'y'    : ['%R'],
       \'z'    : ['#S']}
 let g:tmuxline_status_justify = 'left'

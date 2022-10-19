@@ -53,10 +53,10 @@ require('lualine').setup({
         mode = 2
       },
     },
-    lualine_b = {},
-    lualine_c = {
+    lualine_b = {
       require('nvim-navic').get_location
     },
+    lualine_c = {},
     lualine_x = {
       'lsp_progress'
     },
