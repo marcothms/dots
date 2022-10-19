@@ -37,6 +37,7 @@ esac
 # ============================== Aliases
 alias c='clear'
 alias t='tmux a || tmux'
+alias tex='nix-shell ~/.dots/tex.nix'
 
 alias l='ls -lFh'     #size,show type,human readable
 alias la='ls -lAFh'   #long list,show almost all,show type,human readable
@@ -49,8 +50,6 @@ alias mv='mv -i' # Ask before removal
 alias -g G='| grep -i'
 alias -g L='| less'
 alias gg='git grep $1'
-
-alias code='/usr/bin/code --enable-features=UseOzonePlatform --ozone-platform=wayland . 2>/dev/null'
 
 # tools
 ocr() {
@@ -303,3 +302,5 @@ bindkey '^Z' fancy-ctrl-z
 if [ -f ~/.zshrc_local ]; then
     source ~/.zshrc_local
 fi
+
+if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
