@@ -3,7 +3,8 @@
 -- LSP with `:LSPInstall`, log with `:LSPInfo`
 --
 -- Rollback possible with packer.nvim
--- `:PackerSnapshot <DATE><MONTH DIGIT><YEAR>`
+-- Always create a snapshot BEFORE upgrading, so we can rollback if we find sth
+-- `:PackerSnapshot <DATE>-<MONTH DIGIT>-<YEAR>`
 -- Location: ~/.cache/nvim/packer.nvim
 
 -- This must be loaded first

@@ -4,33 +4,33 @@ require 'nvim-navic'.setup({})
 -- used as mode-module
 -- https://github.com/nvim-lualine/lualine.nvim/issues/614
 local mode_map = {
-  ['n']    = 'N',
+  ['n']    = '',
   ['no']   = 'O-P',
   ['nov']  = 'O-P',
   ['noV']  = 'O-P',
   ['no'] = 'O-P',
-  ['niI']  = 'N',
-  ['niR']  = 'N',
-  ['niV']  = 'N',
-  ['nt']   = 'N',
-  ['v']    = 'V',
-  ['vs']   = 'V',
-  ['V']    = 'VL',
-  ['Vs']   = 'VL',
-  ['']   = 'VB',
-  ['s']  = 'VB',
+  ['niI']  = '',
+  ['niR']  = '',
+  ['niV']  = '',
+  ['nt']   = '',
+  ['v']    = '',
+  ['vs']   = '',
+  ['V']    = ' ',
+  ['Vs']   = ' ',
+  ['']   = ' ',
+  ['s']  = ' ',
   ['s']    = 'S',
   ['S']    = 'SL',
-  ['i']    = 'I',
-  ['ic']   = 'I',
-  ['ix']   = 'I',
-  ['R']    = 'R',
-  ['Rc']   = 'R',
-  ['Rx']   = 'R',
+  ['i']    = '',
+  ['ic']   = '',
+  ['ix']   = '',
+  ['R']    = '菱',
+  ['Rc']   = '菱',
+  ['Rx']   = '菱',
   ['Rv']   = 'VR',
   ['Rvc']  = 'VR',
   ['Rvx']  = 'VR',
-  ['c']    = 'C',
+  ['c']    = '',
   ['cv']   = 'EX',
   ['ce']   = 'EX',
   ['r']    = 'R',
@@ -48,10 +48,9 @@ require('lualine').setup({
   },
   tabline = {
     lualine_a = {
-      {
-        'tabs',
-        mode = 2
-      },
+      function()
+        return mode_map[vim.api.nvim_get_mode().mode] or "__"
+      end
     },
     lualine_b = {
       require('nvim-navic').get_location
