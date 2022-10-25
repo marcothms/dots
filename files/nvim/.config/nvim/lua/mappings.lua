@@ -55,7 +55,7 @@ wk.register({
 })
 
 -- git
-map("n", "<leader>gs", "<cmd> lua require('neogit').open()<CR>", default_opts)
+map("n", "<leader>gs", "<cmd> Neogit<CR>", default_opts)
 map("n", "<leader>gb", "<cmd> Git blame<CR>", default_opts)
 wk.register({
   ["<leader>"] = {
