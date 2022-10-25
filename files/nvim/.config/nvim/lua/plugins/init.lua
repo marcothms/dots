@@ -2,6 +2,9 @@
 -- Define all plugins in this file,
 -- but maintain config in <PLUGIN-NAME>-conf.lua
 
+-- Mention all dependencies in 'requires', but create their own entry,
+-- if they need configuration.
+
 local fn = vim.fn
 
 -- This should auto install packer, if it is not installed on system
@@ -35,7 +38,7 @@ return require('packer').startup(function(use)
     "nvim-lualine/lualine.nvim",
     requires = {
       "kyazdani42/nvim-web-devicons", -- All icons in bar
-      "arkav/lualine-lsp-progress", -- Show lsp loading progress 
+      "arkav/lualine-lsp-progress", -- Show lsp loading progress
       "SmiteshP/nvim-navic", -- Show breadcrumbs (loaded in lualine-conf)
       "neovim/nvim-lspconfig", -- for nvim-navic (loaded later)
     },
@@ -77,7 +80,7 @@ return require('packer').startup(function(use)
       "williamboman/nvim-lsp-installer", -- Easy to install LSP servers
       "simrat39/rust-tools.nvim" -- Cooler LSP stuff for Rust
     },
-    config = function () require('plugins.nvim-lspconfig-conf') end,
+    config = function() require('plugins.nvim-lspconfig-conf') end,
   })
 
   -- Snippets
@@ -145,6 +148,18 @@ return require('packer').startup(function(use)
     },
     config = function() require('plugins.nvim-tree-conf') end
   }
+
+  -- cooler cmd line and notifications
+  use({
+    "folke/noice.nvim",
+    event = "VimEnter",
+    config = function()
+      require("noice").setup()
+    end,
+    requires = {
+      "MunifTanjim/nui.nvim", -- frontend for cmdline
+    },
+  })
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

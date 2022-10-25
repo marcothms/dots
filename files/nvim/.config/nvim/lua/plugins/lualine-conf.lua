@@ -57,7 +57,7 @@ require('lualine').setup({
     },
     lualine_c = {},
     lualine_x = {
-      'lsp_progress'
+      -- 'lsp_progress' -- noice already shows this.. better
     },
     lualine_y = {},
     lualine_z = {}

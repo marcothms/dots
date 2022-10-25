@@ -23,20 +23,21 @@ telescope.setup({
     }
   }
 })
-map("n", "<C-f>", "<cmd> Telescope find_files hidden=true<CR>", default_opts)       -- Show files
-map("n", "<C-s>", "<cmd> Telescope live_grep<CR>", default_opts)                    -- Grep through current directory
-map("n", "<C-k>", "<cmd> Telescope keymaps<CR>", default_opts)                      -- Show all keys
+map("n", "<C-f>", "<cmd> Telescope find_files hidden=true<CR>", default_opts) -- Show files
+map("n", "<C-s>", "<cmd> Telescope live_grep<CR>", default_opts) -- Grep through current directory
+map("n", "<C-k>", "<cmd> Telescope keymaps<CR>", default_opts) -- Show all keys
+map("n", "<C-n>", "<cmd> Noice telescope<CR>", default_opts) -- Show all notifications
 
 -- Telescope + LSP
-map("n", "<leader>la", "<cmd> lua vim.lsp.buf.code_action()<CR>", default_opts)   -- Apply LSP code action
-map("n", "<leader>ld", "<cmd> Telescope lsp_definitions<CR>", default_opts)       -- Show all LSP definitions (or jump if only 1)
-map("n", "<leader>le", "<cmd> Telescope diagnostics<CR>", default_opts)           -- Show errors and warnings
-map("n", "<leader>lf", "<cmd> lua vim.lsp.buf.formatting()<CR>", default_opts)    -- Format buffer with LSP
-map("n", "<leader>lh", "<cmd> lua vim.lsp.buf.hover()<CR>", default_opts)         -- Show info of symbol (double tap to enter)
-map("n", "<leader>ln", "<cmd> lua vim.lsp.buf.rename()<CR>", default_opts)        -- Rename LSP symbol
-map("n", "<leader>lr", "<cmd> Telescope lsp_references<CR>", default_opts)        -- Show all LSP references
+map("n", "<leader>la", "<cmd> lua vim.lsp.buf.code_action()<CR>", default_opts) -- Apply LSP code action
+map("n", "<leader>ld", "<cmd> Telescope lsp_definitions<CR>", default_opts) -- Show all LSP definitions (or jump if only 1)
+map("n", "<leader>le", "<cmd> Telescope diagnostics<CR>", default_opts) -- Show errors and warnings
+map("n", "<leader>lf", "<cmd> lua vim.lsp.buf.formatting()<CR>", default_opts) -- Format buffer with LSP
+map("n", "<leader>lh", "<cmd> lua vim.lsp.buf.hover()<CR>", default_opts) -- Show info of symbol (double tap to enter)
+map("n", "<leader>ln", "<cmd> lua vim.lsp.buf.rename()<CR>", default_opts) -- Rename LSP symbol
+map("n", "<leader>lr", "<cmd> Telescope lsp_references<CR>", default_opts) -- Show all LSP references
 map("n", "<leader>ls", "<cmd> Telescope lsp_workspace_symbols<CR>", default_opts) -- Search for LSP symbols
-map("n", "<leader>lt", "<cmd> TodoTelescope<CR>", default_opts)                   -- Search for LSP symbols
+map("n", "<leader>lt", "<cmd> TodoTelescope<CR>", default_opts) -- Show all TODOs in a project
 wk.register({
   ["<leader>"] = {
     l = {
@@ -54,7 +55,7 @@ wk.register({
 })
 
 -- git
-map("n", "<leader>gs", "<cmd> Neogit<CR>", default_opts)
+map("n", "<leader>gs", "<cmd> lua require('neogit').open()<CR>", default_opts)
 map("n", "<leader>gb", "<cmd> Git blame<CR>", default_opts)
 wk.register({
   ["<leader>"] = {
@@ -66,9 +67,10 @@ wk.register({
 })
 
 -- Telescope + telescope-symbols
-map("n", "<leader>ie", "<cmd> lua require'telescope.builtin'.symbols{ sources = { 'emoji', 'gitmoji' } }<CR>", default_opts) -- Show emojis
-map("n", "<leader>im", "<cmd> lua require'telescope.builtin'.symbols{ sources = { 'julia' } }<CR>", default_opts)            -- Show math symbols
-map("n", "<leader>in", "<cmd> lua require'telescope.builtin'.symbols{ sources = { 'nerd' } }<CR>", default_opts)             -- Show nerd icons
+map("n", "<leader>ie", "<cmd> lua require'telescope.builtin'.symbols{ sources = { 'emoji', 'gitmoji' } }<CR>",
+  default_opts) -- Show emojis
+map("n", "<leader>im", "<cmd> lua require'telescope.builtin'.symbols{ sources = { 'julia' } }<CR>", default_opts) -- Show math symbols
+map("n", "<leader>in", "<cmd> lua require'telescope.builtin'.symbols{ sources = { 'nerd' } }<CR>", default_opts) -- Show nerd icons
 wk.register({
   ["<leader>"] = {
     i = {
@@ -135,7 +137,7 @@ cmp.setup({
 
 -- file tree
 map("n", "<C-t>", "<cmd> NvimTreeFindFileToggle<CR>", default_opts) -- Show file tree
-map("n", "<leader>tc", "<cmd> NvimTreeCollapse<CR>", default_opts)  -- Collapse tree
+map("n", "<leader>tc", "<cmd> NvimTreeCollapse<CR>", default_opts) -- Collapse tree
 wk.register({
   ["<leader>"] = {
     t = {

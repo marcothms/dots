@@ -1,5 +1,5 @@
 -- Make sure to update packer with `:PackerInstall` and `:PackerSync`
--- Treesitter with `:TSUpdate`
+-- Treesitter with `:TSUpdate` after every nvim update.
 -- LSP with `:LSPInstall`, log with `:LSPInfo`
 --
 -- Rollback possible with packer.nvim
