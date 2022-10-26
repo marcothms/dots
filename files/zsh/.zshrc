@@ -39,9 +39,9 @@ alias c='clear'
 alias t='tmux a || tmux'
 alias tex='nix-shell ~/.dots/tex.nix'
 
-alias l='ls -lFh'     #size,show type,human readable
-alias la='ls -lAFh'   #long list,show almost all,show type,human readable
-alias ll='ls -l'      #long list
+alias l='ls -lFh --color'     #size,show type,human readable
+alias la='ls -lAFh --color'   #long list,show almost all,show type,human readable
+alias ll='ls -l --color'      #long list
 
 alias rm='rm -i' # Ask before removal
 alias cp='cp -i' # Ask before removal
