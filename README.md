@@ -28,7 +28,7 @@ Only used in sway.
 + `fzf`
 + `ripgrep` (`nvim` needs this)
 + `ripgrep-all` (used in `wofi`; `sway`)
-+ `fd` (rust find; used in `sway`)
++ `fd` (rust find; used in `sway` and `nvim`)
 + all `fcitx5` stuff (data, gtk, qt, mozc)
 
 ### theming stuff (sway)
