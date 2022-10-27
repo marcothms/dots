@@ -26,13 +26,13 @@ telescope.setup({
 map("n", "<C-f>", "<cmd> Telescope find_files hidden=true<CR>", default_opts) -- Show files
 map("n", "<C-s>", "<cmd> Telescope live_grep<CR>", default_opts) -- Grep through current directory
 map("n", "<C-k>", "<cmd> Telescope keymaps<CR>", default_opts) -- Show all keys
-map("n", "<C-n>", "<cmd> Noice telescope<CR>", default_opts) -- Show all notifications
+map("n", "<C-n>", "<cmd> Noice<CR>", default_opts) -- Show all notifications
 
 -- Telescope + LSP
 map("n", "<leader>la", "<cmd> lua vim.lsp.buf.code_action()<CR>", default_opts) -- Apply LSP code action
 map("n", "<leader>ld", "<cmd> Telescope lsp_definitions<CR>", default_opts) -- Show all LSP definitions (or jump if only 1)
 map("n", "<leader>le", "<cmd> Telescope diagnostics<CR>", default_opts) -- Show errors and warnings
-map("n", "<leader>lf", "<cmd> lua vim.lsp.buf.formatting()<CR>", default_opts) -- Format buffer with LSP
+map("n", "<leader>lf", "<cmd> lua vim.lsp.buf.format {async = true }<CR>", default_opts) -- Format buffer with LSP
 map("n", "<leader>lh", "<cmd> lua vim.lsp.buf.hover()<CR>", default_opts) -- Show info of symbol (double tap to enter)
 map("n", "<leader>ln", "<cmd> lua vim.lsp.buf.rename()<CR>", default_opts) -- Rename LSP symbol
 map("n", "<leader>lr", "<cmd> Telescope lsp_references<CR>", default_opts) -- Show all LSP references

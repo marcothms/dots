@@ -152,13 +152,11 @@ return require('packer').startup(function(use)
   -- cooler cmd line and notifications
   use({
     "folke/noice.nvim",
-    event = "VimEnter",
-    config = function()
-      require("noice").setup()
-    end,
     requires = {
       "MunifTanjim/nui.nvim", -- frontend for cmdline
     },
+    event = "VimEnter",
+    config = function() require("plugins.noice-conf") end,
   })
 
   -- Automatically set up your configuration after cloning packer.nvim
