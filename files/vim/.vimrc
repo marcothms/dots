@@ -117,3 +117,10 @@ map <C-_> :noh<CR>
 map <leader>gs :Git status<CR>
 map <leader>gb :Git blame<CR>
 map <C-s> :Git grep 
+
+fun! TrimWhitespace()
+    let l:save = winsaveview()
+    keeppatterns %s/\s\+$//e
+    call winrestview(l:save)
+endfun
+noremap <leader>ws :call TrimWhitespace()<CR>
