@@ -1,0 +1,65 @@
+# zsh specific
+if [[ "$SHELL" =~ "zsh$" ]]; then
+    alias -g G='| grep -i'
+    alias -g L='| less'
+fi
+
+# general
+alias c='clear'
+alias t='tmux a || tmux'
+alias o='xdg-open'  # to change a mime use: `xdg-mime default APPLICATION HANDLE`
+alias gg='git grep $1'
+alias tex='nix-shell ~/.dots/tex.nix'
+alias mktex="latexmk -xelatex -shell-escape"
+
+alias l='ls -lFh --color'
+alias la='ls -lAFh --color'
+alias ll='ls -l --color'
+
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+
+alias truecolor='curl -s https://raw.githubusercontent.com/JohnMorales/dotfiles/master/colors/24-bit-color.sh | bash'
+alias nssh='SSH_AUTH_SOCK= ssh'
+alias cpu='watch -n.1 "grep \"^[c]pu MHz\" /proc/cpuinfo"'
+
+# nmcli
+alias con='nmcli con'
+alias conup='nmcli con up id'
+alias condown='nmcli con down id'
+alias conscan='nmcli dev wifi'
+alias conedit='nm-connection-editor'
+
+# functions
+ocr() {
+    if [ -z $1 ]; then
+        echo "Please input a file."
+        return
+    fi
+    ocrmypdf -l deu+eng+jpn --output-type pdf $1 OCR_$1
+}
+
+# deprecated
+# conservation() {
+#     location='/sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode'
+#     if [ -z $1 ]; then
+#         cat $location
+#     elif [ $1 = '0' ] || [ $1 = '1' ]; then
+#         echo $1 | sudo tee $location
+#     else
+#         echo 'Invalid option'
+#     fi
+# }
+# 
+# power() {
+#     location='/sys/firmware/acpi/platform_profile'
+#     if [ -z $1 ]; then
+#         echo "Current:" $(cat $location)
+#         echo "Can be one of:" $(cat /sys/firmware/acpi/platform_profile_choices)
+#     elif [ $1 = 'low-power' ] || [ $1 = 'balanced' ] || [ $1 = 'performance' ]; then
+#         echo $1 | sudo tee $location
+#     else
+#         echo 'Invalid option'
+#     fi
+# }

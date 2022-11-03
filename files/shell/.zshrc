@@ -35,80 +35,7 @@ case $TERM in
 esac
 
 # ============================== Aliases
-alias c='clear'
-alias t='tmux a || tmux'
-alias tex='nix-shell ~/.dots/tex.nix'
-
-alias l='ls -lFh --color'     #size,show type,human readable
-alias la='ls -lAFh --color'   #long list,show almost all,show type,human readable
-alias ll='ls -l --color'      #long list
-
-alias rm='rm -i' # Ask before removal
-alias cp='cp -i' # Ask before removal
-alias mv='mv -i' # Ask before removal
-
-alias -g G='| grep -i'
-alias -g L='| less'
-alias gg='git grep $1'
-
-# tools
-ocr() {
-    if [ -z $1 ]; then
-        echo "Please input a file."
-        return
-    fi
-    ocrmypdf -l deu+eng+jpn --output-type pdf $1 OCR_$1
-}
-
-conservation() {
-    location='/sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode'
-    if [ -z $1 ]; then
-	cat $location
-    elif [ $1 = '0' ] || [ $1 = '1' ]; then
-	echo $1 | sudo tee $location
-    else
-	echo 'Invalid option'
-    fi
-}
-
-power() {
-    location='/sys/firmware/acpi/platform_profile'
-    if [ -z $1 ]; then
-        echo "Current:" $(cat $location)
-        echo "Can be one of:" $(cat /sys/firmware/acpi/platform_profile_choices)
-    elif [ $1 = 'low-power' ] || [ $1 = 'balanced' ] || [ $1 = 'performance' ]; then
-        echo $1 | sudo tee $location
-    else
-        echo 'Invalid option'
-    fi
-}
-
-replace() {
-    from=$1
-    to=$2
-    find -type f -exec sed -i -e "s/${from}/${to}/g" {} \;
-}
-
-alias o='xdg-open'  # to change a mime use: `xdg-mime default APPLICATION HANDLE`
-alias truecolor='curl -s https://raw.githubusercontent.com/JohnMorales/dotfiles/master/colors/24-bit-color.sh | bash'
-alias nssh='SSH_AUTH_SOCK= ssh'
-alias cpu='watch -n.1 "grep \"^[c]pu MHz\" /proc/cpuinfo"'
-
-# nmcli
-alias con='nmcli con'
-alias conup='nmcli con up id'
-alias condown='nmcli con down id'
-alias conscan='nmcli dev wifi'
-alias conedit='nm-connection-editor'
-
-# troll
-alias powershell='clear && PS1="windowsadm@powershell$ " bash'
-alias mucdai='rm -rf'
-alias bw='mv'
-alias lö='rm'
-alias zg='ls'
-alias ädrbes='chown'
-alias erstelle='touch'
+source ~/.shellrc.alias
 
 # ============================== Completion
 unsetopt menu_complete   # do not autoselect the first completion entry
@@ -174,22 +101,22 @@ export FZF_DEFAULT_OPTS='
        --color=marker:#5c6a72,spinner:#5c6a72,header:#5c6a72'
 
 ## ripgrep-all
-# https://github.com/phiresky/ripgrep-all
+# needs https://github.com/phiresky/ripgrep-all
 rga-fzf() {
-	RG_PREFIX="rga --files-with-matches"
-	local file
-	file="$(
-		FZF_DEFAULT_COMMAND="$RG_PREFIX '$1'" \
-			fzf --sort --preview="[[ ! -z {} ]] && rga --pretty --context 5 {q} {}" \
-				--phony -q "$1" \
-				--bind "change:reload:$RG_PREFIX {q}" \
-				--preview-window="70%:wrap"
-	)" &&
-	echo "opening $file" &&
-	xdg-open "$file"
+    RG_PREFIX="rga --files-with-matches"
+    local file
+    file="$(
+        FZF_DEFAULT_COMMAND="$RG_PREFIX '$1'" \
+            fzf --sort --preview="[[ ! -z {} ]] && rga --pretty --context 5 {q} {}" \
+                --phony -q "$1" \
+                --bind "change:reload:$RG_PREFIX {q}" \
+                --preview-window="70%:wrap"
+    )" &&
+    echo "opening $file" &&
+    xdg-open "$file"
 }
 zle -N rga-fzf
-bindkey '^G' "rga-fzf"
+bindkey '^S' "rga-fzf"
 
 ## fzf Bindings in zsh (C-r and C-f)
 if [[ -x $(which fzf 2> /dev/null) ]]
@@ -200,15 +127,15 @@ then
     __fzf_key_bindings_options="options=(${(j: :)${(kv)options[@]}})"
     else
     () {
-	__fzf_key_bindings_options="setopt"
-	'local' '__fzf_opt'
-	for __fzf_opt in "${(@)${(@f)$(set -o)}%% *}"; do
-	if [[ -o "$__fzf_opt" ]]; then
-	    __fzf_key_bindings_options+=" -o $__fzf_opt"
-	else
-	    __fzf_key_bindings_options+=" +o $__fzf_opt"
-	fi
-	done
+    __fzf_key_bindings_options="setopt"
+    'local' '__fzf_opt'
+    for __fzf_opt in "${(@)${(@f)$(set -o)}%% *}"; do
+    if [[ -o "$__fzf_opt" ]]; then
+        __fzf_key_bindings_options+=" -o $__fzf_opt"
+    else
+        __fzf_key_bindings_options+=" +o $__fzf_opt"
+    fi
+    done
     }
     fi
 
@@ -221,12 +148,12 @@ then
     # CTRL-F - Paste the selected file path(s) into the command line
     __fsel() {
     local cmd="${FZF_CTRL_T_COMMAND:-"command find -L . -mindepth 1 \\( -path '*/\\.*' -o -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \\) -prune \
-	-o -type f -print \
-	-o -type d -print \
-	-o -type l -print 2> /dev/null | cut -b3-"}"
+    -o -type f -print \
+    -o -type d -print \
+    -o -type l -print 2> /dev/null | cut -b3-"}"
     setopt localoptions pipefail no_aliases 2> /dev/null
     eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" $(__fzfcmd) -m "$@" | while read item; do
-	echo -n "${(q)item} "
+    echo -n "${(q)item} "
     done
     local ret=$?
     echo
@@ -235,7 +162,7 @@ then
 
     __fzfcmd() {
     [ -n "$TMUX_PANE" ] && { [ "${FZF_TMUX:-0}" != 0 ] || [ -n "$FZF_TMUX_OPTS" ]; } &&
-	echo "fzf-tmux ${FZF_TMUX_OPTS:--d${FZF_TMUX_HEIGHT:-40%}} -- " || echo "fzf"
+    echo "fzf-tmux ${FZF_TMUX_OPTS:--d${FZF_TMUX_HEIGHT:-40%}} -- " || echo "fzf"
     }
 
     fzf-file-widget() {
@@ -251,7 +178,7 @@ then
     fzf-redraw-prompt() {
     local precmd
     for precmd in $precmd_functions; do
-	$precmd
+    $precmd
     done
     zle reset-prompt
     }
@@ -262,13 +189,13 @@ then
     local selected num
     setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases 2> /dev/null
     selected=( $(fc -rl 1 | perl -ne 'print if !$seen{(/^\s*[0-9]+\**\s+(.*)/, $1)}++' |
-	FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} $FZF_DEFAULT_OPTS -n2..,.. --tiebreak=index --bind=ctrl-r:toggle-sort $FZF_CTRL_R_OPTS --query=${(qqq)LBUFFER} +m" $(__fzfcmd)) )
+    FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} $FZF_DEFAULT_OPTS -n2..,.. --tiebreak=index --bind=ctrl-r:toggle-sort $FZF_CTRL_R_OPTS --query=${(qqq)LBUFFER} +m" $(__fzfcmd)) )
     local ret=$?
     if [ -n "$selected" ]; then
-	num=$selected[1]
-	if [ -n "$num" ]; then
-	zle vi-fetch-history -n $num
-	fi
+    num=$selected[1]
+    if [ -n "$num" ]; then
+    zle vi-fetch-history -n $num
+    fi
     fi
     zle reset-prompt
     return $ret
@@ -299,8 +226,8 @@ zle -N fancy-ctrl-z
 bindkey '^Z' fancy-ctrl-z
 
 # ============================== Source other definitions
-if [ -f ~/.zshrc_local ]; then
-    source ~/.zshrc_local
+if [ -f ~/.shellrc.local ]; then
+    source ~/.shellrc.local
 fi
 
 if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
