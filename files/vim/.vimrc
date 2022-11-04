@@ -77,7 +77,7 @@ let g:tmuxline_preset = {
       \'c'    : '',
       \'win'  : ['#I', '#W'],
       \'cwin' : ['#[fg=black,bold]#I', '#W'],
-      \'x'    : '#H',
+      \'x'    : '#H @ #S',
       \'y'    : '',
       \'z'    : ''}
 let g:tmuxline_status_justify = 'centre'

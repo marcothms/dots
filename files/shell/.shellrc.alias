@@ -23,6 +23,7 @@ alias mv='mv -i'
 alias truecolor='curl -s https://raw.githubusercontent.com/JohnMorales/dotfiles/master/colors/24-bit-color.sh | bash'
 alias nssh='SSH_AUTH_SOCK= ssh'
 alias cpu='watch -n.1 "grep \"^[c]pu MHz\" /proc/cpuinfo"'
+alias fixagent='eval $(tmux show-env -s | grep "^SSH_")'
 
 # nmcli
 alias con='nmcli con'
