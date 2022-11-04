@@ -6,8 +6,7 @@ Files can be `stow`'ed and un'`stow`'ed with `stow.sh`.
 It will link all dotfiles to their correct place.
 
 ## fonts
-Fonts are provided in `fonts/`.
-SFMono also provides icons.
+SFMono is a patched Nerdfont.
 
 ## ssh-agent(1)
 Move `ssh-agent.service` to `~/.config/systemd/user/ssh-agent.service`
@@ -19,16 +18,16 @@ Only used in sway.
 + `waybar`
 + `SwayNotificationCenter`
 + `wob` (progress bar; audio, brightness)
-+ `wofi` (program launcher) 
++ `wofi` (program launcher)
 + `slurp`, `grim`, `swappy` (screenshot)
 + `swaylock-effects` (fancy locker)
 + [`wmrctl`](https://git.sr.ht/~brocellous/wlrctl) (advanced window switcher)
 
 ### other
-+ `fzf`
-+ `ripgrep` (`nvim` needs this)
-+ `ripgrep-all` (used in `wofi`; `sway`)
-+ `fd` (rust find; used in `sway` and `nvim`)
++ `fzf` (`zsh`, `nvim`)
++ `ripgrep` (`nvim`)
++ `ripgrep-all` (`zsh`, `wofi`, `sway`)
++ `fd` (rust find; `sway`, `nvim`)
 + all `fcitx5` stuff (data, gtk, qt, mozc)
 
 ### theming stuff (sway)
