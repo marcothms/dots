@@ -14,13 +14,10 @@ DIR="%{$fg[blue]%}%~"
 GIT="%{$fg[red]%}\$vcs_info_msg_0_"
 HOSTN="%{$fg[yellow]%}%m "
 
-# BREAK=''
-# [ $(tput cols) -lt 60 ] && BREAK=$'\n'
-
 export PROMPT="${HOSTN}${DIR}${GIT} ${BREAK}${ICON}%{$reset_color%} "
 zstyle ':vcs_info:git:*' formats ' (%b )'
 
-# show info in bar
+# show info in title bar
 case $TERM in
   (*xterm* | rxvt | alacritty)
     # This is seen when the shell prompts for input.
@@ -33,9 +30,6 @@ case $TERM in
     }
     ;;
 esac
-
-# ============================== Aliases
-source ~/.shellrc.alias
 
 # ============================== Completion
 unsetopt menu_complete   # do not autoselect the first completion entry
@@ -226,8 +220,8 @@ zle -N fancy-ctrl-z
 bindkey '^Z' fancy-ctrl-z
 
 # ============================== Source other definitions
-if [ -f ~/.shellrc.local ]; then
-    source ~/.shellrc.local
-fi
+[ -f ~/.shellrc.local ] && source ~/.shellrc.local
+[ -f ~/.shellrc.alias ] && source ~/.shellrc.alias
 
-if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+# nix
+if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc/profile.d/nix.sh; fi
