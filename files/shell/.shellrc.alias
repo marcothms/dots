@@ -11,6 +11,7 @@ alias o='xdg-open'  # to change a mime use: `xdg-mime default APPLICATION HANDLE
 alias gg='git grep $1'
 alias tex='nix-shell ~/.dots/tex.nix'
 alias mktex="latexmk -xelatex -shell-escape"
+alias lg="lazygit"
 
 alias l='ls -lFh --color'
 alias la='ls -lAFh --color'
