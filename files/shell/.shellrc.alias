@@ -35,11 +35,13 @@ alias conedit='nm-connection-editor'
 
 # functions
 ocr() {
-    if [ -z $1 ]; then
+    file=$1
+    if [ -z $file ]; then
         echo "Please input a file."
         return
     fi
-    ocrmypdf -l deu+eng+jpn --output-type pdf $1 OCR_$1
+    name=${file%%.*}
+    ocrmypdf -l deu+eng+jpn --output-type pdf $file ${name}.ocr.pdf
 }
 
 # deprecated
