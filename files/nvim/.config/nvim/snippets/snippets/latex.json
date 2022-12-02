@@ -80,7 +80,7 @@
       "\\usepackage[style=verbose-trad2]{biblatex}",
       "",
       "%%% set monospace font and decrease size, to match 80c in minted",
-      "\\usepackage{fontspec}"
+      "\\usepackage{fontspec}",
       "\\setmonofont[Scale=0.85]{SFMono Nerd Font},",
       "",
       "%%% set titlepage",
@@ -167,7 +167,7 @@
       "\\setlist[enumerate, 3]{label=$\\bullet$}",
       "",
       "%%% set monospace font and decrease size, to match 80c in minted",
-      "\\usepackage{fontspec}"
+      "\\usepackage{fontspec}",
       "\\setmonofont[Scale=0.85]{SFMono Nerd Font},",
       "",
       "%%% set metadata",
