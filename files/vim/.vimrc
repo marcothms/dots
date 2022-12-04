@@ -21,7 +21,6 @@ Plug 'tpope/vim-fugitive'               " git wrapper
 Plug 'sainnhe/everforest'               " color scheme
 Plug 'vim-airline/vim-airline'          " a nicer status line
 Plug 'vim-airline/vim-airline-themes'   " auto settings theme for airline
-Plug 'edkolev/tmuxline.vim'             " generate a theme for tmux `:TmuxLineSnapshot ~/.tmux.theme`
 
 call plug#end()
 " ============================== Colors
@@ -62,25 +61,6 @@ let g:ctrlp_show_hidden = 1    " show hidden files in ctrlp menus
 set laststatus=1  " 1: only if there are at least two windows
 set showtabline=1 " 1: only if there are at least two tab pages
 let g:airline_powerline_fonts = 1
-
-" let g:tmuxline_preset = {
-"       \'a'    : ['#H'],
-"       \'win'  : ['#I', '#W'],
-"       \'cwin' : ['#[fg=black,bold]#I', '#W'],
-"       \'y'    : ['%R'],
-"       \'z'    : ['#S']}
-" let g:tmuxline_status_justify = 'left'
-
-let g:tmuxline_preset = {
-      \'a'    : '',
-      \'b'    : '',
-      \'c'    : '',
-      \'win'  : ['#I', '#W'],
-      \'cwin' : ['#[fg=black,bold]#I', '#W'],
-      \'x'    : '#H @ #S',
-      \'y'    : '',
-      \'z'    : ''}
-let g:tmuxline_status_justify = 'centre'
 
 " ============================== Indents and Whitespaces
 set list
