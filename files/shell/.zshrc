@@ -22,7 +22,7 @@ case $TERM in
   (*xterm* | rxvt | alacritty)
     # This is seen when the shell prompts for input.
     function precmd {
-      print -Pn "\e]0;%m: %(1j,%j job%(2j|s|) - ,)%~\a"
+      print -Pn "\e]0;%m: %~\a"
     }
     # This is seen while the shell waits for a command to complete.
     function preexec {
