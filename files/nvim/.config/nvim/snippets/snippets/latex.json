@@ -168,7 +168,7 @@
       "",
       "%%% set monospace font and decrease size, to match 80c in minted",
       "\\usepackage{fontspec}",
-      "\\setmonofont[Scale=0.85]{SFMono Nerd Font},",
+      "\\setmonofont[Scale=0.85]{SFMono Nerd Font}",
       "",
       "%%% set metadata",
       "\\title{}",
