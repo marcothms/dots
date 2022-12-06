@@ -72,7 +72,7 @@ refresher:
     fetchInterval: 60
 reporting: undetermined
 splashUpdatesIndex: 0
-confirmOnQuit: false
+confirmOnQuit: true
 quitOnTopLevelReturn: false
 keybinding:
     universal:
