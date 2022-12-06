@@ -90,7 +90,7 @@ let g:netrw_banner = 0    " Remove useless banner at the top of netrw
 
 " ============================== Macros and Mappings
 " open fuzzy file browser
-map <C-f> :CtrlP<CR>
+map <C-f> :CtrlP .<CR>
 " C-/ to hide search results
 map <C-_> :noh<CR>
 " git

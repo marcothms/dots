@@ -119,13 +119,12 @@ return require('packer').startup(function(use)
     config = function() require('plugins.todo-comments-conf') end
   }
 
-  -- git client
+  -- interactive git
   use {
-    'TimUntersberger/neogit',
-    requires = 'nvim-lua/plenary.nvim', -- General functions
-    config = function() require('plugins.neogit-conf') end,
+    'kdheepak/lazygit.nvim'
   }
 
+  -- git cmd wrapper
   use 'tpope/vim-fugitive'
 
   -- git signs at left side (+ blame line)
