@@ -186,8 +186,8 @@ keybinding:
         markCommitAsFixup: f
         createFixupCommit: F
         squashAboveCommits: S
-        moveDownCommit: <c-j>
-        moveUpCommit: <c-k>
+        moveDownCommit: null
+        moveUpCommit: null
         amendToCommit: A
         resetCommitAuthor: a
         pickCommit: p
