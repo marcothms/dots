@@ -60,7 +60,12 @@ require('lualine').setup({
       -- 'lsp_progress' -- noice already shows this.. better
     },
     lualine_y = {},
-    lualine_z = {}
+    lualine_z = {
+      {
+        'filename',
+        path = 1,
+      },
+    }
   },
   -- all sections from left to right
   sections = {
@@ -73,10 +78,6 @@ require('lualine').setup({
       'branch',
     },
     lualine_c = {
-      {
-        'filename',
-        path = 1,
-      },
     },
     lualine_x = {
       {

@@ -26,7 +26,7 @@ call plug#end()
 " ============================== Colors
 syntax on
 set background=light
-let g:everforest_background = 'hard'
+let g:everforest_background = 'medium'
 let g:everforest_better_performance = 1
 colorscheme everforest
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
