@@ -38,6 +38,7 @@ map("n", "<leader>ln", "<cmd> lua vim.lsp.buf.rename()<CR>", default_opts) -- Re
 map("n", "<leader>lr", "<cmd> Telescope lsp_references<CR>", default_opts) -- Show all LSP references
 map("n", "<leader>ls", "<cmd> Telescope lsp_workspace_symbols<CR>", default_opts) -- Search for LSP symbols
 map("n", "<leader>lt", "<cmd> TodoTelescope<CR>", default_opts) -- Show all TODOs in a project
+map("n", "<leader>lp", "<cmd> call SVED_Sync()<CR>", default_opts) -- synctex
 wk.register({
   ["<leader>"] = {
     l = {
