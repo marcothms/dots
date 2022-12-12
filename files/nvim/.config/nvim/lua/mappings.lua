@@ -57,7 +57,7 @@ wk.register({
 
 -- git
 map("n", "<leader>gb", "<cmd> Git blame<CR>", default_opts)
-map("n", "<leader>gc", "<cmd> LazyGitFilter<CR>", default_opts)
+map("n", "<leader>gl", "<cmd> LazyGitFilter<CR>", default_opts)
 map("n", "<leader>gf", "<cmd> LazyGitFilterCurrentFile<CR>", default_opts)
 map("n", "<leader>gs", "<cmd> LazyGit<CR>", default_opts)
 wk.register({
