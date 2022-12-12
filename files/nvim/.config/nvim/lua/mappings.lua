@@ -64,8 +64,8 @@ wk.register({
   ["<leader>"] = {
     g = {
       b = { "Blame" },
-      c = { "Commits" },
-      f = { "(Commits) File" },
+      l = { "Log" },
+      f = { "(Log Current) File" },
       s = { "Status" },
     }
   }
