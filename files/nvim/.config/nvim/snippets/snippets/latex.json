@@ -81,7 +81,7 @@
       "",
       "%%% set monospace font and decrease size, to match 80c in minted",
       "\\usepackage{fontspec}",
-      "\\setmonofont[Scale=0.85]{SFMono Nerd Font},",
+      "\\setmonofont[Scale=0.85]{SFMono Nerd Font}",
       "",
       "%%% set titlepage",
       "\\title{ \\\\\\[0.2em] \\large }",
@@ -93,7 +93,7 @@
       "",
       "\\begin{document}",
       "",
-      "% use with \\gls{nvim}",
+      "% use with \\gls{nvim}, new entry with snippet nge",
       "% \\newglossaryentry{nvim}{name=Neovim, description={Bester Editor der Welt}}",
       "",
       "% create title page with toc",
@@ -322,5 +322,10 @@
       "\\end{frame}"
     ],
     "description": "Create frame env in a slide"
+  },
+  "glossary-entry": {
+    "prefix": "nge",
+    "body": ["\\newglossaryentry{$1}{name= ,description={}, plural={}}"],
+    "description": "Insert a new glossary entry"
   }
 }
