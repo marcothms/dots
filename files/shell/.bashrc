@@ -12,7 +12,7 @@ esac
 git_branch() {
     if $(git rev-parse --git-dir > /dev/null 2>&1); then
         local branch_name=$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
-        echo "${branch_name}  "
+        echo "(${branch_name} ) "
     fi
 }
 

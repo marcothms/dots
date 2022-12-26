@@ -20,6 +20,9 @@
       "\\usepackage{xcolor}",
       "\\usepackage{color}",
       "",
+      "%%% used to \\import{PATH}{FILE}",
+      "\\usepackage{import}",
+      "",
       "%%% DEUTSCH!",
       "\\usepackage[ngerman]{babel}",
       "",
@@ -94,7 +97,7 @@
       "\\begin{document}",
       "",
       "% use with \\gls{nvim}, new entry with snippet nge",
-      "% \\newglossaryentry{nvim}{name=Neovim, description={Bester Editor der Welt}}",
+      "% \\import{.}{glossary.tex}",
       "",
       "% create title page with toc",
       "\\maketitle",
@@ -109,7 +112,7 @@
       "\\section{}",
       "",
       "% bibliography, cite with \\autocite{}",
-      "\\printbibliography[heading=bibintoc,title={Quellen}]",
+      "\\printbibliography[heading=bibintoc,title={Quellenverzeichnis}]",
       "",
       "% optional appendix",
       "% \\appendix",
@@ -325,7 +328,15 @@
   },
   "glossary-entry": {
     "prefix": "nge",
-    "body": ["\\newglossaryentry{$1}{name= ,description={}, plural={}}"],
+    "body": [
+      "\\newglossaryentry{$1}{",
+      "  name={}",
+      "  first={}",
+      "  description={}",
+      "  plural={}",
+      "  firstplural={}",
+      "}"
+    ],
     "description": "Insert a new glossary entry"
   }
 }
