@@ -63,6 +63,33 @@ set laststatus=1  " 1: only if there are at least two windows
 set showtabline=1 " 1: only if there are at least two tab pages
 let g:airline_powerline_fonts = 1
 
+" tabline
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'default'
+let g:airline#extensions#tabline#show_tabs = 1
+let g:airline#extensions#tabline#show_tab_nr = 1
+let g:airline#extensions#tabline#tab_nr_type = 1
+let g:airline#extensions#tabline#show_buffers = 0
+let g:airline#extensions#tabline#tabs_label = '裡'
+let g:airline#extensions#tabline#show_close_button = 0
+let g:airline#extensions#tabline#show_tab_count = 0
+
+let g:airline_mode_map = {
+    \ 'i'      : '',
+    \ 'ic'     : '',
+    \ 'ix'     : '',
+    \ 'n'      : '',
+    \ 'multi'  : '並',
+    \ 'ni'     : '',
+    \ 'no'     : '',
+    \ 'R'      : 'ﰇ',
+    \ 'Rv'     : 'ﰇ',
+    \ 'v'      : '',
+    \ 'V'      : ' ',
+    \ '␖'     : ' 麗',
+    \ 'c'      : ''
+    \ }
+
 " ============================== Indents and Whitespaces
 set list
 set listchars=tab:──\ ,extends:›,precedes:‹,nbsp:·,trail:· " show chars for whitespaces

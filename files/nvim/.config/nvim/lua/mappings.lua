@@ -23,6 +23,7 @@ telescope.setup({
     }
   }
 })
+map("n", "<C-t>", "<cmd> Telescope telescope-tabs list_tabs<CR>", default_opts) -- Show all tabs
 map("n", "<C-f>", "<cmd> Telescope find_files hidden=true<CR>", default_opts) -- Show files
 map("n", "<C-s>", "<cmd> Telescope live_grep<CR>", default_opts) -- Grep through current directory
 map("n", "<C-k>", "<cmd> Telescope keymaps<CR>", default_opts) -- Show all keys
@@ -115,13 +116,3 @@ cmp.setup({
   },
 })
 
--- file tree
-map("n", "<C-t>", "<cmd> NvimTreeFindFileToggle<CR>", default_opts) -- Show file tree
-map("n", "<leader>tc", "<cmd> NvimTreeCollapse<CR>", default_opts) -- Collapse tree
-wk.register({
-  ["<leader>"] = {
-    t = {
-      c = { "Collapse Tree" },
-    }
-  }
-})

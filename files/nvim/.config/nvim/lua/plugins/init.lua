@@ -55,6 +55,15 @@ return require('packer').startup(function(use)
     config = function() require('plugins.telescope-conf') end,
   })
 
+  -- browse tabs in telescope
+  use {
+    'LukasPietzschmann/telescope-tabs',
+    requires = { 'nvim-telescope/telescope.nvim' },
+    config = function()
+      require'telescope-tabs'.setup{}
+    end
+}
+
   -- Auto Indentation
   use({
     'nmac427/guess-indent.nvim',
@@ -138,15 +147,6 @@ return require('packer').startup(function(use)
     "norcalli/nvim-colorizer.lua",
     config = function() require('plugins.nvim-colorizer-conf') end
   })
-
-  -- file tree
-  use {
-    'kyazdani42/nvim-tree.lua',
-    requires = {
-      'kyazdani42/nvim-web-devicons', -- optional, for file icons
-    },
-    config = function() require('plugins.nvim-tree-conf') end
-  }
 
   -- cooler cmd line and notifications
   use({

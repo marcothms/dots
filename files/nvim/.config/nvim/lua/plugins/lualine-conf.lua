@@ -48,23 +48,30 @@ require('lualine').setup({
   },
   tabline = {
     lualine_a = {
+      -- function()
+      --   return mode_map[vim.api.nvim_get_mode().mode] or "__"
+      -- end
       function()
-        return mode_map[vim.api.nvim_get_mode().mode] or "__"
-      end
+        return '裡'
+      end,
     },
     lualine_b = {
-      require('nvim-navic').get_location
+      {
+        'tabs',
+        mode = 2,
+        max_length = vim.o.columns / 2
+      }
     },
-    lualine_c = {},
+    lualine_c = {
+
+    },
     lualine_x = {
       -- 'lsp_progress' -- noice already shows this.. better
     },
-    lualine_y = {},
+    lualine_y = {
+      require('nvim-navic').get_location
+    },
     lualine_z = {
-      {
-        'filename',
-        path = 1,
-      },
     }
   },
   -- all sections from left to right
@@ -78,6 +85,10 @@ require('lualine').setup({
       'branch',
     },
     lualine_c = {
+      {
+        'filename',
+        path = 1,
+      },
     },
     lualine_x = {
       {
