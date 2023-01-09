@@ -89,7 +89,7 @@ export FZF_DEFAULT_OPTS='
        --layout=reverse
        --bind=tab:down
        --bind=btab:up
-       --color=fg:#5c6a72,bg:#fff9e8,hl:#8da101
+       --color=fg:#5c6a72,bg:#FDF6E3,hl:#8da101
        --color=fg+:#5c6a72,bg+:#eee8d5,hl+:#8da101
        --color=info:#5c6a72,prompt:#5c6a72,pointer:#5c6a72
        --color=marker:#5c6a72,spinner:#5c6a72,header:#5c6a72'
@@ -146,7 +146,7 @@ then
     -o -type d -print \
     -o -type l -print 2> /dev/null | cut -b3-"}"
     setopt localoptions pipefail no_aliases 2> /dev/null
-    eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" $(__fzfcmd) -m "$@" | while read item; do
+    eval "$cmd" | FZF_DEFAULT_OPTS="--preview='cat {}' --reverse $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" $(__fzfcmd) -m "$@" | while read item; do
     echo -n "${(q)item} "
     done
     local ret=$?
@@ -156,7 +156,7 @@ then
 
     __fzfcmd() {
     [ -n "$TMUX_PANE" ] && { [ "${FZF_TMUX:-0}" != 0 ] || [ -n "$FZF_TMUX_OPTS" ]; } &&
-    echo "fzf-tmux ${FZF_TMUX_OPTS:--d${FZF_TMUX_HEIGHT:-40%}} -- " || echo "fzf"
+    echo "fzf-tmux ${FZF_TMUX_OPTS:--d${FZF_TMUX_HEIGHT:-70%}} -- " || echo "fzf"
     }
 
     fzf-file-widget() {
@@ -183,7 +183,7 @@ then
     local selected num
     setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases 2> /dev/null
     selected=( $(fc -rl 1 | perl -ne 'print if !$seen{(/^\s*[0-9]+\**\s+(.*)/, $1)}++' |
-    FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} $FZF_DEFAULT_OPTS -n2..,.. --tiebreak=index --bind=ctrl-r:toggle-sort $FZF_CTRL_R_OPTS --query=${(qqq)LBUFFER} +m" $(__fzfcmd)) )
+    FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-30%} $FZF_DEFAULT_OPTS -n2..,.. --tiebreak=index --bind=ctrl-r:toggle-sort $FZF_CTRL_R_OPTS --query=${(qqq)LBUFFER} +m" $(__fzfcmd)) )
     local ret=$?
     if [ -n "$selected" ]; then
     num=$selected[1]
