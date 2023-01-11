@@ -2,6 +2,9 @@
 -- Define all plugins in this file,
 -- but maintain config in <PLUGIN-NAME>-conf.lua
 
+-- NOTE:
+-- Run `checkhealth` after first install
+
 -- Mention all dependencies in 'requires', but create their own entry,
 -- if they need configuration.
 
@@ -54,15 +57,6 @@ return require('packer').startup(function(use)
     },
     config = function() require('plugins.telescope-conf') end,
   })
-
-  -- browse tabs in telescope
-  use {
-    'LukasPietzschmann/telescope-tabs',
-    requires = { 'nvim-telescope/telescope.nvim' },
-    config = function()
-      require'telescope-tabs'.setup{}
-    end
-}
 
   -- Auto Indentation
   use({
@@ -148,14 +142,10 @@ return require('packer').startup(function(use)
     config = function() require('plugins.nvim-colorizer-conf') end
   })
 
-  -- cooler cmd line and notifications
+  -- fancy lsp loading animation
   use({
-    "folke/noice.nvim",
-    requires = {
-      "MunifTanjim/nui.nvim", -- frontend for cmdline
-    },
-    event = "VimEnter",
-    config = function() require("plugins.noice-conf") end,
+    'j-hui/fidget.nvim',
+    config = function() require"fidget".setup{} end,
   })
 
   -- latex synctex

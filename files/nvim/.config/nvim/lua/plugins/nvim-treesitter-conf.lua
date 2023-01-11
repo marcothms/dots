@@ -10,6 +10,9 @@ require('nvim-treesitter.configs').setup({
     "python",
     "rust",
     "yaml",
+    "vim",
+    "markdown",
+    "markdown_inline"
   },
   auto_intall = true,
   highlight = {

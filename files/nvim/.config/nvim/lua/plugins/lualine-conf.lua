@@ -46,34 +46,34 @@ require('lualine').setup({
     -- lualine comes with 'everforest' theme
     theme = 'everforest',
   },
-  tabline = {
-    lualine_a = {
-      -- function()
-      --   return mode_map[vim.api.nvim_get_mode().mode] or "__"
-      -- end
-      function()
-        return '裡'
-      end,
-    },
-    lualine_b = {
-      {
-        'tabs',
-        mode = 2,
-        max_length = vim.o.columns / 2
-      }
-    },
-    lualine_c = {
-
-    },
-    lualine_x = {
-      -- 'lsp_progress' -- noice already shows this.. better
-    },
-    lualine_y = {
-      require('nvim-navic').get_location
-    },
-    lualine_z = {
-    }
-  },
+  -- tabline = {
+  --   lualine_a = {
+  --     -- function()
+  --     --   return mode_map[vim.api.nvim_get_mode().mode] or "__"
+  --     -- end
+  --     function()
+  --       return '裡'
+  --     end,
+  --   },
+  --   lualine_b = {
+  --     {
+  --       'tabs',
+  --       mode = 2,
+  --       max_length = vim.o.columns / 2
+  --     }
+  --   },
+  --   lualine_c = {
+  --
+  --   },
+  --   lualine_x = {
+  --     -- 'lsp_progress' -- noice already shows this.. better
+  --   },
+  --   lualine_y = {
+  --     require('nvim-navic').get_location
+  --   },
+  --   lualine_z = {
+  --   }
+  -- },
   -- all sections from left to right
   sections = {
     lualine_a = {
@@ -101,13 +101,15 @@ require('lualine').setup({
       },
     },
     lualine_y = {
-      'filetype',
       'encoding',
       'fileformat',
+      'filetype',
+    },
+    lualine_z = {
       -- show wordcount in md and tex file
       -- show precise count when selecting
       function()
-        if vim.bo.filetype == "md" or vim.bo.filetype == "tex" then
+        if vim.bo.filetype == "markdown" or vim.bo.filetype == "tex" then
           if vim.fn.wordcount().visual_words == 1 then
             return tostring(vim.fn.wordcount().visual_words) .. " word"
           elseif not (vim.fn.wordcount().visual_words == nil) then
@@ -118,16 +120,13 @@ require('lualine').setup({
         else
           return ""
         end
-      end
-    },
-    lualine_z = {
-      'progress',
+      end,
       'location',
       -- Show trailing whitespace
       function()
         local space = vim.fn.search([[\s\+$]], 'nwc')
         return space ~= 0 and "TW:" .. space or ""
-      end
+      end,
     },
   },
 })

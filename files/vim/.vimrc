@@ -28,7 +28,6 @@ syntax on
 set background=light
 let g:everforest_background = 'medium'
 let g:everforest_better_performance = 1
-" let g:everforest_enable_italic = 1
 colorscheme everforest
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
@@ -59,21 +58,7 @@ set scrolloff=5                " minimum lines above or below the cursor
 let g:ctrlp_show_hidden = 1    " show hidden files in ctrlp menus
 
 " ============================== Statusline
-set laststatus=1  " 1: only if there are at least two windows
-set showtabline=1 " 1: only if there are at least two tab pages
 let g:airline_powerline_fonts = 1
-
-" tabline
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#formatter = 'default'
-let g:airline#extensions#tabline#show_tabs = 1
-let g:airline#extensions#tabline#show_tab_nr = 1
-let g:airline#extensions#tabline#tab_nr_type = 1
-let g:airline#extensions#tabline#show_buffers = 0
-let g:airline#extensions#tabline#tabs_label = '裡'
-let g:airline#extensions#tabline#show_close_button = 0
-let g:airline#extensions#tabline#show_tab_count = 0
-
 let g:airline_mode_map = {
     \ 'i'      : '',
     \ 'ic'     : '',
@@ -85,10 +70,14 @@ let g:airline_mode_map = {
     \ 'R'      : 'ﰇ',
     \ 'Rv'     : 'ﰇ',
     \ 'v'      : '',
-    \ 'V'      : ' ',
-    \ '␖'     : ' 麗',
+    \ 'V'      : '  ',
+    \ ''     : ' ',
     \ 'c'      : ''
     \ }
+
+let g:airline_section_x = airline#section#create([])
+let g:airline_section_y = airline#section#create_right(['%{&fileencoding}', '%{&fileformat}', '%{&filetype}'])
+let g:airline_section_z = airline#section#create(['%{line(".")}:%{col(".")}'])
 
 " ============================== Indents and Whitespaces
 set list
@@ -117,7 +106,6 @@ let g:netrw_liststyle = 3 " Tree-like structure
 let g:netrw_banner = 0    " Remove useless banner at the top of netrw
 
 " ============================== Macros and Mappings
-" open fuzzy file browser
 map <C-f> :CtrlP .<CR>
 " C-/ to hide search results
 map <C-_> :noh<CR>

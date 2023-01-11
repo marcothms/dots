@@ -5,6 +5,7 @@ local default_opts = { noremap = true, silent = true }
 vim.g.mapleader = ' '
 
 map("n", "<C-_>", "<cmd> noh<CR>", default_opts)
+map("n", "<C-n>", "<cmd> messages<CR>", default_opts)
 
 -- Telescope
 local telescope = require 'telescope'
@@ -23,11 +24,9 @@ telescope.setup({
     }
   }
 })
-map("n", "<C-t>", "<cmd> Telescope telescope-tabs list_tabs<CR>", default_opts) -- Show all tabs
 map("n", "<C-f>", "<cmd> Telescope find_files hidden=true<CR>", default_opts) -- Show files
 map("n", "<C-s>", "<cmd> Telescope live_grep<CR>", default_opts) -- Grep through current directory
 map("n", "<C-k>", "<cmd> Telescope keymaps<CR>", default_opts) -- Show all keys
-map("n", "<C-n>", "<cmd> Noice<CR>", default_opts) -- Show all notifications
 
 -- Telescope + LSP
 map("n", "<leader>la", "<cmd> lua vim.lsp.buf.code_action()<CR>", default_opts) -- Apply LSP code action
