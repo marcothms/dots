@@ -4,7 +4,7 @@
 --
 -- Rollback possible with packer.nvim
 -- Always create a snapshot BEFORE upgrading, so we can rollback if we find sth
--- `:PackerSnapshot <DATE>-<MONTH DIGIT>-<YEAR>`
+-- `:PackerSnapshot YEAR-MONTH-DAY
 -- Location: ~/.cache/nvim/packer.nvim
 
 -- This must be loaded first

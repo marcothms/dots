@@ -1,6 +1,41 @@
 -- startup breadcrumbs
 require 'nvim-navic'.setup({})
 
+local function showTrailing()
+  local space = vim.fn.search([[\s\+$]], 'nwc')
+  return space ~= 0 and "TW:" .. space or ""
+end
+
+local function showWordcount()
+  if vim.bo.filetype == "markdown" or vim.bo.filetype == "tex" then
+    if vim.fn.wordcount().visual_words == 1 then
+      return tostring(vim.fn.wordcount().visual_words) .. " word"
+    elseif not (vim.fn.wordcount().visual_words == nil) then
+      return tostring(vim.fn.wordcount().visual_words) .. " words"
+    else
+      return tostring(vim.fn.wordcount().words) .. " words"
+    end
+  else
+    return ""
+  end
+end
+
+local function showLsp()
+  local msg = 'No Lsp'
+  local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
+  local clients = vim.lsp.get_active_clients()
+  if next(clients) == nil then
+    return msg
+  end
+  for _, client in ipairs(clients) do
+    local filetypes = client.config.filetypes
+    if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+      return "  " .. client.name
+    end
+  end
+  return "  " .. msg
+end
+
 -- used as mode-module
 -- https://github.com/nvim-lualine/lualine.nvim/issues/614
 local mode_map = {
@@ -46,37 +81,9 @@ require('lualine').setup({
     -- lualine comes with 'everforest' theme
     theme = 'everforest',
   },
-  -- tabline = {
-  --   lualine_a = {
-  --     -- function()
-  --     --   return mode_map[vim.api.nvim_get_mode().mode] or "__"
-  --     -- end
-  --     function()
-  --       return '裡'
-  --     end,
-  --   },
-  --   lualine_b = {
-  --     {
-  --       'tabs',
-  --       mode = 2,
-  --       max_length = vim.o.columns / 2
-  --     }
-  --   },
-  --   lualine_c = {
-  --
-  --   },
-  --   lualine_x = {
-  --     -- 'lsp_progress' -- noice already shows this.. better
-  --   },
-  --   lualine_y = {
-  --     require('nvim-navic').get_location
-  --   },
-  --   lualine_z = {
-  --   }
-  -- },
-  -- all sections from left to right
   sections = {
     lualine_a = {
+      -- mode icon
       function()
         return mode_map[vim.api.nvim_get_mode().mode] or "__"
       end
@@ -88,6 +95,7 @@ require('lualine').setup({
       {
         'filename',
         path = 1,
+        shorting_target = 80,
       },
     },
     lualine_x = {
@@ -104,29 +112,12 @@ require('lualine').setup({
       'encoding',
       'fileformat',
       'filetype',
+      { showLsp }
     },
     lualine_z = {
-      -- show wordcount in md and tex file
-      -- show precise count when selecting
-      function()
-        if vim.bo.filetype == "markdown" or vim.bo.filetype == "tex" then
-          if vim.fn.wordcount().visual_words == 1 then
-            return tostring(vim.fn.wordcount().visual_words) .. " word"
-          elseif not (vim.fn.wordcount().visual_words == nil) then
-            return tostring(vim.fn.wordcount().visual_words) .. " words"
-          else
-            return tostring(vim.fn.wordcount().words) .. " words"
-          end
-        else
-          return ""
-        end
-      end,
+      { showWordcount },
       'location',
-      -- Show trailing whitespace
-      function()
-        local space = vim.fn.search([[\s\+$]], 'nwc')
-        return space ~= 0 and "TW:" .. space or ""
-      end,
+      { showTrailing },
     },
   },
 })
