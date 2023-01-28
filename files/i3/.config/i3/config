@@ -1,0 +1,149 @@
+set $mod Mod4
+
+font pango:SFMono 10
+
+# setup screens
+exec_always --no-startup-id ~/.screenlayout/default.sh
+
+# https://wiki.archlinux.org/index.php/XDG_Autostart
+# manage via gnome tweaks
+exec --no-startup-id dex-autostart --autostart --environment i3
+
+# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
+# screen before suspend. Use loginctl lock-session to lock your screen.
+exec --no-startup-id xss-lock --transfer-sleep-lock -- xlock
+bindsym $mod+Ctrl+BackSpace exec --no-startup-id loginctl lock-session
+
+# NetworkManager is the most popular way to manage wireless networks on Linux,
+# and nm-applet is a desktop environment-independent system tray GUI for it.
+exec --no-startup-id nm-applet
+exec --no-startup-id blueman-applet
+
+# audio control
+bindsym $mod+p exec --no-startup-id pavucontrol
+
+# jp input - fcitx-5 fcitx5-configtool fcitx5-gtk4 fcitx5-qt fcitx5-mozc
+exec --no-startup-id fcitx5
+
+# keyboard and mouse
+exec_always --no-startup-id setxkbmap eu
+exec_always --no-startup-id input --set-prop 'pointer:Logitech MX Vertical' 'libinput Accel Profile Enabled' 0, 1
+exec_always --no-startup-id xset r rate 250 50
+
+# notifications
+bindsym Ctrl+space exec --no-startup-id dunstctl close-all
+bindsym Ctrl+Shift+space exec --no-startup-id dunstctl history-pop
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# start a terminal
+bindsym $mod+Return exec --no-startup-id alacritty
+
+# kill focused window
+bindsym $mod+Shift+BackSpace kill
+
+# start dmenu (a program launcher)
+bindsym $mod+space exec --no-startup-id dmenu_run \
+                                                -m 0 \
+                                                -i \
+                                                -b \
+                                                -l 10 \
+                                                -p dmenu \
+                                                -fn SFMono-10 \
+                                                -nb "#fdf6e3" \
+                                                -nf "#5c6a72" \
+                                                -sb "#8da101"
+
+# show all open windows
+bindsym $mod+s exec --no-startup-id ~/.config/i3/i3-windows.sh
+
+# screenshot
+bindsym $mod+Shift+s exec --no-startup-id flameshot gui
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# workspaces
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+bindsym $mod+0 workspace number 10
+
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9
+bindsym $mod+Shift+0 move container to workspace number 10
+
+workspace 1 output DP-1
+workspace 10 output DP-3
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+
+set $light #fdf6e3
+set $dark #5c6a72
+
+bar {
+        status_command i3status
+        position bottom
+        output DP-3
+        tray_padding 6
+        separator_symbol " "
+        colors {
+                statusline $dark
+                background $light
+                focused_workspace $light $light $light
+                inactive_workspace $light $light $light
+                active_workspace $light $light $light
+                # focused_workspace $light $light #8da101
+                # inactive_workspace $light $light #5c6a72
+                # active_workspace $light $light #dfa000
+        }
+}
+
+for_window [all] title_window_icon on
+default_border none
+
+for_window [class="firefox"] move to workspace 10
+for_window [class="discord"] move to workspace 10
+for_window [class="Spotify"] move to workspace 10
+for_window [class="Pavucontrol"] fullscreen enable
+
+# i3-save-tree --workspace 2 > /home/marc/.screenlayout/i3layout.json
+# remember to adjust 'swallow'
+exec --no-startup-id i3-msg "workspace 10; append_layout /home/marc/.screenlayout/i3layout.json; workspace 1"
+exec --no-startup-id firefox
+exec --no-startup-id spotify
+exec --no-startup-id discord
+
+# wallpaper
+exec_always --no-startup-id feh --bg-fill ~/cloud/images/wallpaper/nothing.jpg
