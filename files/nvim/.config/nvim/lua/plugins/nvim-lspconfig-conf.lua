@@ -1,3 +1,5 @@
+local util = require 'lspconfig.util'
+
 -- Custom warning symbols
 local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 for type, icon in pairs(signs) do
@@ -39,8 +41,10 @@ lsp.texlab.setup({
     navic.attach(client, bufnr) -- breadcrumbs
   end,
   settings = {
+    cmd = { 'texlab' },
     texlab = {
       build = {
+        executable = 'latexmk',
         args = { '-xelatex', '-interaction=nonstopmode', '-synctex=1', '-shell-escape', '%f' },
         onSave = true,
       }
