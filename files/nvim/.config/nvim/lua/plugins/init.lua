@@ -145,12 +145,12 @@ return require('packer').startup(function(use)
   -- fancy lsp loading animation
   use({
     'j-hui/fidget.nvim',
-    config = function() require"fidget".setup{} end,
+    config = function() require "fidget".setup {} end,
   })
 
   -- latex synctex
   -- pip install pygobject dbus-python pynvim
-  use({"peterbjorgensen/sved"})
+  use({ "peterbjorgensen/sved" })
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

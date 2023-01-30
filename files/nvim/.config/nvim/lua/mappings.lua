@@ -5,7 +5,7 @@ local default_opts = { noremap = true, silent = true }
 vim.g.mapleader = ' '
 
 map("n", "<C-_>", "<cmd> noh<CR>", default_opts)
-map("n", "<C-n>", "<cmd> messages<CR>", default_opts)
+map("n", "<C-m>", "<cmd> messages<CR>", default_opts)
 
 -- Telescope
 local telescope = require 'telescope'

@@ -14,6 +14,7 @@ opt.list           = true      -- Show trailing whitespaces
 opt.wrap           = false     -- Show trailing whitespaces
 opt.ignorecase     = true      -- Ignore case when searching
 opt.smartcase      = true      -- -> unless capitol letters are used
+opt.undofile       = true      -- Save undo history
+opt.cmdheight      = 0         -- Hide cmd bar, unless needed
 
-vim.opt.undofile   = true      -- Save undo history
 vim.o.mouse        = 'a'       -- Enable mouse
