@@ -1,6 +1,6 @@
 set $mod Mod4
 
-font pango:SFMono 10
+font pango:SFMono Bold 10
 
 # setup screens
 exec_always --no-startup-id ~/.screenlayout/default.sh
@@ -9,10 +9,24 @@ exec_always --no-startup-id ~/.screenlayout/default.sh
 # manage via gnome tweaks
 exec --no-startup-id dex-autostart --autostart --environment i3
 
-# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
-# screen before suspend. Use loginctl lock-session to lock your screen.
+# locking
 exec --no-startup-id xss-lock --transfer-sleep-lock -- xlock
-bindsym $mod+Ctrl+BackSpace exec --no-startup-id loginctl lock-session
+
+set $mode_system System (l)ock, l(o)gout, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id loginctl lock-session, mode "default"
+    bindsym o exec --no-startup-id i3-msg exit, mode "default"
+    bindsym s exec --no-startup-id systemctl suspend, mode "default"
+    bindsym h exec --no-startup-id systemctl hibernate, mode "default"
+    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id systemctl poweroff, mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+
+}
+bindsym $mod+Ctrl+BackSpace mode "$mode_system"
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -20,14 +34,14 @@ exec --no-startup-id nm-applet
 exec --no-startup-id blueman-applet
 
 # audio control
-bindsym $mod+p exec --no-startup-id pavucontrol
+bindsym $mod+a exec --no-startup-id pavucontrol
 
 # jp input - fcitx-5 fcitx5-configtool fcitx5-gtk4 fcitx5-qt fcitx5-mozc
 exec --no-startup-id fcitx5
 
 # keyboard and mouse
 exec_always --no-startup-id setxkbmap eu
-exec_always --no-startup-id input --set-prop 'pointer:Logitech MX Vertical' 'libinput Accel Profile Enabled' 0, 1
+exec_always --no-startup-id xinput --set-prop 'pointer:Logitech MX Vertical' 'libinput Accel Profile Enabled' 0, 1
 exec_always --no-startup-id xset r rate 250 50
 
 # notifications
@@ -41,19 +55,19 @@ floating_modifier $mod
 bindsym $mod+Return exec --no-startup-id alacritty
 
 # kill focused window
-bindsym $mod+Shift+BackSpace kill
+bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
 bindsym $mod+space exec --no-startup-id dmenu_run \
                                                 -m 0 \
                                                 -i \
-                                                -b \
                                                 -l 10 \
                                                 -p dmenu \
-                                                -fn SFMono-10 \
-                                                -nb "#fdf6e3" \
-                                                -nf "#5c6a72" \
-                                                -sb "#8da101"
+                                                -fn SFMono-12 \
+                                                -nb "#2f383e" \
+                                                -nf "#d3c6aa" \
+                                                -sb "#93b259" \
+                                                -sf "#2f383e" \
 
 # show all open windows
 bindsym $mod+s exec --no-startup-id ~/.config/i3/i3-windows.sh
@@ -102,48 +116,51 @@ bindsym $mod+Shift+8 move container to workspace number 8
 bindsym $mod+Shift+9 move container to workspace number 9
 bindsym $mod+Shift+0 move container to workspace number 10
 
-workspace 1 output DP-1
-workspace 10 output DP-3
-
 # reload the configuration file
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
-set $light #fdf6e3
-set $dark #5c6a72
+set $bg #2F383E
+set $fg #D3C6AA
+set $accent #93b259
+set $inactive #dfa000
+set $alert #e67e80
 
 bar {
         status_command i3status
-        position bottom
-        output DP-3
-        tray_padding 6
+        position top
+        output DP-1
+        tray_padding 4
         separator_symbol " "
+        mode hide
         colors {
-                statusline $dark
-                background $light
-                focused_workspace $light $light $light
-                inactive_workspace $light $light $light
-                active_workspace $light $light $light
-                # focused_workspace $light $light #8da101
-                # inactive_workspace $light $light #5c6a72
-                # active_workspace $light $light #dfa000
+                statusline $fg
+                background $bg
+                focused_workspace $accent $accent $bg
+                inactive_workspace $bg $bg $inactive
+                active_workspace $inactive $inactive $bg
+                urgent_workspace $alert $alert $bg
         }
 }
 
 for_window [all] title_window_icon on
 default_border none
 
+# setup default session
 for_window [class="firefox"] move to workspace 10
 for_window [class="discord"] move to workspace 10
 for_window [class="Spotify"] move to workspace 10
 for_window [class="Pavucontrol"] fullscreen enable
 
-# i3-save-tree --workspace 2 > /home/marc/.screenlayout/i3layout.json
+workspace 1 output DP-1
+workspace 10 output DP-3
+
+# i3-save-tree --workspace 2 > ~/.screenlayout/i3layout.json
 # remember to adjust 'swallow'
-exec --no-startup-id i3-msg "workspace 10; append_layout /home/marc/.screenlayout/i3layout.json; workspace 1"
+exec --no-startup-id i3-msg "workspace 10; append_layout ~/.screenlayout/i3layout.json; workspace 1"
 exec --no-startup-id firefox
 exec --no-startup-id spotify
 exec --no-startup-id discord
 
 # wallpaper
-exec_always --no-startup-id feh --bg-fill ~/cloud/images/wallpaper/nothing.jpg
+exec_always --no-startup-id feh --bg-fill ~/cloud/images/wallpaper/wallpaper
