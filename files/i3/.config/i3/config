@@ -36,7 +36,7 @@ exec --no-startup-id blueman-applet
 # audio control
 bindsym $mod+a exec --no-startup-id pavucontrol -t 1
 
-# jp input - fcitx-5 fcitx5-configtool fcitx5-gtk4 fcitx5-qt fcitx5-mozc
+# jp input - fcitx5 fcitx5-configtool fcitx5-gtk4 fcitx5-qt fcitx5-mozc
 exec --no-startup-id fcitx5
 
 # keyboard and mouse
