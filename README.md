@@ -11,3 +11,6 @@ Un-`stow` with `./stow.sh -D`.
 + `fd` (rust find; `nvim`)
 
 Also run `checkhealth` in `nvim` after a first install
+
+## laptop
+laptop uses `Xft.dpi: 192`

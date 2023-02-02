@@ -34,7 +34,7 @@ exec --no-startup-id nm-applet
 exec --no-startup-id blueman-applet
 
 # audio control
-bindsym $mod+a exec --no-startup-id pavucontrol
+bindsym $mod+a exec --no-startup-id pavucontrol -t 1
 
 # jp input - fcitx-5 fcitx5-configtool fcitx5-gtk4 fcitx5-qt fcitx5-mozc
 exec --no-startup-id fcitx5
@@ -63,7 +63,7 @@ bindsym $mod+space exec --no-startup-id dmenu_run \
                                                 -i \
                                                 -l 10 \
                                                 -p dmenu \
-                                                -fn SFMono-12 \
+                                                -fn SFMono-10 \
                                                 -nb "#2f383e" \
                                                 -nf "#d3c6aa" \
                                                 -sb "#93b259" \
@@ -130,9 +130,7 @@ bar {
         status_command i3status
         position top
         output DP-1
-        tray_padding 4
-        separator_symbol " "
-        mode hide
+        padding -5px 0 0 0
         colors {
                 statusline $fg
                 background $bg
