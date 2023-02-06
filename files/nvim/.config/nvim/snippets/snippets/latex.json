@@ -134,7 +134,7 @@
       "\\usecolortheme{rose}",
       "",
       "% \\definecolor{accent}{rgb}{0.98047, 0.33203, 0.33203}",
-      "% \\setbeamercolor{structure}{fg=accent},"
+      "% \\setbeamercolor{structure}{fg=accent}",
       "",
       "%%% page numbers in the bottom right",
       "\\addtobeamertemplate{navigation symbols}{}{%",
