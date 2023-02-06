@@ -1,8 +1,8 @@
 set $mod Mod4
 
-font pango:SFMono Bold 10
+font pango:SFMono 10
 
-# setup screens
+# screens
 exec_always --no-startup-id ~/.screenlayout/default.sh
 
 # https://wiki.archlinux.org/index.php/XDG_Autostart

@@ -2,16 +2,12 @@ general {
     output_format = "i3bar"
     colors = false
     markup = pango
-    interval = 5
-    color_good = '#2f343f'
-    color_degraded = '#ebcb8b'
-    color_bad = '#ba5e57'
-
+    interval = 1
 }
 
 order += "tztime local"
 
 tztime local {
-  format = "%-d. %b (%a) %H:%M"
+  format = "%a %-d.%b %H:%M"
 
 }
