@@ -12,6 +12,9 @@ draw_bold_text_with_bright_colors: false
 
 window:
   decorations: none
+  padding:
+    x: 10
+    y: 10
 
   everforest_light_hard: &everforest_light_hard
     primary:

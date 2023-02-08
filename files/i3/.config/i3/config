@@ -1,6 +1,6 @@
 set $mod Mod4
 
-font pango:SFMono 10
+font pango:SFMono Bold 10
 
 # screens
 exec_always --no-startup-id ~/.screenlayout/default.sh
@@ -130,7 +130,6 @@ bar {
         status_command i3status
         position top
         output DP-1
-        padding -5px 0 0 0
         colors {
                 statusline $fg
                 background $bg
@@ -162,3 +161,10 @@ exec --no-startup-id discord
 
 # wallpaper
 exec_always --no-startup-id feh --bg-fill ~/cloud/images/wallpaper/wallpaper
+
+# schicky micky
+exec --no-startup-id picom \
+                        --corner-radius 20 \
+                        --rounded-corners-exclude 'class_g = "dmenu"' \
+                        --rounded-corners-exclude 'class_g = "i3bar"'
+gaps inner 5
