@@ -163,9 +163,6 @@ exec --no-startup-id discord
 exec_always --no-startup-id feh --bg-fill ~/cloud/images/wallpaper/wallpaper
 
 # schicky micky
-exec_always --no-startup-id pkill picom && picom \
-                        --shadow \
-                        --corner-radius 12 \
-                        --rounded-corners-exclude 'class_g = "dmenu"' \
-                        --rounded-corners-exclude 'class_g = "i3bar"'
+exec_always --no-startup-id pkill picom && picom
+
 gaps inner 5
