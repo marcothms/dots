@@ -24,7 +24,7 @@ telescope.setup({
     }
   }
 })
-map("n", "<C-f>", "<cmd> Telescope find_files hidden=true<CR>", default_opts) -- Show files
+map("n", "<C-f>", "<cmd> Telescope git_files <CR>", default_opts) -- Show files
 map("n", "<C-s>", "<cmd> Telescope live_grep<CR>", default_opts) -- Grep through current directory
 map("n", "<C-k>", "<cmd> Telescope keymaps<CR>", default_opts) -- Show all keys
 
