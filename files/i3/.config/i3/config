@@ -160,7 +160,7 @@ exec --no-startup-id spotify
 exec --no-startup-id discord
 
 # wallpaper
-exec_always --no-startup-id feh --bg-fill ~/cloud/images/wallpaper/wallpaper
+exec_always --no-startup-id feh --bg-scale ~/cloud/images/wallpaper/wallpaper
 
 # schicky micky
 exec_always --no-startup-id pkill picom && picom
