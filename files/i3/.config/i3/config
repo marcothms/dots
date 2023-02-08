@@ -63,7 +63,7 @@ bindsym $mod+space exec --no-startup-id dmenu_run \
                                                 -i \
                                                 -l 10 \
                                                 -p dmenu \
-                                                -fn SFMono-10 \
+                                                -fn SFMono-11 \
                                                 -nb "#2f383e" \
                                                 -nf "#d3c6aa" \
                                                 -sb "#93b259" \
@@ -163,8 +163,9 @@ exec --no-startup-id discord
 exec_always --no-startup-id feh --bg-fill ~/cloud/images/wallpaper/wallpaper
 
 # schicky micky
-exec --no-startup-id picom \
-                        --corner-radius 20 \
+exec_always --no-startup-id pkill picom && picom \
+                        --shadow \
+                        --corner-radius 12 \
                         --rounded-corners-exclude 'class_g = "dmenu"' \
                         --rounded-corners-exclude 'class_g = "i3bar"'
 gaps inner 5
