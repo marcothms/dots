@@ -35,6 +35,7 @@ exec --no-startup-id blueman-applet
 
 # audio control
 bindsym $mod+a exec --no-startup-id pavucontrol -t 1
+for_window [class="Pavucontrol"] fullscreen enable
 
 # jp input - fcitx5 fcitx5-configtool fcitx5-gtk4 fcitx5-qt fcitx5-mozc
 exec --no-startup-id fcitx5
@@ -61,6 +62,7 @@ bindsym $mod+Shift+q kill
 bindsym $mod+space exec --no-startup-id dmenu_run \
                                                 -m 0 \
                                                 -i \
+                                                -b \
                                                 -l 10 \
                                                 -p dmenu \
                                                 -fn SFMono-11 \
@@ -68,9 +70,6 @@ bindsym $mod+space exec --no-startup-id dmenu_run \
                                                 -nf "#d3c6aa" \
                                                 -sb "#93b259" \
                                                 -sf "#2f383e" \
-
-# show all open windows
-bindsym $mod+s exec --no-startup-id ~/.config/i3/i3-windows.sh
 
 # screenshot
 bindsym $mod+Shift+s exec --no-startup-id flameshot gui
@@ -147,7 +146,6 @@ default_border none
 for_window [class="firefox"] move to workspace 10
 for_window [class="discord"] move to workspace 10
 for_window [class="Spotify"] move to workspace 10
-for_window [class="Pavucontrol"] fullscreen enable
 
 workspace 1 output DP-1
 workspace 10 output DP-3

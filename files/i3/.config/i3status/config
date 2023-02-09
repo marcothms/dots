@@ -5,9 +5,10 @@ general {
     interval = 1
 }
 
-order += "tztime local"
+order += "read_file backlight"
+order += "battery all"
+order += "time"
 
-tztime local {
-  format = " %a %-d.%b  %H:%M"
-
+time {
+  format = " %a %-d.%b %H:%M"
 }
