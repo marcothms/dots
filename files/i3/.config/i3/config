@@ -34,9 +34,12 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- xlock \
                                                         -mode space \
                                                         -echokeys \
                                                         -font "-*-*-*-r-*-*-34-*-*-*-*-*-*-*" \
-                                                        -planfont "-*-*-*-r-*-*-34-*-*-*-*-*-*-*"
+                                                        -planfont "-*-*-*-r-*-*-34-*-*-*-*-*-*-*" \
+                                                        -startCmd "dunstctl set-paused true" \
+                                                        -endCmd "dunstctl set-paused false"
 
 bindsym $mod+Ctrl+BackSpace exec --no-startup-id loginctl lock-session
+bindsym $mod+Ctrl+Shift+BackSpace exec --no-startup-id systemctl suspend
 
 #
 #### Input
@@ -62,7 +65,6 @@ exec --no-startup-id blueman-applet
 #
 
 bindsym $mod+a exec --no-startup-id pavucontrol -t 1
-for_window [class="Pavucontrol"] fullscreen enable
 
 #
 #### Notifications
