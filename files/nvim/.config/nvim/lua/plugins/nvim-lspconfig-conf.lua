@@ -21,14 +21,23 @@ require("nvim-lsp-installer").setup({
 
 local lsp = require('lspconfig')
 local navic = require('nvim-navic') -- breadcrumbs
+local sig = require('lsp_signature') -- function signatures
+
+function my_attach (client, bufnr)
+  navic.attach(client, bufnr) -- breadcrumbs
+  sig.on_attach({
+    floating_window = false,
+    hint_prefix = ""
+  }, bufnr) -- function signatures
+end
 
 -- Normal LSPs
 -- Install with `:LSPInstall`
-local servers = { "pylsp", "sumneko_lua", "clangd" }
+local servers = { "pylsp", "clangd" }
 for _, i in ipairs(servers) do
   lsp[i].setup({
     on_attach = function(client, bufnr)
-      navic.attach(client, bufnr) -- breadcrumbs
+      my_attach(client, bufnr)
     end
   })
 end
@@ -38,7 +47,7 @@ end
 -- https://github.com/neovim/nvim-lspconfig/blob/master/lua/lspconfig/server_configurations/texlab.lua
 lsp.texlab.setup({
   on_attach = function(client, bufnr)
-    navic.attach(client, bufnr) -- breadcrumbs
+    my_attach(client, bufnr)
   end,
   settings = {
     cmd = { 'texlab' },
@@ -64,7 +73,7 @@ local opts = {
   },
   server = { -- these settings go directly to lsp
     on_attach = function(client, bufnr)
-      navic.attach(client, bufnr) -- breadcrumbs
+      my_attach(client, bufnr)
     end,
     settings = {
       ["rust-analyzer"] = {

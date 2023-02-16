@@ -86,6 +86,8 @@ return require('packer').startup(function(use)
     config = function() require('plugins.nvim-lspconfig-conf') end,
   })
 
+  use 'ray-x/lsp_signature.nvim'
+
   -- Snippets
   use({
     'hrsh7th/nvim-cmp',
