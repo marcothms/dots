@@ -25,10 +25,6 @@ local sig = require('lsp_signature') -- function signatures
 
 function my_attach (client, bufnr)
   navic.attach(client, bufnr) -- breadcrumbs
-  sig.on_attach({
-    floating_window = false,
-    hint_prefix = ""
-  }, bufnr) -- function signatures
 end
 
 -- Normal LSPs
