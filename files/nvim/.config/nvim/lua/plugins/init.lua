@@ -81,12 +81,11 @@ return require('packer').startup(function(use)
     "neovim/nvim-lspconfig", -- Easier to manage LSP servers
     requires = {
       "williamboman/nvim-lsp-installer", -- Easy to install LSP servers
-      "simrat39/rust-tools.nvim" -- Cooler LSP stuff for Rust
+      "simrat39/rust-tools.nvim", -- Cooler LSP stuff for Rust
+      "ray-x/lsp_signature.nvim" --  show function signatures, when typing
     },
     config = function() require('plugins.nvim-lspconfig-conf') end,
   })
-
-  use 'ray-x/lsp_signature.nvim'
 
   -- Snippets
   use({
