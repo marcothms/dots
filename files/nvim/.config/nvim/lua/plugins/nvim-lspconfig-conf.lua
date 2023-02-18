@@ -21,7 +21,6 @@ require("nvim-lsp-installer").setup({
 
 local lsp = require('lspconfig')
 local navic = require('nvim-navic') -- breadcrumbs
-local sig = require('lsp_signature') -- function signatures
 
 function my_attach (client, bufnr)
   navic.attach(client, bufnr) -- breadcrumbs
