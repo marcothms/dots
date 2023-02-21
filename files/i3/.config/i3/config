@@ -48,6 +48,7 @@ bindsym $mod+Ctrl+Shift+BackSpace exec --no-startup-id systemctl suspend
 # add 'Option "XkbOptions" "caps:swapescape"' to /etc/X11/xorg.conf.d/00-keyboard.conf
 exec_always --no-startup-id setxkbmap eu
 exec_always --no-startup-id xinput --set-prop 'pointer:Logitech MX Vertical' 'libinput Accel Profile Enabled' 0, 1
+exec_always --no-startup-id xinput --set-prop 'pointer:Logitech USB Receiver' 'libinput Accel Profile Enabled' 0, 1
 exec_always --no-startup-id xset r rate 250 50
 
 # fcitx5 fcitx5-configtool fcitx5-gtk4 fcitx5-qt fcitx5-mozc
@@ -143,8 +144,8 @@ for_window [class="firefox"] move to workspace 10
 for_window [class="discord"] move to workspace 10
 for_window [class="Spotify"] move to workspace 10
 
-workspace 1 output DP-1
-workspace 10 output DP-3
+workspace 1 output DP-4
+workspace 10 output DP-0
 
 # i3-save-tree --workspace 2 > ~/.screenlayout/i3layout.json
 # remember to adjust 'swallow'
@@ -167,7 +168,7 @@ for_window [all] title_window_icon on
 default_border none
 title_align center
 
-exec_always --no-startup-id feh --bg-scale ~/cloud/images/wallpaper/wallpaper
+exec --no-startup-id nitrogen --restore
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec_always --no-startup-id pkill picom && picom
 
