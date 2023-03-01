@@ -152,6 +152,9 @@ return require('packer').startup(function(use)
   -- pip install pygobject dbus-python pynvim
   use({ "peterbjorgensen/sved" })
 
+  -- d2 lang support
+  use({"terrastruct/d2-vim"})
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then
