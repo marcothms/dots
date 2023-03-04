@@ -24,23 +24,23 @@ telescope.setup({
     }
   }
 })
-map("n", "<C-f>", "<cmd> Telescope git_files <CR>", default_opts) -- Show files
-map("n", "<C-s>", "<cmd> Telescope live_grep<CR>", default_opts) -- Grep through current directory
-map("n", "<C-k>", "<cmd> Telescope keymaps<CR>", default_opts) -- Show all keys
+map("n", "<C-f>", "<cmd> Telescope git_files <CR>", default_opts)
+map("n", "<C-s>", "<cmd> Telescope live_grep<CR>", default_opts)
+map("n", "<C-k>", "<cmd> Telescope keymaps<CR>", default_opts)
 
--- Telescope + LSP
-map("n", "<leader>la", "<cmd> lua vim.lsp.buf.code_action()<CR>", default_opts) -- Apply LSP code action
-map("n", "<leader>ld", "<cmd> Telescope lsp_definitions<CR>", default_opts) -- Show all LSP definitions (or jump if only 1)
-map("n", "<leader>le", "<cmd> Telescope diagnostics<CR>", default_opts) -- Show errors and warnings
-map("n", "<leader>lf", "<cmd> lua vim.lsp.buf.format {async = true }<CR>", default_opts) -- Format buffer with LSP
-map("n", "<leader>lh", "<cmd> lua vim.lsp.buf.hover()<CR>", default_opts) -- Show info of symbol (double tap to enter)
-map("i", "<C-h>", "<cmd> lua vim.lsp.buf.signature_help()<CR>", default_opts) -- Show function signature
-map("n", "<C-h>", "<cmd> lua vim.lsp.buf.signature_help()<CR>", default_opts) -- Show function signature
-map("n", "<leader>ln", "<cmd> lua vim.lsp.buf.rename()<CR>", default_opts) -- Rename LSP symbol
-map("n", "<leader>lr", "<cmd> Telescope lsp_references<CR>", default_opts) -- Show all LSP references
-map("n", "<leader>ls", "<cmd> Telescope lsp_workspace_symbols<CR>", default_opts) -- Search for LSP symbols
-map("n", "<leader>lt", "<cmd> TodoTelescope<CR>", default_opts) -- Show all TODOs in a project
-map("n", "<leader>lp", "<cmd> call SVED_Sync()<CR>", default_opts) -- synctex
+-- LSP
+map("n", "<leader>la", "<cmd> lua vim.lsp.buf.code_action()<CR>", default_opts)
+map("n", "<leader>ld", "<cmd> Telescope lsp_definitions<CR>", default_opts)
+map("n", "<leader>le", "<cmd> Telescope diagnostics<CR>", default_opts)
+map("n", "<leader>lf", "<cmd> lua vim.lsp.buf.format {async = true }<CR>", default_opts)
+map("n", "<leader>lh", "<cmd> lua vim.lsp.buf.hover()<CR>", default_opts)
+map("i", "<C-h>", "<cmd> lua vim.lsp.buf.signature_help()<CR>", default_opts)
+map("n", "<C-h>", "<cmd> lua vim.lsp.buf.signature_help()<CR>", default_opts)
+map("n", "<leader>ln", "<cmd> lua vim.lsp.buf.rename()<CR>", default_opts)
+map("n", "<leader>lr", "<cmd> Telescope lsp_references<CR>", default_opts)
+map("n", "<leader>ls", "<cmd> Telescope lsp_workspace_symbols<CR>", default_opts)
+map("n", "<leader>lt", "<cmd> TodoTelescope<CR>", default_opts)
+map("n", "<leader>lp", "<cmd> call SVED_Sync()<CR>", default_opts)
 wk.register({
   ["<leader>"] = {
     l = {
@@ -57,7 +57,7 @@ wk.register({
   }
 })
 
--- git
+-- git(1)
 map("n", "<leader>gb", "<cmd> Git blame<CR>", default_opts)
 map("n", "<leader>gl", "<cmd> LazyGitFilter<CR>", default_opts)
 map("n", "<leader>gf", "<cmd> LazyGitFilterCurrentFile<CR>", default_opts)
@@ -73,10 +73,10 @@ wk.register({
   }
 })
 
--- Telescope + telescope-symbols
-map("n", "<leader>ie", "<cmd> lua require'telescope.builtin'.symbols{ sources = { 'emoji', 'gitmoji' } }<CR>", default_opts) -- Show emojis
-map("n", "<leader>im", "<cmd> lua require'telescope.builtin'.symbols{ sources = { 'julia' } }<CR>", default_opts) -- Show math symbols
-map("n", "<leader>in", "<cmd> lua require'telescope.builtin'.symbols{ sources = { 'nerd' } }<CR>", default_opts) -- Show nerd icons
+-- telescope-symbols
+map("n", "<leader>ie", "<cmd> lua require'telescope.builtin'.symbols{ sources = { 'emoji', 'gitmoji' } }<CR>", default_opts)
+map("n", "<leader>im", "<cmd> lua require'telescope.builtin'.symbols{ sources = { 'julia' } }<CR>", default_opts)
+map("n", "<leader>in", "<cmd> lua require'telescope.builtin'.symbols{ sources = { 'nerd' } }<CR>", default_opts)
 wk.register({
   ["<leader>"] = {
     i = {
@@ -116,3 +116,6 @@ cmp.setup({
   },
 })
 
+-- nvim-tree
+map("n", "<leader>tt", "<cmd> NvimTreeToggle<CR>", default_opts)
+map("n", "<leader>tc", "<cmd> NvimTreeCollapse<CR>", default_opts)

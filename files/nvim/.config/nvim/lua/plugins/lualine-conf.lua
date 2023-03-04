@@ -1,6 +1,3 @@
--- startup breadcrumbs
-require 'nvim-navic'.setup({})
-
 local function showTrailing()
   local space = vim.fn.search([[\s\+$]], 'nwc')
   return space ~= 0 and "TW:" .. space or ""

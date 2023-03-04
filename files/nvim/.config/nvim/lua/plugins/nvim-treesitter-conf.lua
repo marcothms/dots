@@ -1,5 +1,5 @@
 require('nvim-treesitter.configs').setup({
-  ensure_installed = { -- can also be manually installed with :TSInstall
+  ensure_installed = {
     "bash",
     "c",
     "haskell",

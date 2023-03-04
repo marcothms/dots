@@ -1,3 +1,43 @@
+lspkind = {
+   Namespace = "",
+   Text = " ",
+   Method = " ",
+   Function = " ",
+   Constructor = " ",
+   Field = "ﰠ ",
+   Variable = " ",
+   Class = "ﴯ ",
+   Interface = " ",
+   Module = " ",
+   Property = "ﰠ ",
+   Unit = "塞 ",
+   Value = " ",
+   Enum = " ",
+   Keyword = " ",
+   Snippet = " ",
+   Color = " ",
+   File = " ",
+   Reference = " ",
+   Folder = " ",
+   EnumMember = " ",
+   Constant = " ",
+   Struct = "פּ ",
+   Event = " ",
+   Operator = " ",
+   TypeParameter = " ",
+   Table = "",
+   Object = " ",
+   Tag = "",
+   Array = "[]",
+   Boolean = " ",
+   Number = " ",
+   Null = "ﳠ",
+   String = " ",
+   Calendar = "",
+   Watch = " ",
+   Package = "",
+}
+
 local cmp = require 'cmp'
 cmp.setup({
   snippet = {
@@ -14,8 +54,7 @@ cmp.setup({
   formatting = {
     -- Show icons in cmp box
     format = function(_, vim_item)
-      local icons = require("icons").lspkind
-      vim_item.kind = string.format("%s %s", icons[vim_item.kind], vim_item.kind)
+      vim_item.kind = string.format("%s %s", lspkind[vim_item.kind], vim_item.kind)
       return vim_item
     end,
   },

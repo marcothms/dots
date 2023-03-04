@@ -1,12 +1,11 @@
--- NOTE:
--- Define all plugins in this file,
--- but maintain config in <PLUGIN-NAME>-conf.lua
+-- NOTE: Required plugins are maintained here.
 
--- NOTE:
--- Run `checkhealth` after first install
+-- NOTE: Plugin configuration: ${plugin}-conf.lua
 
--- Mention all dependencies in 'requires', but create their own entry,
--- if they need configuration.
+-- NOTE: Use `checkhealth` after new installation
+
+-- NOTE: Mention all dependencies in 'requires', but create their own entry,
+--       if they need configuration.
 
 local fn = vim.fn
 
@@ -30,30 +29,26 @@ return require('packer').startup(function(use)
   })
 
   -- Icons
-  -- Load here, because otherwise icons won't show correctly
   use({
-    "kyazdani42/nvim-web-devicons",
-    config = function() require('plugins.nvim-web-devicons-conf') end,
+    'kyazdani42/nvim-web-devicons',
+    config = function() require 'nvim-web-devicons'.setup({ default = true }) end,
   })
 
   -- LuaLine
   use({
-    "nvim-lualine/lualine.nvim",
+    'nvim-lualine/lualine.nvim',
     requires = {
-      "kyazdani42/nvim-web-devicons", -- All icons in bar
-      "arkav/lualine-lsp-progress", -- Show lsp loading progress
-      "SmiteshP/nvim-navic", -- Show breadcrumbs (loaded in lualine-conf)
-      "neovim/nvim-lspconfig", -- for nvim-navic (loaded later)
+      'kyazdani42/nvim-web-devicons', -- All icons in bar
     },
     config = function() require('plugins.lualine-conf') end,
   })
 
   -- Fuzzy Finder (Files etc)
   use({
-    "nvim-telescope/telescope.nvim",
+    'nvim-telescope/telescope.nvim',
     requires = {
-      "nvim-lua/plenary.nvim", -- General functions
-      "nvim-telescope/telescope-symbols.nvim", -- Search for icons
+      'nvim-lua/plenary.nvim', -- General functions
+      'nvim-telescope/telescope-symbols.nvim', -- Search for icons
     },
     config = function() require('plugins.telescope-conf') end,
   })
@@ -61,48 +56,51 @@ return require('packer').startup(function(use)
   -- Auto Indentation
   use({
     'nmac427/guess-indent.nvim',
-    config = function() require('plugins.guess-indent-conf') end,
+    config = function() require('guess-indent').setup {} end,
   })
 
   -- Autopairs
   use({
-    "windwp/nvim-autopairs",
-    config = function() require('plugins.nvim-autopairs-conf') end,
+    'windwp/nvim-autopairs',
+    config = function() require('nvim-autopairs').setup({}) end,
   })
 
-  -- Treesitter (Update with `:TSUpdate`)
+  -- Treesitter
   use({
-    "nvim-treesitter/nvim-treesitter",
+    'nvim-treesitter/nvim-treesitter',
+    requires = {
+      'kyazdani42/nvim-web-devicons',
+    },
     config = function() require('plugins.nvim-treesitter-conf') end,
   })
 
-  -- LSP (install with `:LSPInstall`, inspect with `:LSPInfo`)
+  -- LSP
   use({
-    "neovim/nvim-lspconfig", -- Easier to manage LSP servers
+    'neovim/nvim-lspconfig',
     requires = {
-      "williamboman/nvim-lsp-installer", -- Easy to install LSP servers
-      "simrat39/rust-tools.nvim", -- Cooler LSP stuff for Rust
+      'williamboman/nvim-lsp-installer',
+      'simrat39/rust-tools.nvim',
     },
     config = function() require('plugins.nvim-lspconfig-conf') end,
   })
 
-  -- Snippets
+  -- Suggestion window + snippets
   use({
     'hrsh7th/nvim-cmp',
     requires = {
-      "L3MON4D3/LuaSnip", -- Snippet engine
-      "hrsh7th/cmp-buffer", -- Source: buffer
-      "hrsh7th/cmp-nvim-lsp", -- Source: LSP symbols
-      "hrsh7th/cmp-path", -- Source: path
-      "rafamadriz/friendly-snippets", -- Source: JSON style snippets for LuaSnip
-      "saadparwaiz1/cmp_luasnip", -- Make LuaSnip work with cmp
+      'L3MON4D3/LuaSnip', -- Snippet engine
+      'hrsh7th/cmp-buffer', -- Source: buffer
+      'hrsh7th/cmp-nvim-lsp', -- Source: LSP symbols
+      'hrsh7th/cmp-path', -- Source: path
+      'rafamadriz/friendly-snippets', -- Source: JSON style snippets for LuaSnip
+      'saadparwaiz1/cmp_luasnip', -- Make LuaSnip work with cmp
     },
     config = function() require('plugins.nvim-cmp-conf') end,
   })
 
-  -- which-key (Show key combos)
+  -- which-key
   use {
-    "folke/which-key.nvim",
+    'folke/which-key.nvim',
     config = function() require('plugins.which-key-conf') end
   }
 
@@ -111,49 +109,52 @@ return require('packer').startup(function(use)
 
   -- Easily comment out stuff
   use({
-    "numToStr/Comment.nvim",
-    config = function() require('plugins.Comment-conf') end,
+    'numToStr/Comment.nvim',
+    config = function() require('Comment').setup() end,
   })
 
   -- Highlight TODOs
   use {
-    "folke/todo-comments.nvim",
-    requires = "nvim-lua/plenary.nvim",
-    config = function() require('plugins.todo-comments-conf') end
+    'folke/todo-comments.nvim',
+    requires = 'nvim-lua/plenary.nvim',
+    config = function() require('todo-comments').setup {} end,
   }
 
   -- interactive git
-  use {
-    'kdheepak/lazygit.nvim'
-  }
+  use({ 'kdheepak/lazygit.nvim' })
 
-  -- git cmd wrapper
-  use 'tpope/vim-fugitive'
+  -- git command wrapper
+  use({ 'tpope/vim-fugitive' })
 
   -- git signs at left side (+ blame line)
-  use {
+  use({
     'lewis6991/gitsigns.nvim',
-    config = function() require('plugins.gitsigns-conf') end
-  }
+    config = function() require('gitsigns').setup() end,
+  })
 
   -- show color codes inline
   use({
-    "norcalli/nvim-colorizer.lua",
-    config = function() require('plugins.nvim-colorizer-conf') end
+    'norcalli/nvim-colorizer.lua',
+    config = function() require 'colorizer'.setup() end,
   })
 
   -- fancy lsp loading animation
   use({
     'j-hui/fidget.nvim',
-    config = function() require "fidget".setup {} end,
+    config = function() require 'fidget'.setup {} end,
   })
 
-  -- latex synctex
-  -- pip install pygobject dbus-python pynvim
-  use({ "peterbjorgensen/sved" })
+  -- latex synctex (requires`pip install pygobject dbus-python pynvim`)
+  use({ 'peterbjorgensen/sved' })
 
-  -- d2 lang support
-  use({"terrastruct/d2-vim"})
+  -- d2-lang support (https://d2lang.com/tour/intro/)
+  use({'terrastruct/d2-vim'})
+
+  -- tree sidebar
+  use({
+    'nvim-tree/nvim-tree.lua',
+    config = function() require('nvim-tree').setup() end,
+  })
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

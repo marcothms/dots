@@ -20,10 +20,9 @@ require("nvim-lsp-installer").setup({
 })
 
 local lsp = require('lspconfig')
-local navic = require('nvim-navic') -- breadcrumbs
 
+-- own custom attach, gets called in every client
 function my_attach (client, bufnr)
-  navic.attach(client, bufnr) -- breadcrumbs
 end
 
 -- Normal LSPs
