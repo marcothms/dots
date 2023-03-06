@@ -3,13 +3,17 @@ require('telescope').setup({
     prompt_prefix = "   ",
     selection_caret = "  ",
     entry_prefix = "  ",
+    border = false,
     sorting_strategy = "ascending",
-    layout_strategy = "vertical",
+    layout_strategy = "bottom_pane",
     layout_config = {
       vertical = {
-        width = 160,
+        width = 140,
         prompt_position = "top",
         mirror = true,
+      },
+      bottom_pane = {
+        theme = get_ivy
       }
     }
   },

@@ -24,14 +24,15 @@ telescope.setup({
     }
   }
 })
-map("n", "<C-f>", "<cmd> Telescope git_files <CR>", default_opts)
+map("n", "<C-g>", "<cmd> Telescope git_files <CR>", default_opts)
+map("n", "<C-f>", "<cmd> Telescope find_files find_command=rg,--ignore,--hidden,--files<CR>", default_opts)
 map("n", "<C-s>", "<cmd> Telescope live_grep<CR>", default_opts)
 map("n", "<C-k>", "<cmd> Telescope keymaps<CR>", default_opts)
 
 -- LSP
 map("n", "<leader>la", "<cmd> lua vim.lsp.buf.code_action()<CR>", default_opts)
 map("n", "<leader>ld", "<cmd> Telescope lsp_definitions<CR>", default_opts)
-map("n", "<leader>le", "<cmd> Telescope diagnostics<CR>", default_opts)
+map("n", "<leader>le", "<cmd> Telescope diagnostics previewer=false<CR>", default_opts)
 map("n", "<leader>lf", "<cmd> lua vim.lsp.buf.format {async = true }<CR>", default_opts)
 map("n", "<leader>lh", "<cmd> lua vim.lsp.buf.hover()<CR>", default_opts)
 map("i", "<C-h>", "<cmd> lua vim.lsp.buf.signature_help()<CR>", default_opts)
@@ -119,3 +120,4 @@ cmp.setup({
 -- nvim-tree
 map("n", "<leader>tt", "<cmd> NvimTreeToggle<CR>", default_opts)
 map("n", "<leader>tc", "<cmd> NvimTreeCollapse<CR>", default_opts)
+map("n", "<leader>tr", "<cmd> NvimTreeRefresh<CR>", default_opts)

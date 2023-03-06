@@ -15,8 +15,10 @@ call plug#begin()
 
 Plug 'tpope/vim-sleuth'                 " heuristic file indendation
 Plug 'jiangmiao/auto-pairs'             " pair completion
-Plug 'ctrlpvim/ctrlp.vim'               " file finder
 Plug 'tpope/vim-fugitive'               " git wrapper
+
+Plug 'junegunn/fzf', { 'do': { -> fzf#install()  }  }
+Plug 'junegunn/fzf.vim'
 
 Plug 'sainnhe/everforest'               " color scheme
 Plug 'vim-airline/vim-airline'          " a nicer status line
@@ -106,13 +108,21 @@ let g:netrw_liststyle = 3 " Tree-like structure
 let g:netrw_banner = 0    " Remove useless banner at the top of netrw
 
 " ============================== Macros and Mappings
-map <C-f> :CtrlP .<CR>
-" C-/ to hide search results
-map <C-_> :noh<CR>
+" fzf
+map <C-f> :Files<CR>
+map <C-g> :GFiles<CR>
+command! -bang -nargs=* GGrep
+  \ call fzf#vim#grep(
+  \   'git grep --line-number -- '.shellescape(<q-args>), 0,
+  \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
+map <C-s> :GGrep<CR>
+
 " git
 map <leader>gs :Git status<CR>
 map <leader>gb :Git blame<CR>
-map <C-s> :Git grep 
+
+" other
+map <C-_> :noh<CR>
 
 fun! TrimWhitespace()
     let l:save = winsaveview()
