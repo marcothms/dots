@@ -39,6 +39,22 @@ __prompt_command() {
 # ============================== vi-Mode
 set -o vi
 
+# ============================== fzf
+export FZF_DEFAULT_OPTS='
+       --layout=reverse
+       --color=fg:#5c6a72,bg:#FDF6E3,hl:#8da101
+       --color=fg+:#5c6a72,bg+:#eee8d5,hl+:#8da101
+       --color=info:#5c6a72,prompt:#5c6a72,pointer:#5c6a72
+       --color=marker:#5c6a72,spinner:#5c6a72,header:#5c6a72'
+
+if [[ -d ~/.vim/plugged/fzf ]]; then
+  source ~/.vim/plugged/fzf/shell/completion.bash
+  source ~/.vim/plugged/fzf/shell/key-bindings.bash
+  bind '"":"fzf-file-widget\n"'
+else
+  bindkey '^R' history-incremental-search-backward
+fi
+
 # ============================== Source other definitions
 [ -f ~/.shellrc.local ] && source ~/.shellrc.local
 [ -f ~/.shellrc.alias ] && source ~/.shellrc.alias
