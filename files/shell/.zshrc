@@ -84,7 +84,6 @@ RPS2=$RPS1
 bindkey -v '^?' backward-delete-char
 
 # ============================== fzf
-# export FZF_DEFAULT_COMMAND='fd .'
 export FZF_DEFAULT_OPTS='
        --layout=reverse
        --color=fg:#5c6a72,bg:#FDF6E3,hl:#8da101
@@ -93,11 +92,10 @@ export FZF_DEFAULT_OPTS='
        --color=marker:#5c6a72,spinner:#5c6a72,header:#5c6a72'
 
 if [[ -d ~/.vim/plugged/fzf ]]; then
+  [[ -x $(which fzf 2> /dev/null) ]] || PATH=$PATH:$HOME/.vim/plugged/fzf/bin
   source ~/.vim/plugged/fzf/shell/completion.zsh
   source ~/.vim/plugged/fzf/shell/key-bindings.zsh
   bindkey '^F' fzf-file-widget
-else
-  bindkey '^R' history-incremental-search-backward
 fi
 
 # ============================== Fancy Hacks

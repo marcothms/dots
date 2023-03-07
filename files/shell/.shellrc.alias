@@ -1,6 +1,6 @@
 # zsh specific
 if [[ "$SHELL" =~ "zsh$" ]]; then
-    alias -g G='| grep -i'
+    alias -g G='| rg -i'
     alias -g L='| less'
 fi
 

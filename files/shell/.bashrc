@@ -48,11 +48,10 @@ export FZF_DEFAULT_OPTS='
        --color=marker:#5c6a72,spinner:#5c6a72,header:#5c6a72'
 
 if [[ -d ~/.vim/plugged/fzf ]]; then
+  [[ -x $(which fzf 2> /dev/null )]] || PATH=$PATH:$HOME/.vim/plugged/fzf/bin
   source ~/.vim/plugged/fzf/shell/completion.bash
   source ~/.vim/plugged/fzf/shell/key-bindings.bash
   bind '"":"fzf-file-widget\n"'
-else
-  bindkey '^R' history-incremental-search-backward
 fi
 
 # ============================== Source other definitions
