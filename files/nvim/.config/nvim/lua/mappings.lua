@@ -26,7 +26,7 @@ telescope.setup({
 })
 map("n", "<C-g>", "<cmd> Telescope git_files <CR>", default_opts)
 map("n", "<C-f>", "<cmd> Telescope find_files find_command=rg,--ignore,--hidden,--files<CR>", default_opts)
-map("n", "<C-s>", "<cmd> Telescope live_grep<CR>", default_opts)
+map("n", "<C-s>", "<cmd> Telescope live_grep previewer=false<CR>", default_opts)
 map("n", "<C-k>", "<cmd> Telescope keymaps<CR>", default_opts)
 
 -- LSP
@@ -40,7 +40,7 @@ map("n", "<C-h>", "<cmd> lua vim.lsp.buf.signature_help()<CR>", default_opts)
 map("n", "<leader>ln", "<cmd> lua vim.lsp.buf.rename()<CR>", default_opts)
 map("n", "<leader>lr", "<cmd> Telescope lsp_references<CR>", default_opts)
 map("n", "<leader>ls", "<cmd> Telescope lsp_workspace_symbols<CR>", default_opts)
-map("n", "<leader>lt", "<cmd> TodoTelescope<CR>", default_opts)
+map("n", "<leader>lt", "<cmd> TodoTelescope previewer=false<CR>", default_opts)
 map("n", "<leader>lp", "<cmd> call SVED_Sync()<CR>", default_opts)
 wk.register({
   ["<leader>"] = {
