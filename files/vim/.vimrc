@@ -115,8 +115,13 @@ command! -bang -nargs=* GGrep
   \ call fzf#vim#grep(
   \   'git grep --line-number -- '.shellescape(<q-args>), 0,
   \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
-"map <C-s> :GGrep<CR>
-map <C-s> :Rg<CR>
+
+let rgcheck = system("which rg 2> /dev/null")
+if v:shell_error == 0
+  map <C-s> :Rg<CR>
+else
+  map <C-s> :GGrep<CR>
+endif
 
 " git
 map <leader>gs :Git status<CR>
