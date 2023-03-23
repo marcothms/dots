@@ -27,7 +27,7 @@ end
 
 -- Normal LSPs
 -- Install with `:LSPInstall`
-local servers = { "pylsp", "clangd" }
+local servers = { "pylsp", "clangd", "gopls" }
 for _, i in ipairs(servers) do
   lsp[i].setup({
     on_attach = function(client, bufnr)
