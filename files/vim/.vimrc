@@ -1,6 +1,6 @@
 " ~/.vimrc
 "
- " ~ M. Thomas
+" ~ M. Thomas
 
 let mapleader = "\<Space>"
 
@@ -108,27 +108,15 @@ let g:netrw_liststyle = 3 " Tree-like structure
 let g:netrw_banner = 0    " Remove useless banner at the top of netrw
 
 " ============================== Macros and Mappings
-" fzf
-map <C-f> :Files<CR>
-map <C-g> :GFiles<CR>
+" file interaction
+let g:fzf_preview_window = ['down,50%', 'ctrl-/']
 command! -bang -nargs=* GGrep
   \ call fzf#vim#grep(
   \   'git grep --line-number -- '.shellescape(<q-args>), 0,
-  \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
+  \   fzf#vim#with_preview(), <bang>0)
 
-let rgcheck = system("which rg 2> /dev/null")
-if v:shell_error == 0
-  map <C-s> :Rg<CR>
-else
-  map <C-s> :GGrep<CR>
-endif
-
-" git
-map <leader>gs :Git status<CR>
-map <leader>gb :Git blame<CR>
-
-" other
-map <C-_> :noh<CR>
+map <C-p> :Files<CR>
+map <C-f> :GGrep 
 
 fun! TrimWhitespace()
     let l:save = winsaveview()

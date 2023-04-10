@@ -4,7 +4,7 @@ local default_opts = { noremap = true, silent = true }
 
 vim.g.mapleader = ' '
 
-map("n", "<C-_>", "<cmd> noh<CR>", default_opts)
+-- map("n", "<C-_>", "<cmd> noh<CR>", default_opts)
 map("n", "<C-m>", "<cmd> messages<CR>", default_opts)
 
 -- Telescope
@@ -24,9 +24,8 @@ telescope.setup({
     }
   }
 })
-map("n", "<C-g>", "<cmd> Telescope git_files <CR>", default_opts)
-map("n", "<C-f>", "<cmd> Telescope find_files find_command=rg,--ignore,--hidden,--files<CR>", default_opts)
-map("n", "<C-s>", "<cmd> Telescope live_grep previewer=false<CR>", default_opts)
+map("n", "<C-p>", "<cmd> Telescope find_files find_command=rg,--ignore,--hidden,--files<CR>", default_opts)
+map("n", "<C-f>", "<cmd> Telescope live_grep previewer=false<CR>", default_opts)
 map("n", "<C-k>", "<cmd> Telescope keymaps<CR>", default_opts)
 
 -- LSP
@@ -91,16 +90,7 @@ wk.register({
 -- Comment.nvim
 require('Comment').setup({
   opleader = {
-    line = '<leader>cl',
-    block = '<leader>cb',
-  }
-})
-wk.register({
-  ["<leader>"] = {
-    c = {
-      l = { "Line comment" },
-      b = { "Block comment" },
-    }
+    line = '<C-_>',
   }
 })
 
