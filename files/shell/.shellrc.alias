@@ -10,8 +10,11 @@ alias t='tmux a || tmux'
 alias o='xdg-open'  # to change a mime use: `xdg-mime default APPLICATION HANDLE`
 alias gg='git grep $1'
 alias tex='nix-shell ~/.dots/tex.nix'
-alias mktex="latexmk -xelatex -shell-escape"
+alias texmk="latexmk -xelatex -shell-escape"
+alias mktex=texmk
 alias lg="lazygit"
+
+alias cdt='mkdir /tmp/$(cat /proc/sys/kernel/random/uuid); cd $_'
 
 alias l='ls -lFh --color'
 alias la='ls -lAFh --color'
@@ -20,6 +23,8 @@ alias ll='ls -l --color'
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
+
+alias gg='git grep'
 
 alias truecolor='curl -s https://raw.githubusercontent.com/JohnMorales/dotfiles/master/colors/24-bit-color.sh | bash'
 alias nssh='SSH_AUTH_SOCK= ssh'
@@ -41,7 +46,7 @@ ocr() {
         return
     fi
     name=${file%%.*}
-    ocrmypdf -l deu+eng+jpn --output-type pdf $file ${name}.ocr.pdf
+    ocrmypdf -l ger+eng --output-type pdf $file ${name}.ocr.pdf
 }
 
 # deprecated

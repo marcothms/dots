@@ -48,7 +48,7 @@ lsp.texlab.setup({
     texlab = {
       build = {
         executable = 'latexmk',
-        args = { '-xelatex', '-interaction=nonstopmode', '-synctex=1', '-shell-escape', '%f' },
+        args = { '-xelatex', '-interaction=nonstopmode', '-synctex=1', '-shell-escape', 'main.tex' },
         onSave = true,
       }
     }

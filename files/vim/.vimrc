@@ -115,7 +115,7 @@ command! -bang -nargs=* GGrep
   \   'git grep --line-number -- '.shellescape(<q-args>), 0,
   \   fzf#vim#with_preview(), <bang>0)
 
-map <C-p> :Files<CR>
+map <C-p> :GFiles<CR>
 map <C-f> :GGrep 
 
 fun! TrimWhitespace()

@@ -6,7 +6,7 @@ font:
     family: SFMono Nerd Font
     style: Regular
 
-  size: 11.0
+  size: 10.0
 
 draw_bold_text_with_bright_colors: false
 

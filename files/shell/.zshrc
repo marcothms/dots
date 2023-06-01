@@ -13,8 +13,9 @@ ICON="%(?.%{$fg[green]%}.%{$fg[red]%})λ>"
 DIR="%{$fg[blue]%}%~"
 GIT="%{$fg[red]%}\$vcs_info_msg_0_"
 HOSTN="%{$fg[yellow]%}%m "
+NEWLINE=$'\n'
 
-export PROMPT="${HOSTN}${DIR}${GIT} ${BREAK}${ICON}%{$reset_color%} "
+export PROMPT="${HOSTN}${DIR}${GIT} ${BREAK}${NEWLINE}${ICON}%{$reset_color%} "
 zstyle ':vcs_info:git:*' formats ' (%b )'
 
 # show info in title bar
