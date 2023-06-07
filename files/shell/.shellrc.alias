@@ -6,8 +6,14 @@ fi
 
 # general
 alias c='clear'
+alias cr='cargo run'
+alias cb='cargo build'
 alias t='tmux a || tmux'
 alias o='xdg-open'  # to change a mime use: `xdg-mime default APPLICATION HANDLE`
+alias v='vim'
+alias d='docker'
+alias dc='docker compose'
+alias g='git'
 alias gg='git grep $1'
 alias tex='nix-shell ~/.dots/tex.nix'
 alias texmk="latexmk -xelatex -shell-escape"
