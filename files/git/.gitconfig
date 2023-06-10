@@ -4,6 +4,7 @@
 [includeIf "gitdir:~/dev/uni/lrz-gitlab/**"]
 	path = "~/dev/uni/lrz-gitlab/.gitconfig"
 [alias]
+	a = add
 	aa = add .
 	b = blame -L
 	br = branch
@@ -16,6 +17,7 @@
 	lgp = lg -p
 	pl = pull --rebase
 	ps = push
+	r = rebase
 	sh = show
 	st = status
 	u = pull --rebase
