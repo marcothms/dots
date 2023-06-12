@@ -144,3 +144,5 @@ let g:LanguageClient_serverCommands = {
 nnoremap <C-l> :call LanguageClient_contextMenu()<CR>
 map <F2> :call LanguageClient#textDocument_rename()<CR>
 map <F12> :call LanguageClient#textDocument_definition()<CR>
+inoremap <C-space>   <C-x><C-o>
+imap     <C-@>       <C-space>
