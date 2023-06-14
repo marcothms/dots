@@ -137,8 +137,9 @@ set hidden
 let g:LanguageClient_serverCommands = {
     \ 'rust': ['~/.cargo/bin/rust-analyzer'],
     \ 'python': ['/usr/bin/pylsp'],
-    \ 'c': ['/usr/bin/clang'],
+    \ 'c': ['/usr/bin/clangd'],
     \ 'cpp': ['/usr/bin/clangd'],
+    \ 'yaml': ['~/.local/bin/yaml-lsp'],
     \ }
 
 nnoremap <C-l> :call LanguageClient_contextMenu()<CR>
