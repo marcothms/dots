@@ -16,6 +16,7 @@ call plug#begin()
 Plug 'tpope/vim-sleuth'                 " heuristic file indendation
 Plug 'jiangmiao/auto-pairs'             " pair completion
 Plug 'tpope/vim-fugitive'               " git wrapper
+Plug 'tpope/vim-commentary'
 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install()  }  }
 Plug 'junegunn/fzf.vim'
@@ -131,6 +132,7 @@ endfun
 noremap <leader>ws :call TrimWhitespace()<CR>
 
 map <C-M> :messages<CR>
+map <C-_> :Commentary<CR>
 
 " ============================== LSP
 set hidden
