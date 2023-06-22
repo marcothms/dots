@@ -44,7 +44,17 @@ alias condown='nmcli con down id'
 alias conscan='nmcli dev wifi'
 alias conedit='nm-connection-editor'
 
-# functions
+# password hash (sed needed when using in docker-compose)
+pwhash() {
+    name=$1
+    if [ -z $name ]; then
+        echo "Please enter a username."
+        return
+    fi
+    echo $(htpasswd -nB ${name}) | sed -e s/\\$/\\$\\$/g
+}
+
+# ocr
 ocr() {
     file=$1
     if [ -z $file ]; then
