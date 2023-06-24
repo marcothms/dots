@@ -16,13 +16,13 @@ call plug#begin()
 Plug 'tpope/vim-sleuth'                 " heuristic file indendation
 Plug 'jiangmiao/auto-pairs'             " pair completion
 Plug 'tpope/vim-fugitive'               " git wrapper
-Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-commentary'             " DWIM comments
 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install()  }  }
 Plug 'junegunn/fzf.vim'
 
 Plug 'sainnhe/everforest'               " color scheme
-Plug 'vim-airline/vim-airline'          " a nicer status line
+Plug 'vim-airline/vim-airline'          " nicer status line
 Plug 'vim-airline/vim-airline-themes'   " auto settings theme for airline
 
 Plug 'autozimu/LanguageClient-neovim', {
@@ -123,6 +123,8 @@ command! -bang -nargs=* GGrep
 
 map <C-p> :GFiles<CR>
 map <C-f> :GGrep 
+
+cabbrev g Git
 
 fun! TrimWhitespace()
     let l:save = winsaveview()
