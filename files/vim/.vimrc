@@ -25,10 +25,12 @@ Plug 'sainnhe/everforest'               " color scheme
 Plug 'vim-airline/vim-airline'          " nicer status line
 Plug 'vim-airline/vim-airline-themes'   " auto settings theme for airline
 
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
+if has('linux')
+    Plug 'autozimu/LanguageClient-neovim', {
+        \ 'branch': 'next',
+        \ 'do': 'bash install.sh',
+        \ }
+endif
 
 call plug#end()
 " ============================== Colors
@@ -137,17 +139,19 @@ map <C-M> :messages<CR>
 map <C-_> :Commentary<CR>
 
 " ============================== LSP
-set hidden
-let g:LanguageClient_serverCommands = {
-    \ 'rust': ['~/.cargo/bin/rust-analyzer'],
-    \ 'python': ['/usr/bin/pylsp'],
-    \ 'c': ['/usr/bin/clangd'],
-    \ 'cpp': ['/usr/bin/clangd'],
-    \ 'yaml': ['~/.local/bin/yaml-lsp'],
-    \ }
+if has('linux')
+    set hidden
+    let g:LanguageClient_serverCommands = {
+        \ 'rust': ['~/.cargo/bin/rust-analyzer'],
+        \ 'python': ['/usr/bin/pylsp'],
+        \ 'c': ['/usr/bin/clangd'],
+        \ 'cpp': ['/usr/bin/clangd'],
+        \ 'yaml': ['~/.local/bin/yaml-lsp'],
+        \ }
 
-nnoremap <C-l> :call LanguageClient_contextMenu()<CR>
-map <F2> :call LanguageClient#textDocument_rename()<CR>
-map <F12> :call LanguageClient#textDocument_definition()<CR>
-inoremap <C-space>   <C-x><C-o>
-imap     <C-@>       <C-space>
+    nnoremap <C-l> :call LanguageClient_contextMenu()<CR>
+    map <F2> :call LanguageClient#textDocument_rename()<CR>
+    map <F12> :call LanguageClient#textDocument_definition()<CR>
+    inoremap <C-space>   <C-x><C-o>
+    imap     <C-@>       <C-space>
+endif
