@@ -36,6 +36,7 @@ alias truecolor='curl -s https://raw.githubusercontent.com/JohnMorales/dotfiles/
 alias nssh='SSH_AUTH_SOCK= ssh'
 alias cpu='watch -n.1 "grep \"^[c]pu MHz\" /proc/cpuinfo"'
 alias fixagent='eval $(tmux show-env -s | grep "^SSH_")'
+alias whatsmyip='curl https://ipinfo.io/ip ; echo'
 
 # nmcli
 alias con='nmcli con'

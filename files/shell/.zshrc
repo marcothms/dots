@@ -15,7 +15,7 @@ GIT="%{$fg[red]%}\$vcs_info_msg_0_"
 HOSTN="%{$fg[yellow]%}%m "
 NEWLINE=$'\n'
 
-export PROMPT="${HOSTN}${DIR}${GIT} ${BREAK}${NEWLINE}${ICON}%{$reset_color%} "
+export PROMPT="${HOSTN}${DIR}${GIT}${NEWLINE}${ICON}%{$reset_color%} "
 zstyle ':vcs_info:git:*' formats ' (%b )'
 
 # show info in title bar
@@ -96,7 +96,6 @@ if [[ -d ~/.vim/plugged/fzf ]]; then
   [[ -x $(which fzf 2> /dev/null) ]] || export PATH=$PATH:$HOME/.vim/plugged/fzf/bin
   source ~/.vim/plugged/fzf/shell/completion.zsh
   source ~/.vim/plugged/fzf/shell/key-bindings.zsh
-  bindkey '^F' fzf-file-widget
 fi
 
 # ============================== Fancy Hacks
