@@ -84,20 +84,6 @@ RPS2=$RPS1
 # Enable backspace to delete in vi-mode
 bindkey -v '^?' backward-delete-char
 
-# ============================== fzf
-export FZF_DEFAULT_OPTS='
-       --layout=reverse
-       --color=fg:#5c6a72,bg:#FDF6E3,hl:#8da101
-       --color=fg+:#5c6a72,bg+:#eee8d5,hl+:#8da101
-       --color=info:#5c6a72,prompt:#5c6a72,pointer:#5c6a72
-       --color=marker:#5c6a72,spinner:#5c6a72,header:#5c6a72'
-
-if [[ -d ~/.vim/plugged/fzf ]]; then
-  [[ -x $(which fzf 2> /dev/null) ]] || export PATH=$PATH:$HOME/.vim/plugged/fzf/bin
-  source ~/.vim/plugged/fzf/shell/completion.zsh
-  source ~/.vim/plugged/fzf/shell/key-bindings.zsh
-fi
-
 # ============================== Fancy Hacks
 # Always use C-z for bg and fg
 fancy-ctrl-z () {
@@ -113,8 +99,6 @@ zle -N fancy-ctrl-z
 bindkey '^Z' fancy-ctrl-z
 
 # ============================== Source other definitions
-[ -f ~/.shellrc.local ] && source ~/.shellrc.local
 [ -f ~/.shellrc.alias ] && source ~/.shellrc.alias
-
-# nix
+[ -f ~/.shellrc.local ] && source ~/.shellrc.local
 if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc/profile.d/nix.sh; fi

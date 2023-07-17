@@ -1,42 +1,56 @@
+# fzf
+export FZF_DEFAULT_OPTS='
+       --layout=reverse
+       --color=fg:#5c6a72,bg:#FDF6E3,hl:#8da101
+       --color=fg+:#5c6a72,bg+:#eee8d5,hl+:#8da101
+       --color=info:#5c6a72,prompt:#5c6a72,pointer:#5c6a72
+       --color=marker:#5c6a72,spinner:#5c6a72,header:#5c6a72'
+
+if [[ -d ~/.vim/plugged/fzf ]]; then
+  [[ -x $(which fzf 2> /dev/null) ]] || export PATH=$PATH:$HOME/.vim/plugged/fzf/bin
+  if [[ "$SHELL" =~ "bash$" ]]; then
+    source ~/.vim/plugged/fzf/shell/completion.bash
+    source ~/.vim/plugged/fzf/shell/key-bindings.bash
+  fi
+  if [[ "$SHELL" =~ "zsh$" ]]; then
+    source ~/.vim/plugged/fzf/shell/completion.zsh
+    source ~/.vim/plugged/fzf/shell/key-bindings.zsh
+  fi
+fi
+
+
 # zsh specific
 if [[ "$SHELL" =~ "zsh$" ]]; then
     alias -g G='| rg -i'
     alias -g L='| less'
 fi
 
-# general
+# alpabetically sorted
 alias c='clear'
-alias cr='cargo run'
 alias cb='cargo build'
-alias t='tmux a || tmux'
-alias o='xdg-open'  # to change a mime use: `xdg-mime default APPLICATION HANDLE`
-alias v='vim'
+alias cdt='mkdir /tmp/$(cat /proc/sys/kernel/random/uuid); cd $_'
+alias cp='cp -i'
+alias cpu='watch -n.1 "grep \"^[c]pu MHz\" /proc/cpuinfo"'
+alias cr='cargo run'
 alias d='docker'
 alias dc='docker compose'
+alias fixagent='eval $(tmux show-env -s | grep "^SSH_")'
 alias g='git'
-alias gg='git grep $1'
-alias tex='nix-shell ~/.dots/tex.nix'
-alias texmk="latexmk -xelatex -shell-escape"
-alias mktex=texmk
-alias lg="lazygit"
-
-alias cdt='mkdir /tmp/$(cat /proc/sys/kernel/random/uuid); cd $_'
-
+alias gg='git grep'
 alias l='ls -lFh --color'
 alias la='ls -lAFh --color'
 alias ll='ls -l --color'
-
-alias rm='rm -i'
-alias cp='cp -i'
+alias mktex="latexmk -xelatex -shell-escape"
 alias mv='mv -i'
-
-alias gg='git grep'
-
-alias truecolor='curl -s https://raw.githubusercontent.com/JohnMorales/dotfiles/master/colors/24-bit-color.sh | bash'
 alias nssh='SSH_AUTH_SOCK= ssh'
-alias cpu='watch -n.1 "grep \"^[c]pu MHz\" /proc/cpuinfo"'
-alias fixagent='eval $(tmux show-env -s | grep "^SSH_")'
-alias whatsmyip='curl https://ipinfo.io/ip ; echo'
+alias o='xdg-open'  # to change a mime use: `xdg-mime default APPLICATION HANDLE`
+alias rm='rm -i'
+alias t='tmux a || tmux'
+alias texmk="latexmk -xelatex -shell-escape"
+alias texsh='nix-shell ~/.dots/tex.nix'
+alias truecolor='curl -s https://raw.githubusercontent.com/JohnMorales/dotfiles/master/colors/24-bit-color.sh | bash'
+alias v='vim'
+alias whatsmyip='curl https://ipinfo.io/ip; echo'
 
 # nmcli
 alias con='nmcli con'
@@ -77,7 +91,7 @@ ocr() {
 #         echo 'Invalid option'
 #     fi
 # }
-# 
+#
 # power() {
 #     location='/sys/firmware/acpi/platform_profile'
 #     if [ -z $1 ]; then
