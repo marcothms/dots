@@ -18,20 +18,6 @@ NEWLINE=$'\n'
 export PROMPT="${HOSTN}${DIR}${GIT}${NEWLINE}${ICON}%{$reset_color%} "
 zstyle ':vcs_info:git:*' formats ' (%b )'
 
-# show info in title bar
-case $TERM in
-  (*xterm* | rxvt | alacritty)
-    # This is seen when the shell prompts for input.
-    function precmd {
-      print -Pn "\e]0;%m: %~\a"
-    }
-    # This is seen while the shell waits for a command to complete.
-    function preexec {
-      printf "\033]0;$(hostname): %s\a" "$1"
-    }
-    ;;
-esac
-
 # ============================== Completion
 unsetopt menu_complete   # do not autoselect the first completion entry
 unsetopt flowcontrol

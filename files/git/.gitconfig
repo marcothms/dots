@@ -2,11 +2,11 @@
 	name = Marco Thomas
 	email = rb.ma.tho@gmail.com
 [includeIf "gitdir:~/dev/uni/lrz-gitlab/**"]
-	path = "~/dev/uni/lrz-gitlab/.gitconfig"
+	path = "~/dev/lrz-gitlab/.gitconfig"
 [alias]
 	a = add
 	aa = add .
-	b = blame -L
+	bl = blame
 	br = branch
 	c = commit -v
 	ca = commit -v --amend
@@ -16,11 +16,12 @@
 	lg = log --oneline --decorate --graph
 	lgp = lg -p
 	pl = pull --rebase
+	plm = pull
+	plm = pull
 	ps = push
 	r = rebase
 	sh = show
 	st = status
-	u = pull --rebase
 	yeet = push
 	yoink = pull
 [blame]

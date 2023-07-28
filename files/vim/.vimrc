@@ -5,7 +5,7 @@
 let mapleader = "\<Space>"
 
 " ============================== vim-plug
-let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+let data_dir = '~/.vim'
 if empty(glob(data_dir . '/autoload/plug.vim'))
   silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
   autocmd VimEnter * PlugInstall --sync | source ~/.vimrc
@@ -16,6 +16,7 @@ call plug#begin()
 Plug 'tpope/vim-sleuth'                 " heuristic file indendation
 Plug 'jiangmiao/auto-pairs'             " pair completion
 Plug 'tpope/vim-fugitive'               " git wrapper
+Plug 'mhinz/vim-signify'                " show lines changed
 Plug 'tpope/vim-commentary'             " DWIM comments
 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install()  }  }
@@ -33,6 +34,7 @@ if has('linux')
 endif
 
 call plug#end()
+
 " ============================== Colors
 syntax on
 set background=light
@@ -66,6 +68,7 @@ set wildmenu                   " autocomplete :e
 set scrolloff=5                " minimum lines above or below the cursor
 
 let g:ctrlp_show_hidden = 1    " show hidden files in ctrlp menus
+let g:fzf_preview_window = ['down,50%', 'ctrl-/']
 
 " ============================== Statusline
 let g:airline_powerline_fonts = 1
@@ -116,18 +119,21 @@ let g:netrw_liststyle = 3 " Tree-like structure
 let g:netrw_banner = 0    " Remove useless banner at the top of netrw
 
 " ============================== Macros and Mappings
-" file interaction
-let g:fzf_preview_window = ['down,50%', 'ctrl-/']
+
+" im a lazy brick
+cabbrev g Git
+
+" search git tracked files via git-ls-files(1)
+map <C-p> :GFiles<CR>
+
+" search in git tracked files with git-grep(1)
 command! -bang -nargs=* GGrep
   \ call fzf#vim#grep(
   \   'git grep --line-number -- '.shellescape(<q-args>), 0,
   \   fzf#vim#with_preview(), <bang>0)
-
-map <C-p> :GFiles<CR>
 map <C-f> :GGrep 
 
-cabbrev g Git
-
+" kill whitespaces fast and efficient
 fun! TrimWhitespace()
     let l:save = winsaveview()
     keeppatterns %s/\s\+$//e
@@ -135,18 +141,24 @@ fun! TrimWhitespace()
 endfun
 noremap <leader>ws :call TrimWhitespace()<CR>
 
+" sometimes lsp discards message too quickly
 map <C-M> :messages<CR>
+
+" comment DWIM
 map <C-_> :Commentary<CR>
+
+" clear search highlighting faster
+map <esc> :noh <CR>
 
 " ============================== LSP
 if has('linux')
     set hidden
     let g:LanguageClient_serverCommands = {
-        \ 'rust': ['~/.cargo/bin/rust-analyzer'],
-        \ 'python': ['/usr/bin/pylsp'],
-        \ 'c': ['/usr/bin/clangd'],
-        \ 'cpp': ['/usr/bin/clangd'],
-        \ 'yaml': ['~/.local/bin/yaml-lsp'],
+        \ 'rust': ['rust-analyzer'],
+        \ 'python': ['pylsp'],
+        \ 'c': ['clangd'],
+        \ 'cpp': ['clangd'],
+        \ 'yaml': ['yaml-lsp'],
         \ }
 
     nnoremap <C-l> :call LanguageClient_contextMenu()<CR>
