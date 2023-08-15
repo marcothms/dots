@@ -1,5 +1,7 @@
 " ~/.vimrc
 "
+" caveats in config start with XXX
+"
 " ~ M. Thomas
 
 let mapleader = "\<Space>"
@@ -13,25 +15,31 @@ endif
 
 call plug#begin()
 
-Plug 'tpope/vim-sleuth'                 " heuristic file indendation
+" essentials
 Plug 'jiangmiao/auto-pairs'             " pair completion
-Plug 'tpope/vim-fugitive'               " git wrapper
-Plug 'mhinz/vim-signify'                " show lines changed
+Plug 'tpope/vim-fugitive'               " git(1) command wrapper
+Plug 'mhinz/vim-signify'                " show lines changed in git(1)
 Plug 'tpope/vim-commentary'             " DWIM comments
+Plug 'sheerun/vim-polyglot'             " language packs (highlighting, indent)
+
+" nice to have
+Plug 'metakirby5/codi.vim'              " interactive python (:Codi and :Codi!)
 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install()  }  }
 Plug 'junegunn/fzf.vim'
 
-Plug 'sainnhe/everforest'               " color scheme
-Plug 'vim-airline/vim-airline'          " nicer status line
-Plug 'vim-airline/vim-airline-themes'   " auto settings theme for airline
-
-if has('linux')
+if executable('cargo')
+    " XXX requires locally installed lsp's (see LSP section)
     Plug 'autozimu/LanguageClient-neovim', {
         \ 'branch': 'next',
         \ 'do': 'bash install.sh',
         \ }
 endif
+
+" colors
+Plug 'sainnhe/everforest'               " color scheme
+Plug 'vim-airline/vim-airline'          " nicer status line
+Plug 'vim-airline/vim-airline-themes'   " auto settings theme for airline
 
 call plug#end()
 
@@ -66,6 +74,8 @@ set undolevels=1337
 set backspace=indent,eol,start " always delete with backspace
 set wildmenu                   " autocomplete :e
 set scrolloff=5                " minimum lines above or below the cursor
+
+autocmd FileType c setlocal tabstop=4 shiftwidth=4 noexpandtab
 
 let g:ctrlp_show_hidden = 1    " show hidden files in ctrlp menus
 let g:fzf_preview_window = ['down,50%', 'ctrl-/']
@@ -122,6 +132,7 @@ let g:netrw_banner = 0    " Remove useless banner at the top of netrw
 
 " im a lazy brick
 cabbrev g Git
+cabbrev mktex latexmk -xelatex -shell-escape
 
 " search git tracked files via git-ls-files(1)
 map <C-p> :GFiles<CR>
@@ -150,20 +161,25 @@ map <C-_> :Commentary<CR>
 " clear search highlighting faster
 map <esc> :noh <CR>
 
-" ============================== LSP
-if has('linux')
-    set hidden
-    let g:LanguageClient_serverCommands = {
-        \ 'rust': ['rust-analyzer'],
-        \ 'python': ['pylsp'],
-        \ 'c': ['clangd'],
-        \ 'cpp': ['clangd'],
-        \ 'yaml': ['yaml-lsp'],
-        \ }
+" Codi
+cabbrev py CodiNew python
+map <C-i> :Codi!!<CR>
 
-    nnoremap <C-l> :call LanguageClient_contextMenu()<CR>
-    map <F2> :call LanguageClient#textDocument_rename()<CR>
-    map <F12> :call LanguageClient#textDocument_definition()<CR>
-    inoremap <C-space>   <C-x><C-o>
-    imap     <C-@>       <C-space>
-endif
+" ============================== LSP
+set hidden
+let g:LanguageClient_serverCommands = {
+    \ 'rust': ['rust-analyzer'],
+    \ 'python': ['pylsp'],
+    \ 'c': ['clangd'],
+    \ 'cpp': ['clangd'],
+    \ 'yaml': ['yaml-lsp'],
+    \ }
+
+nnoremap <C-l> :call LanguageClient_contextMenu()<CR>
+map <F2> :call LanguageClient#textDocument_rename()<CR>
+map <F12> :call LanguageClient#textDocument_definition()<CR>
+map <C-h> :call LanguageClient#textDocument_hover()<CR>
+
+" completion suggestions mapped to <C-Space>
+inoremap <C-space>   <C-x><C-o>
+imap     <C-@>       <C-space>
