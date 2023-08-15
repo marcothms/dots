@@ -45,7 +45,7 @@ alias mv='mv -i'
 alias nssh='SSH_AUTH_SOCK= ssh'
 alias o='xdg-open'  # to change a mime use: `xdg-mime default APPLICATION HANDLE`
 alias rm='rm -i'
-alias t='tmux a || tmux'
+alias t='tmux a || tmux -u'
 alias texmk="latexmk -xelatex -shell-escape"
 alias texsh='nix-shell ~/.dots/tex.nix'
 alias truecolor='curl -s https://raw.githubusercontent.com/JohnMorales/dotfiles/master/colors/24-bit-color.sh | bash'
