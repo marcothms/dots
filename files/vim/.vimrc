@@ -80,6 +80,8 @@ autocmd FileType c setlocal tabstop=4 shiftwidth=4 noexpandtab
 let g:ctrlp_show_hidden = 1    " show hidden files in ctrlp menus
 let g:fzf_preview_window = ['down,50%', 'ctrl-/']
 
+let g:LanguageClient_useFloatingHover = 1 " prevent buggy split preview from opening
+
 " ============================== Statusline
 let g:airline_powerline_fonts = 1
 let g:airline_mode_map = {
