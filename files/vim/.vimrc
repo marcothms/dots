@@ -161,7 +161,7 @@ map <C-M> :messages<CR>
 map <C-_> :Commentary<CR>
 
 " clear search highlighting faster
-map <esc> :noh <CR>
+map <Esc><Esc> :noh <CR>
 
 " Codi
 cabbrev py CodiNew python
