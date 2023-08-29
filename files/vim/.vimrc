@@ -128,23 +128,28 @@ let &t_EI = "\<Esc>[2 q"
 " ============================== netrw
 let g:netrw_winsize = 25  " width
 let g:netrw_liststyle = 3 " Tree-like structure
-let g:netrw_banner = 0    " Remove useless banner at the top of netrw
 
 " ============================== Macros and Mappings
 
 " im a lazy brick
 cabbrev g Git
 cabbrev mktex latexmk -xelatex -shell-escape
+cabbrev vs vsplit
 
-" search git tracked files via git-ls-files(1)
-map <C-p> :GFiles<CR>
+" search files via fzf
+map <C-p> :Files!<CR>
 
 " search in git tracked files with git-grep(1)
 command! -bang -nargs=* GGrep
   \ call fzf#vim#grep(
   \   'git grep --line-number -- '.shellescape(<q-args>), 0,
   \   fzf#vim#with_preview(), <bang>0)
-map <C-f> :GGrep 
+if has("linux")
+    map <C-f> :GGrep!<CR>
+else
+    " for some reason, openbsd doesnt like fzf live commands
+    map <C-f> :GGrep 
+endif
 
 " kill whitespaces fast and efficient
 fun! TrimWhitespace()
@@ -154,18 +159,11 @@ fun! TrimWhitespace()
 endfun
 noremap <leader>ws :call TrimWhitespace()<CR>
 
-" sometimes lsp discards message too quickly
-map <C-M> :messages<CR>
-
 " comment DWIM
 map <C-_> :Commentary<CR>
 
 " clear search highlighting faster
 map <Esc><Esc> :noh <CR>
-
-" Codi
-cabbrev py CodiNew python
-map <C-i> :Codi!!<CR>
 
 " ============================== LSP
 set hidden
