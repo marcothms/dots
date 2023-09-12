@@ -13,6 +13,7 @@
 	co = checkout
 	cp = cherry-pick
 	d = diff
+	dt = difftool --tool=vimdiff --no-prompt
 	lg = log --oneline --decorate --graph
 	lgp = lg -p
 	pl = pull --rebase
@@ -22,8 +23,6 @@
 	r = rebase
 	sh = show
 	st = status
-	yeet = push
-	yoink = pull
 [blame]
 	date = relative
 	coloring = highlightRecent
