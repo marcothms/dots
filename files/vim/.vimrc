@@ -137,7 +137,7 @@ cabbrev mktex latexmk -xelatex -shell-escape
 cabbrev vs vsplit
 
 " search files via fzf
-map <C-p> :Files!<CR>
+map <C-p> :Files<CR>
 
 " search in git tracked files with git-grep(1)
 command! -bang -nargs=* GGrep
@@ -145,7 +145,7 @@ command! -bang -nargs=* GGrep
   \   'git grep --line-number -- '.shellescape(<q-args>), 0,
   \   fzf#vim#with_preview(), <bang>0)
 if has("linux")
-    map <C-f> :GGrep!<CR>
+    map <C-f> :GGrep<CR>
 else
     " for some reason, openbsd doesnt like fzf live commands
     map <C-f> :GGrep 
