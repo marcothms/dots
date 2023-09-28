@@ -3,3 +3,4 @@ __init__.py
 /fonts/.uuid
 plugin/
 files/lazygit/.config/lazygit/state.yml
+runtime/

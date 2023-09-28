@@ -1,0 +1,6 @@
+[[language]]
+name = "bibtex"
+auto-format = false
+
+[language-server.typst-lsp.config]
+exportPdf = "never"
