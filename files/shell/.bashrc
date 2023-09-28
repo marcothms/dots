@@ -26,8 +26,8 @@ __prompt_command() {
   local EXIT="$?"
   export PS1="${HOST} ${DIR} ${GIT}${NEWLINE}"
 
-  local red_lambda='\[\033[0;31m\]>\[\033[00m\] '
-  local green_lambda='\[\033[0;32m\]>\[\033[00m\] '
+  local red_lambda='\[\033[0;31m\]󱞩\[\033[00m\] '
+  local green_lambda='\[\033[0;32m\]󱞩\[\033[00m\] '
 
   if [ $EXIT != 0 ]
   then

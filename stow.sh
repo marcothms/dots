@@ -1,18 +1,23 @@
 #!/bin/bash
 
-FILES_DIR=$PWD/files
-OPTS=$1
+# Utility script to stow or un-stow configuration
 
-echo "You are about to stow all config files."
-echo "Do you want to proceed? [y]"
-read proceed
+set -e
 
-if [ "${proceed}" != "y" ]; then
-    echo "Exiting!"
-    exit
-fi
-
-echo "Stowing configs..."
-cd $FILES_DIR
-stow ${OPTS} -v --target="$HOME" *
-echo "Done!"
+for i in "$1"
+do
+case $i in
+    -s|--stow)
+    echo "Stowing configuration for $2"
+    stow -v -d files -t $HOME $2
+    ;;
+    -u|--unstow)
+    echo "Deleting configuration for $2"
+    stow -D -v -d files -t $HOME $2
+    ;;
+    *)
+    echo "Unknown option (neither -s, not -u), exiting."
+    exit -1
+    ;;
+esac
+done
