@@ -10,13 +10,12 @@ export FZF_DEFAULT_OPTS='
 
 if [[ -d ~/.vim/plugged/fzf ]]; then
   [[ -x $(which fzf 2> /dev/null) ]] || export PATH=$PATH:$HOME/.vim/plugged/fzf/bin
-  if [[ "$SHELL" =~ "bash$" ]]; then
-    source ~/.vim/plugged/fzf/shell/completion.bash
-    source ~/.vim/plugged/fzf/shell/key-bindings.bash
-  fi
   if [[ "$SHELL" =~ "zsh$" ]]; then
     source ~/.vim/plugged/fzf/shell/completion.zsh
     source ~/.vim/plugged/fzf/shell/key-bindings.zsh
+  else
+    source ~/.vim/plugged/fzf/shell/completion.bash
+    source ~/.vim/plugged/fzf/shell/key-bindings.bash
   fi
 fi
 
