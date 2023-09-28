@@ -14,5 +14,5 @@ fi
 
 echo "Stowing configs..."
 cd $FILES_DIR
-stow ${OPTS} -v --ignore="init.org" --target="$HOME" *
+stow ${OPTS} -v --target="$HOME" *
 echo "Done!"
