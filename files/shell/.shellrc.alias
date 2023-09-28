@@ -22,36 +22,38 @@ fi
 
 # zsh specific
 if [[ "$SHELL" =~ "zsh$" ]]; then
-    alias -g G='| rg -i'
+    alias -g G='| grep -i'
     alias -g L='| less'
 fi
 
-# alpabetically sorted
+# system utility
+alias cdt='mkdir /tmp/$(cat /proc/sys/kernel/random/uuid); cd $_'
+alias cpu='watch -n.1 "grep \"^[c]pu MHz\" /proc/cpuinfo"'
+alias fixagent='eval $(tmux show-env -s | grep "^SSH_")'
+alias truecolor='curl -s https://raw.githubusercontent.com/JohnMorales/dotfiles/master/colors/24-bit-color.sh | bash'
+alias whatsmyip='curl https://ipinfo.io/ip; echo'
+
+# really short command abbreviations
 alias c='clear'
 alias cb='cargo build'
-alias cdt='mkdir /tmp/$(cat /proc/sys/kernel/random/uuid); cd $_'
 alias cp='cp -i'
-alias cpu='watch -n.1 "grep \"^[c]pu MHz\" /proc/cpuinfo"'
 alias cr='cargo run'
 alias d='docker'
 alias dc='docker compose'
-alias fixagent='eval $(tmux show-env -s | grep "^SSH_")'
 alias g='git'
 alias gg='git grep'
-alias l='ls -lFh --color'
-alias la='ls -lAFh --color'
-alias ll='ls -l --color'
-alias mktex="latexmk -xelatex -shell-escape"
+alias h='hx'
+alias l='eza --icons'
 alias mv='mv -i'
-alias nssh='SSH_AUTH_SOCK= ssh'
 alias o='xdg-open'  # to change a mime use: `xdg-mime default APPLICATION HANDLE`
 alias rm='rm -i'
 alias t='tmux a || tmux -u'
+
+# commands with pre-selected flags
+alias mktex="latexmk -xelatex -shell-escape"
+alias nssh='SSH_AUTH_SOCK= ssh'
 alias texmk="latexmk -xelatex -shell-escape"
 alias texsh='nix-shell ~/.dots/tex.nix'
-alias truecolor='curl -s https://raw.githubusercontent.com/JohnMorales/dotfiles/master/colors/24-bit-color.sh | bash'
-alias v='vim'
-alias whatsmyip='curl https://ipinfo.io/ip; echo'
 
 # nmcli
 alias con='nmcli con'
@@ -81,7 +83,7 @@ ocr() {
     ocrmypdf -l ger+eng --output-type pdf $file ${name}.ocr.pdf
 }
 
-# deprecated
+# private laptop acpi magic
 conservation() {
     location='/sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode'
     if [ -z $1 ]; then

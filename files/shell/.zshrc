@@ -9,7 +9,7 @@ precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
 setopt prompt_subst
 
-ICON="%(?.%{$fg[green]%}.%{$fg[red]%})λ>"
+ICON="%(?.%{$fg[green]%}.%{$fg[red]%})>"
 DIR="%{$fg[blue]%}%~"
 GIT="%{$fg[red]%}\$vcs_info_msg_0_"
 HOSTN="%{$fg[yellow]%}%m "
