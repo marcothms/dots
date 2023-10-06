@@ -1,6 +1,2 @@
-__pycache__/
-__init__.py
-/fonts/.uuid
-plugin/
-files/lazygit/.config/lazygit/state.yml
 runtime/
+files/helix/.config/helix/runtime

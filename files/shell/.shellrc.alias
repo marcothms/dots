@@ -48,6 +48,7 @@ alias mv='mv -i'
 alias o='xdg-open'  # to change a mime use: `xdg-mime default APPLICATION HANDLE`
 alias rm='rm -i'
 alias t='tmux a || tmux -u'
+alias tw='typst watch'
 
 # commands with pre-selected flags
 alias mktex="latexmk -xelatex -shell-escape"

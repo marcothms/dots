@@ -37,10 +37,9 @@ __prompt_command() {
   fi
 }
 
-# ============================== vi-Mode
-set -o vi
-
-bind -x '"\C-l": clear'
+# ============================== Jump Words
+bind '"\en": forward-word'
+bind '"\ep": backward-word'
 
 # ============================== Source other definitions
 [ -f ~/.shellrc.alias ] && source ~/.shellrc.alias

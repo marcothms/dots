@@ -46,30 +46,10 @@ setopt share_history          # share command history data inside tmux
 export HISTFILE="$HOME/.zsh_history"
 export SAVEHIST=5000
 
-# ============================== vi-Mode
-bindkey -v
-export KEYTIMEOUT=1
-
-# Updates editor information when the keymap changes.
-function zle-keymap-select() {
-  zle reset-prompt
-  zle -R
-}
-
-zle -N zle-keymap-select
-
-function vi_mode_prompt_info() {
-  MODE_INDICATOR="%{$fg[green]%}<<<%{$reset_color%}"
-  echo "${${KEYMAP/vicmd/$MODE_INDICATOR}/(main|viins)/}"
-}
-
-# Show mode indication on right side
-RPS1='$(vi_mode_prompt_info)'
-RPS2=$RPS1
-
-# Enable backspace to delete in vi-mode
-bindkey -v '^?' backward-delete-char
-
+# ============================== Jump Words
+bindkey '^[n' forward-word
+bindkey '^[p' backward-word
+  
 # ============================== Fancy Hacks
 # Always use C-z for bg and fg
 fancy-ctrl-z () {
