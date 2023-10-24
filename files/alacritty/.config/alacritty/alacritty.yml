@@ -3,15 +3,13 @@ env:
 
 font:
   normal:
-    family: JetBrainsMono Nerd Font Mono
-    style: Regular
+    family: JetBrainsMono Nerd Font
 
   size: 11.0
 
-draw_bold_text_with_bright_colors: false
-
 window:
   decorations: none
+  dynamic_padding: true
   padding:
     x: 10
     y: 10
