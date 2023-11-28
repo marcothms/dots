@@ -8,7 +8,7 @@ true-color = true
 idle-timeout = 100
 
 [editor.soft-wrap]
-enable = true
+enable = false
 
 [editor.cursor-shape]
 insert = "bar"
