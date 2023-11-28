@@ -16,15 +16,21 @@ git_branch() {
     fi
 }
 
+nix_env() {
+  if $(echo $PATH | grep "/nix/store" > /dev/null 2>&1); then
+    echo "(nix)"
+  fi
+}
+
 HOST="\[\033[0;33m\]\h\[\033[m\]"
-GIT="\[\033[0;31m\]\$(git_branch)\[\033[m\]"
+GIT_NIX="\[\033[0;31m\]\$(git_branch)\$(nix_env)\[\033[m\]"
 DIR="\[\033[0;34m\]\w\[\033[m\]"
 NEWLINE=$'\n'
 
 PROMPT_COMMAND=__prompt_command
 __prompt_command() {
   local EXIT="$?"
-  export PS1="${HOST} ${DIR} ${GIT}${NEWLINE}"
+  export PS1="${HOST} ${DIR} ${GIT_NIX}${NEWLINE}"
 
   local red_lambda='\[\033[0;31m\]󱞩\[\033[00m\] '
   local green_lambda='\[\033[0;32m\]󱞩\[\033[00m\] '

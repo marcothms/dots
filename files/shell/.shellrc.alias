@@ -51,11 +51,16 @@ alias rm='rm -i'
 alias t='tmux a || tmux -u'
 alias tw='typst watch'
 
+# podman
+alias pm="podman"
+alias pmc="podman compose"
+alias pmvol='cd ~/.local/share/containers/storage/volumes'
+
 # commands with pre-selected flags
-alias mktex="latexmk -xelatex -shell-escape"
+alias nd="nix develop ."
 alias nssh='SSH_AUTH_SOCK= ssh'
-alias texmk="latexmk -xelatex -shell-escape"
-alias texsh='nix-shell ~/.dots/tex.nix'
+alias dhs='du . -hs'
+alias dh1='du . -h -d1'
 
 # nmcli
 alias con='nmcli con'
