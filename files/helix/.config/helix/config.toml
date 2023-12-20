@@ -1,21 +1,9 @@
-# Dont forget to link the runtime/ directory into $HOME/.config/helix/runtime
-
 theme = "everforest_light"
 
 [editor]
 line-number = "relative"
-true-color = true
-idle-timeout = 100
-
-[editor.soft-wrap]
-enable = false
-
-[editor.cursor-shape]
-insert = "bar"
-
-[editor.whitespace.render]
-# space = "all"
-tab = "all"
+cursor-shape.insert = "bar"
+whitespace.render.tab = "all"
 
 [keys.normal]
 "_" = ["extend_line_up", "extend_to_line_bounds"]
