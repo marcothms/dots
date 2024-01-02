@@ -1,68 +1,41 @@
-# fzf
-export FZF_DEFAULT_COMMAND='find .'
+### fzf(1)
+export FZF_DEFAULT_OPTS='--layout=reverse'
 
-export FZF_DEFAULT_OPTS='
-       --layout=reverse
-       --color=fg:#5c6a72,bg:#FDF6E3,hl:#8da101
-       --color=fg+:#5c6a72,bg+:#eee8d5,hl+:#8da101
-       --color=info:#5c6a72,prompt:#5c6a72,pointer:#5c6a72
-       --color=marker:#5c6a72,spinner:#5c6a72,header:#5c6a72'
+# use vim fzf if no global fzf is found
+[[ -d ~/.vim/plugged/fzf ]] && [[ -x $(which fzf 2> /dev/null) ]] || export PATH=$PATH:$HOME/.vim/plugged/fzf/bin
 
-if [[ -d ~/.vim/plugged/fzf ]]; then
-  [[ -x $(which fzf 2> /dev/null) ]] || export PATH=$PATH:$HOME/.vim/plugged/fzf/bin
-  if [[ "$SHELL" =~ "zsh$" ]]; then
-    source ~/.vim/plugged/fzf/shell/completion.zsh
-    source ~/.vim/plugged/fzf/shell/key-bindings.zsh
-  else
-    source ~/.vim/plugged/fzf/shell/completion.bash
-    source ~/.vim/plugged/fzf/shell/key-bindings.bash
-  fi
-fi
+# interactive git grep
+alias gg=': | fzf --ansi --disabled --query "${*:-}" \
+        --bind "start:reload:git grep {q}" \
+        --bind "change:reload:sleep 0.1; git grep {q} || true" \
+        --bind "enter:become(hx {1} +{2})" \
+        --delimiter :'
 
-
-# zsh specific
-if [[ "$SHELL" =~ "zsh$" ]]; then
-    alias -g G='| grep -i'
-    alias -g L='| less'
-fi
-
-# system utility
+### System Utility
 alias cdt='mkdir /tmp/$(cat /proc/sys/kernel/random/uuid); cd $_'
 alias cpu='watch -n.1 "grep \"^[c]pu MHz\" /proc/cpuinfo"'
 alias fixagent='eval $(tmux show-env -s | grep "^SSH_")'
 alias truecolor='curl -s https://raw.githubusercontent.com/JohnMorales/dotfiles/master/colors/24-bit-color.sh | bash'
 alias whatsmyip='curl https://ipinfo.io/ip; echo'
 
-# really short command abbreviations
-alias c='clear'
-alias cb='cargo build'
+### Always ask first when moving files
 alias cp='cp -i'
-alias cr='cargo run'
-alias d='docker'
-alias dc='docker compose'
-alias dcr='dc down && dc up -d && dc logs -f'
-alias g='git'
-alias gg='git grep'
-alias h='hx'
-alias l='eza --icons'
 alias mv='mv -i'
-alias o='xdg-open'  # to change a mime use: `xdg-mime default APPLICATION HANDLE`
 alias rm='rm -i'
-alias t='tmux a || tmux -u'
-alias tw='typst watch'
 
-# podman
-alias pm="podman"
-alias pmc="podman compose"
-alias pmvol='cd ~/.local/share/containers/storage/volumes'
-
-# commands with pre-selected flags
+### Abbreviations
+alias dcr='dc down && dc up -d && dc logs -f'
+alias dh1='du . -h -d1'
+alias dhs='du . -hs'
+alias diff_dir='diff -qr'
+alias g='git'
+alias l='eza --icons'
 alias nd="nix develop ."
 alias nssh='SSH_AUTH_SOCK= ssh'
-alias dhs='du . -hs'
-alias dh1='du . -h -d1'
+alias o='xdg-open'  # to change a mime use: `xdg-mime default APPLICATION HANDLE`
+alias t='tmux a || tmux -u'
 
-# nmcli
+### nmcli(1)
 alias con='nmcli con'
 alias conup='nmcli con up id'
 alias condown='nmcli con down id'
