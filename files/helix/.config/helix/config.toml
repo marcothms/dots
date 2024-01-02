@@ -4,6 +4,7 @@ theme = "everforest_light"
 line-number = "relative"
 cursor-shape.insert = "bar"
 whitespace.render.tab = "all"
+soft-wrap.enable = true
 
 [keys.normal]
 "_" = ["extend_line_up", "extend_to_line_bounds"]
