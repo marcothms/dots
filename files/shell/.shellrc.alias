@@ -11,6 +11,12 @@ alias gg=': | fzf --ansi --disabled --query "${*:-}" \
         --bind "enter:become(hx {1} +{2})" \
         --delimiter :'
 
+alias rgi=': | fzf --ansi --disabled --query "${*:-}" \
+        --bind "start:reload:rga {q}" \
+        --bind "change:reload:sleep 0.1; rga {q} || true" \
+        --bind "enter:become(xdg-open {1})" \
+        --delimiter :'
+
 ### System Utility
 alias cdt='mkdir /tmp/$(cat /proc/sys/kernel/random/uuid); cd $_'
 alias cpu='watch -n.1 "grep \"^[c]pu MHz\" /proc/cpuinfo"'
@@ -33,7 +39,7 @@ alias l='eza --icons'
 alias nd="nix develop ."
 alias nssh='SSH_AUTH_SOCK= ssh'
 alias o='xdg-open'  # to change a mime use: `xdg-mime default APPLICATION HANDLE`
-alias t='tmux a || tmux -u'
+t(){ tmux new-session -A -s ${1:-🚀} }
 
 ### nmcli(1)
 alias con='nmcli con'
