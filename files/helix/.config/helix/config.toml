@@ -3,8 +3,13 @@ theme = "everforest_light"
 [editor]
 line-number = "relative"
 cursor-shape.insert = "bar"
-whitespace.render.tab = "all"
-soft-wrap.enable = true
+
+[editor.whitespace.render]
+tab = "all"
+space = "all"
+
+[editor.lsp]
+display-inlay-hints = true
 
 [keys.normal]
 "_" = ["extend_line_up", "extend_to_line_bounds"]
