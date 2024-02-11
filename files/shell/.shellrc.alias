@@ -39,7 +39,9 @@ alias l='eza --icons'
 alias nd="nix develop ."
 alias nssh='SSH_AUTH_SOCK= ssh'
 alias o='xdg-open'  # to change a mime use: `xdg-mime default APPLICATION HANDLE`
-t(){ tmux new-session -A -s ${1:-🚀} }
+t(){ 
+    tmux new-session -A -s ${1:-🚀}
+}
 
 ### nmcli(1)
 alias con='nmcli con'
