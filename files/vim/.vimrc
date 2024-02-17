@@ -17,24 +17,12 @@ call plug#begin()
 
 " essentials
 Plug 'jiangmiao/auto-pairs'             " pair completion
-Plug 'tpope/vim-fugitive'               " git(1) command wrapper
 Plug 'mhinz/vim-signify'                " show lines changed in git(1)
 Plug 'tpope/vim-commentary'             " DWIM comments
 Plug 'sheerun/vim-polyglot'             " language packs (highlighting, indent)
 
-" nice to have
-Plug 'metakirby5/codi.vim'              " interactive python (:Codi and :Codi!)
-
 Plug 'junegunn/fzf', { 'do': { -> fzf#install()  }  }
 Plug 'junegunn/fzf.vim'
-
-if executable('cargo')
-    " XXX requires locally installed lsp's (see LSP section)
-    Plug 'autozimu/LanguageClient-neovim', {
-        \ 'branch': 'next',
-        \ 'do': 'bash install.sh',
-        \ }
-endif
 
 " colors
 Plug 'sainnhe/everforest'               " color scheme
@@ -83,23 +71,6 @@ let g:fzf_preview_window = ['down,50%', 'ctrl-/']
 let g:LanguageClient_useFloatingHover = 1 " prevent buggy split preview from opening
 
 " ============================== Statusline
-let g:airline_powerline_fonts = 1
-let g:airline_mode_map = {
-    \ 'i'      : '',
-    \ 'ic'     : '',
-    \ 'ix'     : '',
-    \ 'n'      : '',
-    \ 'multi'  : '並',
-    \ 'ni'     : '',
-    \ 'no'     : '',
-    \ 'R'      : 'ﰇ',
-    \ 'Rv'     : 'ﰇ',
-    \ 'v'      : '',
-    \ 'V'      : '  ',
-    \ ''     : ' ',
-    \ 'c'      : ''
-    \ }
-
 let g:airline_section_x = airline#section#create([])
 let g:airline_section_y = airline#section#create_right(['%{&fileencoding}', '%{&fileformat}', '%{&filetype}'])
 let g:airline_section_z = airline#section#create(['%{line(".")}:%{col(".")}'])
@@ -125,30 +96,20 @@ let &t_SI = "\<Esc>[6 q"
 let &t_SR = "\<Esc>[4 q"
 let &t_EI = "\<Esc>[2 q"
 
-" ============================== netrw
-let g:netrw_winsize = 25  " width
-let g:netrw_liststyle = 3 " Tree-like structure
-
 " ============================== Macros and Mappings
 
-" im a lazy brick
-cabbrev g Git
-cabbrev mktex latexmk -xelatex -shell-escape
-cabbrev vs vsplit
+map <Leader>f :GFiles<CR>
+map <Leader>F :Files<CR>
 
-" search files via fzf
-map <C-p> :Files<CR>
-
-" search in git tracked files with git-grep(1)
 command! -bang -nargs=* GGrep
   \ call fzf#vim#grep(
   \   'git grep --line-number -- '.shellescape(<q-args>), 0,
   \   fzf#vim#with_preview(), <bang>0)
 if has("linux")
-    map <C-f> :GGrep<CR>
+    map <C-/> :GGrep 
 else
     " for some reason, openbsd doesnt like fzf live commands
-    map <C-f> :GGrep 
+    map <C-/> :GGrep 
 endif
 
 " kill whitespaces fast and efficient
@@ -160,26 +121,7 @@ endfun
 noremap <leader>ws :call TrimWhitespace()<CR>
 
 " comment DWIM
-map <C-_> :Commentary<CR>
+map <C-c> :Commentary<CR>
 
 " clear search highlighting faster
 map <Esc><Esc> :noh <CR>
-
-" ============================== LSP
-set hidden
-let g:LanguageClient_serverCommands = {
-    \ 'rust': ['rust-analyzer'],
-    \ 'python': ['pylsp'],
-    \ 'c': ['clangd'],
-    \ 'cpp': ['clangd'],
-    \ 'yaml': ['yaml-lsp'],
-    \ }
-
-nnoremap <C-l> :call LanguageClient_contextMenu()<CR>
-map <F2> :call LanguageClient#textDocument_rename()<CR>
-map <F12> :call LanguageClient#textDocument_definition()<CR>
-map <C-h> :call LanguageClient#textDocument_hover()<CR>
-
-" completion suggestions mapped to <C-Space>
-inoremap <C-space>   <C-x><C-o>
-imap     <C-@>       <C-space>
