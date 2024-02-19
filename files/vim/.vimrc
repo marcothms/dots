@@ -19,8 +19,8 @@ call plug#begin()
 Plug 'jiangmiao/auto-pairs'             " pair completion
 Plug 'mhinz/vim-signify'                " show lines changed in git(1)
 Plug 'tpope/vim-commentary'             " DWIM comments
-Plug 'sheerun/vim-polyglot'             " language packs (highlighting, indent)
 
+" file search
 Plug 'junegunn/fzf', { 'do': { -> fzf#install()  }  }
 Plug 'junegunn/fzf.vim'
 
@@ -80,6 +80,9 @@ set list
 set listchars=tab:──\ ,extends:›,precedes:‹,nbsp:·,trail:· " show chars for whitespaces
 set fillchars+=vert:\                                      " don't draw verticle split
 
+" openbsd style
+autocmd FileType c setlocal tabstop=8 shiftwidth=4 noexpandtab
+
 " show trailing whitespaces in red
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+\%#\@<!$/
@@ -107,9 +110,8 @@ command! -bang -nargs=* GGrep
   \   fzf#vim#with_preview(), <bang>0)
 if has("linux")
     map <C-/> :GGrep 
-else
-    " for some reason, openbsd doesnt like fzf live commands
-    map <C-/> :GGrep 
+else " openbsd
+    map <C-_> :GGrep 
 endif
 
 " kill whitespaces fast and efficient

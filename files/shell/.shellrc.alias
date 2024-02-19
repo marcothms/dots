@@ -1,22 +1,3 @@
-### fzf(1)
-export FZF_DEFAULT_OPTS='--layout=reverse'
-
-# use vim fzf if no global fzf is found
-[[ -d ~/.vim/plugged/fzf ]] && [[ -x $(which fzf 2> /dev/null) ]] || export PATH=$PATH:$HOME/.vim/plugged/fzf/bin
-
-# interactive git grep
-alias gg=': | fzf --ansi --disabled --query "${*:-}" \
-        --bind "start:reload:git grep {q}" \
-        --bind "change:reload:sleep 0.1; git grep {q} || true" \
-        --bind "enter:become(hx {1} +{2})" \
-        --delimiter :'
-
-alias rgi=': | fzf --ansi --disabled --query "${*:-}" \
-        --bind "start:reload:rga {q}" \
-        --bind "change:reload:sleep 0.1; rga {q} || true" \
-        --bind "enter:become(xdg-open {1})" \
-        --delimiter :'
-
 ### System Utility
 alias cdt='mkdir /tmp/$(cat /proc/sys/kernel/random/uuid); cd $_'
 alias cpu='watch -n.1 "grep \"^[c]pu MHz\" /proc/cpuinfo"'
