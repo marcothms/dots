@@ -12,7 +12,11 @@ esac
 git_branch() {
     if $(git rev-parse --git-dir > /dev/null 2>&1); then
         local branch_name=$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
-        echo "(${branch_name} ) "
+        if [[ $(uname) == "OpenBSD" ]]; then
+            echo "(${branch_name}) "
+        else
+            echo "(${branch_name} ) "
+        fi
     fi
 }
 
@@ -32,8 +36,13 @@ __prompt_command() {
   local EXIT="$?"
   export PS1="${HOST} ${DIR} ${GIT_NIX}${NEWLINE}"
 
-  local red_lambda='\[\033[0;31m\]󱞩\[\033[00m\] '
-  local green_lambda='\[\033[0;32m\]󱞩\[\033[00m\] '
+  if [[ $(uname) == "OpenBSD" ]]; then
+    local red_lambda='\[\033[0;31m\]>\[\033[00m\] '
+    local green_lambda='\[\033[0;32m\]>\[\033[00m\] '
+  else
+    local red_lambda='\[\033[0;31m\]󱞩\[\033[00m\] '
+    local green_lambda='\[\033[0;32m\]󱞩\[\033[00m\] '
+  fi
 
   if [ $EXIT != 0 ]
   then
