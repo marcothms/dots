@@ -17,7 +17,6 @@ call plug#begin()
 
 " essentials
 Plug 'jiangmiao/auto-pairs'             " pair completion
-Plug 'mhinz/vim-signify'                " show lines changed in git(1)
 Plug 'tpope/vim-commentary'             " DWIM comments
 
 " file search
@@ -103,6 +102,7 @@ let &t_EI = "\<Esc>[2 q"
 
 map <Leader>f :GFiles<CR>
 map <Leader>F :Files<CR>
+map <Leader>b :Buffers<CR>
 
 command! -bang -nargs=* GGrep
   \ call fzf#vim#grep(

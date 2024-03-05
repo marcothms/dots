@@ -10,6 +10,9 @@ alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -i'
 
+### Git fun
+alias gbl='git show $(git ls-files | fzf --reverse --bind "enter:become(git blame {1} | fzf --ansi --reverse | cut -f 1 -d \" \")")'
+
 ### Abbreviations
 alias dcr='dc down && dc up -d && dc logs -f'
 alias dh1='du . -h -d1'
