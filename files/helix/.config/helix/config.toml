@@ -3,6 +3,7 @@ theme = "everforest_light"
 [editor]
 line-number = "relative"
 cursor-shape.insert = "bar"
+rulers = [80, 100]
 
 [editor.whitespace.render]
 tab = "all"
