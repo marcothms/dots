@@ -53,6 +53,7 @@ __prompt_command() {
 }
 
 # ============================== Jump Words
+stty -ixon  # enable forward search with C-s
 bind '"\en": forward-word'
 bind '"\ep": backward-word'
 
