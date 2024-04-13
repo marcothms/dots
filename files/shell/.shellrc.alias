@@ -19,9 +19,10 @@ alias dh1='du . -h -d1'
 alias dhs='du . -hs'
 alias diff_dir='diff -qr'
 alias g='git'
-alias l='eza --icons'
+alias l='eza --icons --hyperlink'
 alias nd="nix develop ."
 alias nssh='SSH_AUTH_SOCK= ssh'
+alias s='kitten ssh'
 alias o='xdg-open'  # to change a mime use: `xdg-mime default APPLICATION HANDLE`
 t(){
     tmux new-session -A -s ${1:-dev}
