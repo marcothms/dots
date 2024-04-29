@@ -12,6 +12,7 @@ alias rm='rm -i'
 
 ### Git fun
 alias gbl='git show $(git ls-files | fzf -e --reverse --bind "enter:become(git blame {1} | fzf -e --ansi --reverse | cut -f 1 -d \" \")")'
+alias gg=': | fzf --reverse --bind "change:reload(git grep {q})" --bind "enter:become($EDITOR {1} +{2})" --delimiter :'
 
 ### Abbreviations
 alias dcr='dc down && dc up -d && dc logs -f'
@@ -24,7 +25,7 @@ alias nd="nix develop ."
 alias nssh='SSH_AUTH_SOCK= ssh'
 alias s='kitten ssh'
 alias o='xdg-open'  # to change a mime use: `xdg-mime default APPLICATION HANDLE`
-t(){
+t() {
     tmux new-session -A -s ${1:-dev}
 }
 
