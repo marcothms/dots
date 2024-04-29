@@ -52,6 +52,28 @@ __prompt_command() {
   fi
 }
 
+# ============================== Auto Complete
+
+# Press Tab to auto complete like zsh
+bind 'set show-all-if-ambiguous on'
+bind 'TAB:menu-complete'
+bind '"\e[Z":menu-complete-backward'
+
+# Auto complete ssh hosts
+_ssh()
+{
+  local cur prev opts
+  COMPREPLY=()
+  cur="${COMP_WORDS[COMP_CWORD]}"
+  prev="${COMP_WORDS[COMP_CWORD-1]}"
+  opts=$(grep '^Host' ~/.ssh/config ~/.ssh/config.d/* 2>/dev/null | grep -v '[?*]' | cut -d ' ' -f 2-)
+
+  COMPREPLY=( $(compgen -W "$opts" -- ${cur}) )
+  return 0
+}
+complete -F _ssh ssh
+complete -F _ssh s
+
 # ============================== Jump Words
 stty -ixon  # enable forward search with C-s
 bind '"\en": forward-word'
