@@ -15,6 +15,8 @@ alias gbl='git show $(git ls-files | fzf -e --reverse --bind "enter:become(git b
 alias gg=': | fzf --reverse --bind "change:reload(git grep {q})" --bind "enter:become($EDITOR {1} +{2})" --delimiter :'
 
 ### Abbreviations
+alias d='docker'
+alias dc='docker compose'
 alias dcr='dc down && dc up -d && dc logs -f'
 alias dh1='du . -h -d1'
 alias dhs='du . -hs'
@@ -24,6 +26,7 @@ alias l='eza --icons --hyperlink'
 alias nd="nix develop ."
 alias nssh='SSH_AUTH_SOCK= ssh'
 alias s='kitten ssh'
+alias r='. ranger'
 alias o='xdg-open'  # to change a mime use: `xdg-mime default APPLICATION HANDLE`
 t() {
     tmux new-session -A -s ${1:-dev}

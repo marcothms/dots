@@ -34,6 +34,11 @@ NEWLINE=$'\n'
 PROMPT_COMMAND=__prompt_command
 __prompt_command() {
   local EXIT="$?"
+  if [ $COLUMNS -lt 80 ]; then
+    export PROMPT_DIRTRIM=1
+  else
+    export PROMPT_DIRTRIM=0
+  fi
   export PS1="${HOST} ${DIR} ${GIT_NIX}${NEWLINE}"
 
   if [[ $(uname) == "OpenBSD" ]]; then

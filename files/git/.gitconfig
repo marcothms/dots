@@ -6,8 +6,8 @@
 [alias]
 	a = add
 	aa = add .
+	b = branch
 	bl = blame
-	br = branch
 	c = commit -v
 	ca = commit -v --amend
 	cm = commit -v -m
