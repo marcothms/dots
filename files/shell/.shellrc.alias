@@ -22,7 +22,7 @@ alias dh1='du . -h -d1'
 alias dhs='du . -hs'
 alias diff_dir='diff -qr'
 alias g='git'
-alias l='eza --icons --hyperlink'
+alias l='ls --color --hyperlink'
 alias nd="nix develop ."
 alias nssh='SSH_AUTH_SOCK= ssh'
 alias s='kitten ssh'
@@ -57,7 +57,7 @@ ocr() {
         return
     fi
     name=${file%%.*}
-    ocrmypdf -l ger+eng --output-type pdf $file ${name}.ocr.pdf
+    ocrmypdf -l deu+eng --output-type pdf $file ${name}.ocr.pdf
 }
 
 # private laptop acpi magic

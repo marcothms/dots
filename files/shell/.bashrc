@@ -12,11 +12,7 @@ esac
 git_branch() {
     if $(git rev-parse --git-dir > /dev/null 2>&1); then
         local branch_name=$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')
-        if [[ $(uname) == "OpenBSD" ]]; then
-            echo "(${branch_name}) "
-        else
-            echo "(${branch_name} ) "
-        fi
+        echo "${branch_name} "
     fi
 }
 
@@ -34,26 +30,21 @@ NEWLINE=$'\n'
 PROMPT_COMMAND=__prompt_command
 __prompt_command() {
   local EXIT="$?"
+
+  # Shorten $PWD, if it's too long
   if [ $COLUMNS -lt 80 ]; then
     export PROMPT_DIRTRIM=1
   else
     export PROMPT_DIRTRIM=0
   fi
-  export PS1="${HOST} ${DIR} ${GIT_NIX}${NEWLINE}"
 
-  if [[ $(uname) == "OpenBSD" ]]; then
-    local red_lambda='\[\033[0;31m\]>\[\033[00m\] '
-    local green_lambda='\[\033[0;32m\]>\[\033[00m\] '
-  else
-    local red_lambda='\[\033[0;31m\]󱞩\[\033[00m\] '
-    local green_lambda='\[\033[0;32m\]󱞩\[\033[00m\] '
-  fi
+  export PS1="${HOST} ${DIR} ${GIT_NIX}${NEWLINE}"
 
   if [ $EXIT != 0 ]
   then
-    PS1+=$red_lambda
+    PS1+='\[\033[0;31m\]$\[\033[00m\] '
   else
-    PS1+=$green_lambda
+    PS1+='\[\033[0;32m\]$\[\033[00m\] '
   fi
 }
 
