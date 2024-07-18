@@ -14,15 +14,16 @@
 	co = checkout
 	cp = cherry-pick
 	d = diff
+	nuke = clean -df
 	lg = log --oneline --decorate --graph
 	lgp = lg -p
 	pl = pull --rebase
-	plm = pull
-	plm = pull
 	ps = push
 	r = rebase
+	rh = reset HEAD
 	sh = show
-	st = status
+	st = status -s
+	wt = worktree
 [blame]
 	date = relative
 [grep]
