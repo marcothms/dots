@@ -10,9 +10,10 @@ alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -i'
 
-### Git fun
+### fzf fun
 alias gbl='git show $(git ls-files | fzf -e --reverse --bind "enter:become(git blame {1} | fzf -e --ansi --reverse | cut -f 1 -d \" \")")'
 alias gg=': | fzf --reverse --bind "change:reload(git grep {q})" --bind "enter:become($EDITOR {1} +{2})" --delimiter :'
+alias c='cd $(fd --type d | fzf)'
 
 ### Abbreviations
 alias d='docker'
