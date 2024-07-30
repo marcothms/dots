@@ -1,0 +1,146 @@
+### Variables
+    set $mod Mod4
+    floating_modifier $mod normal
+
+### Output configuration (swaymsg -t get_output)
+    output * bg ~/cloud/images/wallpaper/wallpaper.png fill
+    # output eDP-1 scale 2
+
+    # disable laptop when closed
+    set $laptop eDP-1
+    bindswitch --reload --locked lid:on output $laptop disable
+    bindswitch --reload --locked lid:off output $laptop enable
+
+    workspace_layout tabbed
+    smart_borders on
+    # default_border none
+
+    exec swayidle -w \
+             timeout 300 'swaylock -i ~/cloud/images/wallpaper/lock.png -s center -u' \
+             timeout 600 'systemctl suspend' \
+             before-sleep 'swaylock -i ~/cloud/images/wallpaper/lock.png -s center -u'
+
+### Input configuration
+
+input "type:keyboard" {
+    xkb_layout eu
+    xkb_options caps:swapescape
+    repeat_delay 200
+    repeat_rate 100
+}
+
+bindgesture swipe:right workspace prev
+bindgesture swipe:left workspace next
+
+### Key bindings
+
+# System
+    bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
+    bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
+
+    bindsym --locked XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+    bindsym --locked XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- -l 1.2
+    bindsym --locked XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ -l 1.2
+
+    bindsym $mod+Control+BackSpace exec swaylock -i ~/cloud/images/wallpaper/lock.png -s center -u
+    bindsym $mod+Control+Shift+BackSpace exec systemctl suspend
+
+    bindsym $mod+Shift+s exec ~/.config/sway/screenshot -s region
+
+    bindsym $mod+Shift+c reload
+    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+    bindsym $mod+Shift+q kill
+
+# Run applications
+    bindsym $mod+Return exec kitty
+    bindsym $mod+d exec wofi --show drun -I -i -a
+    bindsym $mod+Shift+d exec wofi --show run -i -a
+    bindsym $mod+e exec nautilus
+
+# Moving around
+    set $left h
+    set $down j
+    set $up k
+    set $right l
+    # Move your focus around
+    bindsym $mod+$left focus left
+    bindsym $mod+$down focus down
+    bindsym $mod+$up focus up
+    bindsym $mod+$right focus right
+
+    # Move the focused window with the same, but add Shift
+    bindsym $mod+Shift+$left move left
+    bindsym $mod+Shift+$down move down
+    bindsym $mod+Shift+$up move up
+    bindsym $mod+Shift+$right move right
+
+# Workspaces
+    # Switch to workspace
+    bindsym $mod+1 workspace number 1
+    bindsym $mod+2 workspace number 2
+    bindsym $mod+3 workspace number 3
+    bindsym $mod+4 workspace number 4
+    bindsym $mod+5 workspace number 5
+    bindsym $mod+6 workspace number 6
+    bindsym $mod+7 workspace number 7
+    bindsym $mod+8 workspace number 8
+    bindsym $mod+9 workspace number 9
+    bindsym $mod+0 workspace number 10
+    # Move focused container to workspace
+    bindsym $mod+Shift+1 move container to workspace number 1
+    bindsym $mod+Shift+2 move container to workspace number 2
+    bindsym $mod+Shift+3 move container to workspace number 3
+    bindsym $mod+Shift+4 move container to workspace number 4
+    bindsym $mod+Shift+5 move container to workspace number 5
+    bindsym $mod+Shift+6 move container to workspace number 6
+    bindsym $mod+Shift+7 move container to workspace number 7
+    bindsym $mod+Shift+8 move container to workspace number 8
+    bindsym $mod+Shift+9 move container to workspace number 9
+    bindsym $mod+Shift+0 move container to workspace number 10
+
+# Layout stuff
+    bindsym $mod+f fullscreen
+    bindsym $mod+Shift+space floating toggle
+    bindsym $mod+space focus mode_toggle
+    bindsym $mod+a focus parent
+
+# Scratchpad
+    bindsym $mod+Shift+minus move scratchpad
+    bindsym $mod+minus scratchpad show
+
+# Theming
+font pango: JetBrainsMono Nerd Font Mono 10
+bar {
+    position top
+    mode dock
+    output *
+
+    # status_command while ~/.config/sway/status.sh; do sleep 1; done
+    swaybar_command waybar
+
+    colors {
+        statusline #5c6a72
+        background #fdf6e3
+        inactive_workspace #fdf6e3 #fdf6e3 #5c6a72
+        focused_workspace #8da101 #8da101 #fdf6e3
+    }
+}
+
+client.focused          #A7C080 #A7C080 #2D353B #A7C080   #A7C080
+client.focused_inactive #3D484D #2D353B #859289 #3D484D   #3D484D
+client.unfocused        #3D484D #2D353B #859289 #3D484D   #3D484D
+client.urgent           #E67E80 #E67E80 #2D353B #E67E80   #E67E80
+client.placeholder      #2D353B #2D353B #859289 #2D353B   #2D353B
+client.background       #2D353B
+
+include /etc/sway/config.d/*
+
+# Autostart
+exec --no-startup-id netbird-ui
+exec --no-startup-id nm-applet
+exec --no-startup-id keepassxc
+exec --no-startup-id nextcloud
+
+# SSH
+exec eval $(gnome-keyring-daemon --start)
+exec export SSH_AUTH_SOCK
