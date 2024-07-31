@@ -26,8 +26,9 @@
     "modules-center": [
     ],
     "modules-right": [
+        "tray",
         // "network",
-        "pulseaudio",
+        // "pulseaudio",
         // "memory",
         // "cpu",
         // "temperature",
@@ -35,8 +36,7 @@
         // "custom/keyboard-layout",
         "battery",
         "clock#date",
-        "clock#time",
-        "tray"
+        "clock#time"
     ],
 
 
@@ -51,7 +51,7 @@
             "critical": 15
         },
         // Connected to AC
-        "format": "  {icon}  {capacity}%", // Icon: bolt
+        "format": " {capacity}%", // Icon: bolt
         // Not connected to AC
         // "format-discharging": "{icon}  {capacity}%",
         "format-discharging": "{capacity}%",
@@ -178,7 +178,7 @@
 
     "tray": {
         "icon-size": 15,
-        "spacing": 10
+        "spacing": 20
     }
 
 }

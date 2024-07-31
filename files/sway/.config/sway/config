@@ -13,24 +13,32 @@
 
     workspace_layout tabbed
     smart_borders on
-    # default_border none
 
+    set $lock swaylock -i ~/cloud/images/wallpaper/lock.png -s center -u
     exec swayidle -w \
-             timeout 300 'swaylock -i ~/cloud/images/wallpaper/lock.png -s center -u' \
-             timeout 600 'systemctl suspend' \
-             before-sleep 'swaylock -i ~/cloud/images/wallpaper/lock.png -s center -u'
+            timeout 600 '$lock' \
+            timeout 900 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+            timeout 1200 'systemctl suspend' \
+            before-sleep '$lock'
 
 ### Input configuration
 
 input "type:keyboard" {
     xkb_layout eu
     xkb_options caps:swapescape
-    repeat_delay 200
+    repeat_delay 250
     repeat_rate 100
 }
 
-bindgesture swipe:right workspace prev
-bindgesture swipe:left workspace next
+input "type:pointer" {
+    accel_profile flat
+}
+
+bindgesture swipe:3:right workspace next
+bindgesture swipe:3:left workspace prev
+
+bindgesture swipe:4:right focus right
+bindgesture swipe:4:left focus left
 
 ### Key bindings
 
@@ -42,9 +50,10 @@ bindgesture swipe:left workspace next
     bindsym --locked XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- -l 1.2
     bindsym --locked XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ -l 1.2
 
-    bindsym $mod+Control+BackSpace exec swaylock -i ~/cloud/images/wallpaper/lock.png -s center -u
+    bindsym $mod+Control+BackSpace exec $lock
     bindsym $mod+Control+Shift+BackSpace exec systemctl suspend
 
+    # https://github.com/moverest/sway-interactive-screenshot
     bindsym $mod+Shift+s exec ~/.config/sway/screenshot -s region
 
     bindsym $mod+Shift+c reload
@@ -67,6 +76,9 @@ bindgesture swipe:left workspace next
     bindsym $mod+$down focus down
     bindsym $mod+$up focus up
     bindsym $mod+$right focus right
+
+    bindsym $mod+Tab focus right
+    bindsym $mod+Shift+Tab focus left
 
     # Move the focused window with the same, but add Shift
     bindsym $mod+Shift+$left move left
@@ -102,45 +114,39 @@ bindgesture swipe:left workspace next
     bindsym $mod+f fullscreen
     bindsym $mod+Shift+space floating toggle
     bindsym $mod+space focus mode_toggle
-    bindsym $mod+a focus parent
 
 # Scratchpad
     bindsym $mod+Shift+minus move scratchpad
     bindsym $mod+minus scratchpad show
 
-# Theming
-font pango: JetBrainsMono Nerd Font Mono 10
-bar {
-    position top
-    mode dock
-    output *
+### Theming
 
-    # status_command while ~/.config/sway/status.sh; do sleep 1; done
-    swaybar_command waybar
-
-    colors {
-        statusline #5c6a72
-        background #fdf6e3
-        inactive_workspace #fdf6e3 #fdf6e3 #5c6a72
-        focused_workspace #8da101 #8da101 #fdf6e3
+    font pango: JetBrainsMono Nerd Font Mono 10
+    bar {
+        swaybar_command waybar
     }
-}
 
-client.focused          #A7C080 #A7C080 #2D353B #A7C080   #A7C080
-client.focused_inactive #3D484D #2D353B #859289 #3D484D   #3D484D
-client.unfocused        #3D484D #2D353B #859289 #3D484D   #3D484D
-client.urgent           #E67E80 #E67E80 #2D353B #E67E80   #E67E80
-client.placeholder      #2D353B #2D353B #859289 #2D353B   #2D353B
-client.background       #2D353B
+    client.focused          #A7C080 #A7C080 #2D353B #A7C080   #A7C080
+    client.focused_inactive #3D484D #2D353B #859289 #3D484D   #3D484D
+    client.unfocused        #3D484D #2D353B #859289 #3D484D   #3D484D
+    client.urgent           #E67E80 #E67E80 #2D353B #E67E80   #E67E80
+    client.placeholder      #2D353B #2D353B #859289 #2D353B   #2D353B
+    client.background       #2D353B
 
-include /etc/sway/config.d/*
-
-# Autostart
-exec --no-startup-id netbird-ui
-exec --no-startup-id nm-applet
-exec --no-startup-id keepassxc
-exec --no-startup-id nextcloud
+### Autostart
 
 # SSH
-exec eval $(gnome-keyring-daemon --start)
-exec export SSH_AUTH_SOCK
+    exec eval $(gnome-keyring-daemon --start)
+    # SSH_AUTH_SOCK must also be exported as env separately later
+    exec export SSH_AUTH_SOCK
+
+# Programs
+    exec --no-startup-id netbird-ui
+    exec --no-startup-id nm-applet
+    exec --no-startup-id swaync
+    exec --no-startup-id nextcloud --background
+    exec --no-startup-id pasystray
+    exec --no-startup-id fcitx5
+
+### Sway defaults
+    include /etc/sway/config.d/*
