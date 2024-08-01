@@ -61,6 +61,8 @@
 #clock,
 #cpu,
 #custom-keyboard-layout,
+#custom-weather,
+#custom-power,
 #memory,
 #mode,
 #network,
@@ -68,6 +70,10 @@
 #temperature,
 #tray {
     padding-left: 10px;
+    padding-right: 10px;
+}
+
+#custom-conservation {
     padding-right: 10px;
 }
 

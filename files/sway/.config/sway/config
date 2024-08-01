@@ -14,10 +14,10 @@
     workspace_layout tabbed
     smart_borders on
 
-    set $lock swaylock -i ~/cloud/images/wallpaper/lock.png -s center -u
+    set $lock swaylock -f -c 3D484D
     exec swayidle -w \
             timeout 600 '$lock' \
-            timeout 900 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+            timeout 900 'swaymsg "output * power off"' resume 'swaymsg "output * dpms on"' \
             timeout 1200 'systemctl suspend' \
             before-sleep '$lock'
 
@@ -25,7 +25,7 @@
 
 input "type:keyboard" {
     xkb_layout eu
-    xkb_options caps:swapescape
+    xkb_options caps:escape
     repeat_delay 250
     repeat_rate 100
 }
@@ -53,7 +53,6 @@ bindgesture swipe:4:left focus left
     bindsym $mod+Control+BackSpace exec $lock
     bindsym $mod+Control+Shift+BackSpace exec systemctl suspend
 
-    # https://github.com/moverest/sway-interactive-screenshot
     bindsym $mod+Shift+s exec ~/.config/sway/screenshot -s region
 
     bindsym $mod+Shift+c reload

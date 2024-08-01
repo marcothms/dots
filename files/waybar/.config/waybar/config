@@ -32,9 +32,12 @@
         // "memory",
         // "cpu",
         // "temperature",
+        "custom/weather",
         "backlight",
         // "custom/keyboard-layout",
         "battery",
+        "custom/conservation",
+        "custom/power",
         "clock#date",
         "clock#time"
     ],
@@ -51,10 +54,11 @@
             "critical": 15
         },
         // Connected to AC
-        "format": " {capacity}%", // Icon: bolt
+        // "format": " {capacity}%", // Icon: bolt
+        "format": "⚡ {capacity}%", // Icon: bolt
         // Not connected to AC
         // "format-discharging": "{icon}  {capacity}%",
-        "format-discharging": "{capacity}%",
+        "format-discharging": "🔋 {capacity}%",
         "format-icons": [
             "", // Icon: battery-full
             "", // Icon: battery-three-quarters
@@ -67,15 +71,15 @@
 
     "backlight": {
       "device": "intel_backlight",
-      // "format": "{icon} {percent}%",
-      "format": "{percent}%",
-      "format-icons": ["", ""]
+      "format": "{icon} {percent}%",
+      // "format": "{percent}%",
+      "format-icons": ["🔅", "🔆"]
     },
 
 
     "clock#time": {
         "interval": 1,
-        "format": "{:%H:%M}",
+        "format": "🕒 {:%H:%M}",
         "tooltip": false,
         "on-click": "gnome-clocks"
     },
@@ -83,14 +87,23 @@
     "clock#date": {
       "interval": 10,
       // "format": "  {:%e %b %Y}", // Icon: calendar-alt
-      "format": "{:%e %b %Y}", // Icon: calendar-alt
+      "format": "🗓️ {:%e. %b %Y (%a)}", // Icon: calendar-alt
       "tooltip-format": "{:%e %B %Y}",
       "on-click": "gnome-calendar"
     },
 
+    // https://github.com/bjesus/wttrbar
+    "custom/weather": {
+        "format": "{}°C",
+        "tooltip": true,
+        "interval": 3600,
+        "exec": "wttrbar --location Munich",
+        "return-type": "json"
+    },
+
     "cpu": {
-        "interval": 5,
-        "format": "  {usage}% ({load})", // Icon: microchip
+        "interval": 30,
+        "format": "🧮 {usage}% ({load})", // Icon: microchip
         "states": {
           "warning": 70,
           "critical": 90
@@ -108,8 +121,8 @@
     },
 
     "memory": {
-        "interval": 5,
-        "format": "󰍛  {}%", // Icon: memory
+        "interval": 30,
+        "format": "💾  {used} GiB", // Icon: memory
         "states": {
             "warning": 70,
             "critical": 90
@@ -179,6 +192,17 @@
     "tray": {
         "icon-size": 15,
         "spacing": 20
+    },
+
+    "custom/conservation": {
+        "exec": "~/.config/waybar/conservation.sh",
+        "interval": 10,
+        "on-click": "~/.config/waybar/conservation-toggle.sh"
+    },
+
+    "custom/power": {
+        "exec": "echo 💻 $(cat /sys/firmware/acpi/platform_profile)",
+        "interval": 10,
     }
 
 }
