@@ -5,19 +5,31 @@ alias fixagent='eval $(tmux show-env -s | grep "^SSH_")'
 alias truecolor='curl -s https://raw.githubusercontent.com/JohnMorales/dotfiles/master/colors/24-bit-color.sh | bash'
 alias whatsmyip='curl https://ipinfo.io/ip; echo'
 
+alias mirror='wl-mirror eDP-1'
+
 ### Always ask first when moving files
 alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -i'
 
-### fzf fun
+### fzf
+# basics
 alias f='fzf --reverse'
 alias c='cd $(fd --type d | fzf --reverse)'
 
+# git
 alias gbl='git show $(git ls-files | fzf -e --reverse --bind "enter:become(git blame {1} | fzf -e --ansi --reverse | cut -f 1 -d \" \")")'
-alias gg=': | fzf --reverse --bind "change:reload(git grep {q})" --bind "enter:become($EDITOR {1} +{2})" --delimiter :'
+gg() {
+    git grep --color=always $1 | fzf --reverse --ansi --bind "enter:become($EDITOR {1} +{2})" --delimiter :
+}
+glg() {
+    git log --graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" | fzf --ansi --no-sort --reverse --tiebreak=index --toggle-sort=\` --bind "ctrl-m:execute: echo {} | grep -o '[a-f0-9]\{7\}' | head -1 | xargs -I % sh -c 'git show --color=always % | less -R'";
+}
 
-alias rf=': | fzf --reverse --ansi --bind "change:reload(rg {q} --line-number)" --bind "enter:become($EDITOR {1} +{2})" --delimiter :'
+# ripgrep
+rf() {
+    rg $1 --line-number --color=always | fzf --reverse --ansi --bind "enter:become($EDITOR {1} +{2})" --delimiter :
+}
 
 ### Abbreviations
 alias d='docker'
@@ -31,7 +43,6 @@ alias l='ls --color --hyperlink'
 alias nd="nix develop ."
 alias nssh='SSH_AUTH_SOCK= ssh'
 alias s='kitten ssh'
-alias r='. ranger'
 alias o='xdg-open'  # to change a mime use: `xdg-mime default APPLICATION HANDLE`
 t() {
     tmux new-session -A -s ${1:-dev}
@@ -65,7 +76,8 @@ ocr() {
     ocrmypdf -l deu+eng --output-type pdf $file ${name}.ocr.pdf
 }
 
-# private laptop acpi magic
+### laptop acpi magic
+
 conservation() {
     location='/sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode'
     if [ -z $1 ]; then
