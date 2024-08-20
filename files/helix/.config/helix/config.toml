@@ -19,3 +19,4 @@ display-inlay-hints = true
 [keys.normal]
 "_" = ["extend_line_up", "extend_to_line_bounds"]
 "+" = ["extend_line_down", "extend_to_line_bounds"]
+

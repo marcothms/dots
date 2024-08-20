@@ -150,10 +150,20 @@
     "sway/workspaces": {
         "all-outputs": false,
         "disable-scroll": true,
-        "format": "{icon} {name}",
+        "format": "{icon}",
         "format-icons": {
-            "urgent": "",
-            "focused": "",
+            "1": "一",
+            "2": "二",
+            "3": "三",
+            "4": "四",
+            "5": "五",
+            "6": "六",
+            "7": "七",
+            "8": "八",
+            "9": "九",
+            "10": "十",
+            // "urgent": "",
+            // "focused": "",
             "default": ""
         }
     },
@@ -203,6 +213,7 @@
     "custom/power": {
         "exec": "echo 💻 $(cat /sys/firmware/acpi/platform_profile)",
         "interval": 10,
+        "on-click": "kitty -e 'htop'"
     }
 
 }

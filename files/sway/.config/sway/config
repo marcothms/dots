@@ -17,7 +17,7 @@
     set $lock swaylock -f -c 3D484D
     exec swayidle -w \
             timeout 600 '$lock' \
-            timeout 900 'swaymsg "output * power off"' resume 'swaymsg "output * dpms on"' \
+            timeout 900 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
             timeout 1200 'systemctl suspend' \
             before-sleep '$lock'
 
@@ -61,8 +61,10 @@ bindgesture swipe:4:left focus left
 
 # Run applications
     bindsym $mod+Return exec kitty
-    bindsym $mod+d exec wofi --show drun -I -i -a
-    bindsym $mod+Shift+d exec wofi --show run -i -a
+    #bindsym $mod+d exec wofi --show drun -I -i -a
+    bindsym $mod+d exec tofi-drun | xargs swaymsg exec --
+    #bindsym $mod+Shift+d exec wofi --show run -i -a
+    bindsym $mod+Shift+d exec tofi-run | xargs swaymsg exec --
     bindsym $mod+e exec nautilus
 
 # Moving around
@@ -111,7 +113,7 @@ bindgesture swipe:4:left focus left
 
 # Layout stuff
     bindsym $mod+f fullscreen
-    bindsym $mod+Shift+space floating toggle
+    bindsym $mod+Shift+space floating toggle, border normal 2
     bindsym $mod+space focus mode_toggle
 
 # Scratchpad
