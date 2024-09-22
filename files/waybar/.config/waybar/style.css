@@ -16,8 +16,7 @@
     }
 
     to {
-        color: white;
-        background-color: orange;
+        color: orange;
     }
 }
 
@@ -27,8 +26,7 @@
     }
 
     to {
-        color: white;
-        background-color: red;
+        color: red;
     }
 }
 
@@ -48,10 +46,11 @@
 
 /* The whole bar */
 #waybar {
-    background: #2D353B;
+    /* background: #2D353B; */
+    background: #000000;
     color: white;
     /* font-family: Cantarell, Noto Sans, sans-serif; */
-    font-family: JetBrainsMono Nerd Font Mono;
+    font-family: JetBrainsMono Nerd Font;
     font-size: 12px;
 }
 
@@ -107,7 +106,7 @@
 }
 
 #clock {
-    font-weight: bold;
+    /* font-weight: bold; */
 }
 
 #cpu {
@@ -178,7 +177,7 @@
 }
 
 #window {
-    font-weight: bold;
+    /* font-weight: bold; */
     padding-left: 10px;
 }
 
@@ -186,8 +185,8 @@
     border-top: 2px solid transparent;
     /* To compensate for the top border and still have vertical centering */
     padding-bottom: 2px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
     color: #888888;
 }
 
@@ -200,4 +199,11 @@
 #workspaces button.urgent {
     border-color: #c9545d;
     color: #c9545d;
+}
+
+#workspaces button:hover {
+    box-shadow: none; /* Remove predefined box-shadow */
+    text-shadow: none; /* Remove predefined text-shadow */
+    background: none; /* Remove predefined background color (white) */
+    transition: none; /* Disable predefined animations */
 }

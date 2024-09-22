@@ -3,7 +3,8 @@
     floating_modifier $mod normal
 
 ### Output configuration (swaymsg -t get_output)
-    output * bg ~/cloud/images/wallpaper/wallpaper.png fill
+    # output * bg ~/cloud/images/wallpaper/wallpaper.png fill
+    output * bg ~/downloads/wallpaper.png fill
     # output eDP-1 scale 2
 
     # disable laptop when closed
@@ -11,11 +12,12 @@
     bindswitch --reload --locked lid:on output $laptop disable
     bindswitch --reload --locked lid:off output $laptop enable
 
-    workspace_layout tabbed
-    smart_borders on
+    workspace_layout default
 
-    set $lock swaylock -f -c 3D484D
-    exec swayidle -w \
+    # exec_always --no-startup-id convert -scale 10% -blur 0x2.5 -resize 1000% ~/cloud/images/wallpaper/wallpaper.png ~/cloud/images/wallpaper/lock.png
+    # set $lock swaylock -f -i ~/cloud/images/wallpaper/lock.png
+    set $lock swaylock -f -i ~/cloud/images/wallpaper/win_lock.png -u
+    exec_always pkill swayidle; swayidle -w \
             timeout 600 '$lock' \
             timeout 900 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
             timeout 1200 'systemctl suspend' \
@@ -50,20 +52,20 @@ bindgesture swipe:4:left focus left
     bindsym --locked XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- -l 1.2
     bindsym --locked XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ -l 1.2
 
-    bindsym $mod+Control+BackSpace exec $lock
-    bindsym $mod+Control+Shift+BackSpace exec systemctl suspend
+    bindsym $mod+BackSpace exec $lock
+    bindsym $mod+Control+BackSpace exec systemctl suspend
 
     bindsym $mod+Shift+s exec ~/.config/sway/screenshot -s region
 
-    bindsym $mod+Shift+c reload
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+    bindsym $mod+Ctrl+c reload
+    bindsym $mod+Ctrl+r exec swaymsg output DP-3 mode 2560x1440@143.856Hz
+    bindsym $mod+Ctrl+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+
     bindsym $mod+Shift+q kill
 
 # Run applications
     bindsym $mod+Return exec kitty
-    #bindsym $mod+d exec wofi --show drun -I -i -a
     bindsym $mod+d exec tofi-drun | xargs swaymsg exec --
-    #bindsym $mod+Shift+d exec wofi --show run -i -a
     bindsym $mod+Shift+d exec tofi-run | xargs swaymsg exec --
     bindsym $mod+e exec nautilus
 
@@ -113,16 +115,14 @@ bindgesture swipe:4:left focus left
 
 # Layout stuff
     bindsym $mod+f fullscreen
-    bindsym $mod+Shift+space floating toggle, border normal 2
-    bindsym $mod+space focus mode_toggle
-
-# Scratchpad
-    bindsym $mod+Shift+minus move scratchpad
-    bindsym $mod+minus scratchpad show
+    bindsym $mod+Shift+space floating toggle
 
 ### Theming
 
     font pango: JetBrainsMono Nerd Font Mono 10
+    for_window [title="."] title_format "%app_id"
+    default_border none
+    default_floating_border none
     bar {
         swaybar_command waybar
     }
@@ -137,8 +137,8 @@ bindgesture swipe:4:left focus left
 ### Autostart
 
 # SSH
-    exec eval $(gnome-keyring-daemon --start)
     # SSH_AUTH_SOCK must also be exported as env separately later
+    exec eval $(gnome-keyring-daemon --start)
     exec export SSH_AUTH_SOCK
 
 # Programs

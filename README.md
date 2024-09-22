@@ -24,20 +24,21 @@ $ gsettings set org.gnome.desktop.wm.preferences button-layout ''
 - Keyring provided by GNOME and startet in `sway(1)`
 - `keepassxc(1)` should use `/run/user/1000/keyring/ssh` as SSH Auth Socket
 - Env Vars exported via `systemd` in `files/environment/.config/environment.d/envvars.conf`
+- `%wheel ALL=(ALL) NOPASSWD: /usr/bin/tee /sys/bus/platform/drivers/ideapad_acpi/VPC????\:??/conservation_mode`
 
 ```
 sudo dnf install \
   kitty git vim tmux ripgrep fd-find fzf stow \
   brave \
-  sway waybar wofi \
-  brightnessctl wireplumber pasystray \
+  sway waybar \
+  brightnessctl wireplumber pasystray blueman \
   network-manager network-manager-applet \
   fcitx5 fcitx5-configtool fcitx5-anthy fcitx5-* \
   nextcloud keepassxc
 ```
 
+- application launcher: https://github.com/philj56/tofi
 - notification daemon + popup: https://github.com/ErikReider/SwayNotificationCenter
 - screenshot: https://github.com/moverest/sway-interactive-screenshot (checked in as `files/sway/.config/sway/screenshot`)
-- weather info in bar: https://github.com/bjesus/wttrbar
 - screen mirror for live presentations: https://github.com/Ferdi265/wl-mirror
 - vpn: https://netbird.io/

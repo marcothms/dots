@@ -16,7 +16,7 @@
     "position": "top",
 
     // If height property would be not present, it'd be calculated dynamically
-    "height": 30,
+    "height": 25,
 
     "modules-left": [
         "sway/workspaces",
@@ -26,20 +26,20 @@
     "modules-center": [
     ],
     "modules-right": [
-        "tray",
         // "network",
         // "pulseaudio",
         // "memory",
         // "cpu",
         // "temperature",
-        "custom/weather",
         "backlight",
         // "custom/keyboard-layout",
         "battery",
-        "custom/conservation",
-        "custom/power",
+        // "custom/conservation",
+        // "custom/power",
         "clock#date",
-        "clock#time"
+        "clock#time",
+        "custom/sep",
+        "tray"
     ],
 
 
@@ -54,32 +54,37 @@
             "critical": 15
         },
         // Connected to AC
-        // "format": " {capacity}%", // Icon: bolt
-        "format": "⚡ {capacity}%", // Icon: bolt
+        "format": "{capacity}% 󰂄", // Icon: bolt
+        // "format": "⚡ {capacity}%", // Icon: bolt
+        // "format": "C {capacity}%", // Icon: bolt
         // Not connected to AC
-        // "format-discharging": "{icon}  {capacity}%",
-        "format-discharging": "🔋 {capacity}%",
+        "format-discharging": "{capacity}% {icon}",
+        // "format-discharging": "🔋 {capacity}%",
+        // "format-discharging": "{capacity}%",
         "format-icons": [
-            "", // Icon: battery-full
-            "", // Icon: battery-three-quarters
-            "", // Icon: battery-half
-            "", // Icon: battery-quarter
-            ""  // Icon: battery-empty
+            "󰁺", // Icon: battery-empty
+            "󰁼", // Icon: battery-quarter
+            "󰁾", // Icon: battery-half
+            "󰂁", // Icon: battery-three-quarters
+            "󰁹"  // Icon: battery-full
         ],
-        "tooltip": true
+        "tooltip": true,
+        "on-click": "~/.config/waybar/conservation-toggle.sh"
     },
 
     "backlight": {
-      "device": "intel_backlight",
-      "format": "{icon} {percent}%",
+      "device": "intel_backligt",
+      "format": "{percent} {icon}",
       // "format": "{percent}%",
-      "format-icons": ["🔅", "🔆"]
+      // "format-icons": ["🔅", "🔆"]
+      "format-icons": ["󰃚", "󰃝", "󰃞", "󰃟", "󰃠"]
     },
 
 
     "clock#time": {
         "interval": 1,
-        "format": "🕒 {:%H:%M}",
+        // "format": "🕒 {:%H:%M}",
+        "format": "{:%H:%M}",
         "tooltip": false,
         "on-click": "gnome-clocks"
     },
@@ -87,23 +92,15 @@
     "clock#date": {
       "interval": 10,
       // "format": "  {:%e %b %Y}", // Icon: calendar-alt
-      "format": "🗓️ {:%e. %b %Y (%a)}", // Icon: calendar-alt
+      // "format": "🗓️ {:%e. %b %Y (%a)}", // Icon: calendar-alt
+      "format": "{:%a, %e.%b}", // Icon: calendar-alt
       "tooltip-format": "{:%e %B %Y}",
       "on-click": "gnome-calendar"
     },
 
-    // https://github.com/bjesus/wttrbar
-    "custom/weather": {
-        "format": "{}°C",
-        "tooltip": true,
-        "interval": 3600,
-        "exec": "wttrbar --location Munich",
-        "return-type": "json"
-    },
-
     "cpu": {
         "interval": 30,
-        "format": "🧮 {usage}% ({load})", // Icon: microchip
+        "format": "🧮 {usage}% ({load})", // Icon: microcip
         "states": {
           "warning": 70,
           "critical": 90
@@ -144,13 +141,15 @@
 
     "sway/window": {
         "format": "{}",
-        "max-length": 120
+        "max-length": 100,
+        "icon": true,
+        "icon-size": 18
     },
 
     "sway/workspaces": {
         "all-outputs": false,
-        "disable-scroll": true,
-        "format": "{icon}",
+        "disable-scroll": false,
+        "format": "{name}",
         "format-icons": {
             "1": "一",
             "2": "二",
@@ -200,8 +199,8 @@
     },
 
     "tray": {
-        "icon-size": 15,
-        "spacing": 20
+        "icon-size": 13,
+        "spacing": 15
     },
 
     "custom/conservation": {
@@ -214,6 +213,9 @@
         "exec": "echo 💻 $(cat /sys/firmware/acpi/platform_profile)",
         "interval": 10,
         "on-click": "kitty -e 'htop'"
-    }
+    },
 
+    "custom/sep": {
+        "format": "|",
+    },
 }
