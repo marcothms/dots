@@ -17,6 +17,10 @@
 
     // If height property would be not present, it'd be calculated dynamically
     "height": 25,
+    "margin-left": 6,
+    "margin-right": 6,
+    "margin-top": 6,
+    "margin-bottom": 0,
 
     "modules-left": [
         "sway/workspaces",
@@ -48,7 +52,7 @@
     // -------------------------------------------------------------------------
 
     "battery": {
-        "interval": 10,
+        "interval": 1,
         "states": {
             "warning": 30,
             "critical": 15

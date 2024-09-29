@@ -17,14 +17,15 @@ $ gsettings set org.gnome.desktop.wm.preferences button-layout ''
 ```
 
 
-### Dependencies
+### Dependencies (and quirks)
 
 - Install based on Fedora Workstation with GNOME (makes everything easier)
 - Font: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/JetBrainsMono.zip
-- Keyring provided by GNOME and startet in `sway(1)`
+- Keyring provided by GNOME and started with `sway(1)`
 - `keepassxc(1)` should use `/run/user/1000/keyring/ssh` as SSH Auth Socket
 - Env Vars exported via `systemd` in `files/environment/.config/environment.d/envvars.conf`
 - `%wheel ALL=(ALL) NOPASSWD: /usr/bin/tee /sys/bus/platform/drivers/ideapad_acpi/VPC????\:??/conservation_mode`
+- Brave Flags: `/usr/bin/brave-browser-stable --enable-features=UseOzonePlatform --ozone-platform=wayland --gtk-version=4 --enable-wayland-ime --enable-features=TouchpadOverscrollHistoryNavigation`
 
 ```
 sudo dnf install \
@@ -37,6 +38,7 @@ sudo dnf install \
   nextcloud keepassxc
 ```
 
+- sway fork: https://github.com/WillPower3309/swayfx
 - application launcher: https://github.com/philj56/tofi
 - notification daemon + popup: https://github.com/ErikReider/SwayNotificationCenter
 - screenshot: https://github.com/moverest/sway-interactive-screenshot (checked in as `files/sway/.config/sway/screenshot`)

@@ -46,8 +46,7 @@
 
 /* The whole bar */
 #waybar {
-    /* background: #2D353B; */
-    background: #000000;
+    background: rgba(100, 100, 100, 0.2);
     color: white;
     /* font-family: Cantarell, Noto Sans, sans-serif; */
     font-family: JetBrainsMono Nerd Font;
@@ -182,18 +181,19 @@
 }
 
 #workspaces button {
-    border-top: 2px solid transparent;
+    border-top: 4px solid transparent;
     /* To compensate for the top border and still have vertical centering */
     padding-bottom: 2px;
     padding-left: 5px;
     padding-right: 5px;
-    color: #888888;
+    color: #ffffff;
 }
 
 #workspaces button.focused {
     border-color: #A7C080;
     /* color: white; */
     color: #A7C080;
+    text-shadow: 0 0 2px #000;
 }
 
 #workspaces button.urgent {

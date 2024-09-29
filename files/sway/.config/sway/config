@@ -3,7 +3,7 @@
     floating_modifier $mod normal
 
 ### Output configuration (swaymsg -t get_output)
-    # output * bg ~/cloud/images/wallpaper/wallpaper.png fill
+    # output * bg ~/cloud/images/wallpaper/wallpaper.png fit
     output * bg ~/downloads/wallpaper.png fill
     # output eDP-1 scale 2
 
@@ -113,16 +113,39 @@ bindgesture swipe:4:left focus left
     bindsym $mod+Shift+9 move container to workspace number 9
     bindsym $mod+Shift+0 move container to workspace number 10
 
+    # Scratchpad
+    bindsym $mod+minus move scratchpad
+    bindsym $mod+equal scratchpad show, border pixel 2
+
 # Layout stuff
     bindsym $mod+f fullscreen
-    bindsym $mod+Shift+space floating toggle
+    bindsym $mod+Shift+space floating toggle; \
+        [tiling con_id=__focused__] border pixel 2; \
+        [floating con_id=__focused__] border pixel 2
 
 ### Theming
 
     font pango: JetBrainsMono Nerd Font Mono 10
     for_window [title="."] title_format "%app_id"
-    default_border none
-    default_floating_border none
+
+    hide_edge_borders --i3 smart
+    default_border pixel pixel 2
+    default_floating_border pixel 2
+
+    gaps inner 6
+    smart_gaps off
+
+    # swayfx start
+
+    blur enable
+    shadows enable
+    corner_radius 6
+    layer_effects "waybar" blur enable; shadows enable; corner_radius 6
+    layer_effects "launcher" blur enable; shadows enable
+    layer_effects "wofi" blur enable; shadows enable
+
+    # swayfx end
+    
     bar {
         swaybar_command waybar
     }
