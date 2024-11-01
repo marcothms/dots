@@ -19,13 +19,16 @@ $ gsettings set org.gnome.desktop.wm.preferences button-layout ''
 
 ### Dependencies (and quirks)
 
-- Install based on Fedora Workstation with GNOME (makes everything easier)
+#### General
+- Install based on Fedora Workstation with GNOME
 - Font: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/JetBrainsMono.zip
-- Keyring provided by GNOME and started with `sway(1)`
 - `keepassxc(1)` should use `/run/user/1000/keyring/ssh` as SSH Auth Socket
 - Env Vars exported via `systemd` in `files/environment/.config/environment.d/envvars.conf`
-- `%wheel ALL=(ALL) NOPASSWD: /usr/bin/tee /sys/bus/platform/drivers/ideapad_acpi/VPC????\:??/conservation_mode`
-- Brave Flags: `/usr/bin/brave-browser-stable --enable-features=UseOzonePlatform --ozone-platform=wayland --gtk-version=4 --enable-wayland-ime --enable-features=TouchpadOverscrollHistoryNavigation`
+- Toogle conservation without root: `%wheel ALL=(ALL) NOPASSWD: /usr/bin/tee /sys/bus/platform/drivers/ideapad_acpi/VPC????\:??/conservation_mode`
+- Brave Flags for Wayland: `/usr/bin/brave-browser-stable --enable-features=UseOzonePlatform --ozone-platform=wayland --gtk-version=4 --enable-wayland-ime --enable-features=TouchpadOverscrollHistoryNavigation`
+
+#### Sway
+- Keyring provided by GNOME and started with `sway(1)`
 
 ```
 sudo dnf install \

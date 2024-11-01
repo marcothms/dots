@@ -7,6 +7,11 @@
     output * bg ~/downloads/wallpaper.png fill
     # output eDP-1 scale 2
 
+    # monitor setup at home
+    output 'AOC U34G2G1 0x00000254' mode 3440x1440@99.982Hz position 0,0
+    output 'Acer Technologies XF270HU T78EE0048521' mode 2560x1440@143.856Hz position 440,1440
+    bindsym $mod+p exec wdisplays
+
     # disable laptop when closed
     set $laptop eDP-1
     bindswitch --reload --locked lid:on output $laptop disable
@@ -16,8 +21,8 @@
 
     # exec_always --no-startup-id convert -scale 10% -blur 0x2.5 -resize 1000% ~/cloud/images/wallpaper/wallpaper.png ~/cloud/images/wallpaper/lock.png
     # set $lock swaylock -f -i ~/cloud/images/wallpaper/lock.png
-    set $lock swaylock -f -i ~/cloud/images/wallpaper/win_lock.png -u
-    exec_always pkill swayidle; swayidle -w \
+    set $lock swaylock -f -i ~/cloud/images/wallpaper/win_lock.png -u -s stretch
+    exec swayidle -w \
             timeout 600 '$lock' \
             timeout 900 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
             timeout 1200 'systemctl suspend' \
@@ -56,9 +61,9 @@ bindgesture swipe:4:left focus left
     bindsym $mod+Control+BackSpace exec systemctl suspend
 
     bindsym $mod+Shift+s exec ~/.config/sway/screenshot -s region
+    bindsym $mod+Ctrl+Shift+s exec ~/.config/sway/screenshot -s focused-window
 
     bindsym $mod+Ctrl+c reload
-    bindsym $mod+Ctrl+r exec swaymsg output DP-3 mode 2560x1440@143.856Hz
     bindsym $mod+Ctrl+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
 
     bindsym $mod+Shift+q kill
@@ -89,6 +94,9 @@ bindgesture swipe:4:left focus left
     bindsym $mod+Shift+$up move up
     bindsym $mod+Shift+$right move right
 
+    bindsym $mod+greater move workspace to output right
+    bindsym $mod+less move workspace to output left
+
 # Workspaces
     # Switch to workspace
     bindsym $mod+1 workspace number 1
@@ -115,35 +123,38 @@ bindgesture swipe:4:left focus left
 
     # Scratchpad
     bindsym $mod+minus move scratchpad
-    bindsym $mod+equal scratchpad show, border pixel 2
+    bindsym $mod+equal scratchpad show, border pixel none
 
 # Layout stuff
     bindsym $mod+f fullscreen
     bindsym $mod+Shift+space floating toggle; \
-        [tiling con_id=__focused__] border pixel 2; \
-        [floating con_id=__focused__] border pixel 2
+        [tiling con_id=__focused__] border pixel none; \
+        [floating con_id=__focused__] border pixel none
 
 ### Theming
 
+    # title bar
     font pango: JetBrainsMono Nerd Font Mono 10
     for_window [title="."] title_format "%app_id"
 
+    # border
     hide_edge_borders --i3 smart
-    default_border pixel pixel 2
-    default_floating_border pixel 2
+    default_border pixel none
+    default_floating_border pixel none
 
+    # inactive
+    default_dim_inactive 0.1
+
+    # gaps
     gaps inner 6
     smart_gaps off
 
     # swayfx start
-
     blur enable
     shadows enable
     corner_radius 6
     layer_effects "waybar" blur enable; shadows enable; corner_radius 6
     layer_effects "launcher" blur enable; shadows enable
-    layer_effects "wofi" blur enable; shadows enable
-
     # swayfx end
     
     bar {
@@ -159,18 +170,17 @@ bindgesture swipe:4:left focus left
 
 ### Autostart
 
-# SSH
-    # SSH_AUTH_SOCK must also be exported as env separately later
-    exec eval $(gnome-keyring-daemon --start)
-    exec export SSH_AUTH_SOCK
+# SSH - SSH_AUTH_SOCK must be exported as env
+    exec gnome-keyring-daemon --start
 
 # Programs
-    exec --no-startup-id netbird-ui
-    exec --no-startup-id nm-applet
-    exec --no-startup-id swaync
-    exec --no-startup-id nextcloud --background
-    exec --no-startup-id pasystray
-    exec --no-startup-id fcitx5
+    exec trayscale --hide-window
+    exec nm-applet
+    exec swaync
+    exec nextcloud --background
+    exec pasystray
+    exec fcitx5
+    exec gammastep-indicator -l 48:11.5
 
 ### Sway defaults
     include /etc/sway/config.d/*

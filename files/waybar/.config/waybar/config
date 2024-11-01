@@ -97,7 +97,7 @@
       "interval": 10,
       // "format": "  {:%e %b %Y}", // Icon: calendar-alt
       // "format": "🗓️ {:%e. %b %Y (%a)}", // Icon: calendar-alt
-      "format": "{:%a, %e.%b}", // Icon: calendar-alt
+      "format": "{:%e. %b (%a)}", // Icon: calendar-alt
       "tooltip-format": "{:%e %B %Y}",
       "on-click": "gnome-calendar"
     },
