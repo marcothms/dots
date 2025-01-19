@@ -5,6 +5,8 @@ line-number = "relative"
 cursor-shape.insert = "bar"
 insert-final-newline = false
 rulers = [80, 100]
+# Minimum severity to show a diagnostic after the end of a line
+end-of-line-diagnostics = "hint"
 
 [editor.whitespace.render]
 tab = "all"
@@ -15,6 +17,10 @@ render = true
 
 [editor.lsp]
 display-inlay-hints = true
+
+[editor.inline-diagnostics]
+# Minimum severity to show a diagnostic on the primary cursor's line.
+cursor-line = "error"
 
 [keys.normal]
 "_" = ["extend_line_up", "extend_to_line_bounds"]
