@@ -26,6 +26,16 @@ glg() {
     git log --graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" | fzf --ansi --no-sort --reverse --tiebreak=index --toggle-sort=\` --bind "ctrl-m:execute: echo {} | grep -o '[a-f0-9]\{7\}' | head -1 | xargs -I % sh -c 'git show --color=always % | less -R'";
 }
 
+# nix
+alias nd="nix develop ."
+alias ns="nix-shell"
+alias nu="nix-channel --update"
+alias nt="cp $HOME/.dots/templates/typst.nix . && echo 'Copied typst.nix'"
+
+tw() {
+    typst watch $1 --open
+}
+
 # ripgrep
 rf() {
     rg $1 --line-number --color=always | fzf --reverse --ansi --bind "enter:become($EDITOR {1} +{2})" --delimiter :
@@ -40,7 +50,6 @@ alias dhs='du . -hs'
 alias diff_dir='diff -qr'
 alias g='git'
 alias l='ls --color --hyperlink'
-alias nd="nix develop ."
 alias nssh='SSH_AUTH_SOCK= ssh'
 alias s='kitten ssh'
 alias o='xdg-open'  # to change a mime use: `xdg-mime default APPLICATION HANDLE`
