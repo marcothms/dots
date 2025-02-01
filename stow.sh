@@ -16,7 +16,6 @@ case $i in
     stow -D -v -d files -t $HOME $2
     ;;
     *)
-    echo "Unknown option, exiting."
     echo "Use $0 --stow <folder_name> to deploy configuration"
     echo "Use $0 --unstow <folder_name> to remove configuration"
     exit -1

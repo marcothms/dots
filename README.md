@@ -1,34 +1,36 @@
 # my dotfiles
 
-Everything is managed via `stow(1)`.
+Everything is managed via `stow(1)`:
 
 ```bash
 $ ./stow.sh 
-Unknown option, exiting.
 Use ./stow.sh --stow <folder_name> to deploy configuration
 Use ./stow.sh --unstow <folder_name> to remove configuration
 ```
 
-Remove CSD for browser, etc.:
-```bash
-$ gsettings get org.gnome.desktop.wm.preferences button-layout
-'icon:close'
-$ gsettings set org.gnome.desktop.wm.preferences button-layout ''
-```
-
-
-### Dependencies (and quirks)
-
-#### General
+### Quirks
 - Install based on Fedora Workstation with GNOME
-- Font: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/JetBrainsMono.zip
-- `keepassxc(1)` should use `/run/user/1000/keyring/ssh` as SSH Auth Socket
-- Env Vars exported via `systemd` in `files/environment/.config/environment.d/envvars.conf`
-- Toogle conservation without root: `%wheel ALL=(ALL) NOPASSWD: /usr/bin/tee /sys/bus/platform/drivers/ideapad_acpi/VPC????\:??/conservation_mode`
-- Brave Flags for Wayland: `/usr/bin/brave-browser-stable --enable-features=UseOzonePlatform --ozone-platform=wayland --gtk-version=4 --enable-wayland-ime --enable-features=TouchpadOverscrollHistoryNavigation`
+- Font: [JetBrains Mono](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/JetBrainsMono.zip)
+- Keyboard Layout: EurKey
+- Keepass should use `/run/user/1000/keyring/ssh` as SSH Auth Socket
+- Keyring provided by GNOME and started with sway
+- Environment Vairables exported using systemd in [envvars.conf](files/environment/.config/environment.d/envvars.conf)
+- Lenovo Conservation Mode without root
+  ```bash
+  %wheel ALL=(ALL) NOPASSWD: /usr/bin/tee /sys/bus/platform/drivers/ideapad_acpi/VPC????\:??/conservation_mode
+  ```
+- Brave Flags for Wayland
+  ```bash
+  /usr/bin/brave-browser-stable --enable-features=UseOzonePlatform --ozone-platform=wayland --gtk-version=4 --enable-wayland-ime --enable-features=TouchpadOverscrollHistoryNavigation
+  ```
+- Remove Client Side Decorations
+  ```bash
+  $ gsettings get org.gnome.desktop.wm.preferences button-layout
+  'icon:close'
+  $ gsettings set org.gnome.desktop.wm.preferences button-layout ''
+  ```
 
-#### Sway
-- Keyring provided by GNOME and started with `sway(1)`
+### Software via dnf
 
 ```
 sudo dnf install \
@@ -41,9 +43,10 @@ sudo dnf install \
   nextcloud keepassxc
 ```
 
-- sway fork: https://github.com/WillPower3309/swayfx
-- application launcher: https://github.com/philj56/tofi
-- notification daemon + popup: https://github.com/ErikReider/SwayNotificationCenter
-- screenshot: https://github.com/moverest/sway-interactive-screenshot (checked in as `files/sway/.config/sway/screenshot`)
-- screen mirror for live presentations: https://github.com/Ferdi265/wl-mirror
-- vpn: https://netbird.io/
+### Software via GitHub
+
+- [sway fork - swayfx](https://github.com/WillPower3309/swayfx)
+- [notification daemon + popup - swaync](https://github.com/ErikReider/SwayNotificationCenter)
+- [application launcher - tofi](https://github.com/philj56/tofi)
+- [screenshot tool](https://github.com/moverest/sway-interactive-screenshot) (checked in [here](files/sway/.config/sway/screenshot))
+- [screen mirror for live presentations](https://github.com/Ferdi265/wl-mirror)

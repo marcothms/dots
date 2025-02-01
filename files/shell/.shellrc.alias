@@ -4,8 +4,11 @@ alias cpu='watch -n.1 "grep \"^[c]pu MHz\" /proc/cpuinfo"'
 alias fixagent='eval $(tmux show-env -s | grep "^SSH_")'
 alias truecolor='curl -s https://raw.githubusercontent.com/JohnMorales/dotfiles/master/colors/24-bit-color.sh | bash'
 alias whatsmyip='curl https://ipinfo.io/ip; echo'
-
 alias mirror='wl-mirror eDP-1'
+
+### zfs (just saved commands)
+# zfs send pool/path/to/zvol@snapshot| gzip -c >/mnt/some/location/zvol@20230302.gz
+# gzip -dc /mnt/some/location/zvol@20230302.gz | zfs receive pool/path/to/zvol
 
 ### Always ask first when moving files
 alias cp='cp -i'
