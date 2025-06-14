@@ -1,10 +1,7 @@
 ### System Utility
 alias cdt='mkdir /tmp/$(cat /proc/sys/kernel/random/uuid); cd $_'
-alias cpu='watch -n.1 "grep \"^[c]pu MHz\" /proc/cpuinfo"'
 alias fixagent='eval $(tmux show-env -s | grep "^SSH_")'
 alias truecolor='curl -s https://raw.githubusercontent.com/JohnMorales/dotfiles/master/colors/24-bit-color.sh | bash'
-alias whatsmyip='curl https://ipinfo.io/ip; echo'
-alias mirror='wl-mirror eDP-1'
 
 ### zfs (just saved commands)
 # zfs send pool/path/to/zvol@snapshot| gzip -c >/mnt/some/location/zvol@20230302.gz
@@ -16,56 +13,25 @@ alias mv='mv -i'
 alias rm='rm -i'
 
 ### fzf
-# basics
 alias f='fzf --reverse'
 alias c='cd $(fd --type d | fzf --reverse)'
-
-# git
-alias gbl='git show $(git ls-files | fzf -e --reverse --bind "enter:become(git blame {1} | fzf -e --ansi --reverse | cut -f 1 -d \" \")")'
-gg() {
-    git grep --color=always $1 | fzf --reverse --ansi --bind "enter:become($EDITOR {1} +{2})" --delimiter :
-}
-glg() {
-    git log --graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" | fzf --ansi --no-sort --reverse --tiebreak=index --toggle-sort=\` --bind "ctrl-m:execute: echo {} | grep -o '[a-f0-9]\{7\}' | head -1 | xargs -I % sh -c 'git show --color=always % | less -R'";
-}
+alias blame='git show $(git ls-files | fzf -e --reverse --bind "enter:become(git blame {1} | fzf -e --ansi --reverse | cut -f 1 -d \" \")")'
 
 # nix
 alias nd="nix develop ."
 alias ns="nix-shell"
-alias nu="nix-channel --update"
-alias nt="cp $HOME/.dots/templates/typst.nix . && echo 'Copied typst.nix'"
-
-tw() {
-    typst watch $1 --open
-}
-
-# ripgrep
-rf() {
-    rg $1 --line-number --color=always | fzf --reverse --ansi --bind "enter:become($EDITOR {1} +{2})" --delimiter :
-}
 
 ### Abbreviations
-alias d='docker'
-alias dc='docker compose'
-alias dcr='dc down && dc up -d && dc logs -f'
+alias dcr='docker compose down && docker compose up -d && docker compose logs -f'
 alias dh1='du . -h -d1'
 alias dhs='du . -hs'
-alias diff_dir='diff -qr'
 alias g='git'
-alias l='ls --color --hyperlink'
+alias ls='ls --color --hyperlink'
 alias nssh='SSH_AUTH_SOCK= ssh'
-alias s='kitten ssh'
 alias o='xdg-open'  # to change a mime use: `xdg-mime default APPLICATION HANDLE`
 t() {
     tmux new-session -A -s ${1:-dev}
 }
-
-### nmcli(1)
-alias con='nmcli con'
-alias conup='nmcli con up id'
-alias condown='nmcli con down id'
-alias conscan='nmcli dev wifi'
-alias conedit='nm-connection-editor'
 
 # password hash (sed needed when using in docker-compose)
 pwhash() {
@@ -86,6 +52,13 @@ ocr() {
     fi
     name=${file%%.*}
     ocrmypdf -l deu+eng --output-type pdf $file ${name}.ocr.pdf
+}
+
+# scale down images and remove exif
+downimage() {
+    filename=$1
+    convert -resize 720 $filename $filename
+    exiftool -all= $filename
 }
 
 ### laptop acpi magic
