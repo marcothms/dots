@@ -90,14 +90,14 @@
 ] }
 "ui.popup" = { fg = "grey2", bg = "bg2" }
 "ui.picker.header" = { modifiers = ["bold", "underlined"] }
-"ui.window" = { fg = "bg4", bg = "bg_dim" }
+"ui.window" = { fg = "bg4" }
 "ui.help" = { fg = "fg", bg = "bg2" }
 "ui.text" = "fg"
 "ui.text.directory" = { fg = "green" }
 "ui.text.focus" = "fg"
 "ui.menu" = { fg = "fg", bg = "bg3" }
 "ui.menu.selected" = { fg = "bg0", bg = "green" }
-"ui.virtual.ruler" = { bg = "bg3" }
+"ui.virtual.ruler" = { bg = "bg1" }
 "ui.virtual.jump-label" = { modifiers = ["reversed"] }
 "ui.virtual.whitespace" = { fg = "bg4" }
 "ui.virtual.indent-guide" = { fg = "bg4" }

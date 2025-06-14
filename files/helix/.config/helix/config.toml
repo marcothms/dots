@@ -5,6 +5,7 @@ line-number = "relative"
 cursor-shape.insert = "bar"
 insert-final-newline = false
 rulers = [80, 100]
+color-modes = true
 # Minimum severity to show a diagnostic after the end of a line
 end-of-line-diagnostics = "hint"
 
