@@ -20,6 +20,12 @@ alias blame='git show $(git ls-files | fzf -e --reverse --bind "enter:become(git
 alias nd="nix develop ."
 alias ns="nix-shell"
 
+# https://github.com/loqusion/typix
+alias typix="nix flake init --refresh -t github:loqusion/typix"
+alias twatch="nix run .#watch"
+alias tbuild="nix run .#build"
+alias tlsp="nix-shell -p tinymist"
+
 ### Abbreviations
 alias dcr='docker compose down && docker compose up -d && docker compose logs -f'
 alias dh1='du . -h -d1'
