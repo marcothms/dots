@@ -25,6 +25,7 @@ sudo dnf install \
   kitty tmux \
   git ripgrep fd-find fzf stow \
   firefox \
+  obsidian \
   nextcloud keepassxc tailscale
 ```
 
@@ -43,3 +44,18 @@ sudo dnf install \
 - rounded-window-corners@fxgn (rounded corners of all windows)
 - tiling-assistant@leleat-on-github (2 gaps, tiling state, super+wasd)
 - user-theme@gnome-shell-extensions.gcampax.github.com (legacy apps adw-gtk3, icons papirus)
+
+
+### Nix
+
+```
+$ sh <(curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install) --no-daemon
+$ mkdir -p ~/.config/nix/
+$ echo "experimental-features = nix-command flakes" > ~/.config/nix/nix.conf
+```
+
+### Rust
+
+```
+$ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+```

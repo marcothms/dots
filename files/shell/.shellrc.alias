@@ -13,7 +13,6 @@ alias mv='mv -i'
 alias rm='rm -i'
 
 ### fzf
-alias f='fzf --reverse'
 alias c='cd $(fd --type d | fzf --reverse)'
 alias blame='git show $(git ls-files | fzf -e --reverse --bind "enter:become(git blame {1} | fzf -e --ansi --reverse | cut -f 1 -d \" \")")'
 
@@ -59,6 +58,14 @@ downimage() {
     filename=$1
     convert -resize 720 $filename $filename
     exiftool -all= $filename
+}
+
+setgnomebuttons() {
+    gsettings set org.gnome.desktop.wm.preferences button-layout 'icon:minimize,close'
+}
+
+removegnomebuttons() {
+    gsettings set org.gnome.desktop.wm.preferences button-layout ''
 }
 
 ### laptop acpi magic
