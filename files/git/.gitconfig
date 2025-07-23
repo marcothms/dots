@@ -11,6 +11,7 @@
 	ca = commit -v --amend
 	co = checkout
 	cp = cherry-pick
+	d = diff
 	nuke = clean -df
 	lg = log --oneline --decorate --graph
 	pl = pull --rebase
