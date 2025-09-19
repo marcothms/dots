@@ -29,7 +29,7 @@ sudo dnf install \
   nextcloud keepassxc tailscale
 ```
 
-[Helix](https://github.com/helix-editor/helix/releases)
+- [Helix](https://github.com/helix-editor/helix/releases)
 
 
 ### Extensions
@@ -42,7 +42,7 @@ sudo dnf install \
 - ideapad@laurento.frittella (lenovo conservation mode)
 - light-style@gnome-shell-extensions.gcampax.github.com (everything light mode)
 - rounded-window-corners@fxgn (rounded corners of all windows)
-- tiling-assistant@leleat-on-github (2 gaps, tiling state, super+wasd)
+- tiling-assistant@leleat-on-github (4 gaps, tiling state, super+wasd)
 - user-theme@gnome-shell-extensions.gcampax.github.com (legacy apps adw-gtk3, icons papirus)
 
 
