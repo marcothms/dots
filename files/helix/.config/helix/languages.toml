@@ -2,9 +2,6 @@
 name = "bibtex"
 auto-format = false
 
-[language-server.typst-lsp.config]
-exportPdf = "never"
-
 [[language]]
 name = "c"
 indent = { tab-width = 8, unit = "    " }

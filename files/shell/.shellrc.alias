@@ -26,6 +26,8 @@ alias twatch="nix run .#watch"
 alias tbuild="nix run .#build"
 alias tlsp="nix-shell -p tinymist"
 
+alias nlatex="nix-shell -p texlive.combined.scheme-full"
+
 ### Abbreviations
 alias dcr='docker compose down && docker compose up -d && docker compose logs -f'
 alias dh1='du . -h -d1'
