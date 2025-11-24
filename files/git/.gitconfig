@@ -1,6 +1,6 @@
 [user]
 	name = Marco Thomas
-	email = github@marcothms.de
+	email = git@marcothms.de
 [includeIf "gitdir:~/dev/lrz-gitlab/**"]
 	path = "~/dev/lrz-gitlab/.gitconfig"
 [alias]

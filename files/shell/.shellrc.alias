@@ -19,6 +19,7 @@ alias blame='git show $(git ls-files | fzf -e --reverse --bind "enter:become(git
 # nix
 alias nd="nix develop ."
 alias ns="nix-shell"
+alias nupdate="nix-channel --update"
 
 # https://github.com/loqusion/typix
 alias typix="nix flake init --refresh -t github:loqusion/typix"
