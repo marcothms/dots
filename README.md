@@ -9,7 +9,7 @@ Use ./stow.sh --unstow <folder_name> to remove configuration
 ```
 
 ### Quirks
-- Install based on Fedora Workstation with GNOME
+- Install based on Ubuntu Desktop
 - Font: [JetBrains Mono](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/JetBrainsMono.zip)
 - Keyboard Layout: EurKey
 - Environment Vairables exported using systemd in [envvars.conf](files/environment/.config/environment.d/envvars.conf)
@@ -21,12 +21,11 @@ Use ./stow.sh --unstow <folder_name> to remove configuration
 ### Software
 
 ```
-sudo dnf install \
+sudo apt install \
   kitty tmux \
   git ripgrep fd-find fzf stow \
-  firefox \
   obsidian \
-  nextcloud keepassxc tailscale
+  nextcloud keepassxc
 ```
 
 - [Helix](https://github.com/helix-editor/helix/releases)
