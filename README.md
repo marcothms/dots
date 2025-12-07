@@ -20,6 +20,11 @@ Use ./stow.sh --unstow <folder_name> to remove configuration
   ```
 - Switch workspaces: `for i in {1..9}; do gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-$i "['<Super>$i']";done`
 - Don't open pinned apps: `for i in {1..9}; do gsettings set org.gnome.shell.keybindings switch-to-application-$i "[]";done`
+- https://github.com/fzwoch/obs-vaapi
+  - mkv, ffmpeg vaapi av1, ffmpeg aac
+  - main, auto, vbr, 10.000 - 30.000, 0s
+  - native res, no canvas scaling
+- kdenlive proxy: x264-vaapi-scale
 
 ## Software
 
@@ -74,15 +79,17 @@ sudo snap install \
 
 ### Custom
 - blur-my-shell@aunetx (blur panel and background in overview, rest disabled)
-- caffeine@patapon.info (don't sleep on fullscreen)
-- compiz-alike-magic-lamp-effect@hermes83.github.com (minimize animation)
+- caffeine@patapon.info
+- compiz-alike-magic-lamp-effect@hermes83.github.com
 - gnome-ui-tune@itstime.tech (desktop thumbnails scale 300%, show search)
-- gsconnect@andyholmes.github.io (connect android for file share)
-- ideapad@laurento.frittella (lenovo conservation mode)
-- light-style@gnome-shell-extensions.gcampax.github.com (everything light mode)
+- gsconnect@andyholmes.github.io
+- ideapad@laurento.frittella
 - rounded-window-corners@fxgn (rounded corners of all windows)
+- rounded-corners (12px)
 - tilingshell@ferrarodomenico.com (4 inner, 0 outer, super+wasd, span all super+f, center super+c, cycle super+tab)
 - user-theme@gnome-shell-extensions.gcampax.github.com (legacy apps adw-gtk3, icons papirus)
+- quick-settings-audio-panel
+- quicksettings-audio-devices-hider (in the main panel)
 
 ### Pre-installed
 - disable desktop icons
