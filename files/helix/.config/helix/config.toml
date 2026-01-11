@@ -4,25 +4,21 @@ theme = "everforest_light_modded"
 line-number = "relative"
 cursor-shape.insert = "bar"
 insert-final-newline = false
-rulers = [80, 100]
+# rulers = [80, 100]
 true-color = true
-
-# Minimum severity to show a diagnostic after the end of a line
-end-of-line-diagnostics = "hint"
 
 [editor.whitespace.render]
 tab = "all"
-space = "all"
+# space = "all"
 
 [editor.indent-guides]
 render = true
 
+[editor.soft-wrap]
+wrap-at-text-width = true
+
 [editor.lsp]
 display-inlay-hints = true
-
-[editor.inline-diagnostics]
-# Minimum severity to show a diagnostic on the primary cursor's line.
-cursor-line = "error"
 
 [keys.normal]
 "_" = ["extend_line_up", "extend_to_line_bounds"]
@@ -30,3 +26,7 @@ cursor-line = "error"
 
 [keys.normal.g]
 "b" = ":echo git show %sh{git blame -L %{cursor_line},+1 %{buffer_name} | awk '{print $1}'}"
+
+[keys.normal.z]
+s = ":set soft-wrap.enable true"
+S = ":set soft-wrap.enable false"

@@ -23,8 +23,8 @@ alias nupdate="nix-channel --update"
 
 # https://github.com/loqusion/typix
 alias typix="nix flake init --refresh -t github:loqusion/typix"
-alias twatch="nix run .#watch"
-alias tbuild="nix run .#build"
+alias twatch="typst watch"
+alias tbuild="tpst build"
 alias tlsp="nix-shell -p tinymist"
 
 alias nlatex="nix-shell -p texlive.combined.scheme-full"
@@ -38,7 +38,7 @@ alias ls='ls --color --hyperlink'
 alias nssh='SSH_AUTH_SOCK= ssh'
 alias o='xdg-open'  # to change a mime use: `xdg-mime default APPLICATION HANDLE`
 t() {
-    tmux new-session -A -s ${1:-dev}
+    tmux new-session -A -s ${1:-tmux}
 }
 
 # password hash (sed needed when using in docker-compose)
