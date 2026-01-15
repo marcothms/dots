@@ -10,7 +10,7 @@ Use ./stow.sh --unstow <folder_name> to remove configuration
 
 ## Quirks
 - Install based on Ubuntu Desktop
-- Font: [JetBrains Mono](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/JetBrainsMono.zip)
+- Font: [BlexMono Nerd Font](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/IBMPlexMono.zip)
 - Keyboard Layout: EurKey (enable extended in gnome-tweaks)
 - Environment Vairables exported using systemd in [envvars.conf](files/environment/.config/environment.d/envvars.conf)
 - LibreWolf from flatpak needs devices=all to read yubikeys
