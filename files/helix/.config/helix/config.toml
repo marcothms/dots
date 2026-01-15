@@ -13,6 +13,7 @@ tab = "all"
 
 [editor.indent-guides]
 render = true
+character = "⸽"
 
 [editor.soft-wrap]
 wrap-at-text-width = true
