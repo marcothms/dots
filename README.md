@@ -50,8 +50,6 @@ flatpak install \
   com.github.tchx84.Flatseal \
   com.mastermindzh.tidal-hifi \
   dev.vencord.Vesktop \
-  io.github.ungoogled_software.ungoogled_chromium \
-  io.gitlab.librewolf-community \
   org.prismlauncher.PrismLauncher
 ```
 
@@ -60,17 +58,25 @@ sudo snap install \
   zotero-snap \
   proton-mail \
   obsidian \
-  codium
+  codium \
+  steam
+```
+
+### Custom config
+
+```
+sudo snap connect steam:audio-record :audio-record
 ```
 
 ### Manual
 
 - [Helix](https://github.com/helix-editor/helix/releases)
 - [Signal](https://signal.org/download/linux/)
-- Rust: `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`
-- Nix:
+- [Brave](https://brave.com/linux/)
+- [Rust](https://rustup.rs/)
+- [Nix](https://nixos.org/download/) (single-user installation)
   ```
-  $ sh <(curl --proto '=https' --tlsv1.2 -L https://nixos.org/nix/install) --no-daemon
+  # additionally, enable flakes
   $ mkdir -p ~/.config/nix/
   $ echo "experimental-features = nix-command flakes" > ~/.config/nix/nix.conf
   ```
@@ -78,20 +84,16 @@ sudo snap install \
 ## Extensions
 
 ### Custom
-- blur-my-shell@aunetx (blur panel and background in overview, rest disabled)
 - caffeine@patapon.info
-- compiz-alike-magic-lamp-effect@hermes83.github.com
-- gnome-ui-tune@itstime.tech (desktop thumbnails scale 300%, show search)
 - gsconnect@andyholmes.github.io
-- ideapad@laurento.frittella
-- rounded-window-corners@fxgn (rounded corners of all windows)
-- rounded-corners (12px)
-- tilingshell@ferrarodomenico.com (4 inner, 0 outer, super+wasd, span all super+f, center super+c, cycle super+tab)
+- rounded-window-corners@fxgn (12px)
+- tilingshell@ferrarodomenico.com (disable snap assistant, 4 inner, 0 outer, super+wasd, span all super+f, center super+c, cycle super+tab)
 - user-theme@gnome-shell-extensions.gcampax.github.com (legacy apps adw-gtk3, icons papirus)
 - quick-settings-audio-panel
-- quicksettings-audio-devices-hider (in the main panel)
+- quicksettings-audio-devices-hider (hide unused devices)
 
 ### Pre-installed
 - disable desktop icons
 - disable tiling-assistant
-- dock (bottom, no panel, disable keyshortcuts)
+- disable dock
+- ubuntu-appindicators (disable x11 legacy)
