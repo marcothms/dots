@@ -25,6 +25,9 @@ Use ./stow.sh --unstow <folder_name> to remove configuration
   - main, auto, vbr, 10.000 - 30.000, 0s
   - native res, no canvas scaling
 - kdenlive proxy: x264-vaapi-scale
+- allow microphone in steam: `sudo snap connect steam:audio-record :audio-record`
+- gamemode configuration:
+  - renice=10
 
 ## Software
 
@@ -41,7 +44,8 @@ sudo apt install \
 sudo apt install \
   pympress \
   gnome-tweaks \
-  gimp darktable obs-studio kdenlive
+  gimp darktable obs-studio kdenlive \
+  gamemode
 ```
 
 ```
@@ -50,6 +54,7 @@ flatpak install \
   com.github.tchx84.Flatseal \
   com.mastermindzh.tidal-hifi \
   dev.vencord.Vesktop \
+  md.obsidian.Obsidian \
   org.prismlauncher.PrismLauncher
 ```
 
@@ -57,15 +62,8 @@ flatpak install \
 sudo snap install \
   zotero-snap \
   proton-mail \
-  obsidian \
   codium \
   steam
-```
-
-### Custom config
-
-```
-sudo snap connect steam:audio-record :audio-record
 ```
 
 ### Manual
@@ -80,6 +78,7 @@ sudo snap connect steam:audio-record :audio-record
   $ mkdir -p ~/.config/nix/
   $ echo "experimental-features = nix-command flakes" > ~/.config/nix/nix.conf
   ```
+- [woverlay](https://codeberg.org/rtx/woverlay)
 
 ## Extensions
 
@@ -91,6 +90,7 @@ sudo snap connect steam:audio-record :audio-record
 - user-theme@gnome-shell-extensions.gcampax.github.com (legacy apps adw-gtk3, icons papirus)
 - quick-settings-audio-panel
 - quicksettings-audio-devices-hider (hide unused devices)
+- gamemodeshellextensions@trsnaqe.com
 
 ### Pre-installed
 - disable desktop icons
