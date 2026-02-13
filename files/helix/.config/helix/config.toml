@@ -6,6 +6,7 @@ cursor-shape.insert = "bar"
 insert-final-newline = false
 # rulers = [80, 100]
 true-color = true
+text-width = 100
 
 [editor.whitespace.render]
 tab = "all"
@@ -31,3 +32,4 @@ display-inlay-hints = true
 [keys.normal.z]
 s = ":set soft-wrap.enable true"
 S = ":set soft-wrap.enable false"
+r = ":reflow"
