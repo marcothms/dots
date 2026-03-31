@@ -178,29 +178,26 @@ keybinds clear-defaults=true {
     shared_except "locked" {
         bind "Alt p" { TogglePaneInGroup; }
     }
-    shared_except "locked" "entersearch" "renametab" "renamepane" "move" "prompt" "tmux" {
+    shared_except "locked" "entersearch" "renametab" "renamepane" "move" "prompt" {
         bind "Alt Shift m" { SwitchToMode "move"; }
     }
-    shared_except "locked" "entersearch" "renametab" "renamepane" "prompt" "tmux" {
+    shared_except "locked" "entersearch" "renametab" "renamepane" "prompt" {
         bind "Alt Shift g" { SwitchToMode "locked"; }
         bind "Alt Shift q" { Quit; }
     }
-    shared_except "locked" "entersearch" "renametab" "renamepane" "session" "prompt" "tmux" {
+    shared_except "locked" "entersearch" "renametab" "renamepane" "session" "prompt" {
         bind "Alt Shift o" { SwitchToMode "session"; }
     }
-    shared_except "locked" "scroll" "search" "tmux" {
-        bind "Ctrl b" { SwitchToMode "tmux"; }
-    }
-    shared_except "locked" "scroll" "entersearch" "renametab" "renamepane" "prompt" "tmux" {
+    shared_except "locked" "scroll" "entersearch" "renametab" "renamepane" "prompt" {
         bind "Alt Shift s" { SwitchToMode "scroll"; }
     }
-    shared_except "locked" "tab" "entersearch" "renametab" "renamepane" "prompt" "tmux" {
+    shared_except "locked" "tab" "entersearch" "renametab" "renamepane" "prompt" {
         bind "Alt Shift t" { SwitchToMode "tab"; }
     }
-    shared_except "locked" "pane" "entersearch" "renametab" "renamepane" "prompt" "tmux" {
+    shared_except "locked" "pane" "entersearch" "renametab" "renamepane" "prompt" {
         bind "Alt Shift p" { SwitchToMode "pane"; }
     }
-    shared_except "locked" "resize" "entersearch" "renametab" "renamepane" "prompt" "tmux" {
+    shared_except "locked" "resize" "entersearch" "renametab" "renamepane" "prompt" {
         bind "Alt Shift r" { SwitchToMode "resize"; }
     }
     shared_except "normal" "locked" "entersearch" {
@@ -209,7 +206,7 @@ keybinds clear-defaults=true {
     shared_except "normal" "locked" "entersearch" "renametab" "renamepane" {
         bind "esc" { SwitchToMode "normal"; }
     }
-    shared_among "pane" "tmux" {
+    shared_among "pane" {
         bind "x" { CloseFocus; SwitchToMode "normal"; }
     }
     shared_among "scroll" "search" {
@@ -234,7 +231,7 @@ keybinds clear-defaults=true {
         bind "esc" { SwitchToMode "scroll"; }
         bind "enter" { SwitchToMode "search"; }
     }
-    shared_among "entersearch" "renametab" "renamepane" "prompt" "tmux" {
+    shared_among "entersearch" "renametab" "renamepane" "prompt" {
         bind "Ctrl g" { SwitchToMode "locked"; }
         bind "Ctrl m" { SwitchToMode "move"; }
         bind "Ctrl r" { SwitchToMode "resize"; }
@@ -254,29 +251,8 @@ keybinds clear-defaults=true {
     renamepane {
         bind "esc" { UndoRenamePane; SwitchToMode "pane"; }
     }
-    shared_among "session" "tmux" {
+    shared_among "session" {
         bind "d" { Detach; }
-    }
-    tmux {
-        bind "left" { MoveFocus "left"; SwitchToMode "normal"; }
-        bind "down" { MoveFocus "down"; SwitchToMode "normal"; }
-        bind "up" { MoveFocus "up"; SwitchToMode "normal"; }
-        bind "right" { MoveFocus "right"; SwitchToMode "normal"; }
-        bind "space" { NextSwapLayout; }
-        bind "\"" { NewPane "down"; SwitchToMode "normal"; }
-        bind "%" { NewPane "right"; SwitchToMode "normal"; }
-        bind "," { SwitchToMode "renametab"; }
-        bind "[" { SwitchToMode "scroll"; }
-        bind "Ctrl b" { Write 2; SwitchToMode "normal"; }
-        bind "c" { NewTab; SwitchToMode "normal"; }
-        bind "h" { MoveFocus "left"; SwitchToMode "normal"; }
-        bind "j" { MoveFocus "down"; SwitchToMode "normal"; }
-        bind "k" { MoveFocus "up"; SwitchToMode "normal"; }
-        bind "l" { MoveFocus "right"; SwitchToMode "normal"; }
-        bind "n" { GoToNextTab; SwitchToMode "normal"; }
-        bind "o" { FocusNextPane; }
-        bind "p" { GoToPreviousTab; SwitchToMode "normal"; }
-        bind "z" { ToggleFocusFullscreen; SwitchToMode "normal"; }
     }
 }
 
@@ -345,7 +321,7 @@ theme "everforest-light"
 // The name of the default layout to load on startup
 // Default: "default"
 // 
-// default_layout "compact"
+default_layout "compact"
  
 // The folder in which Zellij will look for layouts
 // (Requires restart)
@@ -547,7 +523,7 @@ theme "everforest-light"
 // Whether to show tips on startup
 // Default: true
 // 
-// show_startup_tips false
+show_startup_tips false
  
 // Whether to show release notes on first version run
 // Default: true
