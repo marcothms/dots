@@ -41,7 +41,7 @@ t() {
     tmux new-session -A -s ${1:-tmux}
 }
 z() {
-    zellij a ${1:-dev} 2> /dev/null || zellij -s ${1:-dev}
+    zellij attach ${1:-dev} 2> /dev/null || zellij -s ${1:-dev}
 }
 
 # password hash (sed needed when using in docker-compose)

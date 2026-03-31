@@ -28,13 +28,14 @@ Use ./stow.sh --unstow <folder_name> to remove configuration
 - allow microphone in steam: `sudo snap connect steam:audio-record :audio-record`
 - gamemode configuration:
   - renice=10
+- diff for .ohmyzsh via patch files
 
 ## Software
 
 ### Basics
 ```
 sudo apt install \
-  kitty tmux \
+  kitty tmux zsh \
   git ripgrep fd-find fzf stow
 ```
 
@@ -66,6 +67,10 @@ sudo snap install \
   steam
 ```
 
+```
+cargo install --locked zellij
+```
+
 ### Manual
 
 - [Helix](https://github.com/helix-editor/helix/releases)
@@ -78,7 +83,7 @@ sudo snap install \
   $ mkdir -p ~/.config/nix/
   $ echo "experimental-features = nix-command flakes" > ~/.config/nix/nix.conf
   ```
-- [woverlay](https://codeberg.org/rtx/woverlay)
+- [ohmyzsh](https://ohmyz.sh/)
 
 ## Extensions
 
