@@ -29,7 +29,12 @@ Use ./stow.sh --unstow <folder_name> to remove configuration
 - gamemode configuration:
   - renice=10
 - diff for .ohmyzsh via patch files
-
+- ssh-agent:
+  - ohmyzsh patch for agent location
+  - `mv $HOME/.dots/remove-ssh.service ~/.config/systemd/user/remove-ssh.service`
+  - `systemctl --user start remove-ssh`
+  - `systemctl --user enable remove-ssh`
+  
 ## Software
 
 ### Basics
