@@ -12,10 +12,11 @@
 	co = checkout
 	cp = cherry-pick
 	d = diff
-	nuke = clean -df
 	lg = log --oneline --decorate --graph
+	nuke = clean -df
 	pl = pull --rebase
 	ps = push
+	r = rebase -i
 	sh = show
 	st = status -s
 	wt = worktree
