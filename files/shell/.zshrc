@@ -1,6 +1,6 @@
 export ZSH="$HOME/.oh-my-zsh"
 
-ZSH_THEME="robbyrussell"
+ZSH_THEME="afowler"
 
 # Uncomment the following line if pasting URLs and other text is messed up.
 # DISABLE_MAGIC_FUNCTIONS="true"
@@ -22,6 +22,8 @@ zstyle :omz:plugins:ssh-agent helper sshaskpass
 
 bindkey ^F forward-word
 bindkey ^B backward-word
+
+setopt globdots
 
 source $ZSH/oh-my-zsh.sh
 
