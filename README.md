@@ -28,12 +28,9 @@ Use ./stow.sh --unstow <folder_name> to remove configuration
 - allow microphone in steam: `sudo snap connect steam:audio-record :audio-record`
 - gamemode configuration:
   - renice=10
-- diff for .ohmyzsh via patch files
 - ssh-agent:
-  - ohmyzsh patch for agent location
-  - `mv $HOME/.dots/remove-ssh.service ~/.config/systemd/user/remove-ssh.service`
-  - `systemctl --user start remove-ssh`
-  - `systemctl --user enable remove-ssh`
+  - agent-location: `cd $HOME/.oh-my-zsh/ && git apply $HOME/.dots/ssh-agent-location.patch`
+  - remove keys on lock: `ln -sSf $HOME/.dots/remove-ssh.service $HOME/.config/systemd/user/remove-ssh.service && systemctl --user start remove-ssh && systemctl --user enable remove-ssh` 
   
 ## Software
 
@@ -44,7 +41,15 @@ sudo apt install \
   git ripgrep fd-find fzf stow
 ```
 
+```
+git clone https://github.com/ohmyzsh/ohmyzsh/ $HOME/.oh-my-zsh
+```
+
 ### Extended
+
+```
+cargo install --locked zellij
+```
 
 ```
 sudo apt install \
@@ -72,10 +77,6 @@ sudo snap install \
   steam
 ```
 
-```
-cargo install --locked zellij
-```
-
 ### Manual
 
 - [Helix](https://github.com/helix-editor/helix/releases)
@@ -88,7 +89,6 @@ cargo install --locked zellij
   $ mkdir -p ~/.config/nix/
   $ echo "experimental-features = nix-command flakes" > ~/.config/nix/nix.conf
   ```
-- [ohmyzsh](https://ohmyz.sh/)
 
 ## Extensions
 
