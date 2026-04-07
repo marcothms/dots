@@ -1,0 +1,33 @@
+diff --git a/lib/git.zsh b/lib/git.zsh
+index 8d38f326..32c55ead 100644
+--- a/lib/git.zsh
++++ b/lib/git.zsh
+@@ -36,7 +36,13 @@ function _omz_git_prompt_info() {
+     && upstream=" -> ${upstream}"
+   fi
+ 
+-  echo "${ZSH_THEME_GIT_PROMPT_PREFIX}${ref:gs/%/%%}${upstream:gs/%/%%}$(parse_git_dirty)${ZSH_THEME_GIT_PROMPT_SUFFIX}"
++  local is_nix
++  if $(echo $PATH | grep "/nix/store" > /dev/null 2>&1); then
++    is_nix="nix@"
++  fi
++
++
++  echo "${ZSH_THEME_GIT_PROMPT_PREFIX}${is_nix}${ref:gs/%/%%}${upstream:gs/%/%%}$(parse_git_dirty)${ZSH_THEME_GIT_PROMPT_SUFFIX}"
+ }
+ 
+ function _omz_git_prompt_status() {
+diff --git a/themes/afowler.zsh-theme b/themes/afowler.zsh-theme
+index f6d3ef82..c1e59b4f 100644
+--- a/themes/afowler.zsh-theme
++++ b/themes/afowler.zsh-theme
+@@ -1,7 +1,7 @@
+-PROMPT='%m %B%F{blue}:: %b%F{green}%3~ $(hg_prompt_info)$(git_prompt_info)%B%(!.%F{red}.%F{blue})»%f%b '
++PROMPT='%b%F{yellow}%m %B%F{black}:: %b%F{blue}%3~ $(hg_prompt_info)$(git_prompt_info)%B%(!.%F{red}.%F{black})»%f%b '
+ RPS1='%(?..%F{red}%? ↵%f)'
+ 
+-ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[yellow]%}‹"
++ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[red]%}‹"
+ ZSH_THEME_GIT_PROMPT_SUFFIX="› %{$reset_color%}"
+ 
+ ZSH_THEME_HG_PROMPT_PREFIX="%{$fg[magenta]%}hg:‹%{$fg[yellow]%}"

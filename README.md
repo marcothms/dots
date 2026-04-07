@@ -42,7 +42,7 @@ sudo apt install \
 ```
 
 ```
-git clone https://github.com/ohmyzsh/ohmyzsh/ $HOME/.oh-my-zsh
+git clone https://github.com/ohmyzsh/ohmyzsh/ $HOME/.oh-my-zsh && cd $HOME/.oh-my-zsh && git apply $HOME/.dots/prompt.patch
 ```
 
 ### Extended
