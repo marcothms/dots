@@ -10,7 +10,7 @@ Use ./stow.sh --unstow <folder_name> to remove configuration
 
 ## Quirks
 - Install based on Ubuntu Desktop
-- Font: [BlexMono Nerd Font](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/IBMPlexMono.zip)
+- Font: [Iosevka Nerd Font](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/Iosevka.tar.xz)
 - Keyboard Layout: EurKey (enable extended in gnome-tweaks)
 - Environment Vairables exported using systemd in [envvars.conf](files/environment/.config/environment.d/envvars.conf)
 - LibreWolf from flatpak needs devices=all to read yubikeys
@@ -101,6 +101,8 @@ sudo snap install \
 - quick-settings-audio-panel
 - quicksettings-audio-devices-hider (hide unused devices)
 - gamemodeshellextensions@trsnaqe.com
+- status-area-horizontal-spacing@mathematical.coffee.gmail.com
+- blur-my-shell@aunetx (custom panel, slightly darker with custom pipeline)
 
 ### Pre-installed
 - disable desktop icons
