@@ -18,12 +18,12 @@ git_branch() {
 
 nix_env() {
   if $(echo $PATH | grep "/nix/store" > /dev/null 2>&1); then
-    echo "(nix)"
+    echo "nix@"
   fi
 }
 
 HOST="\[\033[0;33m\]\h\[\033[m\]"
-GIT_NIX="\[\033[0;31m\]\$(git_branch)\$(nix_env)\[\033[m\]"
+GIT_NIX="\[\033[0;31m\]\$(nix_env)\$(git_branch)\[\033[m\]"
 DIR="\[\033[0;34m\]\w\[\033[m\]"
 NEWLINE=$'\n'
 
@@ -38,13 +38,13 @@ __prompt_command() {
     export PROMPT_DIRTRIM=0
   fi
 
-  export PS1="${HOST} ${DIR} ${GIT_NIX}${NEWLINE}"
+  export PS1="${HOST} :: ${DIR} ${GIT_NIX}"
 
   if [ $EXIT != 0 ]
   then
-    PS1+='\[\033[0;31m\]$\[\033[00m\] '
+    PS1+='\[\033[0;31m\]>\[\033[00m\] '
   else
-    PS1+='\[\033[0;32m\]$\[\033[00m\] '
+    PS1+='> '
   fi
 }
 
