@@ -4,7 +4,7 @@ Description=Remove SSH keys on lock
 [Service]
 Type=simple
 Environment=SSH_AUTH_SOCK=/tmp/agent.sock
-ExecStart=%h/.dots/remove-ssh.bash
+ExecStart=%h/.dots/scripts/remove-ssh.bash
 
 [Install]
 WantedBy=default.target
