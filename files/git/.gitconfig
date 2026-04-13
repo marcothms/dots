@@ -6,6 +6,7 @@
 [alias]
 	a = add
 	aa = add .
+	b = branch
 	bl = blame
 	c = commit -v
 	ca = commit -v --amend
@@ -17,6 +18,7 @@
 	pl = pull --rebase
 	ps = push
 	r = rebase -i
+	rc = rebase --continue
 	sh = show
 	st = status -s
 	wt = worktree
