@@ -29,6 +29,9 @@ display-inlay-hints = true
 [keys.normal.g]
 "b" = ":sh git show %sh{git blame -L %{cursor_line},+1 %{buffer_name} | awk '{print $1}'}"
 
+[keys.normal.space]
+"t" = ':lsp-workspace-command tinymist.pinMain "%sh{realpath %{buffer_name}}"'
+
 [keys.normal.z]
 s = ":set soft-wrap.enable true"
 S = ":set soft-wrap.enable false"
