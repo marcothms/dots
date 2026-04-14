@@ -1,5 +1,5 @@
 diff --git a/plugins/ssh-agent/ssh-agent.plugin.zsh b/plugins/ssh-agent/ssh-agent.plugin.zsh
-index 8354864..61462fd 100644
+index 83548648..42ec378f 100644
 --- a/plugins/ssh-agent/ssh-agent.plugin.zsh
 +++ b/plugins/ssh-agent/ssh-agent.plugin.zsh
 @@ -24,7 +24,7 @@ function _start_agent() {
@@ -11,3 +11,13 @@ index 8354864..61462fd 100644
    chmod 600 "$ssh_env_cache"
    . "$ssh_env_cache" > /dev/null
  }
+@@ -107,7 +107,8 @@ if zstyle -t :omz:plugins:ssh-agent agent-forwarding \
+     fi
+   fi
+ else
+-  _start_agent
++  # Don't start new one, if ssh-agent is forwarded
++  [[ $SSH_AUTH_SOCK =~ ^"/tmp/ssh-" ]] || _start_agent
+ fi
+ 
+ # Don't add identities if lazy-loading is enabled

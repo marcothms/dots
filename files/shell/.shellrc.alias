@@ -25,7 +25,7 @@ alias nupdate="nix-channel --update"
 alias typix="nix flake init --refresh -t github:loqusion/typix"
 alias twatch="typst watch"
 alias tbuild="tpst build"
-alias tlsp="nix-shell -p tinymist --command zsh"
+alias tlsp="nix-shell -p tinymist"
 
 alias nlatex="nix-shell -p texlive.combined.scheme-full"
 
