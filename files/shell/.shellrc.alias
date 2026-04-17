@@ -41,6 +41,11 @@ t() {
     tmux new-session -A -s ${1:-tmux}
 }
 z() {
+    # if remote, link agent so a stale zellij env doesn't hurt agent
+    if [[ $SSH_AUTH_SOCK =~ ^"/tmp/ssh-" ]]; then
+        ln -sf $SSH_AUTH_SOCK /tmp/agent.sock
+        export SSH_AUTH_SOCK=/tmp/agent.sock
+    fi
     zellij attach ${1:-$HOST} 2> /dev/null || zellij -s ${1:-$HOST}
 }
 
