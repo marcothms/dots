@@ -15,6 +15,16 @@ alias rm='rm -i'
 ### fzf
 alias c='cd $(fd --type d | fzf --reverse)'
 alias blame='git show $(git ls-files | fzf -e --reverse --bind "enter:become(git blame {1} | fzf -e --ansi --reverse | cut -f 1 -d \" \")")'
+unalias glg 2> /dev/null
+glg() {
+  g lg --color | \
+    fzf --reverse --ansi \
+        --preview 'git show --color=always $(echo {} | grep -o "[a-f0-9]\{7,\}" | head -1)' \
+        --preview-window=right:60% \
+        --bind 'enter:execute(git show --color=always $(echo {} | grep -o "[a-f0-9]\{7,\}" | head -1) | less -R)' \
+        --bind 'ctrl-d:preview-page-down' \
+        --bind 'ctrl-u:preview-page-up'
+}
 
 # nix
 alias nd="nix develop ."
