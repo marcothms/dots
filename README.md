@@ -74,15 +74,15 @@ sudo snap install \
   zotero-snap \
   proton-mail \
   codium \
-  steam
 ```
 
 ### Manual
 
-- [Helix](https://github.com/helix-editor/helix/releases)
+- [Helix](https://github.com/helix-editor/helix/releases) or [Helix Fork with Breadcrumbs](https://github.com/RoloEdits/helix/tree/breadcrumb)
 - [Signal](https://signal.org/download/linux/)
 - [Brave](https://brave.com/linux/)
 - [Rust](https://rustup.rs/)
+- [Steam](https://repo.steampowered.com/steam/)
 - [Nix](https://nixos.org/download/) (single-user installation)
   ```
   # additionally, enable flakes
