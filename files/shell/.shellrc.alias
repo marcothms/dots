@@ -52,7 +52,7 @@ t() {
 }
 z() {
     # if remote, link agent so a stale zellij env doesn't hurt agent
-    if [[ $SSH_AUTH_SOCK =~ ^"/tmp/ssh-" ]]; then
+    if [[ $SSH_AUTH_SOCK =~ ^"/tmp/ssh-" ]] || [[ $SSH_AUTH_SOCK =~ "$HOME/.ssh/agent" ]]; then
         ln -sf $SSH_AUTH_SOCK /tmp/agent.sock
         export SSH_AUTH_SOCK=/tmp/agent.sock
     fi
