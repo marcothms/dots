@@ -3,3 +3,5 @@ files/helix/.config/helix/runtime
 kitty.conf.bak
 *.bak
 *.bak.*
+redmine-hints.py
+gerrit-hints.py
