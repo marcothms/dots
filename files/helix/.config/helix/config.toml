@@ -24,7 +24,10 @@ display-inlay-hints = true
 [keys.normal]
 "_" = ["extend_line_up", "extend_to_line_bounds"]
 "+" = ["extend_line_down", "extend_to_line_bounds"]
-"A-/" = "@*<space>/<ret><C-a>^"
+"A-/" = "@<esc><A-*><space>/^<C-r>/"
+
+[keys.select]
+"A-/" = "@<esc><A-*><space>/^<C-r>/"
 
 [keys.normal.g]
 "b" = ":sh git show %sh{git blame -L %{cursor_line},+1 %{buffer_name} | awk '{print $1}'}"
