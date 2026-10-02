@@ -2,6 +2,7 @@
 alias cdt='mkdir /tmp/$(cat /proc/sys/kernel/random/uuid); cd $_'
 alias fixagent='eval $(tmux show-env -s | grep "^SSH_")'
 alias truecolor='curl -s https://raw.githubusercontent.com/JohnMorales/dotfiles/master/colors/24-bit-color.sh | bash'
+alias nas='sshfs sftp:nas files/nas'
 
 ### zfs (just saved commands)
 # zfs send pool/path/to/zvol@snapshot| gzip -c >/mnt/some/location/zvol@20230302.gz
