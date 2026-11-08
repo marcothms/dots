@@ -29,7 +29,6 @@ Use ./stow.sh --unstow <folder_name> to remove configuration
 - gamemode configuration:
   - renice=10
 - ssh-agent:
-  - agent-location: `cd $HOME/.oh-my-zsh/ && git apply $HOME/.dots/patches/ssh-agent-location.patch`
   - remove keys on lock: `ln -sSf $HOME/.dots/scripts/remove-ssh.service $HOME/.config/systemd/user/remove-ssh.service && systemctl --user start remove-ssh && systemctl --user enable remove-ssh` 
   
 ## Software
@@ -42,7 +41,7 @@ sudo apt install \
 ```
 
 ```
-git clone https://github.com/ohmyzsh/ohmyzsh/ $HOME/.oh-my-zsh && bash $HOME/.dots/apply-zsh-patches.sh
+git clone https://github.com/marcothms/ohmyzsh/ $HOME/.oh-my-zsh
 ```
 
 ### Extended
